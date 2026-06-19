@@ -4,7 +4,8 @@
   "description": "Local HTML playground for visualizing fund manager JSON data",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "engines": {
     "node": ">=18"

@@ -598,6 +598,41 @@ function initTheme() {
 initTheme();
 
 
+// ============ 热重载：SSE 监听 ============
+// server.js 在 public/ 或 data/ 变化时会广播 'reload' 事件，浏览器收到后 location.reload()。
+// EventSource 原生自动重连（断线后 3s 重试），无需手动处理 error。
+
+function initHotReload() {
+  if (typeof EventSource === 'undefined') return;  // 老浏览器降级
+  try {
+    const es = new EventSource('/sse');
+
+    es.addEventListener('hello', () => {
+      // 连接成功，dev 期间给个 console 提示
+      console.info('[hot-reload] SSE connected, edits in public/ will auto-refresh');
+    });
+
+    es.addEventListener('reload', (e) => {
+      try {
+        const payload = JSON.parse(e.data);
+        console.info(`[hot-reload] ${payload.reason} → reloading…`);
+      } catch (_) {
+        console.info('[hot-reload] reload signal received');
+      }
+      // 保留主题选择（写到 localStorage 后 reload 会自动恢复）
+      location.reload();
+    });
+
+    es.addEventListener('error', () => {
+      // EventSource 会自动重连，这里只提示
+      console.warn('[hot-reload] SSE connection lost, retrying…');
+    });
+  } catch (err) {
+    // SSE 不可用不阻塞主流程
+    console.warn('[hot-reload] disabled:', err.message);
+  }
+}
+
 // ============ Init ============
 
 async function init() {
@@ -621,4 +656,5 @@ async function init() {
   }
 }
 
+initHotReload();
 init();
