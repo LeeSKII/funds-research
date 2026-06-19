@@ -1,6 +1,6 @@
 // ============================================================
 // 基金经理数据校验脚本 v1.0
-// 校验 data/raw/morningstar/manager-*.json 的完整性和合理性
+// 校验 data/manager/manager-*.json 的完整性和合理性
 // ============================================================
 //
 // 用法：
@@ -22,8 +22,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// 默认校验目录：项目根 / data/raw/manager/（与脚本位置解耦）
-const DEFAULT_DIR = path.join(__dirname, '..', '..', '..', 'data', 'raw', 'manager');
+// 默认校验目录：项目根 / data/manager/（与脚本位置解耦）
+const DEFAULT_DIR = path.join(__dirname, '..', '..', '..', 'data', 'manager');
 
 // ============================================================
 // 校验规则集

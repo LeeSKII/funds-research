@@ -1,7 +1,7 @@
 # Manager Playground
 
 > 本地 HTML 可视化工具，用于查看和对比基金经理数据。
-> 数据源：`../data/raw/manager/manager-*.json`（funds-research v1.5 schema）。
+> 数据源：`../data/manager/manager-*.json`（funds-research v1.5 schema）。
 
 ## 🚀 启动
 
@@ -60,7 +60,7 @@ playground/
      research/managers/raw-snapshots/morningstar-<id>-<date>.json <id> <name>
    ```
 3. **无需重启 server**（v1.4+ 支持 SSE 热重载）：
-   - 修改 `public/*.html|css|js` 或 `data/raw/manager/*.json` → 浏览器自动刷新
+   - 修改 `public/*.html|css|js` 或 `data/manager/*.json` → 浏览器自动刷新
    - 修改 `server.js` 本身 → `npm run dev` 用 `node --watch`
 4. 刷新浏览器（或自动刷新），新经理自动出现在对比表（按年化收益降序）
 

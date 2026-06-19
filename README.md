@@ -54,7 +54,7 @@ funds-research/
 
 1. 阅读 `data/EXTRACT-MANAGER-GUIDE.md`（v1.4 状态表）→ 选场景
 2. 复制 `docs/iteration-log.md` → `process/iter-NNN-YYYY-MM-DD.md`
-3. 执行（navigate → 限速 → evaluate → 立即落盘 `data/raw/manager/`）
+3. 执行（navigate → 限速 → evaluate → 立即落盘 `data/manager/`）
 4. 在 log 中写"本轮关键发现 / 未决问题 / 下一步"
 5. 同步 `reports/INDEX.md`
 6. 触发下一轮 loop
@@ -67,7 +67,7 @@ funds-research/
 
 - ✅ 工具链：Manager JSON Schema v1.5 + parse-manager v1.5 + validate-manager v1.5
 - ✅ 工作流：4 步（抓取 → parse → validate → 保存）— 见 `CLAUDE.md`
-- ✅ 项目结构：研究子模块化（research/managers/）、数据按模块分类（data/raw/manager/）
+- ✅ 项目结构：研究子模块化（research/managers/）、数据按模块分类（data/manager/）
 - ⏳ 阶段 2：候选池扩张（已 8 个经理，含 1 个 QDII）
 
 最近一次更新：2026-06-19（iter-005 — 项目结构整理）

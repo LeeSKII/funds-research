@@ -4,15 +4,15 @@
 // ============================================================
 //
 // 用法（CLI）：
-//   node data/parse-manager.js <innertext-json> <managerId> [nameHint]
-//   例：node data/parse-manager.js data/raw/liuyuanhai-innertext.json 175675 刘元海
+//   node research/managers/scripts/parse-manager.js <innertext-json> <managerId> [nameHint]
+//   例：node research/managers/scripts/parse-manager.js research/managers/raw-snapshots/morningstar-175675-20260619.json 175675 刘元海
 //
 // 输入文件格式：
 //   单一 JSON 字符串（mcp chrome-devtools evaluate_script 默认输出格式）
 //   也兼容：纯 innerText 字符串
 //
 // 输出：
-//   data/raw/manager/manager-<id>-<name>.json
+//   data/manager/manager-<id>-<name>.json
 //   符合 data/manager-schema.json（v1.5 已补字段枚举）
 //
 // 模块导出：
@@ -691,8 +691,8 @@ function validate(data) {
 function main() {
   const [,, inputPath, managerId, ...nameParts] = process.argv;
   if (!inputPath || !managerId) {
-    console.error('用法：node data/parse-manager.js <innertext-json> <managerId> [nameHint]');
-    console.error('例：  node data/parse-manager.js data/raw/liuyuanhai-innertext.json 175675 刘元海');
+    console.error('用法：node research/managers/scripts/parse-manager.js <innertext-json> <managerId> [nameHint]');
+    console.error('例：  node research/managers/scripts/parse-manager.js research/managers/raw-snapshots/morningstar-175675-20260619.json 175675 刘元海');
     process.exit(1);
   }
   // 防御：managerId 必须是纯数字
@@ -712,9 +712,9 @@ function main() {
   const data = extractManager(t, managerId, nameHint);
 
   // 输出文件名：manager-<id>-<name-ascii>.json
-  // 路径：项目根 / data/raw/manager/（与脚本位置解耦）
+  // 路径：项目根 / data/manager/（与脚本位置解耦）
   const slug = asciiName(data._meta.name);
-  const outDir = path.join(__dirname, '..', '..', '..', 'data', 'raw', 'manager');
+  const outDir = path.join(__dirname, '..', '..', '..', 'data', 'manager');
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
   const outPath = path.join(outDir, `manager-${managerId}-${slug}.json`);
   fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf-8');
