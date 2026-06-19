@@ -24,8 +24,7 @@ cd "C:/Lee/Projects/funds-research/playground" && node server.js
 
 浏览器打开 [http://localhost:8765](http://localhost:8765)
 
-> **Server 生命周期管理**：参见 [`docs/SERVER-MANAGEMENT.md`](../docs/SERVER-MANAGEMENT.md)。
-> Claude 启动后用 TaskCreate 跟踪，验证后用 TaskStop + taskkill 显式清理。
+> **Server 生命周期管理**：Claude 启动后用 TaskCreate 跟踪，验证后用 TaskStop + taskkill 显式清理。
 
 ## 📂 文件结构
 
@@ -81,9 +80,6 @@ playground/
 
 ## 📚 相关文档
 
-- **设计文档**：[`docs/superpowers/specs/2026-06-19-manager-playground-design.md`](../docs/superpowers/specs/2026-06-19-manager-playground-design.md)
-- **实施计划**：[`docs/superpowers/plans/2026-06-19-manager-playground.md`](../docs/superpowers/plans/2026-06-19-manager-playground.md)
-- **Server 生命周期**：[`docs/SERVER-MANAGEMENT.md`](../docs/SERVER-MANAGEMENT.md)
 - **数据 schema**：[`data/manager-schema.json`](../data/manager-schema.json)
 - **Claude 工作流**：[`CLAUDE.md`](../CLAUDE.md)
 

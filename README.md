@@ -21,7 +21,7 @@
 funds-research/
 ├── README.md                      ← 你正在读的（项目入口）
 ├── CLAUDE.md                      ← 🤖 Claude 工作流约束（manager 子模块）
-├── docs/                          ← 过程文档（协议 / superpowers spec 等）
+├── docs/                          ← 过程文档
 ├── data/                          ← 经理数据（结构化）
 │   ├── manager-schema.json        ← 经理 JSON Schema 定义
 │   ├── sources.md                 ← 引用链接合集
