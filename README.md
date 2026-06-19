@@ -41,18 +41,6 @@ funds-research/
 
 ---
 
-## 🔁 Loop 怎么用
-
-**单次迭代最小流程**：
-
-1. 阅读 `CLAUDE.md`（4 步工作流）→ 确认要走哪一步
-2. 执行（navigate → 限速 → evaluate → 立即落盘 `data/manager/`）
-3. 触发下一轮 loop
-
-**在 Claude Code 中**：直接说 `请按 CLAUDE.md 的 4 步工作流抓下一个经理` 即可。
-
----
-
 ## 📊 当前状态
 
 - ✅ 工具链：Manager JSON Schema v1.5 + parse-manager v1.5 + validate-manager v1.5
