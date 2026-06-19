@@ -116,7 +116,7 @@ function skeletonTableHtml() {
         <tr>
           <th>#</th>
           <th>经理</th><th>公司</th><th>规模</th><th>年限</th>
-          <th>任职以来</th><th>1Y 收益</th><th>1Y 波动</th><th>SHARPE</th>
+          <th>任职以来</th><th>1Y 收益</th><th>1Y 波动</th><th>夏普</th>
           <th>行业 Top1</th><th>风格</th>
         </tr>
       </thead>
@@ -215,7 +215,7 @@ function renderCompareTable(managers) {
           <th data-sort-key="sinceInception" class="sortable">任职以来 ${sortArrow('sinceInception')}</th>
           <th data-sort-key="1y" class="sortable">1Y 收益 ${sortArrow('1y')}</th>
           <th data-sort-key="vol" class="sortable">1Y 波动 ${sortArrow('vol')}</th>
-          <th data-sort-key="sharpe" class="sortable">SHARPE ${sortArrow('sharpe')}</th>
+          <th data-sort-key="sharpe" class="sortable">夏普 ${sortArrow('sharpe')}</th>
           <th data-sort-key="topSector" class="sortable">行业 Top1 ${sortArrow('topSector')}</th>
           <th data-sort-key="styleBias" class="sortable">风格 ${sortArrow('styleBias')}</th>
         </tr>
@@ -297,12 +297,12 @@ function renderDetail(m) {
         <h3>基本信息</h3>
       </div>
       <div class="detail-meta">
-        <div class="item"><span class="label-key">EDUCATION</span><strong>${escapeHtml(b.education || '—')}</strong></div>
-        <div class="item"><span class="label-key">EXPERIENCE</span><strong>${fmtNum(b.investmentYears)} 年</strong></div>
-        <div class="item"><span class="label-key">FUNDS · CURRENT</span><strong>${b.fundCountCurrent || '—'} 只</strong></div>
-        <div class="item"><span class="label-key">FUNDS · TOTAL</span><strong>${b.fundCountTotal || '—'} 只</strong></div>
-        <div class="item"><span class="label-key">ASSET TYPE</span><strong>${(b.assetType || []).join(' · ') || '—'}</strong></div>
-        <div class="item"><span class="label-key">MGMT TYPE</span><strong>${(b.managementType || []).join(' · ') || '—'}</strong></div>
+        <div class="item"><span class="label-key">学历</span><strong>${escapeHtml(b.education || '—')}</strong></div>
+        <div class="item"><span class="label-key">投资年限</span><strong>${fmtNum(b.investmentYears)} 年</strong></div>
+        <div class="item"><span class="label-key">在管基金</span><strong>${b.fundCountCurrent || '—'} 只</strong></div>
+        <div class="item"><span class="label-key">累计管理</span><strong>${b.fundCountTotal || '—'} 只</strong></div>
+        <div class="item"><span class="label-key">资产类型</span><strong>${(b.assetType || []).join(' · ') || '—'}</strong></div>
+        <div class="item"><span class="label-key">管理类型</span><strong>${(b.managementType || []).join(' · ') || '—'}</strong></div>
       </div>
       ${b.bio ? `<p class="bio">${escapeHtml(b.bio)}</p>` : ''}
     </div>
@@ -320,30 +320,30 @@ function renderDetail(m) {
         <h3>业绩标签 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（正 ${perfPos.length} / 负 ${perfNeg.length} / 中 ${perfNeu.length}）</span></h3>
       </div>
       <div class="tag-section">
-        <span class="tag-section-label">POSITIVE</span>
+        <span class="tag-section-label">正面</span>
         <div class="tag-group">${perfPos.map(t => `<span class="chip pos" title="${escapeHtml(t.timeframe || '')}">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">— 无 —</span>'}</div>
       </div>
       <div class="tag-section">
-        <span class="tag-section-label">NEGATIVE</span>
+        <span class="tag-section-label">负面</span>
         <div class="tag-group">${perfNeg.map(t => `<span class="chip neg">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">— 无 —</span>'}</div>
       </div>
       <div class="tag-section">
-        <span class="tag-section-label">NEUTRAL</span>
+        <span class="tag-section-label">中性</span>
         <div class="tag-group">${perfNeu.map(t => `<span class="chip neu">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">— 无 —</span>'}</div>
       </div>
       ${(labels.experience || []).length > 0 ? `
       <div class="tag-section">
-        <span class="tag-section-label">EXPERIENCE</span>
+        <span class="tag-section-label">投资经验</span>
         <div class="tag-group">${labels.experience.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join('')}</div>
       </div>` : ''}
       ${(labels.holdingStyle || []).length > 0 ? `
       <div class="tag-section">
-        <span class="tag-section-label">HOLDING STYLE</span>
+        <span class="tag-section-label">持仓风格</span>
         <div class="tag-group">${labels.holdingStyle.map(t => `<span class="chip gray">${escapeHtml(t)}</span>`).join('')}</div>
       </div>` : ''}
       ${(labels.sectorPreference || []).length > 0 ? `
       <div class="tag-section">
-        <span class="tag-section-label">SECTOR PREFERENCE</span>
+        <span class="tag-section-label">行业偏好</span>
         <div class="tag-group">${labels.sectorPreference.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join('')}</div>
       </div>` : ''}
     </div>
@@ -358,14 +358,14 @@ function renderDetail(m) {
         <h3>风险回报 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（${escapeHtml(rr.period || '当前')}）</span></h3>
       </div>
       <div class="metric-cards">
-        <div class="metric-card"><div class="label">MGR RETURN</div><div class="value ${cls(rr.managerReturn)}">${fmtPct(rr.managerReturn)}</div></div>
-        <div class="metric-card"><div class="label">BENCH RETURN</div><div class="value">${fmtPct(rr.benchmarkReturn)}</div></div>
-        <div class="metric-card"><div class="label">EXCESS</div><div class="value ${cls(rr.excessReturn)}">${fmtPct(rr.excessReturn)}</div></div>
-        <div class="metric-card"><div class="label">MGR VOL</div><div class="value">${fmtNum(rr.managerVol)}%</div></div>
-        <div class="metric-card"><div class="label">BENCH VOL</div><div class="value">${fmtNum(rr.benchmarkVol)}%</div></div>
-        <div class="metric-card"><div class="label">SHARPE</div><div class="value">${fmtNum(sharpe)}</div></div>
-        <div class="metric-card"><div class="label">RETURN RANK</div><div class="value muted">${escapeHtml(rr.returnRank || '—')}</div></div>
-        <div class="metric-card"><div class="label">RISK RANK</div><div class="value muted">${escapeHtml(rr.riskRank || '—')}</div></div>
+        <div class="metric-card"><div class="label">经理年化</div><div class="value ${cls(rr.managerReturn)}">${fmtPct(rr.managerReturn)}</div></div>
+        <div class="metric-card"><div class="label">基准年化</div><div class="value">${fmtPct(rr.benchmarkReturn)}</div></div>
+        <div class="metric-card"><div class="label">超额</div><div class="value ${cls(rr.excessReturn)}">${fmtPct(rr.excessReturn)}</div></div>
+        <div class="metric-card"><div class="label">经理波动</div><div class="value">${fmtNum(rr.managerVol)}%</div></div>
+        <div class="metric-card"><div class="label">基准波动</div><div class="value">${fmtNum(rr.benchmarkVol)}%</div></div>
+        <div class="metric-card"><div class="label">夏普</div><div class="value">${fmtNum(sharpe)}</div></div>
+        <div class="metric-card"><div class="label">收益排名</div><div class="value muted">${escapeHtml(rr.returnRank || '—')}</div></div>
+        <div class="metric-card"><div class="label">抗风险排名</div><div class="value muted">${escapeHtml(rr.riskRank || '—')}</div></div>
       </div>
     </div>
   `;
@@ -386,10 +386,10 @@ function renderDetail(m) {
         <h3>历年回报 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">vs ${escapeHtml(ann.benchmark || '基准')}</span></h3>
       </div>
       <table>
-        <thead><tr><th>YEAR</th><th>MGR</th><th>BENCH</th><th>EXCESS</th></tr></thead>
+        <thead><tr><th>年份</th><th>经理</th><th>基准</th><th>超额</th></tr></thead>
         <tbody>${annRows}</tbody>
-        ${ann.ytd ? `<tfoot><tr><td><strong>YTD</strong></td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.manager)}</td><td>${fmtPct(ann.ytd.benchmark)}</td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.excess)}</td></tr></tfoot>` : ''}
-        ${ann.sinceInception ? `<tfoot><tr><td><strong>SINCE INCEPTION</strong></td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.manager)}</strong></td><td>${fmtPct(ann.sinceInception.benchmark)}</td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.excess)}</strong></td></tr></tfoot>` : ''}
+        ${ann.ytd ? `<tfoot><tr><td><strong>今年</strong></td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.manager)}</td><td>${fmtPct(ann.ytd.benchmark)}</td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.excess)}</td></tr></tfoot>` : ''}
+        ${ann.sinceInception ? `<tfoot><tr><td><strong>任职以来</strong></td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.manager)}</strong></td><td>${fmtPct(ann.sinceInception.benchmark)}</td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.excess)}</strong></td></tr></tfoot>` : ''}
       </table>
     </div>
   `;
@@ -467,7 +467,7 @@ function renderDetail(m) {
         <h3>前十大持仓 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（季度，截至 ${escapeHtml(m.topHoldings?.quarterly?.asOf || '—')}）</span></h3>
       </div>
       <table>
-        <thead><tr><th>#</th><th>NAME</th><th>CODE</th><th>WEIGHT</th><th>FIRST BUY</th><th>MKT VAL (亿)</th><th>SHARE Δ</th><th>SECTOR</th></tr></thead>
+        <thead><tr><th>#</th><th>名称</th><th>代码</th><th>权重</th><th>首次买入</th><th>市值(亿)</th><th>份额变动</th><th>行业</th></tr></thead>
         <tbody>${holdingsRows || '<tr><td colspan="8" class="muted">— 无数据 —</td></tr>'}</tbody>
       </table>
     </div>
@@ -490,7 +490,7 @@ function renderDetail(m) {
         <h3>重仓股持有期 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（季度）</span></h3>
       </div>
       <table>
-        <thead><tr><th>NAME</th><th>QUARTERS</th><th>MKT VAL (亿)</th><th>CURRENT RANK</th><th>SECTOR</th></tr></thead>
+        <thead><tr><th>名称</th><th>持有季度</th><th>市值(亿)</th><th>当前排名</th><th>行业</th></tr></thead>
         <tbody>${periodsRows || '<tr><td colspan="5" class="muted">— 无数据 —</td></tr>'}</tbody>
       </table>
     </div>
@@ -517,7 +517,7 @@ function renderDetail(m) {
         <h3>管理基金列表 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（⭐ 代表产品）</span></h3>
       </div>
       <table>
-        <thead><tr><th></th><th>NAME</th><th>CODE</th><th>SCALE</th><th>CATEGORY</th><th>APPOINTED</th><th>TENURE</th><th>RETURN</th><th>EXCESS</th></tr></thead>
+        <thead><tr><th></th><th>名称</th><th>代码</th><th>规模</th><th>晨星分类</th><th>任职日</th><th>在任时长</th><th>任职回报</th><th>超额</th></tr></thead>
         <tbody>${fundsRows || '<tr><td colspan="9" class="muted">— 无数据 —</td></tr>'}</tbody>
       </table>
     </div>
@@ -526,18 +526,18 @@ function renderDetail(m) {
   // Detail header (hero)
   const heroTarget = si.manager;
   const heroComparison = si.benchmark !== undefined && si.benchmark !== null
-    ? `vs 基准 ${fmtPct(si.benchmark)} <span class="vs">·</span> 超额 <span class="${cls(si.excess)}">${fmtPct(si.excess)}</span>`
+    ? `对比基准 ${fmtPct(si.benchmark)} <span class="vs">·</span> 超额 <span class="${cls(si.excess)}">${fmtPct(si.excess)}</span>`
     : '';
 
   container.innerHTML = `
     <div class="detail-header">
       <div class="detail-name">
-        <div class="detail-eyebrow">MGR ID ${escapeHtml(m._meta?.managerId || '—')} · ${fmtNum(b.investmentYears)} Y · ${fmtAum(b.aum)}</div>
+        <div class="detail-eyebrow">编号 ${escapeHtml(m._meta?.managerId || '—')} · ${fmtNum(b.investmentYears)} 年 · ${fmtAum(b.aum)}</div>
         <h2>${mgrLink(b.name || '—', m._meta?.source)}</h2>
         <div class="detail-company">${escapeHtml(companyClean)}</div>
       </div>
       <div class="detail-hero">
-        <div class="hero-label">SINCE INCEPTION RETURN</div>
+        <div class="hero-label">任职以来回报</div>
         <div class="hero-metric" id="hero-metric" data-target="${heroTarget}">${heroTarget !== null && heroTarget !== undefined ? fmtPct(heroTarget) : '—'}</div>
         <div class="hero-comparison">${heroComparison}</div>
       </div>
