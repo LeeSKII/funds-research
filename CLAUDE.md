@@ -106,6 +106,5 @@ funds-research/
 │   ├── server.js
 │   ├── public/
 │   └── mockups/                     # 设计迭代截图（.gitignore 排除）
-├── docs/                            # 过程文档
 └── CLAUDE.md                        # 本文件
 ```
