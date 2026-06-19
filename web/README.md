@@ -1,4 +1,4 @@
-# Manager Playground
+# Manager Web
 
 > 本地 HTML 可视化工具，用于查看和对比基金经理数据。
 > 数据源：`../data/manager/manager-*.json`（funds-research v1.5 schema）。
@@ -9,15 +9,16 @@
 
 ```bash
 # Claude 端
-cd "C:/Lee/Projects/funds-research/playground" && node server.js
+cd "C:/Lee/Projects/funds-research/web" && node server.js
 # (用 Bash 的 run_in_background: true 跑)
 ```
 
 预期输出：
+
 ```
 [info] Loaded 3 managers from C:\Lee\Projects\funds-research\data\raw\manager
 
-📊 Manager Playground running on http://localhost:8765
+📊 Manager Web running on http://localhost:8765
    3 managers loaded
    Press Ctrl+C to stop
 ```
@@ -29,7 +30,7 @@ cd "C:/Lee/Projects/funds-research/playground" && node server.js
 ## 📂 文件结构
 
 ```
-playground/
+web/
 ├── server.js         # Node http 服务（~250 行，含 SSE 热重载）
 ├── public/
 │   ├── index.html    # 主页面
@@ -46,7 +47,7 @@ playground/
 
 - **用途**：存设计迭代的截图（不同 layout / 主题 / 状态对比）
 - **命名**：`iter-NNN-<描述>.{png,jpeg,jpg}`（NNN = 3 位迭代号）
-- **.gitignore 状态**：`playground/mockups/*` 被全局 `.gitignore` 排除（除了 `.gitkeep`）
+- **.gitignore 状态**：`web/mockups/*` 被全局 `.gitignore` 排除（除了 `.gitkeep`）
 - **优点**：每个迭代可存多张对比图，不污染 git 仓库
 - **同步到云端**（可选）：手动 `rsync` 到云盘，不要靠 git
 
@@ -85,24 +86,10 @@ playground/
 
 ## 🐛 故障排查
 
-| 问题 | 原因 | 解决 |
-|---|---|---|
-| 端口 8765 占用 | 僵尸进程残留 | `netstat -ano \| grep :8765` → `taskkill //F //PID <PID>` |
-| fetch 失败 | server 没启动 | 检查 Claude 的 background task 状态 |
-| 表格空 | 没有 manager JSON | 跑 `parse-manager.js` |
-| 单经理字段缺失 | 该 JSON 字段未填 | 查原始 innertext，必要时手动补充 |
-| 添加新经理没出现 | server 没重启 | TaskStop + 重新 Bash run_in_background |
-
-## 📊 当前验证
-
-iter-007 端到端验证：
-- [x] 对比表 3 行（按年化收益降序：郑希 → 刘元海 → 武阳）
-- [x] 点击行 → 详情区滚动 + 9 个 section
-- [x] 业绩标签三态（正/负/中）
-- [x] 风险回报 8 个 metric card
-- [x] 历年回报 10 年 + 今年 + 任职以来
-- [x] 行业配置条形图
-- [x] 风格箱 3x3 网格 + 主导高亮
-- [x] 持仓 10 行（含 TSM US/LITE US 等特殊代码）
-- [x] 持有期 10 行
-- [x] 基金列表 9 行 + 代表产品高亮
+| 问题             | 原因              | 解决                                                      |
+| ---------------- | ----------------- | --------------------------------------------------------- |
+| 端口 8765 占用   | 僵尸进程残留      | `netstat -ano \| grep :8765` → `taskkill //F //PID <PID>` |
+| fetch 失败       | server 没启动     | 检查 Claude 的 background task 状态                       |
+| 表格空           | 没有 manager JSON | 跑 `parse-manager.js`                                     |
+| 单经理字段缺失   | 该 JSON 字段未填  | 查原始 innertext，必要时手动补充                          |
+| 添加新经理没出现 | server 没重启     | TaskStop + 重新 Bash run_in_background                    |

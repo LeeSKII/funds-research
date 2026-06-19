@@ -1,0 +1,403 @@
+{
+  "_meta": {
+    "managerId": "213232",
+    "name": "李宁宁",
+    "scrapedAt": "2026-06-19T14:28:37.341Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/213232",
+    "pageLength": 2404,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "李宁宁",
+    "company": "中加基金管理有限公司",
+    "education": "北京外国语大学金融学硕士",
+    "bio": "北京外国语大学金融学硕士，2017年7月至2020年3月，任北京永瑞私募基金管理有限公司大消费研究员，2020年3月加入中加基金管理有限公司，曾任中加聚庆六个月定期开放混合型证券投资基金（2023年2月2日至2024年2月26日）、中加聚隆六个月持有期混合型证券投资基金（2023年6月30日至2024年7月12日）的基金经理，现任中加科技创新混合型发起式证券...",
+    "investmentYears": 3.38,
+    "aum": "3.83亿元",
+    "aumNumeric": 3.83,
+    "fundCountCurrent": 1,
+    "fundCountTotal": 2,
+    "assetType": [
+      "权益型",
+      "主动型",
+      "港股"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 52.57
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "机构持有较高"
+    ],
+    "holdingStyle": [
+      "持股P/E高",
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "行业集中"
+    ],
+    "sectorPreference": [
+      "科技",
+      "工业"
+    ],
+    "performance": [
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "月度胜率高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "月度"
+      },
+      {
+        "label": "近三年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 228.23,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 209.82999999999998,
+      "managerVol": 42.35,
+      "benchmarkVol": 22.78,
+      "returnRank": "前1%",
+      "riskRank": "前97%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2024,
+        "manager": 15.32,
+        "benchmark": 14.68,
+        "excess": 0.6400000000000006
+      },
+      {
+        "year": 2025,
+        "manager": 105.92,
+        "benchmark": 17.66,
+        "excess": 88.26
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 71.6,
+      "benchmark": 6.73,
+      "excess": 64.86999999999999
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 315.82,
+      "benchmark": 18.19,
+      "excess": 297.63
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 36.83
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体设备与材料",
+        "pct": 15.56
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 13.85
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "特种工业机械",
+        "pct": 6.97
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 5.89
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 36.83
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 3,
+      "大盘平衡": 6,
+      "大盘成长": 67,
+      "中盘价值": 0,
+      "中盘平衡": 5,
+      "中盘成长": 14,
+      "小盘价值": 0,
+      "小盘平衡": 4,
+      "小盘成长": 0
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "中加科技创新混合发起式A",
+      "code": "020661",
+      "scale": "1.80",
+      "scaleNumeric": 1.8,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2024-03-12",
+      "tenureDays": "2年98天",
+      "tenureReturn": 258.63,
+      "benchmarkReturn": 163.44,
+      "excessReturn": 95.19,
+      "isRepresentative": true
+    },
+    {
+      "name": "中加科技创新混合发起式C",
+      "code": "020662",
+      "scale": "2.03",
+      "scaleNumeric": 2.03,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2024-03-12",
+      "tenureDays": "2年98天",
+      "tenureReturn": 254.17,
+      "benchmarkReturn": 163.44,
+      "excessReturn": 90.72999999999999,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 9.39,
+          "firstBuy": "2024 Q2",
+          "mktValue": 0.36,
+          "shareChange": 134.2,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 9.37,
+          "firstBuy": "2023 Q2",
+          "mktValue": 0.36,
+          "shareChange": 118.71,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "源杰科技",
+          "code": "688498.SHA",
+          "weight": 5.65,
+          "firstBuy": "2024 Q2",
+          "mktValue": 0.22,
+          "shareChange": 38.77,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "永鼎股份",
+          "code": "600105.SHA",
+          "weight": 5,
+          "firstBuy": "2025 Q4",
+          "mktValue": 0.19,
+          "shareChange": 37.89,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "长光华芯",
+          "code": "688048.SHA",
+          "weight": 4.98,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.19,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 6,
+          "name": "凯格精机",
+          "code": "301338.SHE",
+          "weight": 4.91,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.19,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 7,
+          "name": "迈富时",
+          "code": "02556",
+          "weight": 4.86,
+          "firstBuy": "2025 Q1",
+          "mktValue": 0.19,
+          "shareChange": 146.69,
+          "sector": "科技"
+        },
+        {
+          "rank": 8,
+          "name": "罗博特科",
+          "code": "300757.SHE",
+          "weight": 4.28,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.16,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 9,
+          "name": "天孚通信",
+          "code": "300394.SHE",
+          "weight": 4.19,
+          "firstBuy": "2023 Q2",
+          "mktValue": 0.16,
+          "shareChange": 36.15,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "光库科技",
+          "code": "300620.SHE",
+          "weight": 4,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.15,
+          "shareChange": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "新易盛",
+          "quarters": 8,
+          "mktValue": 0.36,
+          "currentRank": "2",
+          "sector": "科技"
+        },
+        {
+          "name": "中际旭创",
+          "quarters": 7,
+          "mktValue": 0.36,
+          "currentRank": "1",
+          "sector": "科技"
+        },
+        {
+          "name": "天孚通信",
+          "quarters": 6,
+          "mktValue": 0.16,
+          "currentRank": "9",
+          "sector": "科技"
+        },
+        {
+          "name": "胜宏科技",
+          "quarters": 6,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "迈富时",
+          "quarters": 5,
+          "mktValue": 0.19,
+          "currentRank": "7",
+          "sector": "科技"
+        },
+        {
+          "name": "昆仑万维",
+          "quarters": 4,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "通信服务"
+        },
+        {
+          "name": "源杰科技",
+          "quarters": 4,
+          "mktValue": 0.22,
+          "currentRank": "3",
+          "sector": "科技"
+        },
+        {
+          "name": "中国海油",
+          "quarters": 3,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "能源"
+        },
+        {
+          "name": "中国电信",
+          "quarters": 3,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "通信服务"
+        },
+        {
+          "name": "中国移动",
+          "quarters": 3,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "通信服务"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}

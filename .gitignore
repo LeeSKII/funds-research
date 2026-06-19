@@ -25,7 +25,7 @@ package-lock.json
 -*-innertext-fresh.json
 *-innertext-old.json
 
-# Playground · 设计迭代的 mockup 截图（不入版本控制）
+# Web · 设计迭代的 mockup 截图（不入版本控制）
 # 命名规则：iter-NNN-<name>.{png,jpeg,jpg}
-playground/mockups/*
-!playground/mockups/.gitkeep
+web/mockups/*
+!web/mockups/.gitkeep

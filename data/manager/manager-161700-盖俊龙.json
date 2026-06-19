@@ -1,0 +1,608 @@
+{
+  "_meta": {
+    "managerId": "161700",
+    "name": "盖俊龙",
+    "scrapedAt": "2026-06-19T14:38:20.190Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/161700",
+    "pageLength": 3213,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "盖俊龙",
+    "company": "红土创新基金管理有限公司",
+    "education": null,
+    "bio": "历任长城基金管理有限公司行业研究员；宝盈基金管理有限公司研究员、专户投资经理、基金经理。现任本公司投资部总监，红土创新转型精选灵活配置混合型证券投资基金（LOF）、红土创新科技创新股票型证券投资基金（LOF）、红土创新新科技股票型发起式证券投资基金、红土创新智能制造混合型发起式证券投资基金基金经理。",
+    "investmentYears": 11.09,
+    "aum": "15.61亿元",
+    "aumNumeric": 15.61,
+    "fundCountCurrent": 5,
+    "fundCountTotal": 10,
+    "assetType": [
+      "权益型",
+      "主动型"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 22.06
+  },
+  "labels": {
+    "experience": [
+      "十年老将",
+      "机构持有极低",
+      "近三年规模相对稳定",
+      "一拖多"
+    ],
+    "holdingStyle": [
+      "持股P/E高",
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "换手率高",
+      "权益仓位稳定",
+      "高权益仓位",
+      "行业集中",
+      "股票风格漂移"
+    ],
+    "sectorPreference": [
+      "科技",
+      "工业"
+    ],
+    "performance": [
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "月度胜率高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "月度"
+      },
+      {
+        "label": "中长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "中长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "近三年回撤控制能力弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近五年回撤控制能力较弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      },
+      {
+        "label": "近五年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 202.74,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 184.34,
+      "managerVol": 36.56,
+      "benchmarkVol": 22.78,
+      "returnRank": "前1%",
+      "riskRank": "前91%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2016,
+        "manager": -17.33,
+        "benchmark": -11.28,
+        "excess": -6.049999999999999
+      },
+      {
+        "year": 2017,
+        "manager": -0.58,
+        "benchmark": 21.78,
+        "excess": -22.36
+      },
+      {
+        "year": 2018,
+        "manager": -0.34,
+        "benchmark": -25.31,
+        "excess": 24.97
+      },
+      {
+        "year": 2019,
+        "manager": 38.98,
+        "benchmark": 36.07,
+        "excess": 2.9099999999999966
+      },
+      {
+        "year": 2020,
+        "manager": 55.34,
+        "benchmark": 27.21,
+        "excess": 28.130000000000003
+      },
+      {
+        "year": 2021,
+        "manager": 41.32,
+        "benchmark": -5.2,
+        "excess": 46.52
+      },
+      {
+        "year": 2022,
+        "manager": -18.68,
+        "benchmark": -21.63,
+        "excess": 2.9499999999999993
+      },
+      {
+        "year": 2023,
+        "manager": -19.95,
+        "benchmark": -11.38,
+        "excess": -8.569999999999999
+      },
+      {
+        "year": 2024,
+        "manager": 6.48,
+        "benchmark": 14.68,
+        "excess": -8.2
+      },
+      {
+        "year": 2025,
+        "manager": 76.6,
+        "benchmark": 17.66,
+        "excess": 58.94
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 121.92,
+      "benchmark": 6.73,
+      "excess": 115.19
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 1013.27,
+      "benchmark": 130.28,
+      "excess": 882.99
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 38.25
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 20.72
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 9.33
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体设备与材料",
+        "pct": 6
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "特种工业机械",
+        "pct": 3.74
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 38.25
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 3,
+      "大盘平衡": 8,
+      "大盘成长": 49,
+      "中盘价值": 2,
+      "中盘平衡": 12,
+      "中盘成长": 17,
+      "小盘价值": 1,
+      "小盘平衡": 4,
+      "小盘成长": 4
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "红土创新新科技股票A",
+      "code": "006265",
+      "scale": "6.17",
+      "scaleNumeric": 6.17,
+      "morningstarCategory": "大盘成长股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2022-12-16",
+      "tenureDays": "3年186天",
+      "tenureReturn": 261.68,
+      "benchmarkReturn": 54.58,
+      "excessReturn": 207.10000000000002,
+      "isRepresentative": true
+    },
+    {
+      "name": "红土创新转型精选灵活配置混合（LOF）A",
+      "code": "168401",
+      "scale": "1.13",
+      "scaleNumeric": 1.13,
+      "morningstarCategory": "积极配置 - 中小盘",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2018-12-14",
+      "tenureDays": "7年189天",
+      "tenureReturn": 750.56,
+      "benchmarkReturn": 244.83,
+      "excessReturn": 505.7299999999999,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新科技创新股票（LOF）A",
+      "code": "501201",
+      "scale": "1.12",
+      "scaleNumeric": 1.12,
+      "morningstarCategory": "中盘成长股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2021-08-03",
+      "tenureDays": "4年321天",
+      "tenureReturn": 63.72,
+      "benchmarkReturn": 44.1,
+      "excessReturn": 19.619999999999997,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新智能制造混合型发起式A",
+      "code": "013250",
+      "scale": "0.60",
+      "scaleNumeric": 0.6,
+      "morningstarCategory": "积极配置 - 大盘成长",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2023-08-14",
+      "tenureDays": "2年310天",
+      "tenureReturn": 188.91,
+      "benchmarkReturn": 59.93,
+      "excessReturn": 128.98,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新智能制造混合型发起式C",
+      "code": "021957",
+      "scale": "0.28",
+      "scaleNumeric": 0.28,
+      "morningstarCategory": "积极配置 - 大盘成长",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2024-08-07",
+      "tenureDays": "1年317天",
+      "tenureReturn": 352.48,
+      "benchmarkReturn": 95.5,
+      "excessReturn": 256.98,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新景气回报混合C",
+      "code": "018211",
+      "scale": "0.84",
+      "scaleNumeric": 0.84,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-09-09",
+      "tenureDays": "283天",
+      "tenureReturn": 124.65,
+      "benchmarkReturn": 21.18,
+      "excessReturn": 103.47,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新景气回报混合A",
+      "code": "018210",
+      "scale": "0.93",
+      "scaleNumeric": 0.93,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-09-09",
+      "tenureDays": "283天",
+      "tenureReturn": 125.35,
+      "benchmarkReturn": 21.18,
+      "excessReturn": 104.16999999999999,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新新科技股票C",
+      "code": "026155",
+      "scale": "4.12",
+      "scaleNumeric": 4.12,
+      "morningstarCategory": "大盘成长股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-11-21",
+      "tenureDays": "210天",
+      "tenureReturn": 181.12,
+      "benchmarkReturn": 35.63,
+      "excessReturn": 145.49,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新科技创新股票（LOF）C",
+      "code": "026290",
+      "scale": "0.17",
+      "scaleNumeric": 0.17,
+      "morningstarCategory": "中盘成长股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-12-11",
+      "tenureDays": "190天",
+      "tenureReturn": 119.3,
+      "benchmarkReturn": 22.25,
+      "excessReturn": 97.05,
+      "isRepresentative": false
+    },
+    {
+      "name": "红土创新转型精选灵活配置混合（LOF）C",
+      "code": "026293",
+      "scale": "0.25",
+      "scaleNumeric": 0.25,
+      "morningstarCategory": "积极配置 - 中小盘",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2025-12-11",
+      "tenureDays": "190天",
+      "tenureReturn": 114.95,
+      "benchmarkReturn": 26.68,
+      "excessReturn": 88.27000000000001,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 8.6,
+          "firstBuy": "2023 Q4",
+          "mktValue": 1.34,
+          "shareChange": 143.69,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 8.32,
+          "firstBuy": "2023 Q3",
+          "mktValue": 1.3,
+          "shareChange": 113.77,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "东山精密",
+          "code": "002384.SHE",
+          "weight": 6.35,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.99,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "源杰科技",
+          "code": "688498.SHA",
+          "weight": 3.52,
+          "firstBuy": "2025 Q2",
+          "mktValue": 0.55,
+          "shareChange": 23.07,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "芯碁微装",
+          "code": "688630.SHA",
+          "weight": 3.36,
+          "firstBuy": "2022 Q4",
+          "mktValue": 0.53,
+          "shareChange": 212.05,
+          "sector": "科技"
+        },
+        {
+          "rank": 6,
+          "name": "欣旺达",
+          "code": "300207.SHE",
+          "weight": 3.26,
+          "firstBuy": "2020 Q2",
+          "mktValue": 0.51,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 7,
+          "name": "鹏辉能源",
+          "code": "300438.SHE",
+          "weight": 2.94,
+          "firstBuy": "2020 Q1",
+          "mktValue": 0.46,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 8,
+          "name": "佛塑科技",
+          "code": "000973.SHE",
+          "weight": 2.53,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.4,
+          "shareChange": null,
+          "sector": "基础材料"
+        },
+        {
+          "rank": 9,
+          "name": "中控技术",
+          "code": "688777.SHA",
+          "weight": 1.96,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.31,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 10,
+          "name": "中天科技",
+          "code": "600522.SHA",
+          "weight": 1.92,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.3,
+          "shareChange": null,
+          "sector": "工业"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "新易盛",
+          "quarters": 9,
+          "mktValue": 1.3,
+          "currentRank": "2",
+          "sector": "科技"
+        },
+        {
+          "name": "鹏辉能源",
+          "quarters": 8,
+          "mktValue": 0.46,
+          "currentRank": "7",
+          "sector": "工业"
+        },
+        {
+          "name": "胜宏科技",
+          "quarters": 8,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "康缘药业",
+          "quarters": 8,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "医疗保健"
+        },
+        {
+          "name": "中际旭创",
+          "quarters": 8,
+          "mktValue": 1.34,
+          "currentRank": "1",
+          "sector": "工业"
+        },
+        {
+          "name": "隆基股份",
+          "quarters": 7,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "沪电股份",
+          "quarters": 7,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "华润三九",
+          "quarters": 7,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "医疗保健"
+        },
+        {
+          "name": "仕净科技",
+          "quarters": 7,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "工业"
+        },
+        {
+          "name": "鸣志电器",
+          "quarters": 6,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "工业"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}

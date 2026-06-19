@@ -17,8 +17,12 @@
 - **dump 格式**：纯 innerText 字符串（parse-manager 直接消费）
 - **必查项**：title / url / 抓取时间 / dump 行数（≥200 行基本是完整页面）
 - **额外建议**：同时存一份带行号 prefix 的版本（`=== LINE N ===`）方便 debug 时按行号定位
+- **🔴 防 SPA 缓存（强制 · 不要跳）**：morningstar.cn 用 hash 路由（`#/fund-manager/<id>`），**chrome-devtools 改 hash 不会触发 SPA 重新渲染**。连续抓多个 manager 时如果浏览器已在 morningstar 上，**必须**先 `navigate_page url="about:blank"` 卸载，再 `navigate_page` 到新 URL。否则 `evaluate_script` 看到的 `location.href` 是新 ID，但 `document.body.innerText` 仍是上一个 manager 的数据（2026-06-19 抓 213232 时踩过坑：取到的是 209221 的旧数据）。
+- **🔴 抓完立刻 diff 校验（强制）**：dump 完成后**必须**跑 `diff -q <新文件> <上一次抓的 innertext 文件>` 确认内容确实变了。**如果文件字节数完全相同（hash 一致）= 抓到的是旧数据，必须 `about:blank` 重抓**。两个不同 manager 的 innertext 至少差 200+ 字符 / 几十行。
 
 > 为什么要先保存：原始 innerText 是唯一可信源。直接调结构化脚本会丢失反常字段（错位、缺失、半角全角混用等），保留原始数据后可重复解析。
+>
+> 为什么要 `about:blank` 中转：见上一条。hash-only 变化在浏览器里是 in-place 替换，不会触发 Vue/React 组件的 `mounted` / 数据 fetch，DOM 完全不更新。
 
 ### 2. 用 `parse-manager.js` 提取 JSON
 
@@ -80,6 +84,8 @@ parse-manager 自动写到 `data/manager/manager-<id>-<name>.json`。**用户没
 - ❌ 看到字段缺失就编个默认值 → 数据错了之后排查极痛苦
 - ❌ 抓完不校验 → 用户发现"为什么英伟达持仓 25% 啊"再回来 debug
 - ❌ 手动改生成的 manager JSON → 下次重跑 parse-manager 就被覆盖了
+- ❌ **在 morningstar 上已打开一个 manager，又 `navigate_page` 改 hash 抓下一个** → 取到旧 manager 的数据，容易误判为 morningstar 数据库重複 ID（实际上是 SPA 没重渲染）。必须 `about:blank` 中转。
+- ❌ **dump 完不 diff 就走 parse 流程** → 错的 innerText 经过 parse 也会生成"干净"的 JSON，但里面全是上一个 manager 的数据。
 
 ### 其他子模块（未来）
 
@@ -102,7 +108,7 @@ funds-research/
 │           ├── parse-manager.js
 │           └── validate-manager.js
 │   # research/funds/                # 基金分析子模块（未来 — 同 4 步结构）
-├── playground/                      # 本地 HTML playground（独立 web app）
+├── web/                            # 本地 HTML web app（独立前端）
 │   ├── server.js
 │   ├── public/
 │   └── mockups/                     # 设计迭代截图（.gitignore 排除）

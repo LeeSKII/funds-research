@@ -1,7 +1,7 @@
 {
-  "name": "manager-playground",
+  "name": "manager-web",
   "version": "1.0.0",
-  "description": "Local HTML playground for visualizing fund manager JSON data",
+  "description": "Local HTML web app for visualizing fund manager JSON data",
   "type": "module",
   "scripts": {
     "start": "node server.js",

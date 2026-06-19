@@ -4,9 +4,9 @@
 
 > 🤖 **Claude 工作流约束读 [`CLAUDE.md`](./CLAUDE.md)** ——manager 子模块 4 步工作流（抓取 → parse → validate → 保存）+ 反例。
 >
-> ## 🎯 单源原则（iter-003 修订）
+> ## 🎯 单源原则
 >
-> **本项目只用 1 个定量数据源**：`https://www.morningstar.cn/fund/<6位代码>.html` + `https://www.morningstar.cn/#/fund-manager/<id>`
+> **本项目只用唯一morningstar定量数据源**：`https://www.morningstar.cn/fund/<6位代码>.html` + `https://www.morningstar.cn/#/fund-manager/<id>`
 >
 > - 单只基金页：50+ 字段（晨星评级 / 风险调整后指标 / 业绩归因 / 重仓股 / 经理自持等）
 > - 经理详情页：画像标签 / 历年回报 / 行业变化 / 持仓 / 持有期
@@ -33,7 +33,7 @@ funds-research/
 │           ├── parse-manager.js
 │           └── validate-manager.js
 │   # research/funds/              ← 基金分析子模块（未来 — 同 4 步结构）
-└── playground/                    ← 本地 HTML playground（独立 web app）
+└── web/                           ← 本地 HTML web app（独立前端）
     ├── server.js
     ├── public/
     └── mockups/                   ← 设计迭代截图（.gitignore 排除）
@@ -58,6 +58,3 @@ funds-research/
 - ✅ 工具链：Manager JSON Schema v1.5 + parse-manager v1.5 + validate-manager v1.5
 - ✅ 工作流：4 步（抓取 → parse → validate → 保存）— 见 `CLAUDE.md`
 - ✅ 项目结构：研究子模块化（research/managers/）、数据按模块分类（data/manager/）
-- ⏳ 阶段 2：候选池扩张（已 8 个经理，含 1 个 QDII）
-
-最近一次更新：2026-06-19（iter-005 — 项目结构整理）

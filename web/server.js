@@ -1,4 +1,4 @@
-// server.js — Manager Playground HTTP 服务
+// server.js — Manager Web HTTP 服务
 // 启动时扫描 ../data/manager/*.json，提供 REST API + 静态文件
 import http from 'node:http';
 import fs from 'node:fs';
@@ -207,7 +207,7 @@ scanManagers();
 watchPublic();
 watchData();
 server.listen(PORT, () => {
-  console.log(`\n📊 Manager Playground running on http://localhost:${PORT}`);
+  console.log(`\n📊 Manager Web running on http://localhost:${PORT}`);
   console.log(`   ${managersCache.length} managers loaded`);
   console.log(`   Hot reload: SSE at /sse (edits in public/ auto-refresh)`);
   console.log(`   Press Ctrl+C to stop\n`);

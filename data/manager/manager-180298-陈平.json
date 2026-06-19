@@ -1,0 +1,529 @@
+{
+  "_meta": {
+    "managerId": "180298",
+    "name": "陈平",
+    "scrapedAt": "2026-06-19T14:35:55.396Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/180298",
+    "pageLength": 2619,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "陈平",
+    "company": "汇丰晋信基金管理有限公司",
+    "education": "南京大学金融学硕士",
+    "bio": "南京大学金融学硕士。曾任南京证券研究所研究员、国金证券研究所研究员、汇丰晋信基金管理有限公司研究员、汇丰晋信创新先锋股票型证券投资基金和汇丰晋信新动力混合型证券投资基金基金经理，现任汇丰晋信科技先锋股票型证券投资基金基金经理，同时兼任汇丰晋信基金管理有限公司私募资产管理计划投资经理。",
+    "investmentYears": 10.91,
+    "aum": "8.08亿元",
+    "aumNumeric": 8.08,
+    "fundCountCurrent": 1,
+    "fundCountTotal": 1,
+    "assetType": [
+      "权益型",
+      "主动型",
+      "港股"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 12.45
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "十年老将",
+      "机构持有极低"
+    ],
+    "holdingStyle": [
+      "持股P/E高",
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "持仓集中度高",
+      "权益仓位稳定",
+      "高权益仓位",
+      "行业集中"
+    ],
+    "sectorPreference": [
+      "科技",
+      "通信服务"
+    ],
+    "performance": [
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "月度胜率高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "月度"
+      },
+      {
+        "label": "中长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "中长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期业绩弹性强",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期捕获比大于1",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "近三年回撤控制能力较弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近五年回撤控制能力较弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      },
+      {
+        "label": "近五年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      },
+      {
+        "label": "近十年回撤控制能力较弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近十年"
+      },
+      {
+        "label": "近十年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近十年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 220.36,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 201.96,
+      "managerVol": 37.41,
+      "benchmarkVol": 22.78,
+      "returnRank": "前1%",
+      "riskRank": "前93%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2016,
+        "manager": -22.92,
+        "benchmark": -11.28,
+        "excess": -11.640000000000002
+      },
+      {
+        "year": 2017,
+        "manager": 3.88,
+        "benchmark": 21.78,
+        "excess": -17.900000000000002
+      },
+      {
+        "year": 2018,
+        "manager": -32.12,
+        "benchmark": -25.31,
+        "excess": -6.809999999999999
+      },
+      {
+        "year": 2019,
+        "manager": 68.89,
+        "benchmark": 36.07,
+        "excess": 32.82
+      },
+      {
+        "year": 2020,
+        "manager": 47.49,
+        "benchmark": 27.21,
+        "excess": 20.28
+      },
+      {
+        "year": 2021,
+        "manager": -1.59,
+        "benchmark": -5.2,
+        "excess": 3.6100000000000003
+      },
+      {
+        "year": 2022,
+        "manager": -31.47,
+        "benchmark": -21.63,
+        "excess": -9.84
+      },
+      {
+        "year": 2023,
+        "manager": -8.39,
+        "benchmark": -11.38,
+        "excess": 2.99
+      },
+      {
+        "year": 2024,
+        "manager": 21.87,
+        "benchmark": 14.68,
+        "excess": 7.190000000000001
+      },
+      {
+        "year": 2025,
+        "manager": 94.05,
+        "benchmark": 17.66,
+        "excess": 76.39
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 88.44,
+      "benchmark": 6.73,
+      "excess": 81.71
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 259.2,
+      "benchmark": 18.33,
+      "excess": 240.87
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 33.75
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 22.77
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 14.25
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体设备与材料",
+        "pct": 12.14
+      },
+      {
+        "level1": "通信服务",
+        "level2": "互动媒体",
+        "level3": "电子游戏与多媒体",
+        "pct": 8.15
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 33.75
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 15,
+      "大盘平衡": 28,
+      "大盘成长": 28,
+      "中盘价值": 12,
+      "中盘平衡": 5,
+      "中盘成长": 12,
+      "小盘价值": 1,
+      "小盘平衡": 0,
+      "小盘成长": 0
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "汇丰晋信科技先锋股票",
+      "code": "540010",
+      "scale": "8.08",
+      "scaleNumeric": 8.08,
+      "morningstarCategory": "行业股票-科技、传媒及通讯",
+      "categoryLevel1": null,
+      "appointmentDate": "2015-07-25",
+      "tenureDays": "10年332天",
+      "tenureReturn": 156.95,
+      "benchmarkReturn": 79.47,
+      "excessReturn": 77.47999999999999,
+      "isRepresentative": true
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "腾景科技",
+          "code": "688195.SHA",
+          "weight": 9.97,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.81,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "源杰科技",
+          "code": "688498.SHA",
+          "weight": 9.33,
+          "firstBuy": "2025 Q3",
+          "mktValue": 0.75,
+          "shareChange": 15.82,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 9.1,
+          "firstBuy": "2024 Q4",
+          "mktValue": 0.74,
+          "shareChange": 27.39,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "天孚通信",
+          "code": "300394.SHE",
+          "weight": 9.06,
+          "firstBuy": "2025 Q1",
+          "mktValue": 0.73,
+          "shareChange": 38.25,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "炬光科技",
+          "code": "688167.SHA",
+          "weight": 9.06,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.73,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 6,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 8.88,
+          "firstBuy": "2024 Q1",
+          "mktValue": 0.72,
+          "shareChange": 37.25,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "太辰光",
+          "code": "300570.SHE",
+          "weight": 5.94,
+          "firstBuy": "2025 Q1",
+          "mktValue": 0.48,
+          "shareChange": 38.58,
+          "sector": "科技"
+        },
+        {
+          "rank": 8,
+          "name": "中微公司",
+          "code": "688012.SHA",
+          "weight": 5.58,
+          "firstBuy": "2024 Q1",
+          "mktValue": 0.45,
+          "shareChange": 38.23,
+          "sector": "科技"
+        },
+        {
+          "rank": 9,
+          "name": "臻镭科技",
+          "code": "688270.SHA",
+          "weight": 4.93,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.4,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "立讯精密",
+          "code": "002475.SHE",
+          "weight": 4.52,
+          "firstBuy": "2016 Q3",
+          "mktValue": 0.37,
+          "shareChange": 13.41,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "立讯精密",
+          "quarters": 39,
+          "mktValue": 0.37,
+          "currentRank": "10",
+          "sector": "科技"
+        },
+        {
+          "name": "圣邦股份",
+          "quarters": 23,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "东方财富",
+          "quarters": 21,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "金融服务"
+        },
+        {
+          "name": "恒生电子",
+          "quarters": 19,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "华宇软件",
+          "quarters": 19,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "金山办公",
+          "quarters": 16,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "信维通信",
+          "quarters": 16,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "北方华创",
+          "quarters": 14,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "东山精密",
+          "quarters": 14,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "完美世界",
+          "quarters": 14,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "工业"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}

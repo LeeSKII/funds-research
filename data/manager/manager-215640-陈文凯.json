@@ -1,0 +1,401 @@
+{
+  "_meta": {
+    "managerId": "215640",
+    "name": "陈文凯",
+    "scrapedAt": "2026-06-19T14:33:16.604Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/215640",
+    "pageLength": 2460,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "陈文凯",
+    "company": "华泰柏瑞基金管理有限公司",
+    "education": "硕士",
+    "bio": "上海交通大学金融专业硕士。曾担任中金公司食品饮料分析师。2019年12月加入华泰柏瑞基金管理有限公司，历任研究部研究员、高级研究员、基金经理助理。2023年8月起任华泰柏瑞质量精选混合型证券投资基金的基金经理。2024年6月起任华泰柏瑞质量成长混合型证券投资基金的基金经理。",
+    "investmentYears": 2.88,
+    "aum": "113.10亿元",
+    "aumNumeric": 113.1,
+    "fundCountCurrent": 2,
+    "fundCountTotal": 4,
+    "assetType": [
+      "权益型",
+      "主动型"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 70.57
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "机构持有极低",
+      "主动管理超百亿"
+    ],
+    "holdingStyle": [
+      "持股P/E高",
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "持仓集中度高",
+      "高权益仓位",
+      "行业集中"
+    ],
+    "sectorPreference": [
+      "科技",
+      "工业"
+    ],
+    "performance": [
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 344.87,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 326.47,
+      "managerVol": 47.07,
+      "benchmarkVol": 22.78,
+      "returnRank": "前0%",
+      "riskRank": "前99%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2024,
+        "manager": 8.63,
+        "benchmark": 14.68,
+        "excess": -6.049999999999999
+      },
+      {
+        "year": 2025,
+        "manager": 134.15,
+        "benchmark": 17.66,
+        "excess": 116.49000000000001
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 126.67,
+      "benchmark": 6.73,
+      "excess": 119.94
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 363.34,
+      "benchmark": 23.6,
+      "excess": 339.73999999999995
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 40.35
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 23.11
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 14.03
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体设备与材料",
+        "pct": 5.96
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "电气设备及零件",
+        "pct": 1.9
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 40.35
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 0,
+      "大盘平衡": 9,
+      "大盘成长": 78,
+      "中盘价值": 0,
+      "中盘平衡": 4,
+      "中盘成长": 8,
+      "小盘价值": 0,
+      "小盘平衡": 0,
+      "小盘成长": 0
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "华泰柏瑞质量精选混合A",
+      "code": "010415",
+      "scale": "8.47",
+      "scaleNumeric": 8.47,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2023-08-01",
+      "tenureDays": "2年321天",
+      "tenureReturn": 341.39,
+      "benchmarkReturn": 41.82,
+      "excessReturn": 299.57,
+      "isRepresentative": true
+    },
+    {
+      "name": "华泰柏瑞质量精选混合C",
+      "code": "010416",
+      "scale": "13.20",
+      "scaleNumeric": 13.2,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2023-08-01",
+      "tenureDays": "2年321天",
+      "tenureReturn": 335.54,
+      "benchmarkReturn": 41.82,
+      "excessReturn": 293.72,
+      "isRepresentative": false
+    },
+    {
+      "name": "华泰柏瑞质量成长混合C",
+      "code": "011452",
+      "scale": "76.48",
+      "scaleNumeric": 76.48,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2024-06-21",
+      "tenureDays": "1年361天",
+      "tenureReturn": 419.75,
+      "benchmarkReturn": 63.55,
+      "excessReturn": 356.2,
+      "isRepresentative": false
+    },
+    {
+      "name": "华泰柏瑞质量成长混合A",
+      "code": "008528",
+      "scale": "14.95",
+      "scaleNumeric": 14.95,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2024-06-21",
+      "tenureDays": "1年361天",
+      "tenureReturn": 423.41,
+      "benchmarkReturn": 63.55,
+      "excessReturn": 359.86,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 10.05,
+          "firstBuy": "2023 Q4",
+          "mktValue": 11.37,
+          "shareChange": 285.15,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 10.01,
+          "firstBuy": "2023 Q4",
+          "mktValue": 11.32,
+          "shareChange": 321.65,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "长飞光纤光缆",
+          "code": "06869",
+          "weight": 8.53,
+          "firstBuy": "2025 Q3",
+          "mktValue": 9.64,
+          "shareChange": 64.13,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "源杰科技",
+          "code": "688498.SHA",
+          "weight": 7.6,
+          "firstBuy": "2025 Q3",
+          "mktValue": 8.6,
+          "shareChange": 153.62,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "天孚通信",
+          "code": "300394.SHE",
+          "weight": 6.94,
+          "firstBuy": "2024 Q1",
+          "mktValue": 7.84,
+          "shareChange": 109.35,
+          "sector": "科技"
+        },
+        {
+          "rank": 6,
+          "name": "东山精密",
+          "code": "002384.SHE",
+          "weight": 6.67,
+          "firstBuy": "2025 Q3",
+          "mktValue": 7.54,
+          "shareChange": 358.94,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "德科立",
+          "code": "688205.SHA",
+          "weight": 4.7,
+          "firstBuy": "2025 Q2",
+          "mktValue": 5.32,
+          "shareChange": 313.29,
+          "sector": "科技"
+        },
+        {
+          "rank": 8,
+          "name": "腾景科技",
+          "code": "688195.SHA",
+          "weight": 3.7,
+          "firstBuy": "2026 Q1",
+          "mktValue": 4.19,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 9,
+          "name": "光库科技",
+          "code": "300620.SHE",
+          "weight": 2.77,
+          "firstBuy": "2026 Q1",
+          "mktValue": 3.13,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "深南电路",
+          "code": "002916.SHE",
+          "weight": 2.75,
+          "firstBuy": "2024 Q3",
+          "mktValue": 3.11,
+          "shareChange": 97.64,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "中际旭创",
+          "quarters": 10,
+          "mktValue": 11.32,
+          "currentRank": "2",
+          "sector": "工业"
+        },
+        {
+          "name": "新易盛",
+          "quarters": 10,
+          "mktValue": 11.37,
+          "currentRank": "1",
+          "sector": "科技"
+        },
+        {
+          "name": "天孚通信",
+          "quarters": 9,
+          "mktValue": 7.84,
+          "currentRank": "5",
+          "sector": "科技"
+        },
+        {
+          "name": "深南电路",
+          "quarters": 5,
+          "mktValue": 3.11,
+          "currentRank": "10",
+          "sector": "科技"
+        },
+        {
+          "name": "工业富联",
+          "quarters": 4,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "胜宏科技",
+          "quarters": 4,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "沪电股份",
+          "quarters": 4,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "长飞光纤光缆",
+          "quarters": 3,
+          "mktValue": 9.64,
+          "currentRank": "3",
+          "sector": "科技"
+        },
+        {
+          "name": "源杰科技",
+          "quarters": 3,
+          "mktValue": 8.6,
+          "currentRank": "4",
+          "sector": "科技"
+        },
+        {
+          "name": "东山精密",
+          "quarters": 3,
+          "mktValue": 7.54,
+          "currentRank": "6",
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}
