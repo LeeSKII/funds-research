@@ -1,7 +1,7 @@
 # CLAUDE.md · funds-research 项目规则
 
 > 项目根目录：`C:\Lee\Projects\funds-research`
-> 本文件只放**项目级工作流规则**。全局工具选择规则在 `~/.claude/CLAUDE.md`。
+> 本文件只放**项目级工作流规则**。全局网络搜索和网页数据抓取工具选择规则在 `~/.claude/CLAUDE.md`。
 
 ## 基金经理资料搜集工作流（必须遵守）
 
@@ -60,6 +60,7 @@ node research/scripts/validate-manager.js data/raw/morningstar/<file>  # 单个
 parse-manager 自动写到 `data/raw/morningstar/manager-<id>-<name>.json`。**用户没指定路径就用默认位置**；用户指定则用 `node research/scripts/parse-manager.js ... -o <path>`（未来扩展）。
 
 **保存后必须做：**
+
 - 用 `node research/scripts/validate-manager.js <file>` 再校验一次
 - 如果文件超过 100KB 或发现异常字段，备份到 `data/raw/_archive/` 并标 `partial: true`
 

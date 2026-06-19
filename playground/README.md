@@ -31,28 +31,38 @@ cd "C:/Lee/Projects/funds-research/playground" && node server.js
 
 ```
 playground/
-├── server.js         # Node http 服务（~140 行）
+├── server.js         # Node http 服务（~250 行，含 SSE 热重载）
 ├── public/
 │   ├── index.html    # 主页面
-│   ├── style.css     # 浅色主题
-│   └── app.js        # 前端逻辑（fetch + 渲染 9 section 详情）
+│   ├── style.css     # editorial 排版（Noto Serif SC + IBM Plex Sans/Mono）
+│   └── app.js        # 前端逻辑（fetch + 9 section 详情 + 数字 tick 动画）
+├── mockups/          # 设计迭代截图（不入版本控制 — 见下）
+│   ├── .gitkeep      # 保留空目录的唯一跟踪文件
+│   └── iter-NNN-*    # 截图，git 自动忽略
 ├── package.json
 └── README.md
 ```
+
+### `mockups/` 目录规则
+
+- **用途**：存设计迭代的截图（不同 layout / 主题 / 状态对比）
+- **命名**：`iter-NNN-<描述>.{png,jpeg,jpg}`（NNN = 3 位迭代号）
+- **.gitignore 状态**：`playground/mockups/*` 被全局 `.gitignore` 排除（除了 `.gitkeep`）
+- **优点**：每个迭代可存多张对比图，不污染 git 仓库
+- **同步到云端**（可选）：手动 `rsync` 到云盘，不要靠 git
 
 ## ➕ 添加新经理
 
 1. 用 chrome-devtools 抓经理页面（参见 [`data/EXTRACT-MANAGER-GUIDE.md`](../data/EXTRACT-MANAGER-GUIDE.md)）
 2. 用 `parse-manager.js` 生成 JSON：
    ```bash
-   node data/parse-manager.js data/raw/<name>-innertext.json <id> <name>
+   node research/scripts/parse-manager.js \
+     research/raw-snapshots/morningstar-<id>-<date>.json <id> <name>
    ```
-3. **重启 server**（v1 不支持热加载）：
-   ```bash
-   # Claude 端
-   TaskStop + 重新 Bash(run_in_background: true) + node server.js
-   ```
-4. 刷新浏览器，新经理自动出现在对比表（按年化收益降序）
+3. **无需重启 server**（v1.4+ 支持 SSE 热重载）：
+   - 修改 `public/*.html|css|js` 或 `data/raw/morningstar/*.json` → 浏览器自动刷新
+   - 修改 `server.js` 本身 → `npm run dev` 用 `node --watch`
+4. 刷新浏览器（或自动刷新），新经理自动出现在对比表（按年化收益降序）
 
 ## 🎨 主题色板（浅色）
 
