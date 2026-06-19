@@ -6,7 +6,7 @@
 .skeleton-bar {
   height: 12px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+  background: linear-gradient(90deg, var(--skeleton-start) 0%, var(--skeleton-mid) 50%, var(--skeleton-end) 100%);
   background-size: 200px 100%;
   animation: skeleton-shimmer 1.4s ease-in-out infinite;
 }
@@ -24,11 +24,13 @@
 }
 
 /* ============ 主题色板（浅色）============ */
+/* ============ 主题色板（浅色 · 默认）============ */
 :root {
   --bg: #f8f9fa;
   --surface: #ffffff;
   --text: #1a1d21;
   --text-muted: #6b7280;
+  --text-subtle: #9ca3af;
   --border: #e5e7eb;
   --accent: #2563eb;
   --accent-bg: #eef2ff;
@@ -38,6 +40,71 @@
   --negative-bg: #fee2e2;
   --neutral: #6b7280;
   --neutral-bg: #f3f4f6;
+
+  /* 表格专用（v1.4 新增 · 拆出语义 token 便于 dark 切换） */
+  --thead-bg: #f3f4f6;
+  --row-hover: #f9fafb;
+  --sort-hover: #e5e7eb;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  /* 警告条 */
+  --warning-bg: #fef3c7;
+  --warning-border: #fde68a;
+  --warning-text: #92400e;
+
+  /* skeleton loading */
+  --skeleton-start: #e5e7eb;
+  --skeleton-mid: #f3f4f6;
+  --skeleton-end: #e5e7eb;
+}
+
+/* ============ Dark Mode（v1.4 新增 · 显式 [data-theme="dark"] 切换）============ */
+/* 调色思路：基于 GitHub-dark 三层（#0d1117 / #161b22 / #21262d），accent 提到 #58a6ff
+   以保 4.5:1 AA 对比。警告条用 amber 暗色族，避免黑底黄字过亮刺眼。 */
+[data-theme="dark"] {
+  /* surfaces */
+  --bg: #0d1117;
+  --surface: #161b22;
+
+  /* text（#e6edf3 on #0d1117 = ~14:1 AAA） */
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --text-subtle: #6e7681;
+
+  /* lines */
+  --border: #30363d;
+
+  /* brand */
+  --accent: #58a6ff;
+  --accent-bg: #1f3a5f;
+
+  /* semantic */
+  --positive: #3fb950;
+  --positive-bg: #0f2916;
+  --negative: #f85149;
+  --negative-bg: #2d0f0f;
+  --neutral: #8b949e;
+  --neutral-bg: #21262d;
+
+  /* 表格专用（thead 与 surface 平齐，避免太重） */
+  --thead-bg: #161b22;
+  --row-hover: #1f2933;
+  --sort-hover: #30363d;
+
+  /* 阴影（暗色下加 1px 高光代替下投影，保持卡片浮起感） */
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, 0.04), 0 2px 6px rgba(0, 0, 0, 0.3);
+
+  /* 警告条（amber 暗色族） */
+  --warning-bg: #2d2104;
+  --warning-border: #4d3a08;
+  --warning-text: #f0c674;
+
+  /* skeleton loading（暗色下的 shimmer） */
+  --skeleton-start: #21262d;
+  --skeleton-mid: #30363d;
+  --skeleton-end: #21262d;
 }
 
 /* ============ 重置 ============ */
@@ -58,6 +125,7 @@ body {
 
 /* ============ 头部 ============ */
 .page-header {
+  position: relative;  /* v1.4: 让 .theme-toggle 可绝对定位到右上角 */
   margin-bottom: 24px;
 }
 
@@ -101,10 +169,10 @@ table {
   background: var(--surface);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
 }
 
-thead { background: #f3f4f6; }
+thead { background: var(--thead-bg); }
 
 th {
   text-align: left;
@@ -131,7 +199,7 @@ td {
 }
 
 .compare-table tbody tr:hover {
-  background: #f9fafb;
+  background: var(--row-hover);
 }
 
 .compare-table tbody tr.active {
@@ -171,7 +239,7 @@ td {
   transition: background 0.12s;
 }
 .compare-table th.sortable:hover {
-  background: #e5e7eb;
+  background: var(--sort-hover);
   color: var(--text);
 }
 .compare-table th.sortable:hover .sort-arrow {
@@ -181,7 +249,7 @@ td {
   display: inline-block;
   margin-left: 4px;
   font-size: 10px;
-  color: #9ca3af;
+  color: var(--text-subtle);
   opacity: 0.5;
   transition: opacity 0.12s, color 0.12s;
 }
@@ -218,13 +286,13 @@ td {
   text-align: center;
   color: var(--text-muted);
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
 }
 
 .warning-bar {
-  background: #fef3c7;
-  border: 1px solid #fde68a;
-  color: #92400e;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  color: var(--warning-text);
   padding: 12px 16px;
   border-radius: 8px;  /* v1.3: shape 一致 */
   margin-bottom: 16px;
@@ -237,7 +305,7 @@ td {
   padding: 20px 24px;
   border-radius: 8px 8px 0 0;
   border-bottom: 2px solid var(--accent);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
 }
 
 .detail-header h2 {
@@ -260,7 +328,7 @@ td {
   background: var(--surface);
   padding: 24px;
   border-radius: 0 0 8px 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
   margin-top: -1px;
 }
 
@@ -389,3 +457,50 @@ td {
   font-size: 13px;
   color: var(--text-muted);
 }
+
+/* ============ Theme Toggle（v1.4 新增 · dark mode 切换）============ */
+.theme-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;  /* v1.3 shape 一致 */
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  color: var(--text);
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  touch-action: manipulation;
+}
+
+.theme-toggle:hover {
+  background: var(--row-hover);
+  border-color: var(--text-subtle);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle-icon {
+  display: inline-block;
+  /* 用 line-height:1 + flex centering 居中 */
+}
+
+.theme-toggle-icon--dark { display: none; }
+
+/* 暗色下交换显示 */
+[data-theme="dark"] .theme-toggle-icon--light { display: none; }
+[data-theme="dark"] .theme-toggle-icon--dark { display: inline-block; }

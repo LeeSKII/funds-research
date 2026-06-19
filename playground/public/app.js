@@ -482,6 +482,40 @@ function renderDetail(m) {
   `;
 }
 
+// ============ Theme Toggle（v1.4 新增 · 深浅色切换）============
+function setTheme(mode) {
+  // mode: 'light' | 'dark'
+  if (mode === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  try { localStorage.setItem('theme', mode); } catch (e) { /* 隐私模式可能抛错，忽略 */ }
+  // 更新按钮 aria-label 与 title（反映"切换到 X 模式"）
+  const btn = document.getElementById('theme-toggle');
+  if (btn) {
+    const label = mode === 'dark' ? '切换到浅色模式' : '切换到深色模式';
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('title', label);
+  }
+}
+
+function initTheme() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  // 初始化 aria-label（基于当前 data-theme，FOUC 脚本已设置）
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const label = isDark ? '切换到浅色模式' : '切换到深色模式';
+  btn.setAttribute('aria-label', label);
+  btn.setAttribute('title', label);
+  // 点击 → 翻转
+  btn.addEventListener('click', () => {
+    const currentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    setTheme(currentlyDark ? 'light' : 'dark');
+  });
+}
+initTheme();
+
 // ============ Init ============
 
 async function init() {

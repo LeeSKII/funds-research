@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manager Playground</title>
+  <!-- v1.4 dark mode: 在 CSS 解析前设置 data-theme，避免 FOUC -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        var sysDark = window.matchMedia
+          && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (t === 'dark' || (t !== 'light' && sysDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) { /* localStorage 不可用时降级到浅色 */ }
+    })();
+  </script>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -14,6 +27,11 @@
         候选池 · <span id="manager-count">0</span> 位在管 ≥10 年公募基金经理
         · 数据截至 <span id="data-date"></span>
       </p>
+      <!-- v1.4: 主题切换按钮（右上角，绝对定位） -->
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换到深色模式" title="切换到深色模式">
+        <span class="theme-toggle-icon theme-toggle-icon--light" aria-hidden="true">🌙</span>
+        <span class="theme-toggle-icon theme-toggle-icon--dark" aria-hidden="true">☀</span>
+      </button>
     </header>
 
     <!-- 主视图：对比表 -->
