@@ -1,0 +1,695 @@
+{
+  "_meta": {
+    "managerId": "177107",
+    "name": "金梓才",
+    "scrapedAt": "2026-06-19T06:28:36.907Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/177107",
+    "pageLength": 3683,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "金梓才",
+    "company": "财通基金管理有限公司",
+    "education": "上海交通大学微电子学与固体电子学硕士",
+    "bio": "上海交通大学微电子学与固体电子学硕士。历任华泰资产管理有限公司投资经理助理，信诚基金管理有限公司TMT行业高级研究员。2014年8月加入财通基金管理有限公司，曾任基金投资部基金经理、副总监、副总监（主持工作）、总监，公司总经理助理；现任公司党委委员、副总经理、权益投资总监，基金投资部总经理、基金经理。",
+    "investmentYears": 11.59,
+    "aum": "89.10亿元",
+    "aumNumeric": 89.1,
+    "fundCountCurrent": 7,
+    "fundCountTotal": 13,
+    "assetType": [
+      "权益型",
+      "主动型"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 27.32
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "自购超百万份",
+      "多只FOF持有",
+      "十年老将",
+      "机构持有极低",
+      "近期规模相对稳定",
+      "近一年规模相对稳定",
+      "近三年规模相对稳定",
+      "一拖多"
+    ],
+    "holdingStyle": [
+      "股票风格集中",
+      "持股P/E高",
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "换手率高",
+      "持仓集中度高",
+      "高权益仓位",
+      "行业集中",
+      "股票风格漂移"
+    ],
+    "sectorPreference": [
+      "科技"
+    ],
+    "performance": [
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "中长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "中长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期捕获比大于1",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "月度胜率中",
+        "positive": false,
+        "negative": false,
+        "neutral": true,
+        "polarity": null,
+        "timeframe": "月度"
+      },
+      {
+        "label": "近三年回撤控制能力弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近五年回撤控制能力弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      },
+      {
+        "label": "近五年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      },
+      {
+        "label": "近十年回撤控制能力弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近十年"
+      },
+      {
+        "label": "近十年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近十年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 375.48,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 357.08000000000004,
+      "managerVol": 52.59,
+      "benchmarkVol": 22.78,
+      "returnRank": "前0%",
+      "riskRank": "前100%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2016,
+        "manager": -23.96,
+        "benchmark": -11.28,
+        "excess": -12.680000000000001
+      },
+      {
+        "year": 2017,
+        "manager": 11.55,
+        "benchmark": 21.78,
+        "excess": -10.23
+      },
+      {
+        "year": 2018,
+        "manager": -20.7,
+        "benchmark": -25.31,
+        "excess": 4.609999999999999
+      },
+      {
+        "year": 2019,
+        "manager": 54.44,
+        "benchmark": 36.07,
+        "excess": 18.369999999999997
+      },
+      {
+        "year": 2020,
+        "manager": 47.22,
+        "benchmark": 27.21,
+        "excess": 20.009999999999998
+      },
+      {
+        "year": 2021,
+        "manager": 22.79,
+        "benchmark": -5.2,
+        "excess": 27.99
+      },
+      {
+        "year": 2022,
+        "manager": -11.02,
+        "benchmark": -21.63,
+        "excess": 10.61
+      },
+      {
+        "year": 2023,
+        "manager": -24.72,
+        "benchmark": -11.38,
+        "excess": -13.339999999999998
+      },
+      {
+        "year": 2024,
+        "manager": 43.47,
+        "benchmark": 14.68,
+        "excess": 28.79
+      },
+      {
+        "year": 2025,
+        "manager": 81.26,
+        "benchmark": 17.66,
+        "excess": 63.60000000000001
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 147.16,
+      "benchmark": 6.73,
+      "excess": 140.43
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 1542.07,
+      "benchmark": 94.76,
+      "excess": 1447.31
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 44.43
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 33.16
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 9.46
+      },
+      {
+        "level1": "基础材料",
+        "level2": "化工品",
+        "level3": "化工品",
+        "pct": 1.08
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电脑硬件",
+        "pct": 0.14
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 44.43
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 3,
+      "大盘平衡": 4,
+      "大盘成长": 72,
+      "中盘价值": 3,
+      "中盘平衡": 5,
+      "中盘成长": 12,
+      "小盘价值": 0,
+      "小盘平衡": 0,
+      "小盘成长": 0
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "财通成长优选混合A",
+      "code": "001480",
+      "scale": "21.89",
+      "scaleNumeric": 21.89,
+      "morningstarCategory": "积极配置 - 中小盘",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2015-06-29",
+      "tenureDays": "10年357天",
+      "tenureReturn": 907.4,
+      "benchmarkReturn": 159.35,
+      "excessReturn": 748.05,
+      "isRepresentative": true
+    },
+    {
+      "name": "财通价值动量混合A",
+      "code": "720001",
+      "scale": "27.22",
+      "scaleNumeric": 27.22,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2014-11-19",
+      "tenureDays": "11年215天",
+      "tenureReturn": 1775.82,
+      "benchmarkReturn": 223.08,
+      "excessReturn": 1552.74,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通福鑫定开混合发起",
+      "code": "501046",
+      "scale": "3.35",
+      "scaleNumeric": 3.35,
+      "morningstarCategory": "积极配置 - 大盘成长",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2018-05-21",
+      "tenureDays": "8年29天",
+      "tenureReturn": 1195.78,
+      "benchmarkReturn": 141.28,
+      "excessReturn": 1054.5,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通集成电路产业股票C",
+      "code": "006503",
+      "scale": "8.00",
+      "scaleNumeric": 8,
+      "morningstarCategory": "行业股票-科技、传媒及通讯",
+      "categoryLevel1": null,
+      "appointmentDate": "2018-11-29",
+      "tenureDays": "7年204天",
+      "tenureReturn": 863.13,
+      "benchmarkReturn": 248.23,
+      "excessReturn": 614.9,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通集成电路产业股票A",
+      "code": "006502",
+      "scale": "5.05",
+      "scaleNumeric": 5.05,
+      "morningstarCategory": "行业股票-科技、传媒及通讯",
+      "categoryLevel1": null,
+      "appointmentDate": "2018-11-29",
+      "tenureDays": "7年204天",
+      "tenureReturn": 922.95,
+      "benchmarkReturn": 248.23,
+      "excessReturn": 674.72,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通匠心优选一年持有期混合C",
+      "code": "014916",
+      "scale": "0.66",
+      "scaleNumeric": 0.66,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2022-04-07",
+      "tenureDays": "4年73天",
+      "tenureReturn": 296.06,
+      "benchmarkReturn": 118.33,
+      "excessReturn": 177.73000000000002,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通匠心优选一年持有期混合A",
+      "code": "014915",
+      "scale": "2.43",
+      "scaleNumeric": 2.43,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2022-04-07",
+      "tenureDays": "4年73天",
+      "tenureReturn": 309.54,
+      "benchmarkReturn": 118.33,
+      "excessReturn": 191.21000000000004,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通景气甄选一年持有期混合A",
+      "code": "017490",
+      "scale": "1.86",
+      "scaleNumeric": 1.86,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2023-07-19",
+      "tenureDays": "2年335天",
+      "tenureReturn": 556.82,
+      "benchmarkReturn": 43.41,
+      "excessReturn": 513.4100000000001,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通景气甄选一年持有期混合C",
+      "code": "017491",
+      "scale": "0.54",
+      "scaleNumeric": 0.54,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2023-07-19",
+      "tenureDays": "2年335天",
+      "tenureReturn": 541.81,
+      "benchmarkReturn": 43.41,
+      "excessReturn": 498.4,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通价值动量混合C",
+      "code": "021523",
+      "scale": "4.20",
+      "scaleNumeric": 4.2,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2024-05-28",
+      "tenureDays": "2年21天",
+      "tenureReturn": 393.9,
+      "benchmarkReturn": 182.45,
+      "excessReturn": 211.45,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通成长优选混合C",
+      "code": "021528",
+      "scale": "11.17",
+      "scaleNumeric": 11.17,
+      "morningstarCategory": "积极配置 - 中小盘",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2024-05-28",
+      "tenureDays": "2年21天",
+      "tenureReturn": 477.9,
+      "benchmarkReturn": 78.05,
+      "excessReturn": 399.84999999999997,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通品质甄选混合C",
+      "code": "024481",
+      "scale": "1.63",
+      "scaleNumeric": 1.63,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-10-31",
+      "tenureDays": "231天",
+      "tenureReturn": 160.91,
+      "benchmarkReturn": 16.4,
+      "excessReturn": 144.51,
+      "isRepresentative": false
+    },
+    {
+      "name": "财通品质甄选混合A",
+      "code": "024480",
+      "scale": "1.10",
+      "scaleNumeric": 1.1,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-10-31",
+      "tenureDays": "231天",
+      "tenureReturn": 161.57,
+      "benchmarkReturn": 16.4,
+      "excessReturn": 145.17,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "鼎泰高科",
+          "code": "301377.SHE",
+          "weight": 9.81,
+          "firstBuy": "2025 Q3",
+          "mktValue": 8.74,
+          "shareChange": 22.46,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 9.79,
+          "firstBuy": "2018 Q4",
+          "mktValue": 8.72,
+          "shareChange": 3.96,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "生益电子",
+          "code": "688183.SHA",
+          "weight": 9.72,
+          "firstBuy": "2024 Q3",
+          "mktValue": 8.66,
+          "shareChange": 39.33,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 9.69,
+          "firstBuy": "2024 Q2",
+          "mktValue": 8.63,
+          "shareChange": 13.86,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "大族数控",
+          "code": "301200.SHE",
+          "weight": 9.59,
+          "firstBuy": "2026 Q1",
+          "mktValue": 8.54,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 6,
+          "name": "源杰科技",
+          "code": "688498.SHA",
+          "weight": 9.5,
+          "firstBuy": "2025 Q4",
+          "mktValue": 8.46,
+          "shareChange": 31.76,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "永鼎股份",
+          "code": "600105.SHA",
+          "weight": 8.34,
+          "firstBuy": "2026 Q1",
+          "mktValue": 7.43,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 8,
+          "name": "烽火通信",
+          "code": "600498.SHA",
+          "weight": 5.53,
+          "firstBuy": "2023 Q3",
+          "mktValue": 4.93,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 9,
+          "name": "沪电股份",
+          "code": "002463.SHE",
+          "weight": 5.13,
+          "firstBuy": "2018 Q3",
+          "mktValue": 4.57,
+          "shareChange": 27.62,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "生益科技",
+          "code": "600183.SHA",
+          "weight": 5.1,
+          "firstBuy": "2019 Q3",
+          "mktValue": 4.54,
+          "shareChange": 25.8,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "新易盛",
+          "quarters": 22,
+          "mktValue": 8.72,
+          "currentRank": "2",
+          "sector": "科技"
+        },
+        {
+          "name": "天孚通信",
+          "quarters": 20,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "沪电股份",
+          "quarters": 13,
+          "mktValue": 4.57,
+          "currentRank": "9",
+          "sector": "科技"
+        },
+        {
+          "name": "太辰光",
+          "quarters": 11,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "芯源微",
+          "quarters": 11,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "澜起科技",
+          "quarters": 9,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "鼎龙股份",
+          "quarters": 8,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "基础材料"
+        },
+        {
+          "name": "中际旭创",
+          "quarters": 7,
+          "mktValue": 8.63,
+          "currentRank": "4",
+          "sector": "科技"
+        },
+        {
+          "name": "立讯精密",
+          "quarters": 7,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "五 粮 液",
+          "quarters": 7,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "必选消费"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}

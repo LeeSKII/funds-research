@@ -1,0 +1,13 @@
+{
+  "name": "manager-playground",
+  "version": "1.0.0",
+  "description": "Local HTML playground for visualizing fund manager JSON data",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

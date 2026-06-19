@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manager Playground</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>📊 Manager Playground</h1>
+      <p class="subtitle">
+        候选池 · <span id="manager-count">0</span> 位在管 ≥10 年公募基金经理
+        · 数据截至 <span id="data-date"></span>
+      </p>
+    </header>
+
+    <!-- 主视图：对比表 -->
+    <section class="section">
+      <h2 class="section-title">对比表</h2>
+      <div id="compare-table-container">
+        <div class="loading">加载中...</div>
+      </div>
+    </section>
+
+    <!-- 二级视图：详情区 -->
+    <section class="section" id="detail-section">
+      <h2 class="section-title">详情（点击对比表任一行查看）</h2>
+      <div id="detail-container">
+        <div class="empty-state">请先点击对比表中的任一经理行</div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+/* ============ 主题色板（浅色）============ */
+:root {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --text: #1a1d21;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2563eb;
+  --accent-bg: #eef2ff;
+  --positive: #059669;
+  --positive-bg: #d1fae5;
+  --negative: #dc2626;
+  --negative-bg: #fee2e2;
+  --neutral: #6b7280;
+  --neutral-bg: #f3f4f6;
+}
+
+/* ============ 重置 ============ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 24px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ============ 头部 ============ */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ============ 区块标题 ============ */
+.section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ============ 表格 ============ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+thead { background: #f3f4f6; }
+
+th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.compare-table tbody tr {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.compare-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.compare-table tbody tr.active {
+  background: var(--accent-bg);
+}
+
+/* ============ 排序表头（v1.1 新增）============ */
+.compare-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: background 0.12s;
+}
+.compare-table th.sortable:hover {
+  background: #e5e7eb;
+  color: var(--text);
+}
+.compare-table th.sortable:hover .sort-arrow {
+  opacity: 0.9;
+}
+.sort-arrow {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 10px;
+  color: #9ca3af;
+  opacity: 0.5;
+  transition: opacity 0.12s, color 0.12s;
+}
+.sort-arrow.active {
+  opacity: 1;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ============ Chip ============ */
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.chip.gray { background: var(--neutral-bg); color: var(--text-muted); }
+
+/* ============ 数字颜色 ============ */
+.positive { color: var(--positive); font-weight: 600; }
+.negative { color: var(--negative); font-weight: 600; }
+.muted { color: var(--text-muted); }
+
+.rank { font-weight: 700; color: var(--accent); }
+
+/* ============ 状态条 ============ */
+.loading, .empty-state {
+  background: var(--surface);
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.warning-bar {
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* ============ 详情区 ============ */
+.detail-header {
+  background: var(--surface);
+  padding: 20px 24px;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.detail-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.detail-meta .item strong { color: var(--text); font-weight: 600; }
+
+.detail-body {
+  background: var(--surface);
+  padding: 24px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-top: -1px;
+}
+
+.detail-block {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-block:last-child { border-bottom: none; }
+
+.detail-block h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.detail-block .bio {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 12px;
+  background: var(--neutral-bg);
+  border-radius: 6px;
+}
+
+/* 标签分组 */
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-group .chip.pos { background: var(--positive-bg); color: var(--positive); }
+.tag-group .chip.neg { background: var(--negative-bg); color: var(--negative); }
+.tag-group .chip.neu { background: var(--neutral-bg); color: var(--neutral); }
+
+/* 业绩卡片 */
+.metric-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  background: var(--neutral-bg);
+  padding: 12px 16px;
+  border-radius: 6px;
+}
+
+.metric-card .label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.metric-card .value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 行业条形图 */
+.industry-bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.industry-bar .label { font-size: 13px; }
+
+.industry-bar .bar-track {
+  height: 18px;
+  background: var(--neutral-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.industry-bar .bar-fill {
+  height: 100%;
+  background: var(--accent);
+}
+
+.industry-bar .pct {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+  min-width: 60px;
+}
+
+/* 风格箱 */
+.style-box-grid {
+  display: grid;
+  grid-template-columns: 60px repeat(3, 1fr);
+  gap: 4px;
+  max-width: 360px;
+}
+
+.style-box-grid .corner, .style-box-grid .row-label, .style-box-grid .col-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 4px;
+}
+
+.style-box-grid .cell {
+  padding: 16px 8px;
+  text-align: center;
+  background: var(--neutral-bg);
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.style-box-grid .cell.dominant {
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.style-box-summary {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+}

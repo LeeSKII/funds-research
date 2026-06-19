@@ -1,0 +1,380 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://funds-research.local/schemas/manager.json",
+  "title": "FundManager",
+  "description": "晨星中国 /fund-manager/<id> 页面完整字段 schema — v1.5（2026-06-19 iter-006）",
+  "version": "1.5",
+  "type": "object",
+
+  "required": ["managerId", "name", "scrapedAt", "source"],
+  "additionalProperties": true,
+
+  "properties": {
+
+    "_meta": {
+      "type": "object",
+      "description": "元信息 — 抓取相关",
+      "properties": {
+        "managerId":       { "type": "string", "description": "晨星内部经理ID（URL中的数字）" },
+        "name":            { "type": "string", "description": "经理姓名" },
+        "scrapedAt":       { "type": "string", "format": "date-time", "description": "抓取时间（ISO8601）" },
+        "source":          { "type": "string", "format": "uri", "description": "数据来源URL" },
+        "extractionScript":{ "type": "string", "description": "使用的提取脚本版本号" },
+        "pageComplete":    { "type": "boolean", "description": "页面是否完整加载" },
+        "pageLength":      { "type": "integer", "description": "页面innerText长度" }
+      }
+    },
+
+    "basic": {
+      "type": "object",
+      "description": "基本信息（页面顶部）",
+      "properties": {
+        "company":         { "type": ["string", "null"], "description": "所属基金公司" },
+        "education":       { "type": ["string", "null"], "description": "学历（如'硕士研究生'）" },
+        "bio":             { "type": ["string", "null"], "description": "简历全文" },
+        "investmentYears": { "type": ["number", "null"], "description": "投资年限（年）" },
+        "aum":             { "type": ["string", "null"], "description": "在管规模（含单位，如'248.04亿元'）" },
+        "aumNumeric":      { "type": ["number", "null"], "description": "在管规模（亿元，纯数字）" },
+        "fundCountCurrent":{ "type": ["integer", "null"], "description": "现管基金数" },
+        "fundCountTotal":  { "type": ["integer", "null"], "description": "累计管理产品数（含历史）" },
+        "assetType":       { "type": "array", "items": {"type": "string", "enum": ["权益型", "固定收益型", "货币型", "QDII型", "另类投资", "混合型", "港股"]}, "description": "资产类型（多选）" },
+        "managementType":  { "type": "array", "items": {"type": "string", "enum": ["主动型", "被动型", "增强指数", "量化", "权益型"]}, "description": "管理类型（多选）— v1.5 加'权益型'（晨星实际页面字段）" },
+        "annualReturnEquity": { "type": ["number", "null"], "description": "权益型年化收益（%）" }
+      }
+    },
+
+    "labels": {
+      "type": "object",
+      "description": "所有画像标签（4类 — v1.5 统一）",
+      "properties": {
+        "experience": {
+          "type": "array",
+          "items": {"type": "string", "enum": [
+            "任职稳定",
+            "自购超百万份",
+            "十年老将",
+            "机构持有极低",
+            "机构持有较高",
+            "机构持有中",
+            "主动管理超百亿",
+            "近期规模相对稳定",
+            "近一年规模稳定增长",
+            "近一年规模快速增长",
+            "近一年规模相对稳定",
+            "近三年规模稳定增长",
+            "近三年规模快速增长",
+            "近三年规模相对稳定",
+            "近五年规模稳定增长",
+            "近五年规模快速增长",
+            "近五年规模相对稳定",
+            "多只FOF持有",
+            "一拖多",
+            "减持自身产品",
+            "自购自身产品",
+            "内部持有较高",
+            "内部持有低"
+          ]},
+          "description": "投资经验类标签（v1.5 — 24 个枚举）"
+        },
+        "holdingStyle": {
+          "type": "array",
+          "items": {"type": "string", "enum": [
+            "持股P/B高", "持股P/B低", "持股P/E高", "持股P/E低",
+            "持股ROE高", "持股ROE低", "持股高分红",
+            "大盘价值", "大盘平衡", "大盘成长",
+            "中盘价值", "中盘平衡", "中盘成长",
+            "小盘价值", "小盘平衡", "小盘成长",
+            "换手率较高", "换手率较低", "换手率高",
+            "高权益仓位", "低权益仓位",
+            "行业集中", "行业分散", "行业较集中", "行业较分散",
+            "个股集中", "个股分散",
+            "持仓集中度高", "持仓集中度低",
+            "权益仓位稳定", "权益仓位波动",
+            "股票风格漂移", "股票风格稳定", "股票风格集中"
+          ]},
+          "description": "持仓风格类标签（v1.5 — 33 个枚举）"
+        },
+        "sectorPreference": {
+          "type": "array",
+          "items": {"type": "string", "enum": [
+            "科技", "医药", "消费", "金融", "新能源", "工业", "材料",
+            "公用事业", "地产", "可选消费", "必选消费", "通信", "传媒",
+            "半导体", "医疗保健", "信息技术"
+          ]},
+          "description": "行业偏好标签（v1.5 — 17 个枚举）"
+        },
+        "performance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "polarity"],
+            "properties": {
+              "label":     { "type": "string", "description": "业绩特征标签原文" },
+              "positive":  { "type": "boolean", "description": "true=正面（v1.5 兼容字段，实际看 polarity）" },
+              "negative":  { "type": "boolean", "description": "true=负面（v1.5 新增）" },
+              "neutral":   { "type": "boolean", "description": "true=中性（v1.5 新增，如'月度胜率中'）" },
+              "polarity":  { "type": ["boolean", "null"], "description": "true=正 / false=负 / null=中性（v1.5 统一字段）" },
+              "timeframe": { "type": "string", "enum": ["近一年", "近三年", "近五年", "近十年", "中长期", "长期", "月度", null], "description": "时间维度（如果标签中包含）" }
+            }
+          },
+          "description": "业绩特征标签（v1.5 — 三态：正/负/中）"
+        }
+      }
+    },
+
+    "riskReturn": {
+      "type": "object",
+      "description": "风险回报图数据 — 1/3/5/10年四个维度的年化回报与波动率",
+      "properties": {
+        "dataAsOf":   { "type": "string", "format": "date", "description": "数据日期" },
+        "1Y":  { "$ref": "#/definitions/periodMetrics" },
+        "3Y":  { "$ref": "#/definitions/periodMetrics" },
+        "5Y":  { "$ref": "#/definitions/periodMetrics" },
+        "10Y": { "$ref": "#/definitions/periodMetrics" }
+      }
+    },
+
+    "cumulativeReturn": {
+      "type": "object",
+      "description": "业绩对比表 — 多时间维度的累计回报",
+      "properties": {
+        "dataAsOf":       { "type": "string", "format": "date" },
+        "1Y":   { "$ref": "#/definitions/periodReturn" },
+        "2Y":   { "$ref": "#/definitions/periodReturn" },
+        "3Y":   { "$ref": "#/definitions/periodReturn" },
+        "5Y":   { "$ref": "#/definitions/periodReturn" },
+        "10Y":  { "$ref": "#/definitions/periodReturn" },
+        "sinceInception": { "$ref": "#/definitions/periodReturn" }
+      }
+    },
+
+    "annualReturns": {
+      "type": "object",
+      "description": "历年年度回报 vs 基准 vs 超额",
+      "properties": {
+        "benchmark": { "type": "string", "description": "基准名称（如'沪深300'）" },
+        "dataAsOf":  { "type": "string", "format": "date" },
+        "unit":      { "type": "string", "const": "%" },
+        "returns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["year", "manager", "benchmark", "excess"],
+            "properties": {
+              "year":      { "type": "integer", "minimum": 2010, "maximum": 2030 },
+              "manager":   { "type": "number", "description": "经理当年回报（%）" },
+              "benchmark": { "type": "number", "description": "基准当年回报（%）" },
+              "excess":    { "type": "number", "description": "超额收益（%）" }
+            }
+          }
+        },
+        "ytd":            { "$ref": "#/definitions/periodReturn" },
+        "sinceInception": { "$ref": "#/definitions/periodReturn" }
+      }
+    },
+
+    "aumChange": {
+      "type": "object",
+      "description": "管理规模变动图（多年）",
+      "properties": {
+        "dataAsOf":      { "type": "string", "format": "date" },
+        "chartAvailable":{ "type": "boolean", "description": "图表是否在DOM中" },
+        "series":        { "type": "array", "description": "时序数据点（暂未结构化，需SVG path解析）", "items": {"type": "object"} }
+      }
+    },
+
+    "funds": {
+      "type": "array",
+      "description": "管理基金列表（现管+历史）",
+      "items": {
+        "type": "object",
+        "required": ["name", "code"],
+        "properties": {
+          "rank":               { "type": "integer", "description": "列表序号" },
+          "isRepresentative":   { "type": "boolean", "description": "是否代表产品" },
+          "isHistorical":       { "type": "boolean", "description": "是否已离任" },
+          "name":               { "type": "string", "description": "基金全称" },
+          "code":               { "type": "string", "pattern": "^[0-9]{6}$", "description": "6位基金代码" },
+          "scale":              { "type": ["string", "null"], "description": "基金规模（含单位）" },
+          "scaleNumeric":       { "type": ["number", "null"], "description": "基金规模（亿元）" },
+          "morningstarCategory":{ "type": ["string", "null"], "description": "晨星分类（原始字符串）" },
+          "categoryLevel1":     { "type": ["string", "null"], "description": "晨星一级分类（已分割）" },
+          "appointmentDate":    { "type": ["string", "null"], "format": "date", "description": "任职起始日" },
+          "tenureDays":         { "type": ["string", "null"], "description": "在任时长（原始字符串，如'9年266天'）" },
+          "tenureDaysNumeric":  { "type": ["number", "null"], "description": "在任时长（天，纯数字）" },
+          "tenureReturn":       { "type": ["number", "null"], "description": "任职回报（%）" },
+          "benchmarkReturn":    { "type": ["number", "null"], "description": "同期同类回报（%）" },
+          "excessReturn":       { "type": ["number", "null"], "description": "超额回报（%）" }
+        }
+      }
+    },
+
+    "industryAllocation": {
+      "type": "object",
+      "description": "行业持仓配置（最新季度 + 多年变化图）",
+      "properties": {
+        "asOf":         { "type": "string", "format": "date" },
+        "current": {
+          "type": "array",
+          "description": "当前行业占比（一级/二级/三级行业）",
+          "items": {
+            "type": "object",
+            "properties": {
+              "level1": { "type": "string" },
+              "level2": { "type": "string" },
+              "level3": { "type": "string" },
+              "pct":    { "type": "number", "description": "持仓占比（%）" }
+            }
+          }
+        },
+        "topSector":         { "type": ["string", "null"], "description": "最大持仓行业（一级）" },
+        "topSectorPct":      { "type": ["number", "null"], "description": "最大持仓占比（%）" },
+        "historyChart": {
+          "type": "object",
+          "properties": {
+            "available":  { "type": "boolean" },
+            "timePoints": { "type": "array", "items": {"type": "string"}, "description": "X轴时间点（如'2024-12'）" },
+            "series":     { "type": "array", "description": "堆叠图各行业时序（需SVG path解析）" }
+          }
+        }
+      }
+    },
+
+    "styleBox": {
+      "type": "object",
+      "description": "股票投资风格箱（最新季度）",
+      "properties": {
+        "asOf":      { "type": "string", "format": "date" },
+        "sizeBias":  { "type": ["string", "null"], "enum": ["大盘", "中盘", "小盘", null] },
+        "styleBias": { "type": ["string", "null"], "enum": ["价值", "平衡", "成长", null] },
+        "cells": {
+          "type": "object",
+          "description": "3x3 风格箱（key=value 形式）",
+          "examples": [{"大盘价值": 3, "大盘平衡": 16, "大盘成长": 44, "中盘价值": 5, "中盘平衡": 7, "中盘成长": 12, "小盘价值": 0, "小盘平衡": 3, "小盘成长": 9}]
+        }
+      }
+    },
+
+    "topHoldings": {
+      "type": "object",
+      "description": "前十大持仓（季度+半年度两种视图）",
+      "properties": {
+        "quarterly": {
+          "type": "object",
+          "properties": {
+            "asOf": { "type": "string", "format": "date" },
+            "holdings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rank":         { "type": "integer" },
+                  "name":         { "type": "string" },
+                  "code":         { "type": "string" },
+                  "weight":       { "type": "number", "description": "组合权重（%）" },
+                  "firstBuy":     { "type": "string", "description": "首次买入季度（如'2019 Q1'）" },
+                  "mktValue":     { "type": "number", "description": "市值（亿元）" },
+                  "shareChange":  { "type": ["number", "null"], "description": "持股份额变动（%）" },
+                  "sector":       { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "semiAnnual": {
+          "type": "object",
+          "properties": {
+            "asOf": { "type": "string", "format": "date" },
+            "holdings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rank":         { "type": "integer" },
+                  "name":         { "type": "string" },
+                  "code":         { "type": "string" },
+                  "weight":       { "type": "number" },
+                  "firstBuy":     { "type": "string", "description": "首次买入半年（如'2018 H2'）" },
+                  "mktValue":     { "type": "number" },
+                  "shareChange":  { "type": ["number", "null"] },
+                  "sector":       { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "holdingPeriods": {
+      "type": "object",
+      "description": "重仓股持有期（季度/半年度）",
+      "properties": {
+        "quarterly": {
+          "type": "object",
+          "properties": {
+            "asOf": { "type": "string", "format": "date" },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name":        { "type": "string" },
+                  "quarters":    { "type": "integer", "description": "持有季度数" },
+                  "mktValue":    { "type": ["number", "null"] },
+                  "currentRank": { "type": ["integer", "null"] },
+                  "sector":      { "type": ["string", "null"] }
+                }
+              }
+            }
+          }
+        },
+        "semiAnnual": {
+          "type": "object",
+          "properties": {
+            "asOf": { "type": "string", "format": "date" },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name":        { "type": "string" },
+                  "years":       { "type": "number", "description": "持有年度数" },
+                  "mktValue":    { "type": ["number", "null"] },
+                  "currentRank": { "type": ["integer", "null"] },
+                  "sector":      { "type": ["string", "null"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "periodMetrics": {
+      "type": "object",
+      "description": "某时间维度的风险回报指标",
+      "properties": {
+        "managerReturn":     { "type": ["number", "null"], "description": "经理年化回报（%）" },
+        "benchmarkReturn":   { "type": ["number", "null"], "description": "基准年化回报（%）" },
+        "excessReturn":      { "type": ["number", "null"], "description": "超额回报（%）" },
+        "managerVol":        { "type": ["number", "null"], "description": "经理年化波动率（%）" },
+        "benchmarkVol":      { "type": ["number", "null"], "description": "基准年化波动率（%）" },
+        "returnRank":        { "type": ["string", "null"], "description": "同类收益排名（如'前1%'、'前0%'）" },
+        "returnAbilityRank": { "type": ["string", "null"], "description": "收益能力排名" },
+        "riskAbilityRank":   { "type": ["string", "null"], "description": "抗风险能力排名" }
+      }
+    },
+    "periodReturn": {
+      "type": "object",
+      "description": "某时间维度的累计/年度回报",
+      "properties": {
+        "manager":   { "type": ["number", "null"], "description": "经理回报（%）" },
+        "benchmark": { "type": ["number", "null"], "description": "基准/同期同类回报（%）" },
+        "excess":    { "type": ["number", "null"], "description": "超额收益（%）" }
+      }
+    }
+  }
+}

@@ -1,0 +1,630 @@
+{
+  "_meta": {
+    "managerId": "175675",
+    "name": "刘元海",
+    "scrapedAt": "2026-06-19T03:50:06.490Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/175675",
+    "pageLength": 3328,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "刘元海",
+    "company": "东吴基金管理有限公司",
+    "education": "管理学博士",
+    "bio": "中国国籍，同济大学管理学博士，具备证券投资基金从业资格。曾任职东吴基金管理有限公司研究员、基金经理助理、基金经理、投资管理部副总经理（2004年2月-2015年6月），期间担任东吴新产业精选股票型证券投资基金、东吴深证100指数增强型证券投资基金（LOF）、东吴内需增长混合型证券投资基金、东吴行业轮动混合型证券投资基金的基金经理。2016年2月再次加入东吴基...",
+    "investmentYears": 13.74,
+    "aum": "112.59亿元",
+    "aumNumeric": 112.59,
+    "fundCountCurrent": 6,
+    "fundCountTotal": 9,
+    "assetType": [
+      "权益型",
+      "主动型",
+      "港股"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 20.94
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "多只FOF持有",
+      "十年老将",
+      "机构持有较高",
+      "主动管理超百亿",
+      "近期规模相对稳定",
+      "近一年规模相对稳定",
+      "一拖多"
+    ],
+    "holdingStyle": [
+      "股票风格稳定",
+      "股票风格集中",
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "持仓集中度高",
+      "权益仓位稳定",
+      "高权益仓位",
+      "行业集中"
+    ],
+    "sectorPreference": [
+      "科技"
+    ],
+    "performance": [
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "中长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "中长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期业绩弹性强",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "长期捕获比大于1",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "长期"
+      },
+      {
+        "label": "月度胜率中",
+        "positive": false,
+        "negative": false,
+        "neutral": true,
+        "polarity": null,
+        "timeframe": "月度"
+      },
+      {
+        "label": "近三年回撤控制能力较弱",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近五年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      },
+      {
+        "label": "近十年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近十年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 151.1,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 132.7,
+      "managerVol": 42.33,
+      "benchmarkVol": 22.78,
+      "returnRank": "前3%",
+      "riskRank": "前97%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月17日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2016,
+        "manager": -2.39,
+        "benchmark": -11.28,
+        "excess": 8.889999999999999
+      },
+      {
+        "year": 2017,
+        "manager": 11.93,
+        "benchmark": 21.78,
+        "excess": -9.850000000000001
+      },
+      {
+        "year": 2018,
+        "manager": -29.69,
+        "benchmark": -25.31,
+        "excess": -4.380000000000003
+      },
+      {
+        "year": 2019,
+        "manager": 29.26,
+        "benchmark": 36.07,
+        "excess": -6.809999999999999
+      },
+      {
+        "year": 2020,
+        "manager": 66.1,
+        "benchmark": 27.21,
+        "excess": 38.88999999999999
+      },
+      {
+        "year": 2021,
+        "manager": 18.34,
+        "benchmark": -5.2,
+        "excess": 23.54
+      },
+      {
+        "year": 2022,
+        "manager": -23.86,
+        "benchmark": -21.63,
+        "excess": -2.2300000000000004
+      },
+      {
+        "year": 2023,
+        "manager": 34.93,
+        "benchmark": -11.38,
+        "excess": 46.31
+      },
+      {
+        "year": 2024,
+        "manager": 30.85,
+        "benchmark": 14.68,
+        "excess": 16.17
+      },
+      {
+        "year": 2025,
+        "manager": 81.99,
+        "benchmark": 17.66,
+        "excess": 64.33
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 36.3,
+      "benchmark": 6.73,
+      "excess": 29.569999999999997
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 1518.77,
+      "benchmark": 85.97,
+      "excess": 1432.8
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 28.99
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 24.6
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 18.17
+      },
+      {
+        "level1": "可选消费",
+        "level2": "车辆及零件",
+        "level3": "汽车零件",
+        "pct": 17.32
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "消费类电子产品",
+        "pct": 2.58
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 28.99
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 1,
+      "大盘平衡": 30,
+      "大盘成长": 54,
+      "中盘价值": 1,
+      "中盘平衡": 3,
+      "中盘成长": 10,
+      "小盘价值": 0,
+      "小盘平衡": 1,
+      "小盘成长": 0
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "东吴移动互联灵活配置混合A",
+      "code": "001323",
+      "scale": "28.99",
+      "scaleNumeric": 28.99,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2016-04-27",
+      "tenureDays": "10年54天",
+      "tenureReturn": 744,
+      "benchmarkReturn": 262.9,
+      "excessReturn": 481.1,
+      "isRepresentative": true
+    },
+    {
+      "name": "东吴移动互联灵活配置混合C",
+      "code": "002170",
+      "scale": "51.70",
+      "scaleNumeric": 51.7,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2016-04-27",
+      "tenureDays": "10年54天",
+      "tenureReturn": 733.98,
+      "benchmarkReturn": 262.9,
+      "excessReturn": 471.08000000000004,
+      "isRepresentative": false
+    },
+    {
+      "name": "东吴新趋势价值线灵活配置混合",
+      "code": "001322",
+      "scale": "12.43",
+      "scaleNumeric": 12.43,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2019-04-29",
+      "tenureDays": "7年54天",
+      "tenureReturn": 886.1,
+      "benchmarkReturn": 275.51,
+      "excessReturn": 610.59,
+      "isRepresentative": false
+    },
+    {
+      "name": "东吴新能源汽车股票C",
+      "code": "014377",
+      "scale": "3.27",
+      "scaleNumeric": 3.27,
+      "morningstarCategory": "行业股票 - 其它",
+      "categoryLevel1": "行业股票",
+      "appointmentDate": "2022-01-25",
+      "tenureDays": "4年146天",
+      "tenureReturn": 104.42,
+      "benchmarkReturn": 0,
+      "excessReturn": 104.42,
+      "isRepresentative": false
+    },
+    {
+      "name": "东吴新能源汽车股票A",
+      "code": "014376",
+      "scale": "1.02",
+      "scaleNumeric": 1.02,
+      "morningstarCategory": "行业股票 - 其它",
+      "categoryLevel1": "行业股票",
+      "appointmentDate": "2022-01-25",
+      "tenureDays": "4年146天",
+      "tenureReturn": 108.07,
+      "benchmarkReturn": 0,
+      "excessReturn": 108.07,
+      "isRepresentative": false
+    },
+    {
+      "name": "东吴嘉禾优势精选混合A",
+      "code": "580001",
+      "scale": "8.60",
+      "scaleNumeric": 8.6,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2023-08-15",
+      "tenureDays": "2年310天",
+      "tenureReturn": 238.63,
+      "benchmarkReturn": 124.55,
+      "excessReturn": 114.08,
+      "isRepresentative": false
+    },
+    {
+      "name": "东吴嘉禾优势精选混合C",
+      "code": "015152",
+      "scale": "3.09",
+      "scaleNumeric": 3.09,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2023-08-15",
+      "tenureDays": "2年310天",
+      "tenureReturn": 234.89,
+      "benchmarkReturn": 124.55,
+      "excessReturn": 110.33999999999999,
+      "isRepresentative": false
+    },
+    {
+      "name": "东吴科技创新混合C",
+      "code": "020967",
+      "scale": "1.49",
+      "scaleNumeric": 1.49,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2024-08-20",
+      "tenureDays": "1年302天",
+      "tenureReturn": 107.14,
+      "benchmarkReturn": 188.26,
+      "excessReturn": -81.11999999999999,
+      "isRepresentative": false
+    },
+    {
+      "name": "东吴科技创新混合A",
+      "code": "020966",
+      "scale": "2.00",
+      "scaleNumeric": 2,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2024-08-20",
+      "tenureDays": "1年302天",
+      "tenureReturn": 108.68,
+      "benchmarkReturn": 188.26,
+      "excessReturn": -79.57999999999998,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "立讯精密",
+          "code": "002475.SHE",
+          "weight": 9.72,
+          "firstBuy": "2015 Q1",
+          "mktValue": 10.94,
+          "shareChange": 17.87,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 9.66,
+          "firstBuy": "2023 Q3",
+          "mktValue": 10.87,
+          "shareChange": 3.64,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 9.08,
+          "firstBuy": "2018 Q4",
+          "mktValue": 10.23,
+          "shareChange": 6.27,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "沪电股份",
+          "code": "002463.SHE",
+          "weight": 8.94,
+          "firstBuy": "2018 Q4",
+          "mktValue": 10.07,
+          "shareChange": 34,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "德赛西威",
+          "code": "002920.SHE",
+          "weight": 8.32,
+          "firstBuy": "2021 Q4",
+          "mktValue": 9.37,
+          "shareChange": 4.79,
+          "sector": "可选消费"
+        },
+        {
+          "rank": 6,
+          "name": "胜宏科技",
+          "code": "300476.SHE",
+          "weight": 6.75,
+          "firstBuy": "2025 Q2",
+          "mktValue": 7.61,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "赣锋锂业",
+          "code": "002460.SHE",
+          "weight": 6.68,
+          "firstBuy": "2020 Q4",
+          "mktValue": 7.52,
+          "shareChange": 3325,
+          "sector": "基础材料"
+        },
+        {
+          "rank": 8,
+          "name": "工业富联",
+          "code": "601138.SHA",
+          "weight": 6.23,
+          "firstBuy": "2023 Q2",
+          "mktValue": 7.01,
+          "shareChange": 55.44,
+          "sector": "科技"
+        },
+        {
+          "rank": 9,
+          "name": "水晶光电",
+          "code": "002273.SHE",
+          "weight": 5.54,
+          "firstBuy": "2023 Q4",
+          "mktValue": 6.24,
+          "shareChange": 1.39,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "天赐材料",
+          "code": "002709.SHE",
+          "weight": 5.03,
+          "firstBuy": "2020 Q3",
+          "mktValue": 5.66,
+          "shareChange": 1950,
+          "sector": "基础材料"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "韦尔股份",
+          "quarters": 20,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "宁德时代",
+          "quarters": 19,
+          "mktValue": 0.36,
+          "currentRank": "13",
+          "sector": "工业"
+        },
+        {
+          "name": "立讯精密",
+          "quarters": 18,
+          "mktValue": 10.94,
+          "currentRank": "1",
+          "sector": "科技"
+        },
+        {
+          "name": "德赛西威",
+          "quarters": 17,
+          "mktValue": 9.37,
+          "currentRank": "5",
+          "sector": "可选消费"
+        },
+        {
+          "name": "沪电股份",
+          "quarters": 14,
+          "mktValue": 10.07,
+          "currentRank": "4",
+          "sector": "科技"
+        },
+        {
+          "name": "五粮液",
+          "quarters": 14,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "必选消费"
+        },
+        {
+          "name": "歌尔股份",
+          "quarters": 14,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "中际旭创",
+          "quarters": 13,
+          "mktValue": 10.23,
+          "currentRank": "3",
+          "sector": "工业"
+        },
+        {
+          "name": "拓普集团",
+          "quarters": 13,
+          "mktValue": 0.62,
+          "currentRank": "12",
+          "sector": "可选消费"
+        },
+        {
+          "name": "兆易创新",
+          "quarters": 13,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}

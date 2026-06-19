@@ -1,0 +1,431 @@
+{
+  "_meta": {
+    "managerId": "213515",
+    "name": "陈俊杰",
+    "scrapedAt": "2026-06-19T06:08:55.884Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/213515",
+    "pageLength": 2599,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "陈俊杰",
+    "company": "嘉实基金管理有限公司",
+    "education": "硕士研究生",
+    "bio": "曾任浙商证券股份有限公司研究所电子行业分析师，天风证券股份有限公司研究所电子行业高级分析师。2021年3月加入嘉实基金管理有限公司任制造行业研究组行业主分析师。硕士研究生，具有基金从业资格。中国国籍。",
+    "investmentYears": 3.33,
+    "aum": "64.30亿元",
+    "aumNumeric": 64.3,
+    "fundCountCurrent": 2,
+    "fundCountTotal": 4,
+    "assetType": [
+      "权益型",
+      "主动型",
+      "QDII型"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 53.01
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "机构持有极低",
+      "近期规模相对稳定"
+    ],
+    "holdingStyle": [
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "高权益仓位",
+      "行业集中"
+    ],
+    "sectorPreference": [
+      "科技"
+    ],
+    "performance": [
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "月度胜率高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "月度"
+      },
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "近三年波动较高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 127.94,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 109.53999999999999,
+      "managerVol": 29.78,
+      "benchmarkVol": 22.78,
+      "returnRank": "前5%",
+      "riskRank": "前80%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2024,
+        "manager": 31.56,
+        "benchmark": 14.68,
+        "excess": 16.88
+      },
+      {
+        "year": 2025,
+        "manager": 67.01,
+        "benchmark": 17.66,
+        "excess": 49.35000000000001
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 46.32,
+      "benchmark": 6.73,
+      "excess": 39.59
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 310.61,
+      "benchmark": 19.24,
+      "excess": 291.37
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 58.48
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体设备与材料",
+        "pct": 6.07
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "特种工业机械",
+        "pct": 5.27
+      },
+      {
+        "level1": "科技",
+        "level2": "软件",
+        "level3": "基础架构软件",
+        "pct": 5.17
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 4.27
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 58.48
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 4,
+      "大盘平衡": 34,
+      "大盘成长": 48,
+      "中盘价值": 1,
+      "中盘平衡": 1,
+      "中盘成长": 10,
+      "小盘价值": 0,
+      "小盘平衡": 1,
+      "小盘成长": 1
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "嘉实全球产业升级股票（QDII）A",
+      "code": "017730",
+      "scale": "9.22",
+      "scaleNumeric": 9.22,
+      "morningstarCategory": "环球股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2023-02-21",
+      "tenureDays": "3年120天",
+      "tenureReturn": 355.21,
+      "benchmarkReturn": 78.51,
+      "excessReturn": 276.7,
+      "isRepresentative": true
+    },
+    {
+      "name": "嘉实全球产业升级股票（QDII）C",
+      "code": "017731",
+      "scale": "11.50",
+      "scaleNumeric": 11.5,
+      "morningstarCategory": "环球股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2023-02-21",
+      "tenureDays": "3年120天",
+      "tenureReturn": 346.28,
+      "benchmarkReturn": 78.51,
+      "excessReturn": 267.77,
+      "isRepresentative": false
+    },
+    {
+      "name": "嘉实美国成长股票（QDII）美元现汇",
+      "code": "000044",
+      "scale": "0.14",
+      "scaleNumeric": 0.14,
+      "morningstarCategory": "美国股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2026-04-11",
+      "tenureDays": "69天",
+      "tenureReturn": 14.95,
+      "benchmarkReturn": 13.05,
+      "excessReturn": 1.8999999999999986,
+      "isRepresentative": false
+    },
+    {
+      "name": "嘉实美国成长股票（QDII）人民币",
+      "code": "000043",
+      "scale": "43.44",
+      "scaleNumeric": 43.44,
+      "morningstarCategory": "美国股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2026-04-11",
+      "tenureDays": "69天",
+      "tenureReturn": 14.02,
+      "benchmarkReturn": 13.05,
+      "excessReturn": 0.9699999999999989,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "博通股份有限公司",
+          "code": "AVGO UW",
+          "weight": 5.37,
+          "firstBuy": "2023 Q2",
+          "mktValue": 1.11,
+          "shareChange": 36.84,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "美光科技股份有限公司",
+          "code": "MU UW",
+          "weight": 4.85,
+          "firstBuy": "2023 Q2",
+          "mktValue": 1.01,
+          "shareChange": 8.51,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "美满电子科技公司",
+          "code": "MRVL UW",
+          "weight": 4.37,
+          "firstBuy": "2023 Q2",
+          "mktValue": 0.9,
+          "shareChange": 23.36,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "陕西源杰半导体科技股份有限公司",
+          "code": "688498 CH",
+          "weight": 4.25,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.88,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "英伟达公司",
+          "code": "NVDA UW",
+          "weight": 3.79,
+          "firstBuy": "2023 Q2",
+          "mktValue": 0.78,
+          "shareChange": 31.58,
+          "sector": "科技"
+        },
+        {
+          "rank": 6,
+          "name": "阿斯麦控股公司",
+          "code": "ASML UW",
+          "weight": 3.7,
+          "firstBuy": "2024 Q1",
+          "mktValue": 0.77,
+          "shareChange": 5.13,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "中科寒武纪科技股份有限公司",
+          "code": "688256 CH",
+          "weight": 3.66,
+          "firstBuy": "2025 Q4",
+          "mktValue": 0.76,
+          "shareChange": 71.69,
+          "sector": "科技"
+        },
+        {
+          "rank": 8,
+          "name": "科磊公司",
+          "code": "KLAC UW",
+          "weight": 3.44,
+          "firstBuy": "2023 Q2",
+          "mktValue": 0.71,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 9,
+          "name": "台湾集成电路制造股份有限公司",
+          "code": "TSM UN",
+          "weight": 3.39,
+          "firstBuy": "2023 Q2",
+          "mktValue": 0.7,
+          "shareChange": 18.92,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "AMD公司",
+          "code": "AMD UW",
+          "weight": 3.33,
+          "firstBuy": "2023 Q2",
+          "mktValue": 0.69,
+          "shareChange": 16.67,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "英伟达",
+          "quarters": 12,
+          "mktValue": 0.78,
+          "currentRank": "5",
+          "sector": "科技"
+        },
+        {
+          "name": "博通股份有限公司",
+          "quarters": 12,
+          "mktValue": 1.11,
+          "currentRank": "1",
+          "sector": "科技"
+        },
+        {
+          "name": "美满电子科技公司",
+          "quarters": 10,
+          "mktValue": 0.9,
+          "currentRank": "3",
+          "sector": "科技"
+        },
+        {
+          "name": "芯源系统有限公司",
+          "quarters": 10,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "美光科技股份有限公司",
+          "quarters": 10,
+          "mktValue": 1.01,
+          "currentRank": "2",
+          "sector": "科技"
+        },
+        {
+          "name": "新思科技公司",
+          "quarters": 10,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "台湾集成电路制造股份有限公司",
+          "quarters": 10,
+          "mktValue": 0.7,
+          "currentRank": "9",
+          "sector": "科技"
+        },
+        {
+          "name": "AMD公司",
+          "quarters": 10,
+          "mktValue": 0.69,
+          "currentRank": "10",
+          "sector": "科技"
+        },
+        {
+          "name": "阿斯麦控股公司",
+          "quarters": 7,
+          "mktValue": 0.77,
+          "currentRank": "6",
+          "sector": "科技"
+        },
+        {
+          "name": "高通公司",
+          "quarters": 5,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}
