@@ -397,6 +397,11 @@ function extractManager(t, managerId, nameHint = null) {
         });
       }
     }
+    // iter-011 修订：若所有基金都无"代表产品"标记，自动把规模最大的标为隐式代表
+    if (funds.length > 0 && !funds.some(f => f.isRepresentative)) {
+      const maxScale = funds.reduce((max, f) => (f.scaleNumeric || 0) > (max.scaleNumeric || 0) ? f : max, funds[0]);
+      maxScale.isRepresentative = true;
+    }
   }
 
   // ---------- 8. 前十大持仓（季度视图） ----------
@@ -510,10 +515,11 @@ function extractManager(t, managerId, nameHint = null) {
 
   // ---------- 13. bio（修复 #11: 取最长的曾任/历任段，处理"显示更多"截断） ----------
   // iter-008 扩展：兼容"曾担任/曾出任/曾就职"等同义表达
+  // iter-011 扩展：兼容"加盟/现任"等无"曾"字的简短 bio（年轻经理常见）
   const bio = (function() {
     let best = null;
     for (const l of lines) {
-      if (l.length > 50 && /(曾任|历任|曾担任|曾出任|曾就职|曾供职)/.test(l)) {
+      if (l.length > 20 && /(曾任|历任|曾担任|曾出任|曾就职|曾供职|现任|加盟|加入|入职)/.test(l)) {
         if (!best || l.length > best.length) best = l.trim();
       }
     }
@@ -560,7 +566,17 @@ function extractManager(t, managerId, nameHint = null) {
     labels: {
       experience,
       holdingStyle: styleLabels,
-      sectorPreference: sectorPref,
+      // iter-011 修订：从"持仓风格"段（sectorPref）OR "行业配置"段（industryAllocation）合并
+      // 年轻经理的"持仓风格"段可能无行业词（只有"高权益仓位"等），需从 industryAllocation 补
+      sectorPreference: (() => {
+        const set = new Set(sectorPref);
+        if (industryAllocation?.current) {
+          for (const it of industryAllocation.current) {
+            if (it.level1) set.add(it.level1);
+          }
+        }
+        return Array.from(set);
+      })(),
       performance: performanceRaw
     },
     riskReturn: {

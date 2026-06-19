@@ -67,14 +67,14 @@ const CHECKS = [
 
   // ---------- annualReturns ----------
   { id: 'annualReturns.benchmark', fn: d => !!d.annualReturns?.benchmark, critical: true },
-  // iter-008 修订：动态阈值，照顾短期经理
-  // iter-009 修订：放宽到 >= 2（2023 上任的经理只能有 2 个完整年：2024+2025）
+  // iter-008/009/011 修订：动态阈值，照顾短期经理
+  // iter-011 修订：放宽到 >= 1（任职 < 2 年的经理最多 1 个完整年）
   { id: 'annualReturns.years >= 8', fn: d => {
     const years = d.annualReturns?.returns?.length || 0;
     if (years >= 8) return true;
-    // 短期经理：至少 2 年（去年 + 今年），且不超过投资年限
+    // 短期经理：至少 1 年（去年），且不超过投资年限
     const tenure = d.basic?.investmentYears || 0;
-    return years >= 2 && years <= Math.ceil(tenure);
+    return years >= 1 && years <= Math.ceil(tenure);
   }, critical: true },
   { id: 'annualReturns.sinceInception', fn: d => !!d.annualReturns?.sinceInception?.manager, critical: true },
   { id: 'annualReturns.noNullYears', fn: d => (d.annualReturns?.returns || []).every(y => y.manager !== null && y.benchmark !== null), critical: true },

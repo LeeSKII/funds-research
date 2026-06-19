@@ -1,0 +1,375 @@
+{
+  "_meta": {
+    "managerId": "221969",
+    "name": "梁策",
+    "scrapedAt": "2026-06-19T06:45:11.398Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/221969",
+    "pageLength": 2350,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "梁策",
+    "company": "前海开源基金管理有限公司",
+    "education": "中央财经大学硕士",
+    "bio": "中央财经大学硕士。2020年6月加盟前海开源基金管理有限公司，现任公司基金经理。",
+    "investmentYears": 1.5,
+    "aum": "17.12亿元",
+    "aumNumeric": 17.12,
+    "fundCountCurrent": 2,
+    "fundCountTotal": 3,
+    "assetType": [
+      "权益型",
+      "主动型"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 186.84
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "近期规模相对稳定"
+    ],
+    "holdingStyle": [
+      "高权益仓位"
+    ],
+    "sectorPreference": [
+      "科技",
+      "可选消费",
+      "工业"
+    ],
+    "performance": [
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 403.2,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 384.8,
+      "managerVol": 49.94,
+      "benchmarkVol": 22.78,
+      "returnRank": "前0%",
+      "riskRank": "前99%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2025,
+        "manager": 122.08,
+        "benchmark": 17.66,
+        "excess": 104.42
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 123.51,
+      "benchmark": 6.73,
+      "excess": 116.78
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 381.79,
+      "benchmark": 25.81,
+      "excess": 355.98
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 40.54
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 16.45
+      },
+      {
+        "level1": "可选消费",
+        "level2": "服装与配饰",
+        "level3": "纺织制造",
+        "pct": 8.58
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "特种工业机械",
+        "pct": 8.41
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "电气设备及零件",
+        "pct": 8.14
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 40.54
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 0,
+      "大盘平衡": 15,
+      "大盘成长": 63,
+      "中盘价值": 0,
+      "中盘平衡": 0,
+      "中盘成长": 21,
+      "小盘价值": 0,
+      "小盘平衡": 1,
+      "小盘成长": 0
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "前海开源沪港深乐享生活灵活配置混合",
+      "code": "004320",
+      "scale": "10.57",
+      "scaleNumeric": 10.57,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2024-12-20",
+      "tenureDays": "1年182天",
+      "tenureReturn": 388.74,
+      "benchmarkReturn": 119.19,
+      "excessReturn": 269.55,
+      "isRepresentative": true
+    },
+    {
+      "name": "前海开源人工智能主题灵活配置混合A",
+      "code": "001986",
+      "scale": "5.48",
+      "scaleNumeric": 5.48,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2026-04-14",
+      "tenureDays": "66天",
+      "tenureReturn": 54.24,
+      "benchmarkReturn": 36.04,
+      "excessReturn": 18.200000000000003,
+      "isRepresentative": false
+    },
+    {
+      "name": "前海开源人工智能主题灵活配置混合C",
+      "code": "023286",
+      "scale": "1.07",
+      "scaleNumeric": 1.07,
+      "morningstarCategory": "行业混合 - 科技、传媒及通讯",
+      "categoryLevel1": "行业混合",
+      "appointmentDate": "2026-04-14",
+      "tenureDays": "66天",
+      "tenureReturn": 54.12,
+      "benchmarkReturn": 36.04,
+      "excessReturn": 18.08,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 8.8,
+          "firstBuy": "2024 Q4",
+          "mktValue": 0.93,
+          "shareChange": 27,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 8.63,
+          "firstBuy": "2024 Q4",
+          "mktValue": 0.91,
+          "shareChange": 24.41,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "华懋科技",
+          "code": "603306.SHA",
+          "weight": 7.86,
+          "firstBuy": "2025 Q4",
+          "mktValue": 0.83,
+          "shareChange": 41.31,
+          "sector": "可选消费"
+        },
+        {
+          "rank": 4,
+          "name": "可川科技",
+          "code": "603052.SHA",
+          "weight": 7.79,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.82,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 5,
+          "name": "剑桥科技",
+          "code": "603083.SHA",
+          "weight": 7.75,
+          "firstBuy": "2025 Q4",
+          "mktValue": 0.82,
+          "shareChange": 9.82,
+          "sector": "科技"
+        },
+        {
+          "rank": 6,
+          "name": "福晶科技",
+          "code": "002222.SHE",
+          "weight": 7.65,
+          "firstBuy": "2025 Q4",
+          "mktValue": 0.81,
+          "shareChange": 38.4,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "东山精密",
+          "code": "002384.SHE",
+          "weight": 7.54,
+          "firstBuy": "2025 Q4",
+          "mktValue": 0.8,
+          "shareChange": 44.41,
+          "sector": "科技"
+        },
+        {
+          "rank": 8,
+          "name": "罗博特科",
+          "code": "300757.SHE",
+          "weight": 7.53,
+          "firstBuy": "2024 Q4",
+          "mktValue": 0.8,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 9,
+          "name": "天通股份",
+          "code": "600330.SHA",
+          "weight": 7.16,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.76,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "泰晶科技",
+          "code": "603738.SHA",
+          "weight": 5.22,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.55,
+          "shareChange": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "中际旭创",
+          "quarters": 5,
+          "mktValue": 0.91,
+          "currentRank": "2",
+          "sector": "科技"
+        },
+        {
+          "name": "新易盛",
+          "quarters": 5,
+          "mktValue": 0.93,
+          "currentRank": "1",
+          "sector": "科技"
+        },
+        {
+          "name": "太辰光",
+          "quarters": 5,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "天孚通信",
+          "quarters": 4,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "华懋科技",
+          "quarters": 2,
+          "mktValue": 0.83,
+          "currentRank": "3",
+          "sector": "可选消费"
+        },
+        {
+          "name": "剑桥科技",
+          "quarters": 2,
+          "mktValue": 0.82,
+          "currentRank": "5",
+          "sector": "科技"
+        },
+        {
+          "name": "福晶科技",
+          "quarters": 2,
+          "mktValue": 0.81,
+          "currentRank": "6",
+          "sector": "科技"
+        },
+        {
+          "name": "东山精密",
+          "quarters": 2,
+          "mktValue": 0.8,
+          "currentRank": "7",
+          "sector": "科技"
+        },
+        {
+          "name": "罗博特科",
+          "quarters": 2,
+          "mktValue": 0.8,
+          "currentRank": "8",
+          "sector": "工业"
+        },
+        {
+          "name": "胜宏科技",
+          "quarters": 2,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}
