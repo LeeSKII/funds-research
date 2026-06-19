@@ -1,0 +1,582 @@
+{
+  "_meta": {
+    "managerId": "189321",
+    "name": "祁禾",
+    "scrapedAt": "2026-06-19T15:07:13.125Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/189321",
+    "pageLength": 3094,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "祁禾",
+    "company": "易方达基金管理有限公司",
+    "education": "硕士研究生",
+    "bio": "硕士研究生，具有基金从业资格。曾任华泰联合证券有限责任公司研究所研究员，博时基金管理有限公司研究部研究员，易方达基金管理有限公司基金经理助理、行业研究员、研究部副总经理，易方达科汇灵活配置混合、易方达创新驱动混合的基金经理。",
+    "investmentYears": 8.48,
+    "aum": "208.01亿元",
+    "aumNumeric": 208.01,
+    "fundCountCurrent": 5,
+    "fundCountTotal": 10,
+    "assetType": [
+      "权益型",
+      "主动型",
+      "港股"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 22.1
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "自购超百万份",
+      "机构持有极低",
+      "主动管理超百亿",
+      "近期规模相对稳定",
+      "近一年规模相对稳定",
+      "一拖多"
+    ],
+    "holdingStyle": [
+      "持股ROE高",
+      "大盘成长",
+      "换手率较高",
+      "高权益仓位",
+      "行业较集中",
+      "股票风格漂移"
+    ],
+    "sectorPreference": [
+      "科技",
+      "工业",
+      "基础材料"
+    ],
+    "performance": [
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "中长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "中长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "月度胜率中",
+        "positive": false,
+        "negative": false,
+        "neutral": true,
+        "polarity": null,
+        "timeframe": "月度"
+      },
+      {
+        "label": "近三年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近五年波动高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 168.54,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 150.14,
+      "managerVol": 33.67,
+      "benchmarkVol": 22.78,
+      "returnRank": "前2%",
+      "riskRank": "前87%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2018,
+        "manager": -19.47,
+        "benchmark": -25.31,
+        "excess": 5.84
+      },
+      {
+        "year": 2019,
+        "manager": 47.91,
+        "benchmark": 36.07,
+        "excess": 11.839999999999996
+      },
+      {
+        "year": 2020,
+        "manager": 65.6,
+        "benchmark": 27.21,
+        "excess": 38.38999999999999
+      },
+      {
+        "year": 2021,
+        "manager": 23.42,
+        "benchmark": -5.2,
+        "excess": 28.62
+      },
+      {
+        "year": 2022,
+        "manager": -14.04,
+        "benchmark": -21.63,
+        "excess": 7.59
+      },
+      {
+        "year": 2023,
+        "manager": -13.74,
+        "benchmark": -11.38,
+        "excess": -2.3599999999999994
+      },
+      {
+        "year": 2024,
+        "manager": 9.47,
+        "benchmark": 14.68,
+        "excess": -5.209999999999999
+      },
+      {
+        "year": 2025,
+        "manager": 65.21,
+        "benchmark": 17.66,
+        "excess": 47.55
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 65.89,
+      "benchmark": 6.73,
+      "excess": 59.16
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 445.06,
+      "benchmark": 23.81,
+      "excess": 421.25
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 20.99
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 16.93
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "电气设备及零件",
+        "pct": 5.95
+      },
+      {
+        "level1": "基础材料",
+        "level2": "金属与采矿",
+        "level3": "黄金",
+        "pct": 5.4
+      },
+      {
+        "level1": "基础材料",
+        "level2": "金属与采矿",
+        "level3": "铜",
+        "pct": 4.57
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 20.99
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 5,
+      "大盘平衡": 22,
+      "大盘成长": 45,
+      "中盘价值": 2,
+      "中盘平衡": 11,
+      "中盘成长": 11,
+      "小盘价值": 0,
+      "小盘平衡": 3,
+      "小盘成长": 1
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "易方达高端制造混合A",
+      "code": "009049",
+      "scale": "52.29",
+      "scaleNumeric": 52.29,
+      "morningstarCategory": "积极配置 - 大盘成长",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2020-03-16",
+      "tenureDays": "6年94天",
+      "tenureReturn": 376.85,
+      "benchmarkReturn": 110.76,
+      "excessReturn": 266.09000000000003,
+      "isRepresentative": true
+    },
+    {
+      "name": "易方达环保主题混合A",
+      "code": "001856",
+      "scale": "47.96",
+      "scaleNumeric": 47.96,
+      "morningstarCategory": "积极配置 - 大盘成长",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2017-12-27",
+      "tenureDays": "8年175天",
+      "tenureReturn": 717.71,
+      "benchmarkReturn": 142.63,
+      "excessReturn": 575.08,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达智造优势混合A",
+      "code": "011300",
+      "scale": "24.19",
+      "scaleNumeric": 24.19,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2021-01-26",
+      "tenureDays": "5年146天",
+      "tenureReturn": 159.27,
+      "benchmarkReturn": 6.67,
+      "excessReturn": 152.60000000000002,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达智造优势混合C",
+      "code": "011301",
+      "scale": "15.69",
+      "scaleNumeric": 15.69,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2021-01-26",
+      "tenureDays": "5年146天",
+      "tenureReturn": 153.69,
+      "benchmarkReturn": 6.67,
+      "excessReturn": 147.02,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达产业升级混合A",
+      "code": "011822",
+      "scale": "25.58",
+      "scaleNumeric": 25.58,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2021-07-23",
+      "tenureDays": "4年332天",
+      "tenureReturn": 133.87,
+      "benchmarkReturn": 6.94,
+      "excessReturn": 126.93,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达产业升级混合C",
+      "code": "011823",
+      "scale": "12.58",
+      "scaleNumeric": 12.58,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2021-07-23",
+      "tenureDays": "4年332天",
+      "tenureReturn": 129.32,
+      "benchmarkReturn": 6.94,
+      "excessReturn": 122.38,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达环保主题混合C",
+      "code": "019032",
+      "scale": "7.63",
+      "scaleNumeric": 7.63,
+      "morningstarCategory": "积极配置 - 大盘成长",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2023-11-15",
+      "tenureDays": "2年215天",
+      "tenureReturn": 180.08,
+      "benchmarkReturn": 68.19,
+      "excessReturn": 111.89000000000001,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达高端制造混合C",
+      "code": "019034",
+      "scale": "8.74",
+      "scaleNumeric": 8.74,
+      "morningstarCategory": "积极配置 - 大盘成长",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2023-11-15",
+      "tenureDays": "2年215天",
+      "tenureReturn": 213.12,
+      "benchmarkReturn": 68.19,
+      "excessReturn": 144.93,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达产业优选混合A",
+      "code": "025824",
+      "scale": "7.11",
+      "scaleNumeric": 7.11,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-11-04",
+      "tenureDays": "227天",
+      "tenureReturn": 67.59,
+      "benchmarkReturn": 17.85,
+      "excessReturn": 49.74,
+      "isRepresentative": false
+    },
+    {
+      "name": "易方达产业优选混合C",
+      "code": "025825",
+      "scale": "6.24",
+      "scaleNumeric": 6.24,
+      "morningstarCategory": "沪港深积极配置",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-11-04",
+      "tenureDays": "227天",
+      "tenureReturn": 67.05,
+      "benchmarkReturn": 17.85,
+      "excessReturn": 49.199999999999996,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "宁德时代",
+          "code": "300750.SHE",
+          "weight": 5.46,
+          "firstBuy": "2021 Q4",
+          "mktValue": 11.36,
+          "shareChange": 114.51,
+          "sector": "工业"
+        },
+        {
+          "rank": 2,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 5.44,
+          "firstBuy": "2025 Q2",
+          "mktValue": 11.31,
+          "shareChange": 3.23,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "三环集团",
+          "code": "300408.SHE",
+          "weight": 5.39,
+          "firstBuy": "2025 Q3",
+          "mktValue": 11.21,
+          "shareChange": 31.73,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 5.13,
+          "firstBuy": "2025 Q3",
+          "mktValue": 10.67,
+          "shareChange": 17.18,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "中天科技",
+          "code": "600522.SHA",
+          "weight": 4.69,
+          "firstBuy": "2024 Q4",
+          "mktValue": 9.75,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 6,
+          "name": "亨通光电",
+          "code": "600487.SHA",
+          "weight": 4.28,
+          "firstBuy": "2025 Q2",
+          "mktValue": 8.89,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "吉利汽车",
+          "code": "00175",
+          "weight": 3.81,
+          "firstBuy": "2026 Q1",
+          "mktValue": 7.93,
+          "shareChange": null,
+          "sector": "可选消费"
+        },
+        {
+          "rank": 8,
+          "name": "中国石油股份",
+          "code": "00857",
+          "weight": 2.3,
+          "firstBuy": "2023 Q1",
+          "mktValue": 4.78,
+          "shareChange": null,
+          "sector": "能源"
+        },
+        {
+          "rank": 9,
+          "name": "中国黄金国际",
+          "code": "02099",
+          "weight": 2.19,
+          "firstBuy": "2025 Q4",
+          "mktValue": 4.56,
+          "shareChange": 8.18,
+          "sector": "基础材料"
+        },
+        {
+          "rank": 10,
+          "name": "北方华创",
+          "code": "002371.SHE",
+          "weight": 1.7,
+          "firstBuy": "2026 Q1",
+          "mktValue": 3.54,
+          "shareChange": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "隆基股份",
+          "quarters": 19,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "福斯特",
+          "quarters": 15,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "阳光电源",
+          "quarters": 14,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "工业"
+        },
+        {
+          "name": "美的集团",
+          "quarters": 13,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "长江电力",
+          "quarters": 13,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "公用事业"
+        },
+        {
+          "name": "宁德时代",
+          "quarters": 13,
+          "mktValue": 11.36,
+          "currentRank": "1",
+          "sector": "工业"
+        },
+        {
+          "name": "贵州茅台",
+          "quarters": 11,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "必选消费"
+        },
+        {
+          "name": "五粮液",
+          "quarters": 10,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "必选消费"
+        },
+        {
+          "name": "泸州老窖",
+          "quarters": 10,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "必选消费"
+        },
+        {
+          "name": "格力电器",
+          "quarters": 10,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "可选消费"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}

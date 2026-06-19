@@ -1,0 +1,357 @@
+{
+  "_meta": {
+    "managerId": "222157",
+    "name": "彭雾",
+    "scrapedAt": "2026-06-19T15:04:35.221Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/222157",
+    "pageLength": 2255,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "彭雾",
+    "company": "华商基金管理有限公司",
+    "education": null,
+    "bio": "2016年7月至2021年9月，就职于广发证券股份有限公司，任分析师；2021年10月加入华商基金管理有限公司，任行业研究员。",
+    "investmentYears": 1.45,
+    "aum": "16.87亿元",
+    "aumNumeric": 16.87,
+    "fundCountCurrent": 2,
+    "fundCountTotal": 3,
+    "assetType": [
+      "权益型",
+      "主动型"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 164.79
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "机构持有极低"
+    ],
+    "holdingStyle": [
+      "持股P/E高",
+      "持股P/B高",
+      "持股ROE高",
+      "大盘成长",
+      "换手率高",
+      "持仓集中度高",
+      "高权益仓位",
+      "行业集中"
+    ],
+    "sectorPreference": [
+      "科技",
+      "工业"
+    ],
+    "performance": [
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 228.27,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 209.87,
+      "managerVol": 33.06,
+      "benchmarkVol": 22.78,
+      "returnRank": "前1%",
+      "riskRank": "前87%"
+    }
+  },
+  "annualReturns": null,
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "通讯设备",
+        "pct": 36.75
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 15.65
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 13.02
+      },
+      {
+        "level1": "工业",
+        "level2": "工业产品",
+        "level3": "电气设备及零件",
+        "pct": 9.55
+      },
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体设备与材料",
+        "pct": 5.8
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 36.75
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 0,
+      "大盘平衡": 13,
+      "大盘成长": 69,
+      "中盘价值": 0,
+      "中盘平衡": 3,
+      "中盘成长": 9,
+      "小盘价值": 0,
+      "小盘平衡": 0,
+      "小盘成长": 3
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "华商龙头优势混合",
+      "code": "008555",
+      "scale": "9.82",
+      "scaleNumeric": 9.82,
+      "morningstarCategory": "积极配置 - 大盘平衡",
+      "categoryLevel1": "积极配置",
+      "appointmentDate": "2025-03-14",
+      "tenureDays": "1年98天",
+      "tenureReturn": 334.32,
+      "benchmarkReturn": 26.3,
+      "excessReturn": 308.02,
+      "isRepresentative": true
+    },
+    {
+      "name": "华商高端装备制造股票C",
+      "code": "016050",
+      "scale": "2.54",
+      "scaleNumeric": 2.54,
+      "morningstarCategory": "大盘成长股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-01-06",
+      "tenureDays": "1年164天",
+      "tenureReturn": 242.44,
+      "benchmarkReturn": 79.19,
+      "excessReturn": 163.25,
+      "isRepresentative": false
+    },
+    {
+      "name": "华商高端装备制造股票A",
+      "code": "008009",
+      "scale": "4.51",
+      "scaleNumeric": 4.51,
+      "morningstarCategory": "大盘成长股票",
+      "categoryLevel1": null,
+      "appointmentDate": "2025-01-06",
+      "tenureDays": "1年164天",
+      "tenureReturn": 245.6,
+      "benchmarkReturn": 79.19,
+      "excessReturn": 166.41,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "新易盛",
+          "code": "300502.SHE",
+          "weight": 7.25,
+          "firstBuy": "2025 Q2",
+          "mktValue": 1.22,
+          "shareChange": 185.65,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "长飞光纤光缆",
+          "code": "06869",
+          "weight": 7.15,
+          "firstBuy": "2025 Q4",
+          "mktValue": 1.21,
+          "shareChange": 13.82,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "兆易创新",
+          "code": "603986.SHA",
+          "weight": 6.97,
+          "firstBuy": "2025 Q3",
+          "mktValue": 1.18,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "普冉股份",
+          "code": "688766.SHA",
+          "weight": 5.07,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.85,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "中际旭创",
+          "code": "300308.SHE",
+          "weight": 4.96,
+          "firstBuy": "2025 Q2",
+          "mktValue": 0.84,
+          "shareChange": 108.07,
+          "sector": "科技"
+        },
+        {
+          "rank": 6,
+          "name": "源杰科技",
+          "code": "688498.SHA",
+          "weight": 4.74,
+          "firstBuy": "2025 Q2",
+          "mktValue": 0.8,
+          "shareChange": 190.84,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "杭电股份",
+          "code": "603618.SHA",
+          "weight": 2.76,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.47,
+          "shareChange": null,
+          "sector": "工业"
+        },
+        {
+          "rank": 8,
+          "name": "东山精密",
+          "code": "002384.SHE",
+          "weight": 2.34,
+          "firstBuy": "2025 Q2",
+          "mktValue": 0.39,
+          "shareChange": 12.63,
+          "sector": "科技"
+        },
+        {
+          "rank": 9,
+          "name": "芯原股份",
+          "code": "688521.SHA",
+          "weight": 1.87,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.32,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "广合科技",
+          "code": "001389.SHE",
+          "weight": 1.86,
+          "firstBuy": "2026 Q1",
+          "mktValue": 0.31,
+          "shareChange": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "中际旭创",
+          "quarters": 4,
+          "mktValue": 0.84,
+          "currentRank": "5",
+          "sector": "科技"
+        },
+        {
+          "name": "新易盛",
+          "quarters": 4,
+          "mktValue": 1.22,
+          "currentRank": "1",
+          "sector": "科技"
+        },
+        {
+          "name": "源杰科技",
+          "quarters": 3,
+          "mktValue": 0.8,
+          "currentRank": "6",
+          "sector": "科技"
+        },
+        {
+          "name": "东山精密",
+          "quarters": 3,
+          "mktValue": 0.39,
+          "currentRank": "8",
+          "sector": "科技"
+        },
+        {
+          "name": "长飞光纤光缆",
+          "quarters": 2,
+          "mktValue": 1.21,
+          "currentRank": "2",
+          "sector": "科技"
+        },
+        {
+          "name": "兆易创新",
+          "quarters": 2,
+          "mktValue": 1.18,
+          "currentRank": "3",
+          "sector": "科技"
+        },
+        {
+          "name": "宁德时代",
+          "quarters": 2,
+          "mktValue": 0.31,
+          "currentRank": "11",
+          "sector": "工业"
+        },
+        {
+          "name": "立讯精密",
+          "quarters": 2,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "潍柴重机",
+          "quarters": 2,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "工业"
+        },
+        {
+          "name": "寒武纪",
+          "quarters": 2,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}

@@ -606,17 +606,19 @@ function extractManager(t, managerId, nameHint = null) {
 
   // ---------- 11. 公司 ----------
   const company = (function () {
+    // 兼容 A 股常见"有限公司" + QDII/合资公司"有限责任公司"（如建信基金管理有限责任公司）
+    const companyRe = /基金管理(有限公司|股份有限公司|有限责任公司)$/;
     // 优先：紧跟"关注"按钮后的下一行（如果是公司名）
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].trim() === "关注" && i + 1 < lines.length) {
         const next = lines[i + 1].trim();
-        if (next && /基金管理(有限公司|股份有限公司)$/.test(next)) return next;
+        if (next && companyRe.test(next)) return next;
       }
     }
-    // 备选：找"基金管理有限公司"开头的单行
+    // 备选：找"基金管理..."结尾的单行
     for (const l of lines) {
       const v = l.trim();
-      if (/基金管理(有限公司|股份有限公司)$/.test(v) && v.length < 30) return v;
+      if (companyRe.test(v) && v.length < 30) return v;
     }
     return null;
   })();
@@ -729,19 +731,47 @@ function extractManager(t, managerId, nameHint = null) {
 
 function readInnerText(filePath) {
   const raw = fs.readFileSync(filePath, "utf-8");
-  // 兼容两种格式：JSON 字符串 OR 纯文本
   const trimmed = raw.trim();
+
+  // 格式 1：JSON 字符串（旧版 — 整文件就是一个被双引号包裹的字符串）
   if (trimmed.startsWith('"') && trimmed.endsWith('"')) {
     return JSON.parse(trimmed);
   }
-  // 如果像 JSON 字符串（首字符是 " 但不是纯文本）
-  if (trimmed.length > 0 && trimmed[0] === '"') {
+  // 格式 2：JSON 对象（含 {url, title, text, ...}）— 新版 chrome-devtools evaluate_script 默认输出
+  //         注意：只取首个非空字符是 { 时才解析；拿到对象后用 .text 字段（兜底用对象其他 string 字段）
+  if (trimmed.length > 0 && trimmed[0] === "{") {
     try {
-      return JSON.parse(trimmed);
+      const obj = JSON.parse(trimmed);
+      if (typeof obj === "object" && obj !== null) {
+        if (typeof obj.text === "string") return obj.text;
+        // 兜底：取最长的 string 字段（通常是 innerText dump）
+        const longest = Object.values(obj)
+          .filter((v) => typeof v === "string")
+          .sort((a, b) => b.length - a.length)[0];
+        if (longest) return longest;
+      }
     } catch {
-      return raw;
+      // fall through
     }
   }
+  // 格式 3：JSON 数组（每行一个字符串）— 老版 chrome-devtools evaluate_script 输出
+  //         例：[{"line": "..."}, {"line": "..."}] 或 ["line1", "line2", ...]
+  //         用 \n 拼接成 innerText 形式
+  if (trimmed.length > 0 && trimmed[0] === "[") {
+    try {
+      const arr = JSON.parse(trimmed);
+      if (Array.isArray(arr)) {
+        const joined = arr
+          .map((it) => (typeof it === "string" ? it : it?.text || it?.line || ""))
+          .filter((s) => typeof s === "string")
+          .join("\n");
+        if (joined.length > 100) return joined;
+      }
+    } catch {
+      // fall through
+    }
+  }
+  // 格式 4：纯文本（直接 dump 的 innerText）
   return raw;
 }
 

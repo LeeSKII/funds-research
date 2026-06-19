@@ -51,7 +51,7 @@ const CHECKS = [
 
   // ---------- labels ----------
   { id: 'labels.experience',     fn: d => Array.isArray(d.labels?.experience) && d.labels.experience.length >= 1, critical: true },
-  { id: 'labels.holdingStyle',   fn: d => Array.isArray(d.labels?.holdingStyle) && d.labels.holdingStyle.length >= 1, critical: true },
+  { id: 'labels.holdingStyle',   fn: d => Array.isArray(d.labels?.holdingStyle) && d.labels.holdingStyle.length >= 1, warnOnly: true },
   { id: 'labels.sectorPreference', fn: d => Array.isArray(d.labels?.sectorPreference) && d.labels.sectorPreference.length >= 1, critical: true },
   { id: 'labels.performance',    fn: d => Array.isArray(d.labels?.performance) && d.labels.performance.length >= 1, critical: true },
 
@@ -67,17 +67,20 @@ const CHECKS = [
   }, critical: true },
 
   // ---------- annualReturns ----------
-  { id: 'annualReturns.benchmark', fn: d => !!d.annualReturns?.benchmark, critical: true },
+  // 早期经理（任职 < 2 年）morningstar 页面可能完全没有"总回报%"段，annualReturns 为 null —
+  // 这是数据特性（无完整年度回报），不阻塞解析。3 条 benchmark/years/sinceInception 都降为 warnOnly。
+  { id: 'annualReturns.benchmark', fn: d => !!d.annualReturns?.benchmark, warnOnly: true },
   // iter-008/009/011 修订：动态阈值，照顾短期经理
   // iter-011 修订：放宽到 >= 1（任职 < 2 年的经理最多 1 个完整年）
   { id: 'annualReturns.years >= 8', fn: d => {
+    if (!d.annualReturns) return true;  // null 时豁免（morningstar 无数据）
     const years = d.annualReturns?.returns?.length || 0;
     if (years >= 8) return true;
     // 短期经理：至少 1 年（去年），且不超过投资年限
     const tenure = d.basic?.investmentYears || 0;
     return years >= 1 && years <= Math.ceil(tenure);
-  }, critical: true },
-  { id: 'annualReturns.sinceInception', fn: d => !!d.annualReturns?.sinceInception?.manager, critical: true },
+  }, warnOnly: true },
+  { id: 'annualReturns.sinceInception', fn: d => !!d.annualReturns?.sinceInception?.manager, warnOnly: true },
   { id: 'annualReturns.noNullYears', fn: d => (d.annualReturns?.returns || []).every(y => y.manager !== null && y.benchmark !== null), critical: true },
   { id: 'annualReturns.excessAccurate', fn: d => (d.annualReturns?.returns || []).every(y => Math.abs((y.manager - y.benchmark) - y.excess) < 0.01), critical: true },
 
@@ -107,7 +110,18 @@ const CHECKS = [
   // ---------- topHoldings ----------
   { id: 'topHoldings.quarterly >= 5', fn: d => (d.topHoldings?.quarterly?.holdings?.length || 0) >= 5, critical: true },
   // iter-009 扩展：Bloomberg 后缀 UW/UN/CH + 数字 6 位（A 股）
-  { id: 'topHoldings.codeFormat', fn: d => (d.topHoldings?.quarterly?.holdings || []).every(h => /\.(SHE|SHA|US|HK)$|^[A-Z0-9]+\s+(US|HK|UW|UN|CH)$|^\d{5,6}(\.HK)?$|^\d{6}$/.test(h.code)), critical: true },
+  { id: 'topHoldings.codeFormat', fn: d => (d.topHoldings?.quarterly?.holdings || []).every(h =>
+    // A 股: 002384.SHE / 688498.SHA
+    // 美股 ticker+空格+交易所: AAPL US / TSM UW
+    // 港股: 00700.HK / 06869（5-6 位纯数字）
+    // A 股 6 位纯数字: 539002
+    // QDII 海外（晨星内部表达）: US8740391003（CUSIP）/ KR7000660001（KR ticker ISIN）/ JP3436100006（日本 ISIN）
+    /\.(SHE|SHA|US|HK)$/.test(h.code) ||
+    /^[A-Z0-9]+\s+(US|HK|UW|UN|CH)$/.test(h.code) ||
+    /^\d{5,6}(\.HK)?$/.test(h.code) ||
+    /^\d{6}$/.test(h.code) ||
+    /^[A-Z]{2}[A-Z0-9]{9,12}$/.test(h.code)  // ISIN/CUSIP 风格（晨星 QDII 页面特有，后 9 位可能是字母数字混合）
+  ), critical: true },
   // iter-010 修订：放宽到 < 90（10 个标的均匀分布 8-10% 是合理集中）
   { id: 'topHoldings.weightSum < 80', fn: d => {
     const total = (d.topHoldings?.quarterly?.holdings || []).reduce((s, h) => s + h.weight, 0);
