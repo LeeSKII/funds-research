@@ -102,7 +102,6 @@ funds-research/
 │           ├── parse-manager.js
 │           └── validate-manager.js
 │   # research/funds/                # 基金分析子模块（未来 — 同 4 步结构）
-├── reports/                         # 研究报告
 ├── playground/                      # 本地 HTML playground（独立 web app）
 │   ├── server.js
 │   ├── public/
