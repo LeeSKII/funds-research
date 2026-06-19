@@ -1,21 +1,30 @@
-/* ============ Skeleton Loading（v1.3 新增）============ */
+/* =============================================================================
+   Manager Playground · v1.5
+   Editorial research terminal · 纸面 + 油墨 + 牛血红（FT salmon-inspired）
+   字体：Noto Serif SC（display）+ IBM Plex Sans（body）+ IBM Plex Mono（data）
+   设计语言：hairline 分割线替代卡片，单色调色板，零 em-dash
+   ============================================================================= */
+
+
+/* ============ 1. Skeleton loading ============ */
 @keyframes skeleton-shimmer {
   0% { background-position: -200px 0; }
   100% { background-position: calc(200px + 100%) 0; }
 }
 .skeleton-bar {
   height: 12px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, var(--skeleton-start) 0%, var(--skeleton-mid) 50%, var(--skeleton-end) 100%);
+  background: linear-gradient(90deg,
+    var(--skeleton-start) 0%,
+    var(--skeleton-mid) 50%,
+    var(--skeleton-end) 100%);
   background-size: 200px 100%;
   animation: skeleton-shimmer 1.4s ease-in-out infinite;
 }
 
-/* ============ Reduced Motion（v1.3 新增 · 遵循 OS 偏好）============ */
+
+/* ============ 2. Reduced motion ============ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -23,484 +32,917 @@
   }
 }
 
-/* ============ 主题色板（浅色）============ */
-/* ============ 主题色板（浅色 · 默认）============ */
+
+/* ============ 3. Stagger reveal (table rows + detail blocks) ============ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.compare-table tbody tr,
+.detail-block,
+.metric-card {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+.compare-table tbody tr:nth-child(1) { animation-delay: 0.04s; }
+.compare-table tbody tr:nth-child(2) { animation-delay: 0.08s; }
+.compare-table tbody tr:nth-child(3) { animation-delay: 0.12s; }
+.compare-table tbody tr:nth-child(4) { animation-delay: 0.16s; }
+.compare-table tbody tr:nth-child(5) { animation-delay: 0.20s; }
+.compare-table tbody tr:nth-child(6) { animation-delay: 0.24s; }
+.compare-table tbody tr:nth-child(7) { animation-delay: 0.28s; }
+
+.detail-block:nth-child(1) { animation-delay: 0.10s; }
+.detail-block:nth-child(2) { animation-delay: 0.15s; }
+.detail-block:nth-child(3) { animation-delay: 0.20s; }
+.detail-block:nth-child(4) { animation-delay: 0.25s; }
+.detail-block:nth-child(5) { animation-delay: 0.30s; }
+.detail-block:nth-child(6) { animation-delay: 0.35s; }
+.detail-block:nth-child(7) { animation-delay: 0.40s; }
+.detail-block:nth-child(8) { animation-delay: 0.45s; }
+.detail-block:nth-child(9) { animation-delay: 0.50s; }
+
+
+/* ============ 4. Theme tokens ============ */
 :root {
-  --bg: #f8f9fa;
-  --surface: #ffffff;
-  --text: #1a1d21;
-  --text-muted: #6b7280;
-  --text-subtle: #9ca3af;
-  --border: #e5e7eb;
-  --accent: #2563eb;
-  --accent-bg: #eef2ff;
-  --positive: #059669;
-  --positive-bg: #d1fae5;
-  --negative: #dc2626;
-  --negative-bg: #fee2e2;
-  --neutral: #6b7280;
-  --neutral-bg: #f3f4f6;
+  /* Fonts · research-grade stack */
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "GT Sectra",
+                Georgia, "Times New Roman", serif;
+  --font-sans:  "IBM Plex Sans", "Source Han Sans SC", "PingFang SC",
+                "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono:  "IBM Plex Mono", "JetBrains Mono", "SF Mono",
+                Menlo, Consolas, monospace;
 
-  /* 表格专用（v1.4 新增 · 拆出语义 token 便于 dark 切换） */
-  --thead-bg: #f3f4f6;
-  --row-hover: #f9fafb;
-  --sort-hover: #e5e7eb;
+  /* Palette · paper + ink + oxblood (FT salmon-inspired) */
+  --bg:           #f4f1ea;   /* warm paper */
+  --bg-tint:      #ede8de;   /* slightly darker (rows, cells) */
+  --surface:      #faf7f0;   /* lighter paper */
+  --ink:          #0f0e0c;   /* deep ink, near-black */
+  --ink-muted:    #5a554d;   /* secondary */
+  --ink-subtle:   #8a8378;   /* tertiary, labels */
+  --rule:         #d6d0c0;   /* hairline */
+  --rule-strong:  #b6ad97;   /* emphasis rule */
 
-  /* 阴影 */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  /* Accent · oxblood */
+  --accent:       #8b1a2b;
+  --accent-soft:  #b85a64;
+  --accent-bg:    #f0e0d8;
 
-  /* 警告条 */
-  --warning-bg: #fef3c7;
-  --warning-border: #fde68a;
-  --warning-text: #92400e;
+  /* Semantic */
+  --positive:     #1e5631;   /* forest */
+  --positive-bg:  #dfe9d8;
+  --negative:     #9e2a2b;   /* rust */
+  --negative-bg:  #f0d8d8;
+  --neutral:      #5a554d;
+  --neutral-bg:   #e8e3d6;
 
-  /* skeleton loading */
-  --skeleton-start: #e5e7eb;
-  --skeleton-mid: #f3f4f6;
-  --skeleton-end: #e5e7eb;
+  /* Highlight */
+  --gold:         #b08a3e;
+  --gold-bg:      #f0e5cc;
+
+  /* Lines + shadows */
+  --shadow-sm:    0 1px 0 rgba(15, 14, 12, 0.04);
+  --shadow-md:    0 1px 0 rgba(15, 14, 12, 0.06), 0 4px 12px rgba(15, 14, 12, 0.04);
+
+  /* Skeleton */
+  --skeleton-start: #e8e3d6;
+  --skeleton-mid:   #f4f1ea;
+  --skeleton-end:   #e8e3d6;
 }
 
-/* ============ Dark Mode（v1.4 新增 · 显式 [data-theme="dark"] 切换）============ */
-/* 调色思路：基于 GitHub-dark 三层（#0d1117 / #161b22 / #21262d），accent 提到 #58a6ff
-   以保 4.5:1 AA 对比。警告条用 amber 暗色族，避免黑底黄字过亮刺眼。 */
 [data-theme="dark"] {
-  /* surfaces */
-  --bg: #0d1117;
-  --surface: #161b22;
+  --bg:           #0a0a0e;   /* deep ink, near-black */
+  --bg-tint:      #14141a;
+  --surface:      #14141a;
+  --ink:          #e6dfd0;   /* warm paper, off-white */
+  --ink-muted:    #a39d8e;
+  --ink-subtle:   #6e6a5e;
+  --rule:         #2a2a32;
+  --rule-strong:  #4a4a52;
 
-  /* text（#e6edf3 on #0d1117 = ~14:1 AAA） */
-  --text: #e6edf3;
-  --text-muted: #8b949e;
-  --text-subtle: #6e7681;
+  --accent:       #c2505e;   /* lighter oxblood for contrast */
+  --accent-soft:  #d68592;
+  --accent-bg:    #2a1820;
 
-  /* lines */
-  --border: #30363d;
+  --positive:     #5fa86e;
+  --positive-bg:  #1a2a1e;
+  --negative:     #c4625f;
+  --negative-bg:  #2a1818;
+  --neutral:      #a39d8e;
+  --neutral-bg:   #1e1e26;
 
-  /* brand */
-  --accent: #58a6ff;
-  --accent-bg: #1f3a5f;
+  --gold:         #d4a857;
+  --gold-bg:      #2a2418;
 
-  /* semantic */
-  --positive: #3fb950;
-  --positive-bg: #0f2916;
-  --negative: #f85149;
-  --negative-bg: #2d0f0f;
-  --neutral: #8b949e;
-  --neutral-bg: #21262d;
+  --shadow-sm:    0 1px 0 rgba(230, 223, 208, 0.04);
+  --shadow-md:    0 1px 0 rgba(230, 223, 208, 0.06), 0 4px 16px rgba(0, 0, 0, 0.5);
 
-  /* 表格专用（thead 与 surface 平齐，避免太重） */
-  --thead-bg: #161b22;
-  --row-hover: #1f2933;
-  --sort-hover: #30363d;
-
-  /* 阴影（暗色下加 1px 高光代替下投影，保持卡片浮起感） */
-  --shadow-sm: 0 1px 0 rgba(255, 255, 255, 0.04), 0 2px 6px rgba(0, 0, 0, 0.3);
-
-  /* 警告条（amber 暗色族） */
-  --warning-bg: #2d2104;
-  --warning-border: #4d3a08;
-  --warning-text: #f0c674;
-
-  /* skeleton loading（暗色下的 shimmer） */
-  --skeleton-start: #21262d;
-  --skeleton-mid: #30363d;
-  --skeleton-end: #21262d;
+  --skeleton-start: #1e1e26;
+  --skeleton-mid:   #2a2a32;
+  --skeleton-end:   #1e1e26;
 }
 
-/* ============ 重置 ============ */
+
+/* ============ 5. Reset ============ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
   background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
-  padding: 24px;
+  color: var(--ink);
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-  max-width: 1400px;
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+a { color: inherit; text-decoration: none; }
+
+
+/* ============ 6. Page shell ============ */
+.page {
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 0 32px 80px;
 }
 
-/* ============ 头部 ============ */
-.page-header {
-  position: relative;  /* v1.4: 让 .theme-toggle 可绝对定位到右上角 */
-  margin-bottom: 24px;
+@media (min-width: 1024px) {
+  .page { padding: 0 56px 120px; }
 }
 
-.page-header h1 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 4px;
+
+/* ============ 7. Masthead ============ */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 32px;
+  padding: 64px 0 40px;
 }
 
-.subtitle {
-  color: var(--text-muted);
-  font-size: 13px;
-}
-
-/* ============ 区块标题 ============ */
-.section {
-  margin-bottom: 32px;
-}
-
-.section-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-muted);
+.masthead-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.22em;
+  color: var(--ink-subtle);
+  margin-bottom: 16px;
 }
 
-/* ============ 表格 ============ */
-.compare-table-container {
-  overflow-x: auto;  /* v1.3: 移动端宽表可横滑（11 列） */
-  -webkit-overflow-scrolling: touch;  /* iOS 惯性滚动 */
-  border-radius: 8px;
-}
-table {
-  width: 100%;
-  min-width: 880px;  /* v1.3: 强制最小宽度，移动端触发横滑 */
-  border-collapse: collapse;
-  background: var(--surface);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
+.masthead-title {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  color: var(--ink);
+  margin-bottom: 20px;
 }
 
-thead { background: var(--thead-bg); }
+.masthead-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
 
-th {
-  text-align: left;
-  padding: 12px 16px;
+.masthead-sub {
+  font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;  /* v1.3: 数字列对齐 */
+  font-weight: 400;
+  color: var(--ink-muted);
+  letter-spacing: 0.01em;
 }
 
-td {
-  padding: 14px 16px;
-  border-top: 1px solid var(--border);
-  font-size: 14px;
+.masthead-sub .sep {
+  color: var(--ink-subtle);
+  margin: 0 8px;
+}
+
+.masthead-right {
+  align-self: start;
+  padding-top: 4px;
+}
+
+
+/* ============ 8. Hairline ============ */
+.hairline {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+
+/* ============ 9. Block (section) ============ */
+.block {
+  padding: 56px 0;
+}
+
+.block-head {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.block-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.block-head-text {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.block-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.block-hint {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--ink-subtle);
+}
+
+
+/* ============ 10. Compare table ============ */
+.compare-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table.compare-table {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.compare-table thead { background: transparent; }
+
+.compare-table th {
+  text-align: left;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-subtle);
   white-space: nowrap;
-  font-variant-numeric: tabular-nums;  /* v1.3: 数字列对齐 */
+  border-bottom: 1px solid var(--rule-strong);
+  background: transparent;
+}
+
+.compare-table td {
+  padding: 18px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ink);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  background: transparent;
 }
 
 .compare-table tbody tr {
   cursor: pointer;
-  transition: background 0.15s;
-  touch-action: manipulation;  /* v1.3: 移动端 300ms tap 延迟 */
+  position: relative;
+  transition: background 0.2s ease;
+  touch-action: manipulation;
 }
 
-.compare-table tbody tr:hover {
-  background: var(--row-hover);
+.compare-table tbody tr:hover { background: var(--bg-tint); }
+
+.compare-table tbody tr.active { background: var(--bg-tint); }
+
+.compare-table tbody tr.active td:first-child {
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
-.compare-table tbody tr.active {
-  background: var(--accent-bg);
+.compare-table tbody tr.active td {
+  color: var(--ink);
 }
 
-/* ============ 外链样式（v1.2 新增）============ */
-.ext-link {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px dotted var(--accent);
-  transition: background 0.12s;
-}
-.ext-link:hover {
-  background: var(--accent-bg);
-  border-bottom-style: solid;
-}
-.link-icon {
-  display: inline-block;
-  margin-left: 3px;
-  font-size: 11px;
-  color: var(--accent);
-  opacity: 0.55;
-  transition: opacity 0.12s, transform 0.12s;
-  vertical-align: baseline;
-}
-.ext-link:hover .link-icon {
-  opacity: 1;
-  transform: translate(1px, -1px);
-}
-
-/* ============ 排序表头（v1.1 新增）============ */
+/* 排序列头 */
 .compare-table th.sortable {
   cursor: pointer;
   user-select: none;
-  position: relative;
-  transition: background 0.12s;
+  transition: color 0.15s;
 }
-.compare-table th.sortable:hover {
-  background: var(--sort-hover);
-  color: var(--text);
-}
-.compare-table th.sortable:hover .sort-arrow {
-  opacity: 0.9;
-}
+.compare-table th.sortable:hover { color: var(--ink); }
+
 .sort-arrow {
   display: inline-block;
   margin-left: 4px;
-  font-size: 10px;
-  color: var(--text-subtle);
-  opacity: 0.5;
-  transition: opacity 0.12s, color 0.12s;
+  font-size: 9px;
+  color: var(--ink-subtle);
+  opacity: 0.4;
+  transition: opacity 0.15s, color 0.15s;
 }
-.sort-arrow.active {
-  opacity: 1;
-  color: var(--accent);
-  font-weight: 700;
+.sort-arrow.active { opacity: 1; color: var(--accent); }
+
+
+/* ============ 11. Rank + numbers ============ */
+.rank {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-subtle);
+  width: 40px;
 }
 
-/* ============ Chip ============ */
+.compare-table tbody tr.active .rank { color: var(--accent); }
+
+.positive { color: var(--positive); }
+.negative { color: var(--negative); }
+.muted    { color: var(--ink-muted); }
+
+
+/* ============ 12. Chips (refined, no rounded) ============ */
 .chip {
   display: inline-block;
   padding: 2px 8px;
-  background: var(--accent-bg);
-  color: var(--accent);
-  border-radius: 8px;  /* v1.3: shape 一致 */
-  font-size: 12px;
-  margin-right: 4px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--bg-tint);
+  border: none;
+  border-radius: 0;
+  margin-right: 6px;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
 }
 
-.chip.gray { background: var(--neutral-bg); color: var(--text-muted); }
+.chip.gray   { color: var(--ink-muted); background: var(--neutral-bg); }
+.chip.pos    { color: var(--positive); background: var(--positive-bg); }
+.chip.neg    { color: var(--negative); background: var(--negative-bg); }
+.chip.neu    { color: var(--ink-muted); background: var(--neutral-bg); }
+.chip.accent { color: var(--accent); background: var(--accent-bg); }
 
-/* ============ 数字颜色 ============ */
-.positive { color: var(--positive); font-weight: 600; }
-.negative { color: var(--negative); font-weight: 600; }
-.muted { color: var(--text-muted); }
 
-.rank { font-weight: 700; color: var(--accent); }
+/* ============ 13. External links (v1.2) ============ */
+.ext-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color 0.15s, border-color 0.15s;
+}
+.ext-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-/* ============ 状态条 ============ */
-.loading, .empty-state {
-  background: var(--surface);
-  padding: 24px;
+.link-icon {
+  display: inline-block;
+  margin-left: 3px;
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.55;
+  transition: opacity 0.15s;
+}
+.ext-link:hover .link-icon { opacity: 1; }
+
+
+/* ============ 14. Loading + empty + warning ============ */
+.loading,
+.empty-state {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  padding: 80px 0;
   text-align: center;
-  color: var(--text-muted);
-  border-radius: 8px;
-  box-shadow: var(--shadow-sm);
+}
+
+.empty-state {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink-subtle);
+  padding: 64px 0;
 }
 
 .warning-bar {
-  background: var(--warning-bg);
-  border: 1px solid var(--warning-border);
-  color: var(--warning-text);
-  padding: 12px 16px;
-  border-radius: 8px;  /* v1.3: shape 一致 */
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-
-/* ============ 详情区 ============ */
-.detail-header {
-  background: var(--surface);
-  padding: 20px 24px;
-  border-radius: 8px 8px 0 0;
-  border-bottom: 2px solid var(--accent);
-  box-shadow: var(--shadow-sm);
-}
-
-.detail-header h2 {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.detail-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  color: var(--text-muted);
+  background: var(--gold-bg);
+  border: none;
+  border-left: 3px solid var(--gold);
+  color: var(--ink-muted);
+  padding: 14px 18px;
   font-size: 13px;
+  margin-bottom: 24px;
+  font-family: var(--font-sans);
 }
 
-.detail-meta .item strong { color: var(--text); font-weight: 600; }
 
-.detail-body {
-  background: var(--surface);
-  padding: 24px;
-  border-radius: 0 0 8px 8px;
-  box-shadow: var(--shadow-sm);
-  margin-top: -1px;
+/* ============ 15. Detail view ============ */
+.detail-container {
+  /* 详情直接铺在 bg 上，无卡片 */
 }
 
+.detail-loading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--ink-subtle);
+  text-align: center;
+  padding: 64px 0;
+}
+
+
+/* ============ 16. Detail header (hero) ============ */
+.detail-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 48px;
+  padding: 0 0 48px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+  .detail-header {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.detail-name .detail-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-bottom: 16px;
+}
+
+.detail-name h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.detail-name .detail-company {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink-muted);
+  letter-spacing: 0.01em;
+}
+
+.detail-hero { text-align: right; }
+
+@media (max-width: 768px) {
+  .detail-hero { text-align: left; }
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-bottom: 12px;
+}
+
+.hero-metric {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 12px;
+}
+
+.hero-comparison {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-muted);
+  letter-spacing: 0.05em;
+}
+
+.hero-comparison .vs {
+  color: var(--ink-subtle);
+  margin: 0 6px;
+}
+
+
+/* ============ 17. Detail block (section within detail) ============ */
 .detail-block {
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
 }
 
 .detail-block:last-child { border-bottom: none; }
 
+.detail-block-head {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.detail-block-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+
 .detail-block h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  color: var(--ink);
 }
 
-.detail-block .bio {
-  color: var(--text-muted);
+
+/* ============ 18. Detail meta (basic info) ============ */
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 40px;
+}
+
+.detail-meta .item {
+  font-family: var(--font-sans);
   font-size: 13px;
-  line-height: 1.7;
-  padding: 12px;
-  background: var(--neutral-bg);
-  border-radius: 8px;  /* v1.3: shape 一致 */
+  color: var(--ink-muted);
 }
 
-/* 标签分组 */
+.detail-meta .item strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-meta .item .label-key {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  display: block;
+  margin-bottom: 4px;
+}
+
+
+/* ============ 19. Bio (refined as editorial italic) ============ */
+.bio {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-muted);
+  max-width: 65ch;
+  margin-top: 24px;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent);
+}
+
+
+/* ============ 20. Tag group (performance labels) ============ */
 .tag-group {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.tag-group .chip.pos { background: var(--positive-bg); color: var(--positive); }
-.tag-group .chip.neg { background: var(--negative-bg); color: var(--negative); }
-.tag-group .chip.neu { background: var(--neutral-bg); color: var(--neutral); }
+.tag-section {
+  margin-bottom: 16px;
+}
 
-/* 业绩卡片 */
+.tag-section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-bottom: 8px;
+  display: block;
+}
+
+
+/* ============ 21. Metric cards (research-report grid) ============ */
 .metric-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+@media (max-width: 768px) {
+  .metric-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
 .metric-card {
-  background: var(--neutral-bg);
-  padding: 12px 16px;
-  border-radius: 8px;  /* v1.3: shape 一致 */
+  padding: 18px 20px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
+
+.metric-card:nth-child(1)  { animation-delay: 0.10s; }
+.metric-card:nth-child(2)  { animation-delay: 0.13s; }
+.metric-card:nth-child(3)  { animation-delay: 0.16s; }
+.metric-card:nth-child(4)  { animation-delay: 0.19s; }
+.metric-card:nth-child(5)  { animation-delay: 0.22s; }
+.metric-card:nth-child(6)  { animation-delay: 0.25s; }
+.metric-card:nth-child(7)  { animation-delay: 0.28s; }
+.metric-card:nth-child(8)  { animation-delay: 0.31s; }
 
 .metric-card .label {
-  font-size: 11px;
-  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-bottom: 4px;
-}
-
-.metric-card .value {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-/* 行业条形图 */
-.industry-bar {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 12px;
+  color: var(--ink-subtle);
   margin-bottom: 8px;
 }
 
-.industry-bar .label { font-size: 13px; }
+.metric-card .value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.metric-card .value.positive { color: var(--positive); }
+.metric-card .value.negative { color: var(--negative); }
+.metric-card .value.muted    { color: var(--ink-muted); }
+
+
+/* ============ 22. Tables inside detail (annual / holdings / funds) ============ */
+.detail-block table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.detail-block table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-subtle);
+  border-bottom: 1px solid var(--rule-strong);
+  white-space: nowrap;
+  background: transparent;
+}
+
+.detail-block table td {
+  padding: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+  background: transparent;
+}
+
+.detail-block table tfoot td {
+  background: var(--bg-tint);
+  font-weight: 500;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: none;
+}
+
+.detail-block table tfoot td:first-child {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.detail-block table code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+
+/* ============ 23. Industry bars (sharp, accent fill) ============ */
+.industry-bar {
+  display: grid;
+  grid-template-columns: 220px 1fr 60px;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.industry-bar:last-child { border-bottom: none; }
+
+.industry-bar .label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.industry-bar .label .muted {
+  color: var(--ink-subtle);
+  font-size: 11px;
+  margin-left: 4px;
+  font-family: var(--font-mono);
+}
 
 .industry-bar .bar-track {
-  height: 18px;
-  background: var(--neutral-bg);
-  border-radius: 6px;  /* v1.3: shape 渐进（容器 8，内嵌 6） */
+  height: 8px;
+  background: var(--bg-tint);
   overflow: hidden;
+  border-radius: 0;
 }
 
 .industry-bar .bar-fill {
   height: 100%;
   background: var(--accent);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .industry-bar .pct {
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
   text-align: right;
-  min-width: 60px;
+  font-variant-numeric: tabular-nums;
 }
 
-/* 风格箱 */
+
+/* ============ 24. Style box (3x3, dominant cell inverted) ============ */
 .style-box-grid {
   display: grid;
   grid-template-columns: 60px repeat(3, 1fr);
-  gap: 4px;
-  max-width: 360px;
+  gap: 0;
+  max-width: 420px;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
 }
 
-.style-box-grid .corner, .style-box-grid .row-label, .style-box-grid .col-label {
-  font-size: 11px;
-  color: var(--text-muted);
+.style-box-grid .corner,
+.style-box-grid .row-label,
+.style-box-grid .col-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
   text-align: center;
-  padding: 4px;
+  padding: 10px 8px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-tint);
 }
 
 .style-box-grid .cell {
-  padding: 16px 8px;
+  padding: 20px 8px;
   text-align: center;
-  background: var(--neutral-bg);
-  border-radius: 6px;  /* v1.3: shape 渐进（容器 8，内嵌 6） */
+  background: transparent;
+  font-family: var(--font-mono);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
+  color: var(--ink-muted);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
 }
 
 .style-box-grid .cell.dominant {
-  background: var(--accent-bg);
-  color: var(--accent);
-  font-weight: 700;
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 600;
 }
 
 .style-box-summary {
-  margin-top: 12px;
+  margin-top: 20px;
+  font-family: var(--font-sans);
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--ink-muted);
 }
 
-/* ============ Theme Toggle（v1.4 新增 · dark mode 切换）============ */
+.style-box-summary strong {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+
+/* ============ 25. Theme toggle (v1.4) ============ */
 .theme-toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;  /* v1.3 shape 一致 */
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 0;
   cursor: pointer;
   font-size: 18px;
   line-height: 1;
   padding: 0;
-  color: var(--text);
-  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  color: var(--ink);
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
   touch-action: manipulation;
 }
 
 .theme-toggle:hover {
-  background: var(--row-hover);
-  border-color: var(--text-subtle);
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
 }
 
-.theme-toggle:active {
-  transform: scale(0.94);
-}
+.theme-toggle:active { transform: scale(0.94); }
 
 .theme-toggle:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-.theme-toggle-icon {
-  display: inline-block;
-  /* 用 line-height:1 + flex centering 居中 */
-}
-
+.theme-toggle-icon { display: inline-block; }
 .theme-toggle-icon--dark { display: none; }
 
-/* 暗色下交换显示 */
 [data-theme="dark"] .theme-toggle-icon--light { display: none; }
 [data-theme="dark"] .theme-toggle-icon--dark { display: inline-block; }
+
+
+/* ============ 26. Colophon (footer) ============ */
+.colophon {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+
+.col-mark {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.col-text {
+  color: var(--ink-subtle);
+}
+
+
+/* ============ 27. Section heads inside detail block (small) ============ */
+.sub-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-bottom: 12px;
+}

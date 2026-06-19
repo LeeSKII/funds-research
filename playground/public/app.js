@@ -1,35 +1,33 @@
-// app.js · 前端逻辑：fetch /api/managers + 渲染对比表 + 渲染详情
+// app.js · v1.5 · 前端逻辑
 // 0 依赖，纯原生 JS
+// 数据：fetch /api/managers → 渲染对比表 → 点击行 → 渲染详情（含 hero metric 数字 tick 动画）
 
 const state = {
   managers: [],
   selectedId: null,
-  // iter-008 v1.1: 表头点击排序状态
-  sortKey: '1y',      // 默认按 1Y 收益排
-  sortDir: 'desc'     // 默认降序（大的在前）
+  // 表头点击排序状态
+  sortKey: '1y',
+  sortDir: 'desc'
 };
 
 // ============ Sort Key 映射 ============
-// 集中维护 sort key → 取值函数，未来 schema 变化只改这里
-// 返回 null 表示该经理无此数据（排到最后）
 const SORT_KEYS = {
-  name:          m => m.basic?.name || '',
-  company:       m => m.basic?.company || '',
-  aum:           m => m.basic?.aumNumeric ?? null,        // 数字（亿）
-  years:         m => m.basic?.investmentYears ?? null,   // 数字（年）
+  name:           m => m.basic?.name || '',
+  company:        m => m.basic?.company || '',
+  aum:            m => m.basic?.aumNumeric ?? null,
+  years:          m => m.basic?.investmentYears ?? null,
   sinceInception: m => m.annualReturns?.sinceInception?.manager ?? null,
-  '1y':          m => m.riskReturn?.current?.managerReturn ?? null,
-  vol:           m => m.riskReturn?.current?.managerVol ?? null,
+  '1y':           m => m.riskReturn?.current?.managerReturn ?? null,
+  vol:            m => m.riskReturn?.current?.managerVol ?? null,
   sharpe: (() => {
-    // Sharpe 现场算：依赖 riskReturn，需要在每条 manager 上重算
     return m => {
       const r = m.riskReturn?.current;
       if (!r?.managerReturn || !r?.managerVol) return null;
       return (r.managerReturn - 3) / r.managerVol;
     };
   })(),
-  topSector:     m => m.industryAllocation?.topSector || '',
-  styleBias:     m => m.styleBox?.styleBias || ''         // 风格（成长/平衡/价值）
+  topSector:      m => m.industryAllocation?.topSector || '',
+  styleBias:      m => m.styleBox?.styleBias || ''
 };
 
 // ============ Helpers ============
@@ -50,9 +48,9 @@ function fmtAum(v) {
   return m ? m[1] + '亿' : v;
 }
 
-function cls(s) {
-  if (s === null || s === undefined || isNaN(s)) return 'muted';
-  return s > 0 ? 'positive' : s < 0 ? 'negative' : 'muted';
+function cls(v) {
+  if (v === null || v === undefined || isNaN(v)) return 'muted';
+  return v > 0 ? 'positive' : v < 0 ? 'negative' : 'muted';
 }
 
 function escapeHtml(s) {
@@ -65,24 +63,41 @@ function escapeHtml(s) {
     .replace(/'/g, '&#39;');
 }
 
-// ============ Link Helpers (v1.2 新增) ============
-// 经理姓名 → 原始 morningstar 经理页（_meta.source）
+// ============ Link Helpers (v1.2) ============
 function mgrLink(name, source) {
   if (!source) return escapeHtml(name);
   return `<a class="ext-link" href="${escapeHtml(source)}" target="_blank" rel="noopener" title="查看晨星原始页面">${escapeHtml(name)}<span class="link-icon">↗</span></a>`;
 }
-// 基金名称 → morningstar 基金详情页（/fund/<code>.html）
 function fundLink(name, code) {
   if (!code || !/^\d{6}$/.test(code)) return escapeHtml(name);
   const url = `https://www.morningstar.cn/fund/${code}.html`;
   return `<a class="ext-link" href="${url}" target="_blank" rel="noopener" title="查看 ${code} 基金详情">${escapeHtml(name)}<span class="link-icon">↗</span></a>`;
 }
 
+// ============ v1.5 · Number tick animation ============
+// 数字从 0 tick 到目标值，ease-out cubic
+// 用于 hero metric (since-inception return)
+function animateNumber(el, target, duration = 1200) {
+  if (target === null || target === undefined || isNaN(target)) return;
+  const start = performance.now();
+  function frame(now) {
+    const t = Math.min(1, (now - start) / duration);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - t, 3);
+    const val = target * eased;
+    const sign = val >= 0 ? '+' : '';
+    el.textContent = `${sign}${val.toFixed(2)}%`;
+    if (t < 1) requestAnimationFrame(frame);
+    else el.textContent = fmtPct(target);  // 终态精确
+  }
+  requestAnimationFrame(frame);
+}
+
+
 // ============ API ============
 
 async function fetchManagers() {
   const container = document.getElementById('compare-table-container');
-  // v1.3: skeleton loading state（替代 "加载中…" 文字）
   if (container && !container.querySelector('.skeleton-table')) {
     container.innerHTML = skeletonTableHtml();
   }
@@ -91,7 +106,6 @@ async function fetchManagers() {
   return res.json();
 }
 
-// v1.3: skeleton 占位 HTML（7 行 × 11 列，匹配实际数据形状）
 function skeletonTableHtml() {
   const cols = 11;
   const cell = '<td><div class="skeleton-bar"></div></td>';
@@ -102,7 +116,7 @@ function skeletonTableHtml() {
         <tr>
           <th>#</th>
           <th>经理</th><th>公司</th><th>规模</th><th>年限</th>
-          <th>任职以来</th><th>1Y 收益</th><th>1Y 波动</th><th>Sharpe</th>
+          <th>任职以来</th><th>1Y 收益</th><th>1Y 波动</th><th>SHARPE</th>
           <th>行业 Top1</th><th>风格</th>
         </tr>
       </thead>
@@ -110,6 +124,7 @@ function skeletonTableHtml() {
     </table>
   `;
 }
+
 
 // ============ Render: Header ============
 
@@ -125,18 +140,17 @@ function renderHeader(data) {
   }
 }
 
+
 // ============ Render: Compare Table ============
 
 function sortManagers(managers) {
   const key = state.sortKey;
-  const dir = state.sortDir === 'asc' ? 1 : -1;  // desc: -1 让大的在前
+  const dir = state.sortDir === 'asc' ? 1 : -1;
   const getter = SORT_KEYS[key];
   if (!getter) return managers;
-  // 复制后再排序（避免污染 state.managers 顺序）
   return [...managers].sort((a, b) => {
     const va = getter(a);
     const vb = getter(b);
-    // null / undefined 排到最后
     if (va === null || va === undefined) return 1;
     if (vb === null || vb === undefined) return -1;
     if (typeof va === 'string' && typeof vb === 'string') {
@@ -156,12 +170,7 @@ function renderCompareTable(managers) {
 
   if (!managers || managers.length === 0) {
     container.innerHTML = `
-      <div class="empty-state">
-        <p>还没抓任何经理数据</p>
-        <p style="margin-top:8px;font-size:12px">
-          请先运行：<code>node data/parse-manager.js data/raw/&lt;name&gt;-innertext.json &lt;id&gt; &lt;name&gt;</code>
-        </p>
-      </div>
+      <div class="empty-state">— 还没抓任何经理数据 —</div>
     `;
     return;
   }
@@ -179,7 +188,7 @@ function renderCompareTable(managers) {
 
     return `
       <tr data-manager-id="${escapeHtml(m._meta?.managerId)}" class="${isActive ? 'active' : ''}">
-        <td class="rank">${i + 1}</td>
+        <td class="rank">${String(i + 1).padStart(2, '0')}</td>
         <td><strong>${escapeHtml(b.name || '—')}</strong></td>
         <td>${escapeHtml((b.company || '—').replace(/基金管理(有限公司|股份有限公司)$/, ''))}</td>
         <td>${fmtAum(b.aum)}</td>
@@ -201,12 +210,12 @@ function renderCompareTable(managers) {
           <th class="rank-col">#</th>
           <th data-sort-key="name" class="sortable">经理 ${sortArrow('name')}</th>
           <th data-sort-key="company" class="sortable">公司 ${sortArrow('company')}</th>
-          <th data-sort-key="aum" class="sortable">规模 ${sortArrow('aum')}</th>
+          <th data-sort-key="aum" class="sortable">规模(亿) ${sortArrow('aum')}</th>
           <th data-sort-key="years" class="sortable">年限 ${sortArrow('years')}</th>
           <th data-sort-key="sinceInception" class="sortable">任职以来 ${sortArrow('sinceInception')}</th>
           <th data-sort-key="1y" class="sortable">1Y 收益 ${sortArrow('1y')}</th>
           <th data-sort-key="vol" class="sortable">1Y 波动 ${sortArrow('vol')}</th>
-          <th data-sort-key="sharpe" class="sortable">Sharpe ${sortArrow('sharpe')}</th>
+          <th data-sort-key="sharpe" class="sortable">SHARPE ${sortArrow('sharpe')}</th>
           <th data-sort-key="topSector" class="sortable">行业 Top1 ${sortArrow('topSector')}</th>
           <th data-sort-key="styleBias" class="sortable">风格 ${sortArrow('styleBias')}</th>
         </tr>
@@ -215,7 +224,7 @@ function renderCompareTable(managers) {
     </table>
   `;
 
-  // 表头点击 → 排序
+  // 排序点击
   container.querySelectorAll('th.sortable').forEach(th => {
     th.addEventListener('click', () => {
       const key = th.getAttribute('data-sort-key');
@@ -223,13 +232,13 @@ function renderCompareTable(managers) {
         state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
       } else {
         state.sortKey = key;
-        state.sortDir = 'desc';  // 新列默认降序
+        state.sortDir = 'desc';
       }
       renderCompareTable(state.managers);
     });
   });
 
-  // 行点击 → 选经理（保留原行为）
+  // 行点击 → 选经理
   container.querySelectorAll('tbody tr').forEach(tr => {
     tr.addEventListener('click', () => {
       const id = tr.getAttribute('data-manager-id');
@@ -237,6 +246,7 @@ function renderCompareTable(managers) {
     });
   });
 }
+
 
 // ============ Select Manager ============
 
@@ -255,11 +265,15 @@ function selectManager(id) {
 
   renderDetail(m);
 
-  const detailSection = document.getElementById('detail-section');
-  detailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // scroll to detail block
+  const detailBlock = document.getElementById('detail-block');
+  if (detailBlock) {
+    detailBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
-// ============ Render: Detail (完整 9 个 section) ============
+
+// ============ Render: Detail (v1.5 editorial · 9 sections + hero metric) ============
 
 function renderDetail(m) {
   const container = document.getElementById('detail-container');
@@ -272,19 +286,25 @@ function renderDetail(m) {
   const topHoldings = m.topHoldings?.quarterly?.holdings || [];
   const holdingPeriods = m.holdingPeriods?.quarterly?.items || [];
   const funds = m.funds || [];
+  const si = ann.sinceInception || {};
+  const companyClean = (b.company || '—').replace(/基金管理(有限公司|股份有限公司)$/, '');
 
   // Section 1: 基本信息
   const basicHtml = `
     <div class="detail-block">
-      <h3>📋 基本信息</h3>
-      <div class="detail-meta">
-        <div class="item">学历 <strong>${escapeHtml(b.education || '—')}</strong></div>
-        <div class="item">投资年限 <strong>${fmtNum(b.investmentYears)} 年</strong></div>
-        <div class="item">管理基金 <strong>${b.fundCountCurrent || '—'} 只</strong> (现管) / ${b.fundCountTotal || '—'} (累计)</div>
-        <div class="item">资产类型 <strong>${(b.assetType || []).join(' · ') || '—'}</strong></div>
-        <div class="item">管理类型 <strong>${(b.managementType || []).join(' · ') || '—'}</strong></div>
+      <div class="detail-block-head">
+        <span class="detail-block-num">01</span>
+        <h3>基本信息</h3>
       </div>
-      ${b.bio ? `<p class="bio" style="margin-top:12px">${escapeHtml(b.bio)}</p>` : ''}
+      <div class="detail-meta">
+        <div class="item"><span class="label-key">EDUCATION</span><strong>${escapeHtml(b.education || '—')}</strong></div>
+        <div class="item"><span class="label-key">EXPERIENCE</span><strong>${fmtNum(b.investmentYears)} 年</strong></div>
+        <div class="item"><span class="label-key">FUNDS · CURRENT</span><strong>${b.fundCountCurrent || '—'} 只</strong></div>
+        <div class="item"><span class="label-key">FUNDS · TOTAL</span><strong>${b.fundCountTotal || '—'} 只</strong></div>
+        <div class="item"><span class="label-key">ASSET TYPE</span><strong>${(b.assetType || []).join(' · ') || '—'}</strong></div>
+        <div class="item"><span class="label-key">MGMT TYPE</span><strong>${(b.managementType || []).join(' · ') || '—'}</strong></div>
+      </div>
+      ${b.bio ? `<p class="bio">${escapeHtml(b.bio)}</p>` : ''}
     </div>
   `;
 
@@ -295,13 +315,37 @@ function renderDetail(m) {
   const perfNeu = perfTags.filter(t => t.polarity === null);
   const labelHtml = `
     <div class="detail-block">
-      <h3>🏷️ 业绩标签 <span class="muted" style="font-weight:400;font-size:13px">（正 ${perfPos.length} / 负 ${perfNeg.length} / 中 ${perfNeu.length}）</span></h3>
-      <div style="margin-bottom:8px"><strong style="font-size:13px">正面：</strong><div class="tag-group">${perfPos.map(t => `<span class="chip pos" title="${escapeHtml(t.timeframe || '')}">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">无</span>'}</div></div>
-      <div style="margin-bottom:8px"><strong style="font-size:13px">负面：</strong><div class="tag-group">${perfNeg.map(t => `<span class="chip neg">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">无</span>'}</div></div>
-      <div style="margin-bottom:8px"><strong style="font-size:13px">中性：</strong><div class="tag-group">${perfNeu.map(t => `<span class="chip neu">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">无</span>'}</div></div>
-      ${(labels.experience || []).length > 0 ? `<div style="margin-top:12px"><strong style="font-size:13px">投资经验：</strong><div class="tag-group">${labels.experience.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join('')}</div></div>` : ''}
-      ${(labels.holdingStyle || []).length > 0 ? `<div style="margin-top:8px"><strong style="font-size:13px">持仓风格：</strong><div class="tag-group">${labels.holdingStyle.map(t => `<span class="chip gray">${escapeHtml(t)}</span>`).join('')}</div></div>` : ''}
-      ${(labels.sectorPreference || []).length > 0 ? `<div style="margin-top:8px"><strong style="font-size:13px">行业偏好：</strong><div class="tag-group">${labels.sectorPreference.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join('')}</div></div>` : ''}
+      <div class="detail-block-head">
+        <span class="detail-block-num">02</span>
+        <h3>业绩标签 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（正 ${perfPos.length} / 负 ${perfNeg.length} / 中 ${perfNeu.length}）</span></h3>
+      </div>
+      <div class="tag-section">
+        <span class="tag-section-label">POSITIVE</span>
+        <div class="tag-group">${perfPos.map(t => `<span class="chip pos" title="${escapeHtml(t.timeframe || '')}">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">— 无 —</span>'}</div>
+      </div>
+      <div class="tag-section">
+        <span class="tag-section-label">NEGATIVE</span>
+        <div class="tag-group">${perfNeg.map(t => `<span class="chip neg">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">— 无 —</span>'}</div>
+      </div>
+      <div class="tag-section">
+        <span class="tag-section-label">NEUTRAL</span>
+        <div class="tag-group">${perfNeu.map(t => `<span class="chip neu">${escapeHtml(t.label)}</span>`).join('') || '<span class="muted">— 无 —</span>'}</div>
+      </div>
+      ${(labels.experience || []).length > 0 ? `
+      <div class="tag-section">
+        <span class="tag-section-label">EXPERIENCE</span>
+        <div class="tag-group">${labels.experience.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join('')}</div>
+      </div>` : ''}
+      ${(labels.holdingStyle || []).length > 0 ? `
+      <div class="tag-section">
+        <span class="tag-section-label">HOLDING STYLE</span>
+        <div class="tag-group">${labels.holdingStyle.map(t => `<span class="chip gray">${escapeHtml(t)}</span>`).join('')}</div>
+      </div>` : ''}
+      ${(labels.sectorPreference || []).length > 0 ? `
+      <div class="tag-section">
+        <span class="tag-section-label">SECTOR PREFERENCE</span>
+        <div class="tag-group">${labels.sectorPreference.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join('')}</div>
+      </div>` : ''}
     </div>
   `;
 
@@ -309,16 +353,19 @@ function renderDetail(m) {
   const sharpe = (rr.managerReturn && rr.managerVol) ? (rr.managerReturn - 3) / rr.managerVol : null;
   const metricsHtml = `
     <div class="detail-block">
-      <h3>📈 风险回报（${escapeHtml(rr.period || '当前')}）</h3>
+      <div class="detail-block-head">
+        <span class="detail-block-num">03</span>
+        <h3>风险回报 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（${escapeHtml(rr.period || '当前')}）</span></h3>
+      </div>
       <div class="metric-cards">
-        <div class="metric-card"><div class="label">经理年化</div><div class="value ${cls(rr.managerReturn)}">${fmtPct(rr.managerReturn)}</div></div>
-        <div class="metric-card"><div class="label">基准年化</div><div class="value">${fmtPct(rr.benchmarkReturn)}</div></div>
-        <div class="metric-card"><div class="label">超额</div><div class="value ${cls(rr.excessReturn)}">${fmtPct(rr.excessReturn)}</div></div>
-        <div class="metric-card"><div class="label">经理波动</div><div class="value">${fmtNum(rr.managerVol)}%</div></div>
-        <div class="metric-card"><div class="label">基准波动</div><div class="value">${fmtNum(rr.benchmarkVol)}%</div></div>
-        <div class="metric-card"><div class="label">Sharpe</div><div class="value">${fmtNum(sharpe)}</div></div>
-        <div class="metric-card"><div class="label">收益排名</div><div class="value">${escapeHtml(rr.returnRank || '—')}</div></div>
-        <div class="metric-card"><div class="label">抗风险排名</div><div class="value">${escapeHtml(rr.riskRank || '—')}</div></div>
+        <div class="metric-card"><div class="label">MGR RETURN</div><div class="value ${cls(rr.managerReturn)}">${fmtPct(rr.managerReturn)}</div></div>
+        <div class="metric-card"><div class="label">BENCH RETURN</div><div class="value">${fmtPct(rr.benchmarkReturn)}</div></div>
+        <div class="metric-card"><div class="label">EXCESS</div><div class="value ${cls(rr.excessReturn)}">${fmtPct(rr.excessReturn)}</div></div>
+        <div class="metric-card"><div class="label">MGR VOL</div><div class="value">${fmtNum(rr.managerVol)}%</div></div>
+        <div class="metric-card"><div class="label">BENCH VOL</div><div class="value">${fmtNum(rr.benchmarkVol)}%</div></div>
+        <div class="metric-card"><div class="label">SHARPE</div><div class="value">${fmtNum(sharpe)}</div></div>
+        <div class="metric-card"><div class="label">RETURN RANK</div><div class="value muted">${escapeHtml(rr.returnRank || '—')}</div></div>
+        <div class="metric-card"><div class="label">RISK RANK</div><div class="value muted">${escapeHtml(rr.riskRank || '—')}</div></div>
       </div>
     </div>
   `;
@@ -334,12 +381,15 @@ function renderDetail(m) {
   `).join('');
   const annualHtml = `
     <div class="detail-block">
-      <h3>📊 历年回报 vs ${escapeHtml(ann.benchmark || '基准')}</h3>
+      <div class="detail-block-head">
+        <span class="detail-block-num">04</span>
+        <h3>历年回报 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">vs ${escapeHtml(ann.benchmark || '基准')}</span></h3>
+      </div>
       <table>
-        <thead><tr><th>年份</th><th>经理</th><th>基准</th><th>超额</th></tr></thead>
+        <thead><tr><th>YEAR</th><th>MGR</th><th>BENCH</th><th>EXCESS</th></tr></thead>
         <tbody>${annRows}</tbody>
-        ${ann.ytd ? `<tfoot><tr><td><strong>今年</strong></td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.manager)}</td><td>${fmtPct(ann.ytd.benchmark)}</td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.excess)}</td></tr></tfoot>` : ''}
-        ${ann.sinceInception ? `<tfoot><tr style="background:var(--accent-bg)"><td><strong>任职以来</strong></td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.manager)}</strong></td><td>${fmtPct(ann.sinceInception.benchmark)}</td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.excess)}</strong></td></tr></tfoot>` : ''}
+        ${ann.ytd ? `<tfoot><tr><td><strong>YTD</strong></td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.manager)}</td><td>${fmtPct(ann.ytd.benchmark)}</td><td class="${cls(ann.ytd.excess)}">${fmtPct(ann.ytd.excess)}</td></tr></tfoot>` : ''}
+        ${ann.sinceInception ? `<tfoot><tr><td><strong>SINCE INCEPTION</strong></td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.manager)}</strong></td><td>${fmtPct(ann.sinceInception.benchmark)}</td><td class="${cls(ann.sinceInception.excess)}"><strong>${fmtPct(ann.sinceInception.excess)}</strong></td></tr></tfoot>` : ''}
       </table>
     </div>
   `;
@@ -347,15 +397,18 @@ function renderDetail(m) {
   // Section 5: 行业配置
   const indBars = (ind.current || []).slice(0, 10).map(i => `
     <div class="industry-bar">
-      <div class="label">${escapeHtml(i.level3 || i.level2 || i.level1)} <span class="muted" style="font-size:11px">(${escapeHtml(i.level1)})</span></div>
+      <div class="label">${escapeHtml(i.level3 || i.level2 || i.level1)} <span class="muted">(${escapeHtml(i.level1)})</span></div>
       <div class="bar-track"><div class="bar-fill" style="width:${Math.min(i.pct, 100)}%"></div></div>
       <div class="pct">${fmtNum(i.pct)}%</div>
     </div>
   `).join('');
   const industryHtml = `
     <div class="detail-block">
-      <h3>🏭 行业配置 <span class="muted" style="font-weight:400;font-size:13px">（截至 ${escapeHtml(ind.asOf || '—')}，Top1：${escapeHtml(ind.topSector || '—')} ${fmtNum(ind.topSectorPct)}%）</span></h3>
-      ${indBars || '<p class="muted">无数据</p>'}
+      <div class="detail-block-head">
+        <span class="detail-block-num">05</span>
+        <h3>行业配置 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（截至 ${escapeHtml(ind.asOf || '—')}，Top1：${escapeHtml(ind.topSector || '—')} ${fmtNum(ind.topSectorPct)}%）</span></h3>
+      </div>
+      ${indBars || '<p class="muted">— 无数据 —</p>'}
     </div>
   `;
 
@@ -386,8 +439,11 @@ function renderDetail(m) {
   }
   const styleBoxBlockHtml = `
     <div class="detail-block">
-      <h3>🎯 股票风格箱 <span class="muted" style="font-weight:400;font-size:13px">（截至 ${escapeHtml(sb.asOf || '—')}）</span></h3>
-      ${styleBoxHtml || '<p class="muted">无数据</p>'}
+      <div class="detail-block-head">
+        <span class="detail-block-num">06</span>
+        <h3>股票风格箱 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（截至 ${escapeHtml(sb.asOf || '—')}）</span></h3>
+      </div>
+      ${styleBoxHtml || '<p class="muted">— 无数据 —</p>'}
     </div>
   `;
 
@@ -396,7 +452,7 @@ function renderDetail(m) {
     <tr>
       <td>${h.rank}</td>
       <td><strong>${escapeHtml(h.name)}</strong></td>
-      <td><code style="font-size:12px">${escapeHtml(h.code)}</code></td>
+      <td><code>${escapeHtml(h.code)}</code></td>
       <td>${fmtNum(h.weight)}%</td>
       <td>${escapeHtml(h.firstBuy || '—')}</td>
       <td>${fmtNum(h.mktValue)}</td>
@@ -406,10 +462,13 @@ function renderDetail(m) {
   `).join('');
   const holdingsHtml = `
     <div class="detail-block">
-      <h3>📦 前十大持仓 <span class="muted" style="font-weight:400;font-size:13px">（季度，截至 ${escapeHtml(m.topHoldings?.quarterly?.asOf || '—')}）</span></h3>
+      <div class="detail-block-head">
+        <span class="detail-block-num">07</span>
+        <h3>前十大持仓 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（季度，截至 ${escapeHtml(m.topHoldings?.quarterly?.asOf || '—')}）</span></h3>
+      </div>
       <table>
-        <thead><tr><th>#</th><th>名称</th><th>代码</th><th>权重</th><th>首次买入</th><th>市值(亿)</th><th>份额变动</th><th>行业</th></tr></thead>
-        <tbody>${holdingsRows || '<tr><td colspan="8" class="muted">无数据</td></tr>'}</tbody>
+        <thead><tr><th>#</th><th>NAME</th><th>CODE</th><th>WEIGHT</th><th>FIRST BUY</th><th>MKT VAL (亿)</th><th>SHARE Δ</th><th>SECTOR</th></tr></thead>
+        <tbody>${holdingsRows || '<tr><td colspan="8" class="muted">— 无数据 —</td></tr>'}</tbody>
       </table>
     </div>
   `;
@@ -426,46 +485,61 @@ function renderDetail(m) {
   `).join('');
   const periodsHtml = `
     <div class="detail-block">
-      <h3>⏳ 重仓股持有期 <span class="muted" style="font-weight:400;font-size:13px">（季度）</span></h3>
+      <div class="detail-block-head">
+        <span class="detail-block-num">08</span>
+        <h3>重仓股持有期 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（季度）</span></h3>
+      </div>
       <table>
-        <thead><tr><th>名称</th><th>持有季度</th><th>市值(亿)</th><th>当前排名</th><th>行业</th></tr></thead>
-        <tbody>${periodsRows || '<tr><td colspan="5" class="muted">无数据</td></tr>'}</tbody>
+        <thead><tr><th>NAME</th><th>QUARTERS</th><th>MKT VAL (亿)</th><th>CURRENT RANK</th><th>SECTOR</th></tr></thead>
+        <tbody>${periodsRows || '<tr><td colspan="5" class="muted">— 无数据 —</td></tr>'}</tbody>
       </table>
     </div>
   `;
 
   // Section 9: 基金列表
   const fundsRows = funds.map(f => `
-    <tr style="${f.isRepresentative ? 'background:var(--accent-bg)' : ''}">
-      <td>${f.isRepresentative ? '<strong>⭐</strong>' : ''}</td>
+    <tr>
+      <td>${f.isRepresentative ? '<span class="chip accent">⭐ 代表</span>' : ''}</td>
       <td><strong>${fundLink(f.name, f.code)}</strong></td>
-      <td><code style="font-size:12px">${escapeHtml(f.code)}</code></td>
+      <td><code>${escapeHtml(f.code)}</code></td>
       <td>${f.scale ? fmtNum(f.scaleNumeric) + '亿' : '—'}</td>
       <td>${escapeHtml(f.morningstarCategory || '—')}</td>
       <td>${escapeHtml(f.appointmentDate || '—')}</td>
       <td>${escapeHtml(f.tenureDays || '—')}</td>
-      <td class="${cls(f.excessReturn)}">${fmtPct(f.tenureReturn)}</td>
+      <td class="${cls(f.tenureReturn)}">${fmtPct(f.tenureReturn)}</td>
       <td class="${cls(f.excessReturn)}">${fmtPct(f.excessReturn)}</td>
     </tr>
   `).join('');
   const fundsHtml = `
     <div class="detail-block">
-      <h3>💼 管理基金列表 <span class="muted" style="font-weight:400;font-size:13px">（⭐ 代表产品）</span></h3>
+      <div class="detail-block-head">
+        <span class="detail-block-num">09</span>
+        <h3>管理基金列表 <span class="muted" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;font-weight:400">（⭐ 代表产品）</span></h3>
+      </div>
       <table>
-        <thead><tr><th></th><th>名称</th><th>代码</th><th>规模</th><th>晨星分类</th><th>任职日</th><th>在任时长</th><th>任职回报</th><th>超额</th></tr></thead>
-        <tbody>${fundsRows || '<tr><td colspan="9" class="muted">无数据</td></tr>'}</tbody>
+        <thead><tr><th></th><th>NAME</th><th>CODE</th><th>SCALE</th><th>CATEGORY</th><th>APPOINTED</th><th>TENURE</th><th>RETURN</th><th>EXCESS</th></tr></thead>
+        <tbody>${fundsRows || '<tr><td colspan="9" class="muted">— 无数据 —</td></tr>'}</tbody>
       </table>
     </div>
   `;
 
+  // Detail header (hero)
+  const heroTarget = si.manager;
+  const heroComparison = si.benchmark !== undefined && si.benchmark !== null
+    ? `vs 基准 ${fmtPct(si.benchmark)} <span class="vs">·</span> 超额 <span class="${cls(si.excess)}">${fmtPct(si.excess)}</span>`
+    : '';
+
   container.innerHTML = `
     <div class="detail-header">
-      <h2>${mgrLink(b.name || '—', m._meta?.source)} · ${escapeHtml((b.company || '—').replace(/基金管理(有限公司|股份有限公司)$/, ''))}</h2>
-      <div class="detail-meta">
-        <div class="item">学历 <strong>${escapeHtml(b.education || '—')}</strong></div>
-        <div class="item">年限 <strong>${fmtNum(b.investmentYears)} 年</strong></div>
-        <div class="item">规模 <strong>${fmtAum(b.aum)}</strong></div>
-        <div class="item">年化 <strong>${fmtNum(b.annualReturnEquity)}%</strong></div>
+      <div class="detail-name">
+        <div class="detail-eyebrow">MGR ID ${escapeHtml(m._meta?.managerId || '—')} · ${fmtNum(b.investmentYears)} Y · ${fmtAum(b.aum)}</div>
+        <h2>${mgrLink(b.name || '—', m._meta?.source)}</h2>
+        <div class="detail-company">${escapeHtml(companyClean)}</div>
+      </div>
+      <div class="detail-hero">
+        <div class="hero-label">SINCE INCEPTION RETURN</div>
+        <div class="hero-metric" id="hero-metric" data-target="${heroTarget}">${heroTarget !== null && heroTarget !== undefined ? fmtPct(heroTarget) : '—'}</div>
+        <div class="hero-comparison">${heroComparison}</div>
       </div>
     </div>
     <div class="detail-body">
@@ -480,18 +554,27 @@ function renderDetail(m) {
       ${fundsHtml}
     </div>
   `;
+
+  // v1.5: 触发 hero metric 数字 tick 动画
+  const heroEl = document.getElementById('hero-metric');
+  if (heroEl && heroEl.dataset.target && heroEl.dataset.target !== 'undefined' && heroEl.dataset.target !== 'null') {
+    const target = parseFloat(heroEl.dataset.target);
+    if (!isNaN(target)) {
+      // 延迟 200ms 让 detail header 先 fade-in
+      setTimeout(() => animateNumber(heroEl, target, 1200), 200);
+    }
+  }
 }
 
-// ============ Theme Toggle（v1.4 新增 · 深浅色切换）============
+
+// ============ Theme Toggle (v1.4) ============
 function setTheme(mode) {
-  // mode: 'light' | 'dark'
   if (mode === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
   } else {
     document.documentElement.removeAttribute('data-theme');
   }
-  try { localStorage.setItem('theme', mode); } catch (e) { /* 隐私模式可能抛错，忽略 */ }
-  // 更新按钮 aria-label 与 title（反映"切换到 X 模式"）
+  try { localStorage.setItem('theme', mode); } catch (e) {}
   const btn = document.getElementById('theme-toggle');
   if (btn) {
     const label = mode === 'dark' ? '切换到浅色模式' : '切换到深色模式';
@@ -503,18 +586,17 @@ function setTheme(mode) {
 function initTheme() {
   const btn = document.getElementById('theme-toggle');
   if (!btn) return;
-  // 初始化 aria-label（基于当前 data-theme，FOUC 脚本已设置）
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const label = isDark ? '切换到浅色模式' : '切换到深色模式';
   btn.setAttribute('aria-label', label);
   btn.setAttribute('title', label);
-  // 点击 → 翻转
   btn.addEventListener('click', () => {
     const currentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
     setTheme(currentlyDark ? 'light' : 'dark');
   });
 }
 initTheme();
+
 
 // ============ Init ============
 
@@ -526,7 +608,7 @@ async function init() {
       const bar = document.createElement('div');
       bar.className = 'warning-bar';
       bar.textContent = `⚠ ${data.errors.length} 个 JSON 加载失败：${data.errors.map(e => e.file).join(', ')}`;
-      document.querySelector('.container').insertBefore(bar, document.querySelector('.section'));
+      document.querySelector('.block').insertBefore(bar, document.querySelector('.block-head'));
     }
 
     state.managers = data.managers || [];
@@ -534,10 +616,7 @@ async function init() {
     renderCompareTable(state.managers);
   } catch (err) {
     document.getElementById('compare-table-container').innerHTML = `
-      <div class="empty-state">
-        <p>❌ fetch 失败：${escapeHtml(err.message)}</p>
-        <p style="margin-top:8px;font-size:12px">请检查 server 是否运行在 http://localhost:8765</p>
-      </div>
+      <div class="empty-state">— fetch 失败：${escapeHtml(err.message)} —</div>
     `;
   }
 }
