@@ -53,7 +53,7 @@ playground/
 
 ## ➕ 添加新经理
 
-1. 用 chrome-devtools 抓经理页面（参见 [`data/EXTRACT-MANAGER-GUIDE.md`](../data/EXTRACT-MANAGER-GUIDE.md)）
+1. 按 `CLAUDE.md` 4 步工作流抓 + parse + validate + 保存
 2. 用 `parse-manager.js` 生成 JSON：
    ```bash
    node research/managers/scripts/parse-manager.js \
@@ -85,7 +85,7 @@ playground/
 - **实施计划**：[`docs/superpowers/plans/2026-06-19-manager-playground.md`](../docs/superpowers/plans/2026-06-19-manager-playground.md)
 - **Server 生命周期**：[`docs/SERVER-MANAGEMENT.md`](../docs/SERVER-MANAGEMENT.md)
 - **数据 schema**：[`data/manager-schema.json`](../data/manager-schema.json)
-- **数据采集 SOP**：[`data/EXTRACT-MANAGER-GUIDE.md`](../data/EXTRACT-MANAGER-GUIDE.md)
+- **Claude 工作流**：[`CLAUDE.md`](../CLAUDE.md)
 
 ## 🐛 故障排查
 

@@ -2,8 +2,6 @@
 
 **研究目标**：在过去约 10 年的中国市场里，找出持续创造 **风险调整后超额收益（alpha）** 的公募基金经理，分析他们的策略与所属基金公司。
 
-> 🛠️ **经理批量提取读 [`data/EXTRACT-MANAGER-GUIDE.md`](./data/EXTRACT-MANAGER-GUIDE.md)** ——v1.4 提取脚本 + 9 bug 修复记录。
->
 > 🤖 **Claude 工作流约束读 [`CLAUDE.md`](./CLAUDE.md)** ——manager 子模块 4 步工作流（抓取 → parse → validate → 保存）+ 反例。
 >
 > ## 🎯 单源原则（iter-003 修订）
@@ -23,12 +21,11 @@
 funds-research/
 ├── README.md                      ← 你正在读的（项目入口）
 ├── CLAUDE.md                      ← 🤖 Claude 工作流约束（manager 子模块）
-├── docs/                          ← 过程文档（iteration-log / 协议等）
-├── data/                          ← 数据 schema + 原始数据
-│   ├── EXTRACT-MANAGER-GUIDE.md   ← 经理详情页提取 SOP（v1.4）
+├── docs/                          ← 过程文档（协议 / superpowers spec 等）
+├── data/                          ← 经理数据（结构化）
 │   ├── manager-schema.json        ← 经理 JSON Schema 定义
 │   ├── sources.md                 ← 引用链接合集
-│   └── raw/manager/               ← 经理数据（v1.5 — 8 个 manager）
+│   └── manager/                   ← 经理数据（v1.5 — 8 个 manager）
 │       └── manager-<id>-<name>.json
 ├── research/                      ← 研究子模块（每模块独立 4 步工作流）
 │   └── managers/                  ← 基金经理子模块
@@ -49,11 +46,9 @@ funds-research/
 
 **单次迭代最小流程**：
 
-1. 阅读 `data/EXTRACT-MANAGER-GUIDE.md`（v1.4 状态表）→ 选场景
-2. 复制 `docs/iteration-log.md` → `docs/iter-NNN-YYYY-MM-DD.md`
-3. 执行（navigate → 限速 → evaluate → 立即落盘 `data/manager/`）
-4. 在 log 中写"本轮关键发现 / 未决问题 / 下一步"
-5. 触发下一轮 loop
+1. 阅读 `CLAUDE.md`（4 步工作流）→ 确认要走哪一步
+2. 执行（navigate → 限速 → evaluate → 立即落盘 `data/manager/`）
+3. 触发下一轮 loop
 
 **在 Claude Code 中**：直接说 `请按 CLAUDE.md 的 4 步工作流抓下一个经理` 即可。
 
