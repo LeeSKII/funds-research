@@ -1,4 +1,4 @@
-// app.js — 前端逻辑：fetch /api/managers + 渲染对比表 + 渲染详情
+// app.js · 前端逻辑：fetch /api/managers + 渲染对比表 + 渲染详情
 // 0 依赖，纯原生 JS
 
 const state = {
@@ -65,12 +65,50 @@ function escapeHtml(s) {
     .replace(/'/g, '&#39;');
 }
 
+// ============ Link Helpers (v1.2 新增) ============
+// 经理姓名 → 原始 morningstar 经理页（_meta.source）
+function mgrLink(name, source) {
+  if (!source) return escapeHtml(name);
+  return `<a class="ext-link" href="${escapeHtml(source)}" target="_blank" rel="noopener" title="查看晨星原始页面">${escapeHtml(name)}<span class="link-icon">↗</span></a>`;
+}
+// 基金名称 → morningstar 基金详情页（/fund/<code>.html）
+function fundLink(name, code) {
+  if (!code || !/^\d{6}$/.test(code)) return escapeHtml(name);
+  const url = `https://www.morningstar.cn/fund/${code}.html`;
+  return `<a class="ext-link" href="${url}" target="_blank" rel="noopener" title="查看 ${code} 基金详情">${escapeHtml(name)}<span class="link-icon">↗</span></a>`;
+}
+
 // ============ API ============
 
 async function fetchManagers() {
+  const container = document.getElementById('compare-table-container');
+  // v1.3: skeleton loading state（替代 "加载中…" 文字）
+  if (container && !container.querySelector('.skeleton-table')) {
+    container.innerHTML = skeletonTableHtml();
+  }
   const res = await fetch('/api/managers');
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
+}
+
+// v1.3: skeleton 占位 HTML（7 行 × 11 列，匹配实际数据形状）
+function skeletonTableHtml() {
+  const cols = 11;
+  const cell = '<td><div class="skeleton-bar"></div></td>';
+  const rows = Array.from({ length: 7 }, () => `<tr>${cell.repeat(cols)}</tr>`).join('');
+  return `
+    <table class="compare-table skeleton-table" aria-busy="true" aria-live="polite">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>经理</th><th>公司</th><th>规模</th><th>年限</th>
+          <th>任职以来</th><th>1Y 收益</th><th>1Y 波动</th><th>Sharpe</th>
+          <th>行业 Top1</th><th>风格</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
 }
 
 // ============ Render: Header ============
@@ -400,7 +438,7 @@ function renderDetail(m) {
   const fundsRows = funds.map(f => `
     <tr style="${f.isRepresentative ? 'background:var(--accent-bg)' : ''}">
       <td>${f.isRepresentative ? '<strong>⭐</strong>' : ''}</td>
-      <td><strong>${escapeHtml(f.name)}</strong></td>
+      <td><strong>${fundLink(f.name, f.code)}</strong></td>
       <td><code style="font-size:12px">${escapeHtml(f.code)}</code></td>
       <td>${f.scale ? fmtNum(f.scaleNumeric) + '亿' : '—'}</td>
       <td>${escapeHtml(f.morningstarCategory || '—')}</td>
@@ -422,7 +460,7 @@ function renderDetail(m) {
 
   container.innerHTML = `
     <div class="detail-header">
-      <h2>${escapeHtml(b.name || '—')} · ${escapeHtml((b.company || '—').replace(/基金管理(有限公司|股份有限公司)$/, ''))}</h2>
+      <h2>${mgrLink(b.name || '—', m._meta?.source)} · ${escapeHtml((b.company || '—').replace(/基金管理(有限公司|股份有限公司)$/, ''))}</h2>
       <div class="detail-meta">
         <div class="item">学历 <strong>${escapeHtml(b.education || '—')}</strong></div>
         <div class="item">年限 <strong>${fmtNum(b.investmentYears)} 年</strong></div>

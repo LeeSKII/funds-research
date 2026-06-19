@@ -1,3 +1,28 @@
+/* ============ Skeleton Loading（v1.3 新增）============ */
+@keyframes skeleton-shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+.skeleton-bar {
+  height: 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+  background-size: 200px 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+/* ============ Reduced Motion（v1.3 新增 · 遵循 OS 偏好）============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ============ 主题色板（浅色）============ */
 :root {
   --bg: #f8f9fa;
@@ -64,8 +89,14 @@ body {
 }
 
 /* ============ 表格 ============ */
+.compare-table-container {
+  overflow-x: auto;  /* v1.3: 移动端宽表可横滑（11 列） */
+  -webkit-overflow-scrolling: touch;  /* iOS 惯性滚动 */
+  border-radius: 8px;
+}
 table {
   width: 100%;
+  min-width: 880px;  /* v1.3: 强制最小宽度，移动端触发横滑 */
   border-collapse: collapse;
   background: var(--surface);
   border-radius: 8px;
@@ -82,6 +113,7 @@ th {
   font-weight: 600;
   color: var(--text-muted);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;  /* v1.3: 数字列对齐 */
 }
 
 td {
@@ -89,11 +121,13 @@ td {
   border-top: 1px solid var(--border);
   font-size: 14px;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;  /* v1.3: 数字列对齐 */
 }
 
 .compare-table tbody tr {
   cursor: pointer;
   transition: background 0.15s;
+  touch-action: manipulation;  /* v1.3: 移动端 300ms tap 延迟 */
 }
 
 .compare-table tbody tr:hover {
@@ -102,6 +136,31 @@ td {
 
 .compare-table tbody tr.active {
   background: var(--accent-bg);
+}
+
+/* ============ 外链样式（v1.2 新增）============ */
+.ext-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+  transition: background 0.12s;
+}
+.ext-link:hover {
+  background: var(--accent-bg);
+  border-bottom-style: solid;
+}
+.link-icon {
+  display: inline-block;
+  margin-left: 3px;
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0.55;
+  transition: opacity 0.12s, transform 0.12s;
+  vertical-align: baseline;
+}
+.ext-link:hover .link-icon {
+  opacity: 1;
+  transform: translate(1px, -1px);
 }
 
 /* ============ 排序表头（v1.1 新增）============ */
@@ -138,7 +197,7 @@ td {
   padding: 2px 8px;
   background: var(--accent-bg);
   color: var(--accent);
-  border-radius: 12px;
+  border-radius: 8px;  /* v1.3: shape 一致 */
   font-size: 12px;
   margin-right: 4px;
 }
@@ -167,7 +226,7 @@ td {
   border: 1px solid #fde68a;
   color: #92400e;
   padding: 12px 16px;
-  border-radius: 6px;
+  border-radius: 8px;  /* v1.3: shape 一致 */
   margin-bottom: 16px;
   font-size: 14px;
 }
@@ -225,7 +284,7 @@ td {
   line-height: 1.7;
   padding: 12px;
   background: var(--neutral-bg);
-  border-radius: 6px;
+  border-radius: 8px;  /* v1.3: shape 一致 */
 }
 
 /* 标签分组 */
@@ -249,7 +308,7 @@ td {
 .metric-card {
   background: var(--neutral-bg);
   padding: 12px 16px;
-  border-radius: 6px;
+  border-radius: 8px;  /* v1.3: shape 一致 */
 }
 
 .metric-card .label {
@@ -279,7 +338,7 @@ td {
 .industry-bar .bar-track {
   height: 18px;
   background: var(--neutral-bg);
-  border-radius: 4px;
+  border-radius: 6px;  /* v1.3: shape 渐进（容器 8，内嵌 6） */
   overflow: hidden;
 }
 
@@ -314,7 +373,7 @@ td {
   padding: 16px 8px;
   text-align: center;
   background: var(--neutral-bg);
-  border-radius: 4px;
+  border-radius: 6px;  /* v1.3: shape 渐进（容器 8，内嵌 6） */
   font-size: 13px;
   font-weight: 500;
 }
