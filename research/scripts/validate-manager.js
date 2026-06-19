@@ -22,7 +22,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const DEFAULT_DIR = path.join(__dirname, 'raw', 'morningstar');
+// 默认校验目录：项目根 / data/raw/morningstar/（与脚本位置解耦）
+const DEFAULT_DIR = path.join(__dirname, '..', '..', 'data', 'raw', 'morningstar');
 
 // ============================================================
 // 校验规则集

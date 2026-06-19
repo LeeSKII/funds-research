@@ -712,8 +712,9 @@ function main() {
   const data = extractManager(t, managerId, nameHint);
 
   // 输出文件名：manager-<id>-<name-ascii>.json
+  // 路径：项目根 / data/raw/morningstar/（与脚本位置解耦）
   const slug = asciiName(data._meta.name);
-  const outDir = path.join(__dirname, 'raw', 'morningstar');
+  const outDir = path.join(__dirname, '..', '..', 'data', 'raw', 'morningstar');
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
   const outPath = path.join(outDir, `manager-${managerId}-${slug}.json`);
   fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf-8');

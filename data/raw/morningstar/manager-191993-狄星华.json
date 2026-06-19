@@ -1,0 +1,481 @@
+{
+  "_meta": {
+    "managerId": "191993",
+    "name": "狄星华",
+    "scrapedAt": "2026-06-19T13:34:33.743Z",
+    "source": "https://www.morningstar.cn/#/fund-manager/191993",
+    "pageLength": 2656,
+    "pageComplete": true,
+    "extractionVersion": "v1.5-universal"
+  },
+  "basic": {
+    "name": "狄星华",
+    "company": "国海富兰克林基金管理有限公司",
+    "education": "上海大学世界经济学硕士",
+    "bio": "CFA，上海大学世界经济学硕士。历任道琼斯咨询(上海)有限公司分析师，易唯思商务咨询有限公司高级分析师，国海富兰克林基金管理有限公司高级研究员。截至本报告期末任国海富兰克林基金管理有限公司国富全球科技互联混合(QDII)基金的基金经理兼高级研究员。",
+    "investmentYears": 7.58,
+    "aum": "40.05亿元",
+    "aumNumeric": 40.05,
+    "fundCountCurrent": 1,
+    "fundCountTotal": 4,
+    "assetType": [
+      "权益型",
+      "主动型",
+      "QDII型"
+    ],
+    "managementType": [
+      "权益型"
+    ],
+    "annualReturnEquity": 31.23
+  },
+  "labels": {
+    "experience": [
+      "任职稳定",
+      "近期规模相对稳定",
+      "近一年规模稳定增长"
+    ],
+    "holdingStyle": [],
+    "sectorPreference": [
+      "科技",
+      "通信服务",
+      "可选消费"
+    ],
+    "performance": [
+      {
+        "label": "近三年超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近三年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "月度胜率高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "月度"
+      },
+      {
+        "label": "中长期超额收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "中长期收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "中长期"
+      },
+      {
+        "label": "近一年收益高",
+        "positive": true,
+        "negative": false,
+        "neutral": false,
+        "polarity": true,
+        "timeframe": "近一年"
+      },
+      {
+        "label": "近三年波动较高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近三年"
+      },
+      {
+        "label": "近五年波动较高",
+        "positive": false,
+        "negative": true,
+        "neutral": false,
+        "polarity": false,
+        "timeframe": "近五年"
+      }
+    ]
+  },
+  "riskReturn": {
+    "dataAsOf": "2026-05-31",
+    "current": {
+      "period": "1Y",
+      "managerReturn": 111,
+      "benchmarkReturn": 18.4,
+      "excessReturn": 92.6,
+      "managerVol": 35.16,
+      "benchmarkVol": 22.78,
+      "returnRank": "前7%",
+      "riskRank": "前90%"
+    }
+  },
+  "annualReturns": {
+    "benchmark": "沪深300",
+    "dataAsOf": "2026年06月18日",
+    "unit": "%",
+    "returns": [
+      {
+        "year": 2019,
+        "manager": 34.03,
+        "benchmark": 36.07,
+        "excess": -2.039999999999999
+      },
+      {
+        "year": 2020,
+        "manager": 57.99,
+        "benchmark": 27.21,
+        "excess": 30.78
+      },
+      {
+        "year": 2021,
+        "manager": 14.86,
+        "benchmark": -5.2,
+        "excess": 20.06
+      },
+      {
+        "year": 2022,
+        "manager": -26.46,
+        "benchmark": -21.63,
+        "excess": -4.830000000000002
+      },
+      {
+        "year": 2023,
+        "manager": 45.65,
+        "benchmark": -11.38,
+        "excess": 57.03
+      },
+      {
+        "year": 2024,
+        "manager": 31.37,
+        "benchmark": 14.68,
+        "excess": 16.69
+      },
+      {
+        "year": 2025,
+        "manager": 26.71,
+        "benchmark": 17.66,
+        "excess": 9.05
+      }
+    ],
+    "ytd": {
+      "year": "ytd",
+      "manager": 77.07,
+      "benchmark": 6.73,
+      "excess": 70.33999999999999
+    },
+    "sinceInception": {
+      "year": "sinceInception",
+      "manager": 683.97,
+      "benchmark": 53.54,
+      "excess": 630.4300000000001
+    }
+  },
+  "industryAllocation": {
+    "asOf": "2026-05-31",
+    "current": [
+      {
+        "level1": "科技",
+        "level2": "半导体",
+        "level3": "半导体",
+        "pct": 28.8
+      },
+      {
+        "level1": "通信服务",
+        "level2": "互动媒体",
+        "level3": "互联网内容与信息",
+        "pct": 10.26
+      },
+      {
+        "level1": "科技",
+        "level2": "硬件",
+        "level3": "电子元器件",
+        "pct": 8.17
+      },
+      {
+        "level1": "科技",
+        "level2": "软件",
+        "level3": "基础架构软件",
+        "pct": 6.89
+      },
+      {
+        "level1": "可选消费",
+        "level2": "车辆及零件",
+        "level3": "汽车制造商",
+        "pct": 3.93
+      }
+    ],
+    "topSector": "科技",
+    "topSectorPct": 28.8
+  },
+  "styleBox": {
+    "asOf": "2025-12-31",
+    "cells": {
+      "大盘价值": 0,
+      "大盘平衡": 36,
+      "大盘成长": 28,
+      "中盘价值": 0,
+      "中盘平衡": 6,
+      "中盘成长": 21,
+      "小盘价值": 0,
+      "小盘平衡": 3,
+      "小盘成长": 6
+    },
+    "sizeBias": "大盘",
+    "styleBias": "成长"
+  },
+  "funds": [
+    {
+      "name": "富兰克林国海全球科技互联混合（QDII）美元现汇 A",
+      "code": "006374",
+      "scale": "0.20",
+      "scaleNumeric": 0.2,
+      "morningstarCategory": "环球股债混合",
+      "categoryLevel1": null,
+      "appointmentDate": "2018-11-20",
+      "tenureDays": "7年211天",
+      "tenureReturn": 690.56,
+      "benchmarkReturn": 129.45,
+      "excessReturn": 561.1099999999999,
+      "isRepresentative": false
+    },
+    {
+      "name": "富兰克林国海全球科技互联混合（QDII）人民币 A",
+      "code": "006373",
+      "scale": "29.89",
+      "scaleNumeric": 29.89,
+      "morningstarCategory": "环球股债混合",
+      "categoryLevel1": null,
+      "appointmentDate": "2018-11-20",
+      "tenureDays": "7年211天",
+      "tenureReturn": 683.97,
+      "benchmarkReturn": 129.45,
+      "excessReturn": 554.52,
+      "isRepresentative": true
+    },
+    {
+      "name": "国富全球科技互联混合 （QDII）人民币 C",
+      "code": "021842",
+      "scale": "9.93",
+      "scaleNumeric": 9.93,
+      "morningstarCategory": "环球股债混合",
+      "categoryLevel1": null,
+      "appointmentDate": "2024-07-25",
+      "tenureDays": "1年328天",
+      "tenureReturn": 154.41,
+      "benchmarkReturn": 71.02,
+      "excessReturn": 83.39,
+      "isRepresentative": false
+    },
+    {
+      "name": "国富全球科技互联混合 （QDII）美元现汇 C",
+      "code": "021843",
+      "scale": "0.03",
+      "scaleNumeric": 0.03,
+      "morningstarCategory": "环球股债混合",
+      "categoryLevel1": null,
+      "appointmentDate": "2024-07-25",
+      "tenureDays": "1年328天",
+      "tenureReturn": 165.97,
+      "benchmarkReturn": 71.02,
+      "excessReturn": 94.95,
+      "isRepresentative": false
+    }
+  ],
+  "topHoldings": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "holdings": [
+        {
+          "rank": 1,
+          "name": "美光科技股份有限公司",
+          "code": "MU US",
+          "weight": 7.69,
+          "firstBuy": "2024 Q1",
+          "mktValue": 3.18,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 2,
+          "name": "台湾集成电路制造股份有限公司",
+          "code": "TSM UN",
+          "weight": 7.03,
+          "firstBuy": "2019 Q2",
+          "mktValue": 2.91,
+          "shareChange": 17.17,
+          "sector": "科技"
+        },
+        {
+          "rank": 3,
+          "name": "泛林集团",
+          "code": "LRCX US",
+          "weight": 7.02,
+          "firstBuy": "2021 Q4",
+          "mktValue": 2.91,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 4,
+          "name": "康宁公司",
+          "code": "GLW US",
+          "weight": 6.79,
+          "firstBuy": "2025 Q1",
+          "mktValue": 2.81,
+          "shareChange": 68.17,
+          "sector": "科技"
+        },
+        {
+          "rank": 5,
+          "name": "苹果公司",
+          "code": "GOOG US",
+          "weight": 6.49,
+          "firstBuy": "2021 Q2",
+          "mktValue": 2.69,
+          "shareChange": 17.35,
+          "sector": "通信服务"
+        },
+        {
+          "rank": 6,
+          "name": "英伟达公司",
+          "code": "NVDA US",
+          "weight": 5.86,
+          "firstBuy": "2021 Q3",
+          "mktValue": 2.43,
+          "shareChange": 25.66,
+          "sector": "科技"
+        },
+        {
+          "rank": 7,
+          "name": "塔尔半导体有限公司",
+          "code": "TSEM US",
+          "weight": 5.01,
+          "firstBuy": "2025 Q4",
+          "mktValue": 2.07,
+          "shareChange": 4.03,
+          "sector": "科技"
+        },
+        {
+          "rank": 8,
+          "name": "MKS股份有限公司",
+          "code": "MKSI US",
+          "weight": 4.68,
+          "firstBuy": "2026 Q1",
+          "mktValue": 1.94,
+          "shareChange": null,
+          "sector": "科技"
+        },
+        {
+          "rank": 9,
+          "name": "TTM科技股份有限公司",
+          "code": "TTMI US",
+          "weight": 4.48,
+          "firstBuy": "2025 Q4",
+          "mktValue": 1.86,
+          "shareChange": 6.83,
+          "sector": "科技"
+        },
+        {
+          "rank": 10,
+          "name": "英特尔公司",
+          "code": "INTC US",
+          "weight": 3.16,
+          "firstBuy": "2026 Q1",
+          "mktValue": 1.31,
+          "shareChange": null,
+          "sector": "科技"
+        }
+      ]
+    },
+    "semiAnnual": null
+  },
+  "holdingPeriods": {
+    "quarterly": {
+      "asOf": "2026-03-31",
+      "items": [
+        {
+          "name": "台积电",
+          "quarters": 25,
+          "mktValue": 2.91,
+          "currentRank": "2",
+          "sector": "科技"
+        },
+        {
+          "name": "微软",
+          "quarters": 21,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "亚马逊公司",
+          "quarters": 18,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "可选消费"
+        },
+        {
+          "name": "Meta平台股份有限公司",
+          "quarters": 18,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "通信服务"
+        },
+        {
+          "name": "英伟达",
+          "quarters": 15,
+          "mktValue": 2.43,
+          "currentRank": "6",
+          "sector": "科技"
+        },
+        {
+          "name": "苹果",
+          "quarters": 13,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "ServiceNow公司",
+          "quarters": 13,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "ALPHABET公司",
+          "quarters": 12,
+          "mktValue": 2.69,
+          "currentRank": "5",
+          "sector": "通信服务"
+        },
+        {
+          "name": "超威半导体",
+          "quarters": 11,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "科技"
+        },
+        {
+          "name": "腾讯控股有限公司",
+          "quarters": 8,
+          "mktValue": null,
+          "currentRank": null,
+          "sector": "通信服务"
+        }
+      ]
+    },
+    "semiAnnual": null
+  }
+}
