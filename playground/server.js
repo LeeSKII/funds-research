@@ -1,5 +1,5 @@
 // server.js — Manager Playground HTTP 服务
-// 启动时扫描 ../data/raw/morningstar/*.json，提供 REST API + 静态文件
+// 启动时扫描 ../data/raw/manager/*.json，提供 REST API + 静态文件
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = 8765;
 const PUBLIC_DIR = path.join(__dirname, 'public');
-const DATA_DIR = path.join(__dirname, '..', 'data', 'raw', 'morningstar');
+const DATA_DIR = path.join(__dirname, '..', 'data', 'raw', 'manager');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -100,7 +100,7 @@ function watchPublic() {
   }
 }
 
-// 监听 data/raw/morningstar/ — 文件变化时刷新 in-memory cache + 通知前端
+// 监听 data/raw/manager/ — 文件变化时刷新 in-memory cache + 通知前端
 function watchData() {
   if (!fs.existsSync(DATA_DIR)) return;
   try {
