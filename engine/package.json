@@ -1,0 +1,14 @@
+{
+  "name": "funds-research-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Morningstar fund research automation engine (daily loop)",
+  "scripts": {
+    "test": "node --test test/",
+    "daily": "node orchestrate/run.js",
+    "daily:offline": "node orchestrate/run.js --offline"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  }
+}

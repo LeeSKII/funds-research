@@ -1,0 +1,14 @@
+# 🔴 secrets — harvested JWT tokens. NEVER commit.
+secrets/*
+!secrets/.gitkeep
+
+node_modules/
+
+# store outputs are regeneratable machine data (persisted on disk = 落库; not git-tracked).
+# If long-term archival in git is later required, revisit (spec §15).
+store/snapshots/*
+store/changes/*
+store/derived/*
+!store/snapshots/.gitkeep
+!store/changes/.gitkeep
+!store/derived/.gitkeep
