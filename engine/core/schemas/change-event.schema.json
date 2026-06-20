@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChangeEvents",
+  "type": "object",
+  "required": ["date", "events"],
+  "properties": {
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "type"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^\\d{6}$" },
+          "fundName": { "type": ["string", "null"] },
+          "type": { "enum": ["rating_change", "manager_change", "new_fund", "removed"] },
+          "field": { "type": ["string", "null"] },
+          "before": {},
+          "after": {}
+        }
+      }
+    }
+  }
+}
