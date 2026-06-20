@@ -15,6 +15,11 @@ function normalizeRow(raw) {
   const out = { id: String(raw.id) };
   for (const f of NUM_FIELDS) out[f] = num(raw[f]);
   for (const f of STR_FIELDS) out[f] = raw[f] ?? null;
+  // Star ratings are semantically integers (1-5). Round any stray decimal the API might emit
+  // so the snapshot schema's ["integer","null"] never hard-stops a fire on a malformed value.
+  for (const f of ['rating3Y', 'rating5Y']) {
+    if (out[f] !== null && out[f] !== undefined) out[f] = Math.round(out[f]);
+  }
   return out;
 }
 

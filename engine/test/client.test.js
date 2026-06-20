@@ -19,6 +19,13 @@ test('normalizeRow coerces numeric strings and keeps nulls', () => {
   assert.equal(typeof r.styleBox, 'number');
 });
 
+test('normalizeRow rounds stray decimal ratings to integer', () => {
+  const r = normalizeRow({ id: '005161', rating3Y: '4.6', rating5Y: 4.4 });
+  assert.equal(r.rating3Y, 5);   // 4.6 → 5 (schema wants integer)
+  assert.equal(r.rating5Y, 4);   // 4.4 → 4
+  assert.equal(typeof r.rating3Y, 'number');
+});
+
 test('searchFunds returns normalized snapshot from injected fetch', async () => {
   // NOTE: the real fixture carries response_status as a STRING "200011" — this test
   // locks the String()-based guard in client.js (regression guard for the blocker).
