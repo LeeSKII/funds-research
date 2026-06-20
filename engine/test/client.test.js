@@ -11,10 +11,12 @@ function fakeFetchOk(capturedBody) {
 }
 
 test('normalizeRow coerces numeric strings and keeps nulls', () => {
-  const r = normalizeRow({ id: '005161', fundName: 'X', rating3Y: '5', return1Year_M: '12.5', managerName: 'm', missing: undefined });
+  const r = normalizeRow({ id: '005161', fundName: 'X', rating3Y: '5', return1Year_M: '12.5', styleBox: 3, managerName: 'm', missing: undefined });
   assert.equal(r.id, '005161');
   assert.equal(r.rating3Y, 5);
   assert.equal(r.return1Year_M, 12.5);
+  assert.equal(r.styleBox, 3);               // styleBox is a numeric grid code → stays a number
+  assert.equal(typeof r.styleBox, 'number');
 });
 
 test('searchFunds returns normalized snapshot from injected fetch', async () => {

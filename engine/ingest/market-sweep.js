@@ -11,23 +11,6 @@ function _storeDir() {
 }
 const FIXTURE = path.join(__dirname, '..', 'test', 'fixtures', 'search-es.sample.json');
 
-// STR_FIELDS in core/client.js declares styleBox as a string field, but the raw
-// search/es payload encodes it as a numeric code (1..9). normalizeRow passes the
-// raw value through untouched, so a captured fixture (offline) leaves numeric
-// values that the snapshot schema (styleBox: string|null) rejects. Coerce here,
-// at ingest time, so the written snapshot always honors the schema contract
-// without weakening it. (Live API path returns the same numeric codes — coerce
-// there too.)
-const STR_COERCE_FIELDS = ['styleBox'];
-function _coerceStrFields(row) {
-  for (const f of STR_COERCE_FIELDS) {
-    if (row[f] !== null && row[f] !== undefined && typeof row[f] !== 'string') {
-      row[f] = String(row[f]);
-    }
-  }
-  return row;
-}
-
 /**
  * @param {object} [opts]
  * @param {boolean} [opts.offline=false]  read fixture instead of hitting the API
@@ -42,13 +25,12 @@ async function marketSweep(opts = {}) {
   let snapshot;
   if (offline) {
     const captured = JSON.parse(fs.readFileSync(FIXTURE, 'utf-8'));
-    const rows = (captured.data?.rows || []).map(normalizeRow).map(_coerceStrFields);
+    const rows = (captured.data?.rows || []).map(normalizeRow);
     snapshot = { date: day, source: 'fixture:search-es', count: rows.length, rows };
   } else {
     const { token } = loadToken();
     const { universe } = loadConfig();
     snapshot = await searchFunds({ token, filter: universe.search_filter, fetchImpl, date: day });
-    for (const row of snapshot.rows) _coerceStrFields(row);
   }
 
   const v = validate('snapshot', snapshot);

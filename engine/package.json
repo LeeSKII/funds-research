@@ -4,7 +4,7 @@
   "private": true,
   "description": "Morningstar fund research automation engine (daily loop)",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test",
     "daily": "node orchestrate/run.js",
     "daily:offline": "node orchestrate/run.js --offline"
   },

@@ -5,9 +5,9 @@ const BASE = 'https://www.morningstar.cn';
 const NUM_FIELDS = [
   'rating3Y', 'rating5Y', 'returnYTD_M', 'return1Year_M', 'return3Year_M', 'return5Year_M', 'return10Year_M',
   'alphaToIndRankP_1Y', 'alphaToIndRankP_3Y', 'alphaToInd_3Y', 'sharpeRatio_3Y', 'sharpeRatioRankP_3Y',
-  'maximumDrawdown_3Y', 'fundSize', 'top10Holding', 'longestTenure', 'ter', 'managementFee',
+  'maximumDrawdown_3Y', 'fundSize', 'top10Holding', 'longestTenure', 'ter', 'managementFee', 'styleBox',
 ];
-const STR_FIELDS = ['fundName', 'categoryName', 'broadCategoryNameCN', 'styleBox', 'managerName', 'inceptionDate'];
+const STR_FIELDS = ['fundName', 'categoryName', 'broadCategoryNameCN', 'managerName', 'inceptionDate'];
 
 /** Coerce a raw API row (object keyed by column name) into a typed snapshot row. */
 function normalizeRow(raw) {
