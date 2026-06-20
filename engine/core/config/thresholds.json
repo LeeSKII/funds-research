@@ -1,0 +1,9 @@
+{
+  "rating3Y_min": 4,
+  "rating5Y_min": 4,
+  "longestTenure_min_years": 3,
+  "fundSize_min_yi": 2,
+  "fundSize_max_yi": 200,
+  "alphaToIndRankP_3Y_max": 0.5,
+  "sharpeRatioRankP_3Y_max": 0.5
+}
