@@ -43,6 +43,7 @@ function extractRisk(lines, _ctx) {
     const stdDev = pairAfter(lines, '标准差', { from: volStart });
     const maxDrawdown = numAfter(lines, '最大回撤', { from: volStart });
     const downsideRisk = numAfter(lines, '下行风险', { from: volStart });
+    const morningstarRisk = pairAfter(lines, '晨星风险', { from: volStart });  // 4th 风险和波动 row: {fund,peer}
 
     // ---- 3. 相对收益 block (all singletons, no peer column) ----
     const relStart = lineIdx(lines, '相对收益');
@@ -63,6 +64,7 @@ function extractRisk(lines, _ctx) {
       stdDev,
       maxDrawdown,
       downsideRisk,
+      morningstarRisk,
       alpha,
       beta,
       rSquared,
@@ -77,7 +79,7 @@ function extractRisk(lines, _ctx) {
     // Never throw — return a null block so the dossier still assembles.
     return {
       sharpe: null, calmar: null, sortino: null, stdDev: null,
-      maxDrawdown: null, downsideRisk: null, alpha: null, beta: null,
+      maxDrawdown: null, downsideRisk: null, morningstarRisk: null, alpha: null, beta: null,
       rSquared: null, excessReturn: null, trackingError: null, infoRatio: null,
       monthlyWinRate: null, upsideCapture: null, downsideCapture: null,
     };

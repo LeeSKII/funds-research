@@ -43,6 +43,7 @@ function captureInsider(lines, lo, hi) {
   let shares = null;
   let estAmount = null;
   let pct = null;
+  let trend = null;
   for (let i = lo; i < hi; i++) {
     const t = lines[i].trim();
     if (t === '万份') {
@@ -54,6 +55,13 @@ function captureInsider(lines, lo, hi) {
         const isPureMagnitude = /^-?[\d,]+\.?\d*$/.test(prev);
         shares = isPureMagnitude ? `${parseNum(prev)}万份` : `${prev}万份`;
       }
+      // Trend marker (增持/减持/持平) sits on the line right AFTER `万份`; the change % follows
+      // on the next line (or `无` / a non-numeric token when there is no change).
+      const dir = (lines[i + 1] || '').trim();
+      if (/^(增持|减持|持平)$/.test(dir)) {
+        const chg = (lines[i + 2] || '').trim();
+        trend = { direction: dir, changePct: /^-?\d/.test(chg) ? parseNum(chg) : null };
+      }
     } else if (t === '估算金额') {
       const next = (lines[i + 1] || '').trim();
       if (next) estAmount = next;
@@ -63,8 +71,8 @@ function captureInsider(lines, lo, hi) {
     }
   }
   // All-null sub-section means the block is absent on this page → caller drops it.
-  if (shares == null && estAmount == null && pct == null) return null;
-  return { shares, estAmount, pct };
+  if (shares == null && estAmount == null && pct == null && trend == null) return null;
+  return { shares, estAmount, pct, trend };
 }
 
 /**

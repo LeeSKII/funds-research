@@ -63,6 +63,16 @@ test('extractHolders — 基金公司直接持有: 7,046.2 万份, pct 0.46, 12,
   assert.ok(cd.estAmount && cd.estAmount.includes('12,443.5'), `estAmount carries 12,443.5: ${cd.estAmount}`);
 });
 
+test('extractHolders — insider trend (持平/减持 + change%): employee 减持 -7.09%', () => {
+  const { insiders } = extractHolders(loadLines(), { code: '005827' });
+  // 持平 sub-sections carry direction but no change % (next line is 无 / 占总份额比例).
+  assert.deepEqual(insiders.managerSelf.trend, { direction: '持平', changePct: null });
+  assert.deepEqual(insiders.executive.trend, { direction: '持平', changePct: null });
+  assert.deepEqual(insiders.companyDirect.trend, { direction: '持平', changePct: null });
+  // employee reduced skin-in-the-game: 减持 -7.09%.
+  assert.deepEqual(insiders.employee.trend, { direction: '减持', changePct: -7.09 });
+});
+
 test('extractHolders — sub-sections do not cross-contaminate (4 distinct shares)', () => {
   const { insiders } = extractHolders(loadLines(), { code: '005827' });
   // The 基金公司直接持有 block has a 2026-03-31 date line right after the title — the bounded

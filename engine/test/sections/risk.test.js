@@ -31,6 +31,7 @@ test('extractRisk on 005827 — all expected values', () => {
   assert.deepEqual(r.stdDev, { fund: 16.56, peer: 20.06 });
   assert.equal(r.maxDrawdown, -23.88);
   assert.equal(r.downsideRisk, 12.79);
+  assert.deepEqual(r.morningstarRisk, { fund: 2.19, peer: 5.10 });  // 4th 风险和波动 row
 
   // 相对收益 block — singletons
   assert.equal(r.alpha, -17.46);
@@ -46,12 +47,12 @@ test('extractRisk on 005827 — all expected values', () => {
   assert.equal(r.downsideCapture, 178.61);
 });
 
-test('extractRisk returns all 15 schema fields, never undefined', () => {
+test('extractRisk returns all 16 schema fields, never undefined', () => {
   const lines = loadLines();
   const r = extractRisk(lines, { code: '005827' });
   const keys = [
     'sharpe', 'calmar', 'sortino', 'stdDev',
-    'maxDrawdown', 'downsideRisk', 'alpha', 'beta', 'rSquared',
+    'maxDrawdown', 'downsideRisk', 'morningstarRisk', 'alpha', 'beta', 'rSquared',
     'excessReturn', 'trackingError', 'infoRatio', 'monthlyWinRate',
     'upsideCapture', 'downsideCapture',
   ];
