@@ -24,13 +24,11 @@ funds-research/
 ├── data/                          ← 结构化数据
 │   ├── manager/                   ← 经理数据（manager-<id>-<name>.json）
 │   └── fund/                      ← 基金 dossier（<code>/fund-<code>-<date>.json，按基金分文件夹）
-├── engine/                        ← 基金分析生产系统（v2 — 4 步工作流：抓取→parse→validate→audit）
-│   ├── analyze/                   ← parse-fund.js + sections/（8 段 extractor）+ shared.js
-│   ├── core/schemas/              ← fund-dossier.schema.json
-│   ├── ingest/ · orchestrate/     ← 拉取 / 编排
-│   └── test/                      ← node:test + fixtures/mock-fund-innertext.json
-├── research/                      ← 经理研究子模块（4 步工作流）
-│   └── managers/
+├── research/                      ← 两条研究线（各有 GUIDE.md）
+│   ├── funds/                     ← 基金研究（筛选 → 详情 → 研究）
+│   │   ├── analyze/ · core/ · ingest/ · orchestrate/
+│   │   └── test/                  ← node:test + fixtures/mock-fund-innertext.json
+│   └── managers/                  ← 经理研究（4 步工作流）
 │       ├── raw-snapshots/         ← 第 1 步：innerText 原始快照
 │       └── scripts/               ← parse-manager + validate-manager + manager-schema.json
 └── web/                           ← 本地 HTML web app（独立前端）
@@ -44,6 +42,6 @@ funds-research/
 ## 📊 当前状态
 
 - ✅ 经理工具链：Manager JSON Schema v1.5 + parse-manager v1.5 + validate-manager v1.5
-- ✅ 基金工具链（engine/ v2）：fund-dossier schema v2.0.0 + parse-fund（8 段 extractor + orchestrator）+ ajv 校验 + 对抗审计 Workflow
+- ✅ 基金工具链（research/funds/ v2）：fund-dossier schema v2.0.0 + parse-fund（8 段 extractor + orchestrator）+ ajv 校验 + 对抗审计 Workflow
 - ✅ 工作流：4 步（抓取 → parse → validate → 保存/审计）— 见 `CLAUDE.md`
-- ✅ 项目结构：基金分析生产系统（engine/）、经理子模块（research/managers/）、数据按模块分类（data/{manager,fund}/）
+- ✅ 项目结构：基金分析生产系统（research/funds/）、经理子模块（research/managers/）、数据按模块分类（data/{manager,fund}/）

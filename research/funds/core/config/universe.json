@@ -1,0 +1,16 @@
+{
+  "_note": "search_filter = 两层漏斗的服务端层 (2026-06-21 策略设计 + 实测确定, 402 只, 100% 捕获无截断)。服务端只做【结构生存 + 真α预筛】: 结构(rating3Y 地板 / 资产大类 EQUTY+ALLOC / 非指数 / 非增强 / 非FOF / tenure>3 / size≥2亿) + oldestShareId 份额去重 + trackPb36mRankPer 50~100(保留高TE主动基金, 杀 closet-indexer; 🔴方向: 高rank=高TE=主动=高alpha, 实测 kept meanAlpha 10.66 vs excluded 5.03, 不能用 0~50)。rating5Y/alpha3Y/sharpe3Y 已移出服务端→交给 client screen 排名(见 thresholds.json)。market-sweep 只发送 search_filter; _note 留客户端。完整字段参考: research/funds/docs/screener-filters.md; 发现方法: research/funds/docs/screener-filter-discovery-methodology.md。",
+  "search_filter": {
+    "rating3Y": ["4", "5"],
+    "broadCategoryId": ["$BCG$EQUTY", "$BCG$ALLOC"],
+    "indexFund": "false",
+    "enhancedIndexFund": "false",
+    "fundOfFunds": "false",
+    "oldestShareId": "true",
+    "longestTenure": ">3",
+    "fundSize": ["2~5", "5~10", "10~50", "50~100", ">100"],
+    "trackPb36mRankPer": "50~100",
+    "sign": "1"
+  },
+  "watchlist": ["005161", "006502", "001048", "518880", "512890"]
+}
