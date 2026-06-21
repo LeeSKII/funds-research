@@ -12,6 +12,10 @@
 - **Diff guard.** If today's snapshot is byte-identical to yesterday's (suspicious SPA cache or API hiccup), flag and do not silently treat as "no changes" — re-sweep.
 
 ## (b) Research north star — what "good" looks like
+
+> 这是投资哲学的**工程化翻译**（什么叫好），哲学源头见 [`docs/investment-philosophy.md`](../docs/investment-philosophy.md)。
+> 以下条目**不是「相信长期赢家」**，而是用足够样本识别「哪些经理曾在某些波段创造真 α」——所有结论只对当前波段负责（哲学否定式边界）。
+
 - Target long-run portfolio Sharpe ≈ 0.40–0.47 (per 8y/10y backtest; NOT the Markowitz arithmetic 0.55).
 - Prefer **true alpha** (high stock-selection share in Brinson) over industry-beta pseudo-alpha.
 - Defensive layer = smart-beta ETFs (gold 518880 / dividend-low-vol 512890 / quant-multi-factor), because 5y-5★ set has ~0 defensive funds.

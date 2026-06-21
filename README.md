@@ -1,6 +1,8 @@
 # China Public Fund Manager 10Y Alpha Hunt
 
-**研究目标**：在过去约 10 年的中国市场里，找出持续创造 **风险调整后超额收益（alpha）** 的公募基金经理，分析他们的策略与所属基金公司。
+**投资哲学（终极目标）**：不预设任何策略或个人能长期跑赢市场——真正的复利来自**波段收益的叠加**。我们持续分析基金，识别「市场和这些基金当前真正在炒的是什么」，并站在**钱最多、流动性最充裕、信心最足**的地方。详见 [`投资哲学`](./research/funds/docs/investment-philosophy.md)；工程化 north-star 见 [`INVARIANTS`](./research/funds/governance/INVARIANTS.md) §(b)。
+
+**研究目标**：找出**在某个阶段确曾创造风险调整后超额收益（alpha）**的公募基金经理/基金，分析其策略与所属基金公司。长周期指标只用于**扩大可识别波段的样本**，不用于断言 α 会延续。
 
 > 🤖 **Claude 工作流约束读 [`CLAUDE.md`](./CLAUDE.md)** ——manager 子模块 4 步工作流（抓取 → parse → validate → 保存）+ 反例。
 >

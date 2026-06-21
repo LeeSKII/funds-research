@@ -15,6 +15,9 @@
 
 ## 1. The goal
 
+> **哲学溯源**：本节是 [`investment-philosophy.md`](./investment-philosophy.md) 论点 #3/#5 的筛选层翻译。
+> 「prefer true alpha」=「识别在所考察波段里靠**选股**（而非**行业 β**）创造超额的基金」，不是「相信此人能长期跑赢」——所有判定只对当前波段负责。
+
 Build the daily candidate universe for a **true-alpha fund-research engine**: surface active, stock-selecting equity funds worth deep research (Brinson attribution, holdings, manager) → portfolio construction. Research-only (BOUND-1: no trades). North star: prefer **true alpha** (high Brinson stock-selection share, not industry-beta pseudo-alpha); long-run Sharpe 0.40–0.47; defensive smart-beta layer; manager tenure >3y; rebalance ~3y.
 
 The single physical constraint: `search/es` returns **≤ ~1000 rows per call, no pagination**. Our principle in response: **capture 100% of funds matching our criteria — never silently drop any.** (The 1000 is the API's limit, not our budget.)
