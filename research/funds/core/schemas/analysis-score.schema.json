@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "fund-analysis-score",
+  "type": "object",
+  "required": ["code", "name", "asOfDate", "sizeRisk", "scores", "flags", "narrative", "provenance"],
+  "additionalProperties": true,
+  "properties": {
+    "code": { "type": "string" }, "name": { "type": "string" }, "asOfDate": { "type": "string" },
+    "bandWindowLabel": { "type": "string" },
+    "sizeRisk": { "type": "object", "required": ["aumYi", "flag"],
+      "properties": { "aumYi": { "type": ["number","null"] }, "flag": { "enum": ["ok","capacity_erosion","liquidation_risk","unknown"] } }, "additionalProperties": true },
+    "scores": { "type": "object", "additionalProperties": true,
+      "properties": {
+        "alphaQuality": { "type": "object", "required": ["value","tier"], "additionalProperties": true,
+          "properties": { "value": { "type":"number","minimum":0,"maximum":1 }, "tier": { "enum":["true_alpha","mixed","industry_beta_pseudo","no_brinion"] } } },
+        "endorsement": { "type":"object","required":["value"],"additionalProperties":true,"properties":{"value":{"type":"number","minimum":0,"maximum":1}} },
+        "bandContribution": { "type":"object","required":["value"],"additionalProperties":true,"properties":{"value":{"type":"number","minimum":0,"maximum":1}} },
+        "sectorFlow": { "type":"object","required":["value"],"additionalProperties":true,"properties":{"value":{"type":"number","minimum":0,"maximum":1}} },
+        "theme": { "type":"object","additionalProperties":true },
+        "riskAdjusted": { "type":"object","additionalProperties":true }
+      } },
+    "flags": { "type": "array", "items": { "enum": ["true_alpha","industry_beta_pseudo","closet_indexer","capacity_erosion","liquidation_risk","style_drift","skin_in_game","fof_endorsed","no_brinion","data_noise","low_benchmark_fit"] } },
+    "narrative": { "type": "object", "required": ["whatItBetsOn","whoDrivesAlpha","sectorFlowVerdict","bandVerdict"], "additionalProperties": true },
+    "provenance": { "type": "object", "required": ["dossierFile","dossierDate","scriptVersion","computedAt"], "additionalProperties": true }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "_note": "第三步基金分析可调参数。🔴 #6 SectorFlow = 板块资金流向(非基金规模)。详见 docs/superpowers/specs/2026-06-21-fund-analysis-step3-design.md",
+  "alphaQuality": {
+    "weights": { "stockAlphaRatio": 0.5, "annualizedAlpha5yNorm": 0.3, "tenureNorm": 0.2 },
+    "tierThresholds": { "trueAlpha": 0.7, "industryBeta": 0.3 },
+    "alpha5yNormalizeDivisor": 50
+  },
+  "endorsement": {
+    "weights": { "institutional": 0.3, "insiders": 0.3, "fof": 0.2, "ratings": 0.2 },
+    "ratingMax": 5
+  },
+  "sectorFlow": {
+    "weights": { "prosperityAlignment": 0.6, "liquidity": 0.4 },
+    "superCategories": ["周期性", "敏感性", "防御性"],
+    "liquidityTier": { "大盘": 1.0, "中盘": 0.6, "小盘": 0.3, "_null": 0.5 }
+  },
+  "sizeRisk": { "capacityErosionYi": 100, "liquidationRiskYi": 2 },
+  "riskAdjusted": { "rSquaredTrustFloor": 0.7 },
+  "band": { "bearYear": 2022 }
+}
