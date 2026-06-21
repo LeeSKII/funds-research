@@ -1,7 +1,8 @@
 // analyze/sectorflow-index.js — 哲学 #6：板块资金流向（高景气度/高流动性）。🔴 非基金规模。
-function detailSectors(sectorAllocation) {
+function detailSectors(sectorAllocation, config) {
   if (!Array.isArray(sectorAllocation)) return [];
-  const superCats = ['周期性', '敏感性', '防御性'];
+  // 从 config 读取 superCategories（避免 config-drift）；未传 config 时回退硬编码（向后兼容，theme-detector 单参调用仍可工作）
+  const superCats = (config && config.sectorFlow && config.sectorFlow.superCategories) || ['周期性', '敏感性', '防御性'];
   return sectorAllocation.filter(s => s && s.sector && !superCats.includes(s.sector));
 }
 
@@ -10,7 +11,7 @@ function buildSectorFlowHeatmap(dossiers, config) {
   const acc = Object.create(null);
   const fundCount = dossiers.length || 1;
   for (const d of dossiers) {
-    const sectors = detailSectors(d && d.portfolio && d.portfolio.sectorAllocation);
+    const sectors = detailSectors(d && d.portfolio && d.portfolio.sectorAllocation, config);
     const aum = (d && d.description && d.description.aumYi) || 0;
     for (const s of sectors) {
       if (!acc[s.sector]) acc[s.sector] = { holderCount: 0, excessSum: 0, overweightCount: 0, moneyMass: 0 };
@@ -40,7 +41,7 @@ function buildSectorFlowHeatmap(dossiers, config) {
 // (b) 逐基金 SectorFlow 得分
 function sectorFlowScore(dossier, heatmap, config) {
   const w = config.sectorFlow.weights;
-  const sectors = detailSectors(dossier && dossier.portfolio && dossier.portfolio.sectorAllocation);
+  const sectors = detailSectors(dossier && dossier.portfolio && dossier.portfolio.sectorAllocation, config);
   let num = 0, den = 0; const top = [];
   for (const s of sectors) {
     const hm = heatmap.sectors.find(h => h.sector === s.sector);

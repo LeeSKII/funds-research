@@ -37,3 +37,15 @@ test('buildSectorFlowHeatmap handles empty pool without throwing', () => {
   assert.strictEqual(hm.sectors.length, 0);
   assert.strictEqual(hm.fundCount, 0);
 });
+
+test('AUM-invariance: sectorFlowScore is identical regardless of fund aumYi (guards #6: size is not prosperity)', () => {
+  const small = JSON.parse(JSON.stringify(d006502)); small.description.aumYi = 0.01;
+  const huge = JSON.parse(JSON.stringify(d006502)); huge.description.aumYi = 9999;
+  // NOTE: heatmap is rebuilt per-input, but score depends only on sectorAllocation + styleBox.
+  const hmSmall = buildSectorFlowHeatmap([small], config);
+  const hmHuge = buildSectorFlowHeatmap([huge], config);
+  const sSmall = sectorFlowScore(small, hmSmall, config);
+  const sHuge = sectorFlowScore(huge, hmHuge, config);
+  assert.strictEqual(sSmall.value, sHuge.value);
+  assert.strictEqual(sSmall.prosperityAlignment, sHuge.prosperityAlignment);
+});
