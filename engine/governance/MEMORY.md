@@ -20,3 +20,9 @@
 - ✅ **LIVE daily loop ran end-to-end**: 847 swept → 30 candidates. Real data (sample 004320 前海开源沪港深; candidates include v22 fund 001437 易方达瑞享 — the "真α" fund). `suspiciousIdentical:false` (first live day).
 - Filter locked in `core/config/universe.json`. Daily snapshot = candidate universe (server-filtered ≤1000); data refreshes live each run. **Architecture fully validated — Approach A works.**
 - Phase 1 DONE. Branch `feat/morningstar-engine-phase1` ready to merge to main.
+
+## 2026-06-21 — daily filter 精炼: 排除债券 + 指数/指数增强 → 506 funds
+- 在 screener UI 实测反向抓到排除字段的正确写法(非猜测): 排除债券 = `broadCategoryId:["$BCG$EQUTY","$BCG$ALLOC"]`(只留股票型 EQUTY + 混合型 ALLOC); 排除指数 = `indexFund:"false"`; 排除指数增强 = `enhancedIndexFund:"false"`(后两个在「重要属性」分组)。
+- 应用到 daily filter(我们的标准 rating4-5 / tenure>3 / α&sharpe top50% / size≥2亿 + 这三个排除): **506 只**(混合 442 + 股票 64), screen 后 **25 候选**。比之前 847(含债券 237 + 可转债 8 + 另类 1)更聚焦主动权益。
+- **screener UI 反向抓取是发现 morningstar filter 字段/值的最可靠路径**: `condition/filter` 端点只返回公司名; response 行只有 `broadCategoryNameCN` 没有 ID; Vue 折叠面板不响应程序化点击 → 只能人工在 UI 勾选后抓 search/es request body。
+- 重新落库: `store/{snapshots,changes,derived}/2026-06-21.json` 已用新 filter 重生成。main 已领先 origin(未 push)。

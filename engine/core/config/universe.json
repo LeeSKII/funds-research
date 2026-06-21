@@ -1,12 +1,15 @@
 {
-  "_note": "search_filter = our screen standards pushed server-side (search/es caps at 1000/call, total universe ~10k). Verified live 2026-06-21 to yield ~847 funds (complete, under cap, ~150 headroom). market-sweep sends ONLY search_filter as the request body; this _note stays client-side.",
+  "_note": "search_filter = our screen standards + 排除债券(只留股票型+混合型) + 排除指数/指数增强。broadCategoryId: $BCG$EQUTY=股票型, $BCG$ALLOC=混合型 (从 screener UI 实测反向抓到 2026-06-21)。实测 ~506 只(完整, ≤1000 cap, 留足 headroom)。market-sweep 只发送 search_filter; _note 留在客户端。",
   "search_filter": {
     "rating3Y": ["4", "5"],
     "rating5Y": ["4", "5"],
     "longestTenure": ">3",
     "alphaToIndRankP_3Y": "0~50",
     "sharpeRatioRankP_3Y": "0~50",
-    "fundSize": ["2~5", "5~10", "10~50", "50~100", ">100"]
+    "fundSize": ["2~5", "5~10", "10~50", "50~100", ">100"],
+    "broadCategoryId": ["$BCG$EQUTY", "$BCG$ALLOC"],
+    "indexFund": "false",
+    "enhancedIndexFund": "false"
   },
   "watchlist": ["005161", "006502", "001048", "518880", "512890"]
 }
