@@ -26,3 +26,14 @@
 - 应用到 daily filter(我们的标准 rating4-5 / tenure>3 / α&sharpe top50% / size≥2亿 + 这三个排除): **506 只**(混合 442 + 股票 64), screen 后 **25 候选**。比之前 847(含债券 237 + 可转债 8 + 另类 1)更聚焦主动权益。
 - **screener UI 反向抓取是发现 morningstar filter 字段/值的最可靠路径**: `condition/filter` 端点只返回公司名; response 行只有 `broadCategoryNameCN` 没有 ID; Vue 折叠面板不响应程序化点击 → 只能人工在 UI 勾选后抓 search/es request body。
 - 重新落库: `store/{snapshots,changes,derived}/2026-06-21.json` 已用新 filter 重生成。main 已领先 origin(未 push)。
+
+## 2026-06-21 — 全量筛选条件测绘 (245 字段, 为全自动化奠基)
+- **动机**: 逐个 UI 勾选发现 filter 不可持续; 用户要求独立、穷尽地研究所有筛选条件并成文, 为后续全自动化奠基。
+- **方法 (三源交叉, 取代逐个 UI 勾选)**: (1) 静态抓 `screener-BHQXWzqB.js`/`search.js`/`index.js` bundle 做 archaeology → 提取完整 245 字段 catalog (key/中文 label/UI 分组/取值) + 全部 cn-api 端点; (2) chrome-devtools 读已渲染侧栏 → 7 分组 UI map; (3) 对全部 245 字段做 `search/es` 差分探测 (baseline=506, 49 批 fan-out) → 判定服务端是否生效 + 实测有效取值格式。无 /config 端点; bundle 即 schema (解析副本 `engine/tmp/filter-block.json`)。
+- **产出**: `engine/docs/screener-filters.md` — 总表(服务端优先) + UI 分组参考 + 取值格式参考 + **服务端可筛 vs 客户端两份清单** + universe.json 逐字段注解 + 9 条 open questions。记忆 `morningstar-api-search-es.md` 已同步更新。
+- **关键发现 (高价值)**:
+  - **复合 key 静默 no-op**: `sharpeRatio`/`maximumDrawdown`/`sTD`/`alphaToInd`/.../`hiddenCost`/`management` 共 17 个 — 必须发带周期后缀的子 key。
+  - **catalog-vs-实测格式冲突 11 处** (catalog 错): `applyingMaxIv`/`closeOpenPeriod` 要数组不是 range-string; `styleBox`/`totalRisk`/`rating*` 要裸数字码; `upCaptureRatio_*` 百分比制; `successRatio*Y` 百分位排名; 等。
+  - **无服务端币种 filter**: `baseCurrencyId` 0 命中 → 美元/人民币份额排除**只能客户端按 fundName** (回应当初悬而未决的问题, engine screen 层是落点)。
+  - 当前 universe.json (506) 用法正确 (已用周期后缀 key), headroom ~500。
+- workflow: 52 agents / ~1.9M tokens / 28min。后续若需细化 (applyingMaxIv「无」桶码 / baseCurrencyId 存储格式 / categoryId 全树), 走 UI body 反向抓取。
