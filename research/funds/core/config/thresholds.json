@@ -1,11 +1,11 @@
 {
-  "_note": "client screen 层 (2026-06-21 策略重设计)。两层漏斗: 服务端 search_filter 管结构+真α(trackPb), 本文件管【排名底线 + 组合适配 + 防御标注】, 绝不重复服务端 gate。rating3Y/longestTenure/fundSize_min 现在是 structural assert(服务端已保证, 留作 defense-in-depth)。alpha3Y/sharpe3Y 是 CLIENT 质量底线 gate(服务端已不发)。🔴 BUG FIX 2026-06-21: alphaToIndRankP_3Y/sharpeRatioRankP_3Y 字段是 0-100 百分位(非 0-1 小数), 旧值 0.5 = top 0.5%(误选极顶), 改 50 = top half(原意)。实测在 trackPb 精英服务端网上这个 gate 近乎冗余(96% 通过, 因 active 基金均α排名靠前)——这是正确的非冗余结果: 真α由服务端 trackPb 兜底, 这里只留 defense-in-depth 质量底线; 想要更小候选池可收紧到 10(top10%→~200) 或 5(top5%→~120)。rating5Y 是软闸(null 通过, 救<5y新兴基金)。fundSize_max 是组合适配 cap(服务端无上限)。exclude_usd_shareclass 是 forced client(无服务端币种 filter)。defensive_drawdown_floor 是防御 sleeve 标注(非 gate)。",
+  "_note": "client screen 层 (2026-06-21 策略重设计)。两层漏斗: 服务端 search_filter 管结构+真α(trackPb), 本文件管【排名底线 + 组合适配 + 防御标注】, 绝不重复服务端 gate。rating3Y/longestTenure/fundSize_min 现在是 structural assert(服务端已保证, 留作 defense-in-depth)。alpha3Y/sharpe3Y 是 CLIENT 质量底线 gate(服务端已不发)。🔴 BUG FIX 2026-06-21: alphaToIndRankP_3Y/sharpeRatioRankP_3Y 字段是 0-100 百分位(非 0-1 小数), 旧值 0.5 = top 0.5%(误选极顶), 改 50 = top half(原意)。实测在 trackPb 精英服务端网上这个 gate 近乎冗余(96% 通过, 因 active 基金均α排名靠前)——这是正确的非冗余结果: 真α由服务端 trackPb 兜底, 这里只留 defense-in-depth 质量底线; 想要更小候选池可收紧到 10(top10%→~200) 或 5(top5%→~120)。rating5Y 是软闸(null 通过, 救<5y新兴基金)。fundSize_max=100 是 🔴哲学#6 规模风险上限(>100亿侵蚀主动选股灵活性;2026-06-21 由 200 收紧,与服务端 >100 桶去除对齐)。exclude_usd_shareclass 是 forced client(无服务端币种 filter)。defensive_drawdown_floor 是防御 sleeve 标注(非 gate)。",
   "rating3Y_min": 4,
   "rating5Y_min": 4,
   "rating5Y_null_tolerant": true,
   "longestTenure_min_years": 3,
   "fundSize_min_yi": 2,
-  "fundSize_max_yi": 200,
+  "fundSize_max_yi": 100,
   "alphaToIndRankP_3Y_max": 50,
   "sharpeRatioRankP_3Y_max": 50,
   "exclude_usd_shareclass": true,
