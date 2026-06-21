@@ -1,0 +1,260 @@
+{
+  "description": {
+    "code": "518880",
+    "name": "华安易富黄金ETF",
+    "category": "商品 - 贵金属",
+    "fundType": "—",
+    "inceptionDate": "2013-07-18",
+    "currency": "人民币",
+    "nav": 8.9161,
+    "navDate": "2026-06-18",
+    "dailyChangePct": -0.35,
+    "riskLevel": "中风险(R3)",
+    "styleBox": "—",
+    "aumYi": 1138.16,
+    "dailyPurchaseLimit": null,
+    "purchaseStatus": "可申购",
+    "redemptionStatus": "可赎回",
+    "lockupPeriod": "无锁定期",
+    "custodian": "建设银行",
+    "asOfDate": "2026-05-31"
+  },
+  "performance": {
+    "trailing": {
+      "近一月": -2.87,
+      "近三月": -13.96,
+      "近六月": 3.55,
+      "近一年": 27.31,
+      "近两年": 32.53,
+      "近三年": 29.11,
+      "近五年": 19.64,
+      "近十年": 13.84,
+      "今年以来": 0.77
+    },
+    "trailingPeer": {
+      "近一月": 1.06,
+      "近三月": 2.27,
+      "近六月": 10.27,
+      "近一年": 31.66,
+      "近两年": 19.47,
+      "近三年": 10.63,
+      "近五年": 2.57,
+      "近十年": 7.74,
+      "今年以来": 6.92
+    },
+    "annual": {
+      "2016": 18.15,
+      "2017": 3.31,
+      "2018": 3.64,
+      "2019": 19.15,
+      "2020": 13.81,
+      "2021": -4.71,
+      "2022": 9.24,
+      "2023": 16.34,
+      "2024": 27.45,
+      "2025": 57.55
+    },
+    "annualPeer": {
+      "2016": -11.46,
+      "2017": 12.79,
+      "2018": -25.52,
+      "2019": 38.41,
+      "2020": 42.63,
+      "2021": 10.85,
+      "2022": -18.4,
+      "2023": -9.75,
+      "2024": 13.01,
+      "2025": 22.03
+    },
+    "ratings": {
+      "rating3Y": null,
+      "rating5Y": null,
+      "rating10Y": null
+    },
+    "attribution": {
+      "present": false,
+      "real": false,
+      "reason": "section_absent"
+    }
+  },
+  "risk": {
+    "sharpe": {
+      "fund": 1.01,
+      "peer": null
+    },
+    "calmar": {
+      "fund": 1.06,
+      "peer": null
+    },
+    "sortino": {
+      "fund": 2.27,
+      "peer": null
+    },
+    "stdDev": {
+      "fund": 26.12,
+      "peer": null
+    },
+    "maxDrawdown": {
+      "fund": -25.67,
+      "peer": null
+    },
+    "downsideRisk": {
+      "fund": 11.59,
+      "peer": null
+    },
+    "morningstarRisk": {
+      "fund": 6.91,
+      "peer": null
+    },
+    "alpha": -0.64,
+    "beta": 1,
+    "rSquared": 1,
+    "excessReturn": -0.83,
+    "trackingError": 0.02,
+    "infoRatio": -0.02,
+    "monthlyWinRate": 0,
+    "upsideCapture": 99.11,
+    "downsideCapture": 101.72
+  },
+  "fees": {
+    "ter": 0.65,
+    "managementFee": 0.5,
+    "custodianFee": 0.1,
+    "salesServiceFee": null,
+    "minInvestment": 100000
+  },
+  "portfolio": {
+    "assetAllocation": {
+      "stock": {
+        "fund": 0,
+        "peer": 0
+      },
+      "bond": {
+        "fund": 0,
+        "peer": 0
+      },
+      "cash": {
+        "fund": 0,
+        "peer": 0
+      },
+      "commodity": {
+        "fund": 100,
+        "peer": 100
+      },
+      "other": {
+        "fund": 0,
+        "peer": 0
+      }
+    },
+    "topHoldings": [],
+    "top10Concentration": null,
+    "sectorAllocation": [],
+    "regionAllocation": [],
+    "turnover": 0,
+    "_tickerFormats": []
+  },
+  "holders": {
+    "institutional": 64.3,
+    "retail": 35.7,
+    "insiders": {
+      "managerSelf": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "executive": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "employee": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "companyDirect": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      }
+    },
+    "fofHeld": "FOF持有人数量",
+    "dividends": null
+  },
+  "manager": {
+    "team": [
+      {
+        "name": "许之彦",
+        "tenureStart": "2013-07-18",
+        "tenureEnd": null
+      }
+    ],
+    "managerCount": 1,
+    "maxTenureYears": 12.9,
+    "avgTenureYears": 12.9,
+    "lead": {
+      "name": "许之彦",
+      "returnSinceInception": 237.28,
+      "aumYi": 2131.59,
+      "fundsManaged": 12
+    }
+  },
+  "strategy": {
+    "objective": "紧密跟踪国内黄金现货价格的表现。",
+    "scope": "该基金的投资范围包括：上海黄金交易所挂 盘交易的黄金现货合约等黄金品种、货币市场工具以及法律法规或中国证监会允许基金投资的其他品种。该基金投资于黄金现货合约的比例不低于基金资产的90%。 如法律法规或监管机构以后允许该基金投资的其他品种，基金管理人在履行适当程序后，可以将其纳入投资范围。",
+    "strategy": "该基金通过将绝大部分基金财产投资并持有上海黄金交易所挂盘交易的黄金现货合约等黄金品种，来实现跟踪国内黄金现货价格表现的目标。 （更多详情请参见基金招募说明书）",
+    "benchmark": "国内黄金现货价格收益率",
+    "latestCommentary": {
+      "report": "2026年第一季报",
+      "date": "2026-Q1",
+      "text": "2026年一季度，伦敦现货黄金上涨至4669美元/盎司；本基金所跟踪的AU9999黄金上涨至1019元/克。 黄金在1月加速上涨，主要在定价海外地缘局势变化，例如委内瑞拉和格陵兰岛事件，此外也受到白银资金面的影响。 此后黄金在2-3月经历了较大波动，受到多方面因素的干扰。首先，1月末美联储官宣凯文沃什担任下任主席，引发市场对于美联储流动性收紧的担忧，并体现在年内的降息预期从2次调整为不降息。其次，美伊冲突导致油价突破100美元/桶，市场担忧通胀压力，流动性收紧。第三，土耳其央行3月出售黄金120吨，用于本国财政平衡与能源进口。 展望后市，黄金定价将聚焦美元信用问题，以及能源供应链冲击所带来的海外经济衰退风险，黄金依然具备配置价值。当前国内利率水平偏低，黄金和股票、债券之间呈现低相关性，加入黄金或有望改善组合夏普比。 本基金主要投资于上海黄金交易所挂盘交易的黄金现货合约等黄金品种，力求获得我国黄金现货市场收益率，为投资者提供一类管理透明、成本较低、有效跟踪国内黄金现货价格的投资工具。 投资管理上，基金采取完全复制的管理方法跟踪指数，并利用量化工具进行精细化管理，从而控制基金的跟踪误差和跟踪偏离度。"
+    },
+    "outlook": {
+      "report": "2025年年报",
+      "date": "2025",
+      "text": "展望2026年，全球宏观经济呈现财政扩张和货币流动性宽松的有利环境，大类资产配置均有较好的机会。具体到黄金资产的表现，核心关注三大定价主线。第一是传统的美联储货币政策周期。经历2024-2025年的降息周期后，2026年有望延续降息的下半场，重点关注新任美联储主席的政策变化。第二是美元信用问题以及由此引发的全球央行购金节奏。在中期选举前，地缘局势和关税政策仍可能存在不确定性，从而刺激黄金的避险配置需求。第三是黄金和股票、债券之间呈现低相关性，当前的低利率环境下，黄金配置受到机构和个人投资者的重视，这部分资金对于黄金的定价影响力也在与日俱增。"
+    }
+  },
+  "_diagnostics": {
+    "scriptVersion": "2.0.0",
+    "parsedAt": "2026-06-21T16:09:54.789Z",
+    "snapshotFile": "morningstar-fund-518880-20260622-innertext.json",
+    "sourceUrl": "https://www.morningstar.cn/fund/518880.html",
+    "layout": {
+      "trailingCols": 9,
+      "annualYears": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "sections": {
+        "trailing_return": true,
+        "annual_return": true,
+        "ratings": false,
+        "attribution": false,
+        "risk": true,
+        "fees": true,
+        "asset_type": true,
+        "sector": false,
+        "region": false,
+        "top_holdings": false,
+        "holders": true,
+        "manager": true,
+        "strategy": true
+      },
+      "tickerFormats": [],
+      "lineCount": 917
+    }
+  }
+}

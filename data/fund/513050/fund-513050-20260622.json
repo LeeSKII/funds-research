@@ -1,0 +1,497 @@
+{
+  "description": {
+    "code": "513050",
+    "name": "易方达中证海外中国互联网50（QDII-ETF）",
+    "category": "QDII行业股票",
+    "fundType": "股票型",
+    "inceptionDate": "2017-01-04",
+    "currency": "人民币",
+    "nav": 1.0651,
+    "navDate": "2026-06-17",
+    "dailyChangePct": -0.36,
+    "riskLevel": "中高风险(R4)",
+    "styleBox": "大盘平衡",
+    "aumYi": 397.32,
+    "dailyPurchaseLimit": null,
+    "purchaseStatus": "可申购",
+    "redemptionStatus": "可赎回",
+    "lockupPeriod": "无锁定期",
+    "custodian": "招商银行",
+    "asOfDate": "2026-05-31"
+  },
+  "performance": {
+    "trailing": {
+      "近一月": -6.18,
+      "近三月": -15.46,
+      "近六月": -27.54,
+      "近一年": -18.17,
+      "近两年": 4.15,
+      "近三年": 7.54,
+      "近五年": -10.25,
+      "今年以来": -24.9
+    },
+    "trailingPeer": {
+      "近一月": 1.06,
+      "近三月": 2.27,
+      "近六月": 10.27,
+      "近一年": 31.66,
+      "近两年": 19.47,
+      "近三年": 10.63,
+      "近五年": 2.57,
+      "今年以来": 6.92
+    },
+    "annual": {
+      "2018": -29.38,
+      "2019": 33.48,
+      "2020": 46.22,
+      "2021": -41.17,
+      "2022": -15.7,
+      "2023": -9.26,
+      "2024": 24.67,
+      "2025": 27.29
+    },
+    "annualPeer": {
+      "2018": -25.52,
+      "2019": 38.41,
+      "2020": 42.63,
+      "2021": 10.85,
+      "2022": -18.4,
+      "2023": -9.75,
+      "2024": 13.01,
+      "2025": 22.03
+    },
+    "ratings": {
+      "rating3Y": null,
+      "rating5Y": null,
+      "rating10Y": null
+    },
+    "attribution": {
+      "present": true,
+      "real": false,
+      "reason": "not_computed"
+    }
+  },
+  "risk": {
+    "sharpe": {
+      "fund": -41.84,
+      "peer": null
+    },
+    "calmar": {
+      "fund": -0.5,
+      "peer": null
+    },
+    "sortino": {
+      "fund": -0.83,
+      "peer": null
+    },
+    "stdDev": {
+      "fund": 29.3,
+      "peer": null
+    },
+    "maxDrawdown": {
+      "fund": -36.57,
+      "peer": null
+    },
+    "downsideRisk": {
+      "fund": 20.73,
+      "peer": null
+    },
+    "morningstarRisk": {
+      "fund": 5.79,
+      "peer": null
+    },
+    "alpha": -0.13,
+    "beta": 1,
+    "rSquared": 1,
+    "excessReturn": -0.17,
+    "trackingError": 0.47,
+    "infoRatio": -0.08,
+    "monthlyWinRate": 25,
+    "upsideCapture": 100.81,
+    "downsideCapture": 100.97
+  },
+  "fees": {
+    "ter": 0.91,
+    "managementFee": 0.6,
+    "custodianFee": 0.2,
+    "salesServiceFee": null,
+    "minInvestment": 1000000
+  },
+  "portfolio": {
+    "assetAllocation": {
+      "stock": {
+        "fund": 99.02,
+        "peer": 92.19
+      },
+      "bond": {
+        "fund": 0,
+        "peer": 0.28
+      },
+      "cash": {
+        "fund": 0.83,
+        "peer": 6.91
+      },
+      "commodity": {
+        "fund": 0,
+        "peer": 0.01
+      },
+      "other": {
+        "fund": 0.15,
+        "peer": 0.61
+      }
+    },
+    "topHoldings": [
+      {
+        "code": "00700",
+        "name": "腾讯控股",
+        "industry": "通信服务",
+        "weightPct": 30.65
+      },
+      {
+        "code": "09988",
+        "name": "阿里巴巴-W",
+        "industry": "可选消费",
+        "weightPct": 26.06
+      },
+      {
+        "code": "PDD",
+        "name": "拼多多",
+        "industry": "可选消费",
+        "weightPct": 7.64
+      },
+      {
+        "code": "01810",
+        "name": "小米集团-W",
+        "industry": "科技",
+        "weightPct": 6.91
+      },
+      {
+        "code": "03690",
+        "name": "美团-W",
+        "industry": "可选消费",
+        "weightPct": 6
+      },
+      {
+        "code": "09618",
+        "name": "京东集团-SW",
+        "industry": "可选消费",
+        "weightPct": 3.85
+      },
+      {
+        "code": "09999",
+        "name": "网易-S",
+        "industry": "通信服务",
+        "weightPct": 3.57
+      },
+      {
+        "code": "09888",
+        "name": "百度集团-SW",
+        "industry": "通信服务",
+        "weightPct": 3.29
+      },
+      {
+        "code": "09961",
+        "name": "携程集团-S",
+        "industry": "可选消费",
+        "weightPct": 2.76
+      },
+      {
+        "code": "01024",
+        "name": "快手-W",
+        "industry": "通信服务",
+        "weightPct": 1.63
+      }
+    ],
+    "top10Concentration": 92.36,
+    "sectorAllocation": [
+      {
+        "sector": "周期性",
+        "fund": 47.72,
+        "benchmark": 40.17,
+        "excess": 7.55
+      },
+      {
+        "sector": "基础材料",
+        "fund": 0,
+        "benchmark": 9.92,
+        "excess": -9.92
+      },
+      {
+        "sector": "可选消费",
+        "fund": 46.55,
+        "benchmark": 6.84,
+        "excess": 39.71
+      },
+      {
+        "sector": "金融服务",
+        "fund": 0.33,
+        "benchmark": 22.7,
+        "excess": -22.37
+      },
+      {
+        "sector": "房地产",
+        "fund": 0.83,
+        "benchmark": 0.72,
+        "excess": 0.12
+      },
+      {
+        "sector": "敏感性",
+        "fund": 50.78,
+        "benchmark": 44.1,
+        "excess": 6.68
+      },
+      {
+        "sector": "通信服务",
+        "fund": 43.2,
+        "benchmark": 1.72,
+        "excess": 41.48
+      },
+      {
+        "sector": "能源",
+        "fund": 0,
+        "benchmark": 2.45,
+        "excess": -2.45
+      },
+      {
+        "sector": "工业",
+        "fund": 0,
+        "benchmark": 16.3,
+        "excess": -16.3
+      },
+      {
+        "sector": "科技",
+        "fund": 7.58,
+        "benchmark": 23.64,
+        "excess": -16.06
+      },
+      {
+        "sector": "防御性",
+        "fund": 1.5,
+        "benchmark": 15.73,
+        "excess": -14.23
+      },
+      {
+        "sector": "必选消费",
+        "fund": 0.42,
+        "benchmark": 7.84,
+        "excess": -7.42
+      },
+      {
+        "sector": "医疗保健",
+        "fund": 1.08,
+        "benchmark": 5.03,
+        "excess": -3.95
+      },
+      {
+        "sector": "公用事业",
+        "fund": 0,
+        "benchmark": 2.86,
+        "excess": -2.86
+      }
+    ],
+    "regionAllocation": [
+      {
+        "region": "大亚洲地区",
+        "fund": 100,
+        "benchmark": 100,
+        "excess": 0
+      },
+      {
+        "region": "日本",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "大洋洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "发达亚洲",
+        "fund": 0.13,
+        "benchmark": 0.98,
+        "excess": -0.85
+      },
+      {
+        "region": "新兴亚洲",
+        "fund": 99.87,
+        "benchmark": 99.02,
+        "excess": 0.85
+      },
+      {
+        "region": "美洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "北美",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "拉丁美洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "大欧洲地区",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "英国",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "发达欧洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "新兴欧洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "非洲/中东",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "未分类",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      }
+    ],
+    "turnover": 35,
+    "_tickerFormats": [
+      "hk5",
+      "letter"
+    ]
+  },
+  "holders": {
+    "institutional": 44.54,
+    "retail": 55.46,
+    "insiders": {
+      "managerSelf": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "executive": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "employee": {
+        "shares": "23.4万份",
+        "estAmount": "34.5 万元",
+        "pct": 0,
+        "trend": {
+          "direction": "增持",
+          "changePct": 2501.11
+        }
+      },
+      "companyDirect": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      }
+    },
+    "fofHeld": "FOF持有人数量",
+    "dividends": "截止当前，该基金尚未实施过分红/拆分操作。"
+  },
+  "manager": {
+    "team": [
+      {
+        "name": "余海燕",
+        "tenureStart": "2017-01-04",
+        "tenureEnd": null
+      },
+      {
+        "name": "刘依姗",
+        "tenureStart": "2025-04-11",
+        "tenureEnd": null
+      }
+    ],
+    "managerCount": 2,
+    "maxTenureYears": 9.5,
+    "avgTenureYears": 5.3,
+    "lead": {
+      "name": "余海燕",
+      "returnSinceInception": 9.9,
+      "aumYi": 2637.86,
+      "fundsManaged": 19
+    }
+  },
+  "strategy": {
+    "objective": "紧密跟踪标的指数，追求跟踪偏离度及跟踪误差的最小化。",
+    "scope": "该基金投资于标的指数成份股、备选成份股、境外交易的跟踪同一标的指数的公募基金、依法发行或上市的其他股票、固定收益类证券、银行存款、货币市场工具、跟踪同一标的指数的股指期货等金融衍生品和法律法规或中国证监会允许基金投资的其他金融工具。该基金还可以投资于法律法规或中国证监会未来允许基金投资的其它金融工具，但须符合中国证监会的相关规定。 基金投资标的指数成份股、备选成份股的资产不低于基金资产净值的90%，且不低于非现金基金资产的80%。",
+    "strategy": "该基金主要采取完全复制法进行投资，即参考中证海外中国互联网50指数的成份股组成及权重构建股票投资组合，并根据中证海外中国互联网50指数的成份股组成及权重变动对股票投资组合进行相应调整。当市场流动性不足等情况导致该基金无法按照指数构成及权重进行组合构建时，基金管理人将通过投资其他成份股、非成份股、成份股个股衍生品进行替代。为进行流动性管理、应付赎回、降低跟踪误差以及提高投资效率，该基金可投资指数期货或期权等金融衍生工具。该基金力争将年化跟踪误差控制在3%以内。 （更多详情请参见基金招募说明书）",
+    "benchmark": "中证海外中国互联网50指数",
+    "latestCommentary": {
+      "report": "2026年第一季报",
+      "date": "2026-Q1",
+      "text": "本基金跟踪中证海外中国互联网50指数，该指数由中证指数有限公司编制，旨在反映境外上市中国互联网企业的整体表现。中证海外中国互联网50指数从在香港及其他海外交易所上市的中国互联网企业中，选取总市值及流动性综合排名最好的50家公司，并每半年度定期调整。若同一家公司的国外市场证券和香港市场证券同时入选，则优先纳入香港市场证券。报告期内本基金主要采取组合复制策略和适当的替代性策略实现对标的指数的紧密跟踪。在组合复制策略中，本基金主要采取完全复制法，即参考标的指数的成份股组成及权重构建股票投资组合，并根据标的指数的成份股组成及权重变动对股票投资组合进行相应调整。 中证海外中国互联网50指数的走势，与全球金融条件、中国宏观经济形势以及行业基本面等因素密切相关。 全球金融条件方面，美联储1月、3月议息会议均维持利率不变，联邦基金利率目标区间保持3.50%-3.75%。3月点阵图显示降息时点显著延后，美元流动性宽松预期受挫；中东地缘冲突升级推升油价，再通胀预期升温压制全球风险偏好；美元指数高位震荡，港元汇率在联系汇率制度下承压，本地流动性环境趋紧。 中国宏观经济形势方面，一季度经济在韧性中呈现结构性修复。物价方面，受春节效应与消费回暖带动，居民消费价格指数（CPI）同比显著回升并创下阶段性新高，同时工业生产者出厂价格指数（PPI）同比降幅持续收窄但仍处负值区间，显示内需复苏正在积蓄动能；房地产市场调整压力仍在延续，投资与销售端依然承压，对上下游产业链的拖累尚未完全消除；不过，在稳增长政策持续发力下，3月最新制造业PMI重返荣枯线以上，表现超出市场预期，新订单等关键指标显著改善，表明季末企业生产活动明显加快，市场信心与经济景气度正迎来修复。 政策层面，2026年全国两会确立4.5%-5%的经济增长预期目标，力争实际工作中取得更好结果；积极财政政策加力提效，消费提振举措稳步落地，资本市场投融资综合改革持续深化，夯实市场长期发展根基。 资金与情绪面上，南向资金延续大规模净流入态势，3月9日南向港股通单日净买入372.13亿港元，创互联互通机制开通以来历史新高，凸显内资对港股核心资产长期价值的认可；外资受中东地缘风险、美元流动性预期及汇率波动扰动，阶段性配置意愿趋于谨慎。此外，一季度港股IPO、再融资活动活跃度回升，市场融资生态稳步改善。 行业层面，中概互联网行业受美联储维持利率不变、降息时点延后压制全球流动性风险偏好、地缘冲突推升油价加剧再通胀担忧、AI资本开支激增引发投资回报率质疑、以及多家头部公司最新财报显示业绩不及预期等多重因素综合影响，本报告期内中证海外中国互联网50指数下跌19.70%。 本报告期为本基金的正常运作期，本基金在投资运作过程中严格遵守基金合同，坚持既定的指数化投资策略，在指数权重调整和基金申赎变动时，应用指数复制和数量化技术降低冲击成本和减少跟踪误差，力求跟踪误差最小化。 截至报告期末，本基金份额净值为1.1798元，本报告期份额净值增长率为-19.99%，同期业绩比较基准收益率为-19.70%。年化跟踪误差0.33%，在合同规定的目标控制范围之内。"
+    },
+    "outlook": {
+      "report": "2025年年报",
+      "date": "2025",
+      "text": "展望2026年，在国内政策“稳中求进”的总基调下，经济将延续温和修复态势，港股基本面有望保持稳健。全球金融条件方面，全球主要央行进入宽松周期的方向未变，仍将逐步缓解港股估值压力、改善市场流动性环境。然而，地缘政治变化仍将构成外部不确定性，2026年美国步入中期选举年，中美关系或维持阶段性平衡，欧盟“去风险”政策升级、俄乌和谈前景不明朗等因素，仍可能引发市场阶段性波动。短期来看，全球金融条件和境内外产业发展及监管政策等因素仍有可能对海外中概股价格和估值水平造成扰动。中长期来看，价格的中枢由行业未来发展前景和上市公司业绩基本面决定。人工智能等新技术的快速发展和持续增长的数字化需求，将为互联网行业带来新的机遇和发展空间，有望推动中国互联网行业迎来新一轮的高速发展。中证海外中国互联网50指数的成份股是境外上市的中国互联网企业中总市值及流动性综合排名最好的头部公司，是中国数字经济和平台经济领域的代表性企业。伴随未来中国经济的企稳和消费的复苏，中国互联网公司也有望迎来持续、良性的发展局面。在全球指数化投资方兴未艾的今天，中证海外中国互联网50指数产品为境内投资者提供跨境投资的桥梁，未来仍将是分享中国科技互联网产业投资机遇的重要工具。"
+    }
+  },
+  "_diagnostics": {
+    "scriptVersion": "2.0.0",
+    "parsedAt": "2026-06-21T16:11:00.689Z",
+    "snapshotFile": "morningstar-fund-513050-20260622-innertext.json",
+    "sourceUrl": "https://www.morningstar.cn/fund/513050.html",
+    "layout": {
+      "trailingCols": 8,
+      "annualYears": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "sections": {
+        "trailing_return": true,
+        "annual_return": true,
+        "ratings": false,
+        "attribution": true,
+        "risk": true,
+        "fees": true,
+        "asset_type": true,
+        "sector": true,
+        "region": true,
+        "top_holdings": true,
+        "holders": true,
+        "manager": true,
+        "strategy": true
+      },
+      "tickerFormats": [
+        "hk5",
+        "letter"
+      ],
+      "lineCount": 1048
+    }
+  }
+}
