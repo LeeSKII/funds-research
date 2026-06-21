@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --test",
     "daily": "node orchestrate/run.js",
-    "daily:offline": "node orchestrate/run.js --offline"
+    "daily:offline": "node orchestrate/run.js --offline",
+    "analysis:offline": "node analyze/run-analysis.js"
   },
   "dependencies": {
     "ajv": "^8.17.1"

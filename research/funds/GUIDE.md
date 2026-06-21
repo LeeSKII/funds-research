@@ -30,6 +30,22 @@
 
 测试用**模拟 fixture**（`research/funds/test/fixtures/mock-fund-innertext.json`，匿名化的真实结构），84 测试全绿，不依赖实时数据或快照语料。深度 API/布局参考在 `research/funds/docs/`（`fund-detail-api.md` · `fund-detail-layouts.md` · `screener-filters.md`）。
 
+## ③ dossier → 基金分析（评分卡 + 板块资金流向）
+
+基于第二步 dossier 做多维分析，产物 `store/derived/score-<date>.json`（每基金一张判定卡 + 池级板块景气 heatmap）。哲学锚 [`docs/investment-philosophy.md`](./docs/investment-philosophy.md)；设计 [`docs/superpowers/specs/2026-06-21-fund-analysis-step3-design.md`](../../docs/superpowers/specs/2026-06-21-fund-analysis-step3-design.md)。
+
+🔴 **#6「钱最多」= 板块高景气度/高流动性，不是基金规模**：heatmap 用候选池自身的 `portfolio.sectorAllocation` 聚合「资金堆在哪」，逐基金算组合对齐度 + 流动性(styleBox 大盘)。基金规模 >100 亿反而是 `capacity_erosion` 风险 flag。所有结论只对当前波段负责（否定式边界）。
+
+| 模块 | 作用 |
+|---|---|
+| `analyze/loader.js` | 扫 `data/fund/<code>/` 取最新 dossier → Map（自动滤 legacy 旧 schema） |
+| `analyze/sectorflow-index.js` | 🔴 #6 板块资金流向 heatmap + 逐基对齐度（候选池自当传感器） |
+| `analyze/theme-detector.js` | #5 行业赌注 + 重仓聚类 + 漂移 |
+| `analyze/score.js` | 编排：真α/背书/波段/板块流向/主题/风险调整 → 判定卡 + flags + 叙述 |
+| `analyze/run-analysis.js` | 池级编排 → `store/derived/score-<date>.json` |
+
+运行：`npm run analysis:offline`（读 `data/fund/`，写 `store/derived/`）。
+
 ## 模块布局
 
 ```
