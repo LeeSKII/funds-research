@@ -1,4 +1,12 @@
 {
-  "search_filter": { "sign": "1" },
+  "_note": "search_filter = our screen standards pushed server-side (search/es caps at 1000/call, total universe ~10k). Verified live 2026-06-21 to yield ~847 funds (complete, under cap, ~150 headroom). market-sweep sends ONLY search_filter as the request body; this _note stays client-side.",
+  "search_filter": {
+    "rating3Y": ["4", "5"],
+    "rating5Y": ["4", "5"],
+    "longestTenure": ">3",
+    "alphaToIndRankP_3Y": "0~50",
+    "sharpeRatioRankP_3Y": "0~50",
+    "fundSize": ["2~5", "5~10", "10~50", "50~100", ">100"]
+  },
   "watchlist": ["005161", "006502", "001048", "518880", "512890"]
 }
