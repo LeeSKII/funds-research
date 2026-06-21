@@ -63,3 +63,16 @@ test('all 0..1 subscore values within [0,1]', () => {
     }
   }
 });
+
+test('fofHeld 表头泄漏("FOF持有人数量")不触发 fof_endorsed (B1 fix)', () => {
+  // 159994 的 holders.fofHeld 是 parse-fund 泄漏的表头标签, 无日期 → 不应计为 FOF 背书
+  const card = scoreFund(d159994, { heatmap, config, computedAt: '2026-06-21' });
+  assert.ok(!card.flags.includes('fof_endorsed'), 'header leak must not set fof_endorsed');
+});
+
+test('fofHeld 真实持有记录(日期+持有+非否定)触发 fof_endorsed', () => {
+  const d = JSON.parse(JSON.stringify(d006502));
+  d.holders.fofHeld = '截止2025-12-31，该基金被3只FOF基金持有';
+  const card = scoreFund(d, { heatmap, config, computedAt: '2026-06-21' });
+  assert.ok(card.flags.includes('fof_endorsed'));
+});

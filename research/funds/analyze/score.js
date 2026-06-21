@@ -66,7 +66,8 @@ function endorsementScore(d, cfg) {
     .filter(k => ins[k] && ins[k].trend && ins[k].trend.direction === '增持').length / 4;
   if (ins.managerSelf && ins.managerSelf.trend && ins.managerSelf.trend.direction === '增持') flags.push('skin_in_game');
   const fofText = h.fofHeld || '';
-  const fof = (/持有|FOF/.test(fofText) && !/暂未|没有|无/.test(fofText)) ? 1 : 0;
+  // 需日期锚(真实持有记录含"20YY"); 裸表头(如"FOF持有人数量")无日期→不计入, 避免 parse-fund header 泄漏误判
+  const fof = (/20\d{2}/.test(fofText) && /持有|FOF/.test(fofText) && !/暂未|没有|无/.test(fofText)) ? 1 : 0;
   if (fof) flags.push('fof_endorsed');
   const r = (d.performance && d.performance.ratings) || {};
   const ratings = clamp((((r.rating3Y || 0) + (r.rating5Y || 0)) / 2) / cfg.endorsement.ratingMax, 0, 1);
