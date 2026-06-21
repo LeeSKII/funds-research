@@ -37,3 +37,12 @@
   - **无服务端币种 filter**: `baseCurrencyId` 0 命中 → 美元/人民币份额排除**只能客户端按 fundName** (回应当初悬而未决的问题, engine screen 层是落点)。
   - 当前 universe.json (506) 用法正确 (已用周期后缀 key), headroom ~500。
 - workflow: 52 agents / ~1.9M tokens / 28min。后续若需细化 (applyingMaxIv「无」桶码 / baseCurrencyId 存储格式 / categoryId 全树), 走 UI body 反向抓取。
+
+## 2026-06-21 — 搜索策略设计 + 落地 (两层漏斗去冗余) + 两个关键 bug 修复
+- **策略确定 (judge-panel 工作流, 5 策略实测)**: 服务端 search_filter = 结构生存(rating3Y 地板/资产大类 EQUTY+ALLOC/非指数/非增强/非FOF/tenure>3/size≥2亿) + oldestShareId 份额去重 + trackPb36mRankPer 真α预筛。实测 **402 只, 100% 捕获无截断**。client screen = 质量底线 + 组合适配 + 防御标注。daily: 402 → **308 候选** (宽, 因 trackPb 网已α精英)。
+- **核心修复 1 — 两层漏斗去冗余**: 旧 universe.json 和 thresholds.json 用同一套 9 个 gate → screen 空转。重构: 服务端管结构+真α, 客户端管排名+组合适配+防御, 零重复。rating5Y/alpha3Y/sharpe3Y 移出服务端。
+- **🔴 核心修复 2 — trackPb 方向反转**: 工作流综合方案用 trackPb `0~50` 当"杀 closet-indexer", 实测反了 — `0~50` 保留低α基金(meanAlpha 4.77), `50~100` 才保留高α主动基金(10.66)。kept-vs-excluded α对比抓出。改成 `50~100`。教训: rank 方向取决于指标极性, trackPb(跟踪误差)是"原始幅度"型, 不能套 0=best。
+- **🔴 核心修复 3 — 阈值 100× bug**: alphaToIndRankP_3Y/sharpeRatioRankP_3Y 字段是 0-100 百分位(非 0-1 小数), 旧阈值 0.5 = top 0.5%(误选极顶, "25 候选"之谜), 改 50 = top half(原意)。
+- **截断检测**: client.js 加 totalCount(data.count); market-sweep 若 totalCount>count 警告"截断, 基金丢失"。服务用户原则"不限制数量, 符合筛选条件的全留" — 单调用 ≤cap 即 100% 捕获; 若 >cap 走 sharded multi-call (未实现, 记入 PLAN)。
+- **产出**: `engine/docs/screener-filter-discovery-methodology.md` (发现/验证/刷新方法论 + 10 条教训 + probe 模板 + 加新 filter 清单)。`screener-filters.md` 已有 245 字段清单。33 tests green, live daily 通过。
+- workflow: 14 agents / ~644k tokens / 11min (策略设计) + 手动实测 probe (4 轮 node 脚本)。

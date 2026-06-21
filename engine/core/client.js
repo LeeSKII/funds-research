@@ -42,7 +42,10 @@ async function _doSearchEs(fetcher, url, token, filter) {
  * @param {object} [opts.filter] request body (default { sign:'1' } = broad market — VERIFY in Task 12)
  * @param {typeof fetch} [opts.fetchImpl] injectable; defaults to globalThis.fetch
  * @param {string} [opts.date] YYYY-MM-DD (default: today UTC)
- * @returns {Promise<{ date: string, source: string, count: number, rows: object[] }>}
+ * @returns {Promise<{ date: string, source: string, count: number, totalCount: number, rows: object[] }>}
+ *   `count` = rows actually returned (capped at the API's per-call ceiling). `totalCount` =
+ *   `data.count` = the TRUE match total. If `totalCount > count` the API truncated — callers MUST
+ *   treat that as silent data loss (the snapshot is incomplete) and either warn or shard the query.
  */
 async function searchFunds({ token, filter = { sign: '1' }, fetchImpl, date }) {
   const fetcher = fetchImpl || globalThis.fetch;
@@ -60,7 +63,14 @@ async function searchFunds({ token, filter = { sign: '1' }, fetchImpl, date }) {
     throw new Error(`[client] search/es bad status: ${json?._meta?.response_status} (${json?._meta?.response_hint})`);
   }
   const rows = (json.data?.rows || []).map(normalizeRow);
-  return { date: date || new Date().toISOString().slice(0, 10), source: 'morningstar:search/es', count: rows.length, rows };
+  const total = Number(json.data?.count);
+  return {
+    date: date || new Date().toISOString().slice(0, 10),
+    source: 'morningstar:search/es',
+    count: rows.length,
+    totalCount: Number.isFinite(total) ? total : rows.length, // TRUE match total (uncapped)
+    rows,
+  };
 }
 
 module.exports = { searchFunds, normalizeRow };

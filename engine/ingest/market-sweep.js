@@ -40,6 +40,13 @@ async function marketSweep(opts = {}) {
     // Refuse to write an empty snapshot so diff/screen don't silently run on a void market.
     throw new Error('[market-sweep] search/es returned 0 rows — suspected rate limit or API change; refusing empty snapshot');
   }
+  // Truncation guard: search/es caps rows per call (no pagination). If the TRUE match total
+  // (totalCount) exceeds the rows we got (count), the snapshot is INCOMPLETE — funds were silently
+  // dropped. Principle: keep EVERY fund matching our criteria; never lose them to the cap.
+  // If this ever fires, either tighten the filter or shard the query into disjoint sub-calls.
+  if (typeof snapshot.totalCount === 'number' && snapshot.totalCount > snapshot.count) {
+    console.warn(`[market-sweep] ⚠ TRUNCATION: search/es matched ${snapshot.totalCount} funds but returned only ${snapshot.count} rows (per-call cap). ${snapshot.totalCount - snapshot.count} funds silently lost — snapshot is INCOMPLETE. Tighten search_filter or shard the query.`);
+  }
 
   const snapDir = path.join(_storeDir(), 'snapshots');
   fs.mkdirSync(snapDir, { recursive: true });

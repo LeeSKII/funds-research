@@ -32,6 +32,8 @@ test('searchFunds returns normalized snapshot from injected fetch', async () => 
   const snap = await searchFunds({ token: 'fake.jwt.token', fetchImpl: fakeFetchOk(captured), date: '2026-06-21' });
   assert.equal(snap.date, '2026-06-21');
   assert.equal(snap.count, 190);
+  assert.equal(typeof snap.totalCount, 'number');     // TRUE match total (data.count), uncapped
+  assert.ok(snap.totalCount >= snap.count);           // never less than rows returned
   assert.equal(snap.rows[0].id.length, 6);
   assert.equal(typeof snap.rows[0].rating3Y === 'number' || snap.rows[0].rating3Y === null, true);
 });
