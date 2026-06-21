@@ -5,7 +5,7 @@ const { validate } = require('../core/validate');
 test('snapshot schema accepts a valid snapshot', () => {
   const snap = {
     date: '2026-06-21', source: 'morningstar:search/es', count: 1,
-    rows: [{ id: '005161', fundName: '华商上游产业股票A', rating3Y: 5, rating5Y: 5, managerName: '某经理' }],
+    rows: [{ id: '005161', fundName: '华商上游产业股票A', rating3Y: 5, rating5Y: 5, managerName: '某经理', detailUrl: 'https://www.morningstar.cn/fund/005161.html' }],
   };
   const r = validate('snapshot', snap);
   assert.equal(r.valid, true, r.errors.join('; '));
@@ -14,7 +14,7 @@ test('snapshot schema accepts a valid snapshot', () => {
 test('snapshot schema rejects a 5-digit id and out-of-range rating', () => {
   const snap = {
     date: '2026-06-21', source: 'x', count: 1,
-    rows: [{ id: '12345', fundName: 'bad', rating3Y: 9, managerName: 'm' }],
+    rows: [{ id: '12345', fundName: 'bad', rating3Y: 9, managerName: 'm', detailUrl: 'https://www.morningstar.cn/fund/12345.html' }],
   };
   const r = validate('snapshot', snap);
   assert.equal(r.valid, false);

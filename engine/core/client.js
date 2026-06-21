@@ -13,6 +13,11 @@ const STR_FIELDS = ['fundName', 'categoryName', 'broadCategoryNameCN', 'managerN
 function normalizeRow(raw) {
   const num = v => (v === null || v === undefined || v === '') ? null : (typeof v === 'number' ? v : Number(v));
   const out = { id: String(raw.id) };
+  // Detail-page deep link for downstream deep-scrape (Plan 2). Deterministic from id — persisted
+  // so the deep-research step never has to re-derive the route. Empirically confirmed 2026-06-21:
+  // the live fund detail dossier is at /fund/<id>.html (Nuxt SSR); the legacy /quicktake/<id> is dead.
+  // See engine/docs/fund-detail-api.md.
+  out.detailUrl = `${BASE}/fund/${out.id}.html`;
   for (const f of NUM_FIELDS) out[f] = num(raw[f]);
   for (const f of STR_FIELDS) out[f] = raw[f] ?? null;
   // Star ratings are semantically integers (1-5). Round any stray decimal the API might emit

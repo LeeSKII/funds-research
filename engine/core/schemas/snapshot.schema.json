@@ -12,7 +12,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "fundName", "rating3Y", "managerName"],
+        "required": ["id", "fundName", "rating3Y", "managerName", "detailUrl"],
         "properties": {
           "id": { "type": "string", "pattern": "^\\d{6}$" },
           "fundName": { "type": ["string", "null"] },
@@ -38,7 +38,8 @@
           "ter": { "type": ["number", "null"] },
           "managementFee": { "type": ["number", "null"] },
           "managerName": { "type": ["string", "null"] },
-          "inceptionDate": { "type": ["string", "null"] }
+          "inceptionDate": { "type": ["string", "null"] },
+          "detailUrl": { "type": "string", "pattern": "^https://www\\.morningstar\\.cn/fund/\\d{6}\\.html$", "description": "Detail-page deep link for deep-scrape (Plan 2). Deterministic from id; the live fund dossier is at /fund/<id>.html (Nuxt SSR, confirmed 2026-06-21)." }
         },
         "additionalProperties": true
       }

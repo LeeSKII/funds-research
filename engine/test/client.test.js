@@ -26,6 +26,11 @@ test('normalizeRow rounds stray decimal ratings to integer', () => {
   assert.equal(typeof r.rating3Y, 'number');
 });
 
+test('normalizeRow sets the detail-page deep link deterministically from id', () => {
+  const r = normalizeRow({ id: '006502', fundName: 'X', rating3Y: 5, managerName: 'm' });
+  assert.equal(r.detailUrl, 'https://www.morningstar.cn/fund/006502.html');
+});
+
 test('searchFunds returns normalized snapshot from injected fetch', async () => {
   // NOTE: the real fixture carries response_status as a STRING "200011" — this test
   // locks the String()-based guard in client.js (regression guard for the blocker).
@@ -35,6 +40,7 @@ test('searchFunds returns normalized snapshot from injected fetch', async () => 
   assert.equal(typeof snap.totalCount, 'number');     // TRUE match total (data.count), uncapped
   assert.ok(snap.totalCount >= snap.count);           // never less than rows returned
   assert.equal(snap.rows[0].id.length, 6);
+  assert.equal(snap.rows[0].detailUrl, `https://www.morningstar.cn/fund/${snap.rows[0].id}.html`); // deep link persisted for deep-scrape
   assert.equal(typeof snap.rows[0].rating3Y === 'number' || snap.rows[0].rating3Y === null, true);
 });
 
