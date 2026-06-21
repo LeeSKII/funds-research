@@ -11,7 +11,7 @@
 > - 单只基金页：50+ 字段（晨星评级 / 风险调整后指标 / 业绩归因 / 重仓股 / 经理自持等）
 > - 经理详情页：画像标签 / 历年回报 / 行业变化 / 持仓 / 持有期
 > - 避免多源数据冲突导致的"伪矛盾"
-> - 详见 [`data/manager-schema.json`](./data/manager-schema.json)
+> - 详见 [`research/managers/scripts/manager-schema.json`](./research/managers/scripts/manager-schema.json)
 
 ---
 
@@ -22,7 +22,6 @@ funds-research/
 ├── README.md                      ← 你正在读的（项目入口）
 ├── CLAUDE.md                      ← 🤖 Claude 工作流约束
 ├── data/                          ← 结构化数据
-│   ├── manager-schema.json        ← 经理 JSON Schema 定义
 │   ├── manager/                   ← 经理数据（manager-<id>-<name>.json）
 │   └── fund/                      ← 基金 dossier（<code>/fund-<code>-<date>.json，按基金分文件夹）
 ├── engine/                        ← 基金分析生产系统（v2 — 4 步工作流：抓取→parse→validate→audit）
@@ -33,7 +32,7 @@ funds-research/
 ├── research/                      ← 经理研究子模块（4 步工作流）
 │   └── managers/
 │       ├── raw-snapshots/         ← 第 1 步：innerText 原始快照
-│       └── scripts/               ← 第 2-3 步：parse-manager + validate-manager
+│       └── scripts/               ← parse-manager + validate-manager + manager-schema.json
 └── web/                           ← 本地 HTML web app（独立前端）
     ├── server.js
     ├── public/

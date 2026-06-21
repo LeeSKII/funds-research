@@ -36,7 +36,7 @@ node research/managers/scripts/parse-manager.js \
 ```
 
 - **输入**：第 1 步的 `raw-snapshots/*.json`
-- **输出**：`data/manager/manager-<id>-<name>.json`（符合 `data/manager-schema.json`）
+- **输出**：`data/manager/manager-<id>-<name>.json`（符合 `research/managers/scripts/manager-schema.json`）
 - **实现**：v1.5 通用 extractor，正则 + 行号定位，支持 A 股 / QDII 经理
 
 > 为什么要用通用脚本：DOM 结构变了只改一处；同一个 extractor 可以在 N 个 manager 上复用；提取过程可 diff / 可 review。
@@ -52,7 +52,7 @@ node research/managers/scripts/validate-manager.js data/manager/<file>  # 单个
 
 | 检查项                             | 方法                                                                                                       |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| 必填字段齐全                       | 对照 `data/manager-schema.json` 的 required 列表                                                           |
+| 必填字段齐全                       | 对照 `research/managers/scripts/manager-schema.json` 的 required 列表                                      |
 | 跨表一致性                         | 历年回报合计 ≈ 任职以来；前十大持仓合计 < 100%；风险回报区间与历年回报数据方向一致                         |
 | 反常检测                           | 数字与名称配对（如 ticker = AAPL 但名称写"苹果"是正常；ticker = GOOG 但名称写"苹果"是抓取错位 — 必须报告） |
 | 同类基金任职回报 vs 主基金任职回报 | 应在 ±2% 内（A/C 份额差异）                                                                                |
@@ -103,7 +103,6 @@ parse-manager 自动写到 `data/manager/manager-<id>-<name>.json`。**用户没
 ```
 funds-research/
 ├── data/
-│   ├── manager-schema.json          # 经理 JSON schema（必填字段定义）
 │   ├── manager/                     # 结构化 manager JSON
 │   └── fund/                        # 基金 dossier 产物（fund-<code>-<date>.json）
 ├── engine/                          # 基金分析生产系统（v2 — 4 步工作流）
@@ -115,7 +114,7 @@ funds-research/
 ├── research/
 │   └── managers/                    # 基金经理子模块（v1.5 — 4 步工作流）
 │       ├── raw-snapshots/           # 第 1 步：innerText 原始快照
-│       └── scripts/                 # 第 2-3 步：parse + validate
+│       └── scripts/                 # parse + validate + manager-schema.json（schema 与脚本同目录）
 ├── web/                             # 本地 HTML web app（独立前端）
 │   ├── server.js
 │   ├── public/

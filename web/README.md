@@ -81,7 +81,7 @@ web/
 
 ## 📚 相关文档
 
-- **数据 schema**：[`data/manager-schema.json`](../data/manager-schema.json)
+- **数据 schema**：[`research/managers/scripts/manager-schema.json`](../research/managers/scripts/manager-schema.json)
 - **Claude 工作流**：[`CLAUDE.md`](../CLAUDE.md)
 
 ## 🐛 故障排查

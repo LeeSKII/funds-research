@@ -13,7 +13,7 @@
 //
 // 输出：
 //   data/manager/manager-<id>-<name>.json
-//   符合 data/manager-schema.json（v1.5 已补字段枚举）
+//   符合 ./manager-schema.json（同目录，v1.5 已补字段枚举）
 //
 // 模块导出：
 //   const { extractManager } = require('./parse-manager.js');
