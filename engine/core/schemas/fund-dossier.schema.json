@@ -1,0 +1,293 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://funds-research.local/schemas/fund-dossier.schema.json",
+  "title": "Fund Dossier (page-structure-aligned)",
+  "version": "2.0.0",
+  "description": "v2.0.0 — top-level blocks mirror the morningstar.cn /fund/<id>.html page TABS (description = top summary strip + identity; then 业绩/风险/费用/投资组合/持有人/基金经理/策略). 基金公司 and 基金公告 are NOT extracted. Field-ownership rule: the top strip is a MIRROR — each field lives in exactly ONE block, its semantic home tab (ter→fees, turnover→portfolio, ratings→performance, manager names→manager), so the dossier has zero duplication and a bug localizes to one section file. Strict (ranker) constraints only on the ~7 fields the portfolio ranker reads; everything else is additionalProperties:true for forward-compat.",
+  "type": "object",
+  "required": ["description", "performance", "risk", "fees", "portfolio", "holders", "manager", "strategy", "_diagnostics"],
+  "additionalProperties": false,
+  "properties": {
+
+    "description": {
+      "description": "顶部摘要条 + 身份。Strip-only fields (those with no other tab home): nav, daily change, status, custodian, etc. ter/turnover/ratings/manager-names live elsewhere (home-tab rule).",
+      "type": "object",
+      "required": ["code", "name"],
+      "additionalProperties": true,
+      "properties": {
+        "code": { "type": "string", "pattern": "^\\d{6}$" },
+        "name": { "type": "string" },
+        "category": { "type": ["string", "null"], "description": "晨星分类" },
+        "fundType": { "type": ["string", "null"], "description": "基金类型" },
+        "inceptionDate": { "type": ["string", "null"] },
+        "currency": { "type": ["string", "null"] },
+        "nav": { "type": ["number", "null"] },
+        "navDate": { "type": ["string", "null"] },
+        "dailyChangePct": { "type": ["number", "null"], "description": "日涨跌幅" },
+        "riskLevel": { "type": ["string", "null"] },
+        "styleBox": { "type": ["string", "null"], "description": "股票投资风格箱" },
+        "aumYi": { "type": ["number", "null"], "description": "基金规模 (亿)" },
+        "dailyPurchaseLimit": { "type": ["number", "string", "null"], "description": "单日申购限额" },
+        "purchaseStatus": { "type": ["string", "null"], "description": "申购状态" },
+        "redemptionStatus": { "type": ["string", "null"], "description": "赎回状态" },
+        "lockupPeriod": { "type": ["string", "null"], "description": "锁定期" },
+        "custodian": { "type": ["string", "null"], "description": "托管人" },
+        "asOfDate": { "type": ["string", "null"], "description": "业绩数据截至" }
+      }
+    },
+
+    "performance": {
+      "description": "业绩 tab: trailing + annual calendar returns + 晨星评级 + Brinson 业绩归因 (.attribution).",
+      "type": "object",
+      "required": ["trailing", "annual", "attribution"],
+      "additionalProperties": true,
+      "properties": {
+        "trailing": { "type": "object", "additionalProperties": { "type": ["number", "null"] }, "description": "过往回报 period→本基金%" },
+        "trailingPeer": { "type": "object", "additionalProperties": { "type": ["number", "null"] } },
+        "annual": { "type": "object", "additionalProperties": { "type": ["number", "null"] }, "description": "年度回报 year→本基金%" },
+        "annualPeer": { "type": "object", "additionalProperties": { "type": ["number", "null"] } },
+        "ratings": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "rating3Y": { "type": ["number", "null"] },
+            "rating5Y": { "type": ["number", "null"] },
+            "rating10Y": { "type": ["number", "null"] }
+          }
+        },
+        "attribution": {
+          "type": "object",
+          "required": ["present", "real"],
+          "additionalProperties": true,
+          "properties": {
+            "present": { "type": "boolean" },
+            "real": { "type": "boolean", "description": "real ⟺ domestic active (equity/ALLOC); null ⟺ ETF/QDII/HK" },
+            "reason": { "type": ["string", "null"] },
+            "fundReturn": { "type": ["number", "null"] },
+            "benchReturn": { "type": ["number", "null"] },
+            "excess": { "type": ["number", "null"] },
+            "sectorAllocation": { "type": ["number", "null"] },
+            "stockSelection": { "type": ["number", "null"] },
+            "_identityCheck": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "reconstructed": { "type": "number" },
+                "delta": { "type": "number" },
+                "ok": { "type": "boolean" }
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "attribution": { "properties": { "real": { "const": true } }, "required": ["real"] } }, "required": ["attribution"] },
+          "then": { "properties": { "attribution": { "required": ["excess", "sectorAllocation", "stockSelection"] } } }
+        }
+      ]
+    },
+
+    "risk": {
+      "description": "风险 tab. capture ratios may exceed 100 (QDII). calmar/sortino captured even when 负值暂不排名.",
+      "type": "object",
+      "required": ["downsideCapture"],
+      "additionalProperties": true,
+      "properties": {
+        "sharpe": { "$ref": "#/$defs/fundPeer" },
+        "calmar": { "$ref": "#/$defs/fundPeer" },
+        "sortino": { "$ref": "#/$defs/fundPeer" },
+        "stdDev": { "$ref": "#/$defs/fundPeer" },
+        "maxDrawdown": { "type": ["number", "null"] },
+        "downsideRisk": { "type": ["number", "null"] },
+        "alpha": { "type": ["number", "null"] },
+        "beta": { "type": ["number", "null"] },
+        "rSquared": { "type": ["number", "null"] },
+        "excessReturn": { "type": ["number", "null"] },
+        "trackingError": { "type": ["number", "null"] },
+        "infoRatio": { "type": ["number", "null"] },
+        "monthlyWinRate": { "type": ["number", "null"] },
+        "upsideCapture": { "type": ["number", "null"] },
+        "downsideCapture": { "type": ["number", "null"], "description": "跌势捕获率; may be >100" }
+      }
+    },
+
+    "fees": {
+      "description": "费用 tab. ter (综合费率) is canonical here (top strip mirrors it). managementFee anchored on 管理费(每年) prospectus row, NOT the 费率与成本 waterfall 管理费(年).",
+      "type": "object",
+      "required": ["ter"],
+      "additionalProperties": true,
+      "properties": {
+        "ter": { "type": ["number", "null"], "description": "综合费率 %" },
+        "managementFee": { "type": ["number", "null"] },
+        "custodianFee": { "type": ["number", "null"] },
+        "salesServiceFee": { "type": ["number", "null"], "description": "null when 该份额不收取销售服务费" },
+        "minInvestment": { "type": ["number", "null"] },
+        "purchaseFeeTiers": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+        "redemptionFeeTiers": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
+      }
+    },
+
+    "portfolio": {
+      "description": "投资组合 tab. turnover lives here (home tab). Holdings tickers are multi-market (A-share 6-digit / HK 5-digit / US letters).",
+      "type": "object",
+      "required": ["topHoldings", "top10Concentration"],
+      "additionalProperties": true,
+      "properties": {
+        "assetAllocation": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "stock": { "$ref": "#/$defs/fundPeer" },
+            "bond": { "$ref": "#/$defs/fundPeer" },
+            "cash": { "$ref": "#/$defs/fundPeer" },
+            "commodity": { "$ref": "#/$defs/fundPeer" },
+            "other": { "$ref": "#/$defs/fundPeer" }
+          }
+        },
+        "topHoldings": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "required": ["code", "name"],
+            "additionalProperties": true,
+            "properties": {
+              "code": { "type": "string", "description": "6-digit / 5-digit / 1-6 letters" },
+              "name": { "type": "string" },
+              "industry": { "type": ["string", "null"] },
+              "weightPct": { "type": ["number", "null"] }
+            }
+          }
+        },
+        "top10Concentration": { "type": ["number", "null"] },
+        "sectorAllocation": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+        "regionAllocation": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+        "turnover": { "type": ["number", "null"], "description": "换手率 % (home tab 投资组合)" }
+      }
+    },
+
+    "holders": {
+      "description": "持有人 tab. insiders = 内部人员持有 breakdown (基金经理自持/高管投研跟投/内部员工/基金公司直持). skin-in-the-game lives here, not in manager.",
+      "type": "object",
+      "required": ["institutional", "retail"],
+      "additionalProperties": true,
+      "properties": {
+        "institutional": { "type": ["number", "null"] },
+        "retail": { "type": ["number", "null"] },
+        "insiders": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "managerSelf": { "description": "基金经理自持", "type": ["object", "string", "null"] },
+            "executive": { "description": "高管投研跟投", "type": ["object", "string", "null"] },
+            "employee": { "description": "内部员工持有", "type": ["object", "string", "null"] },
+            "companyDirect": { "description": "基金公司直接持有", "type": ["object", "string", "null"] }
+          }
+        },
+        "fofHeld": { "type": ["string", "boolean", "null"] },
+        "dividends": { "type": ["string", "null"] }
+      }
+    },
+
+    "manager": {
+      "description": "基金经理 tab. team = ALL managers + tenure (resolves the multi-manager limitation). lead = longest-tenure manager's KPI stats. skin-in-the-game moved to holders.insiders.",
+      "type": "object",
+      "required": ["team", "maxTenureYears"],
+      "additionalProperties": true,
+      "properties": {
+        "team": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "additionalProperties": true,
+            "properties": {
+              "name": { "type": "string" },
+              "tenureStart": { "type": ["string", "null"] },
+              "tenureEnd": { "type": ["string", "null"], "description": "null = 至今" },
+              "tenureYears": { "type": ["number", "null"] }
+            }
+          }
+        },
+        "managerCount": { "type": ["number", "null"] },
+        "maxTenureYears": { "type": ["number", "null"], "description": "最长任职年限" },
+        "avgTenureYears": { "type": ["number", "null"], "description": "平均任职年限" },
+        "lead": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "returnSinceInception": { "type": ["number", "null"], "description": "任职回报 % (NOT a calendar year)" },
+            "aumYi": { "type": ["number", "null"], "description": "在管规模 亿" },
+            "fundsManaged": { "type": ["number", "null"], "description": "管理数量 (NOT a percentile)" }
+          }
+        }
+      }
+    },
+
+    "strategy": {
+      "description": "策略 tab (NEW in v2). Full text per design decision. benchmark = 业绩比较基准; latestCommentary = 季报 投资策略及运作分析; outlook = 年报 基金经理展望.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "objective": { "type": ["string", "null"], "description": "投资目标" },
+        "scope": { "type": ["string", "null"], "description": "投资范围" },
+        "strategy": { "type": ["string", "null"], "description": "投资策略" },
+        "benchmark": { "type": ["string", "null"], "description": "业绩比较基准" },
+        "latestCommentary": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "report": { "type": ["string", "null"] },
+            "date": { "type": ["string", "null"] },
+            "text": { "type": ["string", "null"] }
+          }
+        },
+        "outlook": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "report": { "type": ["string", "null"] },
+            "date": { "type": ["string", "null"] },
+            "text": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+
+    "_diagnostics": {
+      "description": "Parser telemetry + provenance (NOT page content). Underscore prefix = non-content. Computed by the orchestrator.",
+      "type": "object",
+      "required": ["scriptVersion", "parsedAt"],
+      "additionalProperties": true,
+      "properties": {
+        "scriptVersion": { "type": "string" },
+        "parsedAt": { "type": "string", "format": "date-time" },
+        "snapshotFile": { "type": ["string", "null"] },
+        "sourceUrl": { "type": ["string", "null"] },
+        "layout": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "trailingCols": { "type": "number" },
+            "annualYears": { "type": "array", "items": { "type": "string" } },
+            "sections": { "type": "object" },
+            "tickerFormats": { "type": "array", "items": { "type": "string" } },
+            "lineCount": { "type": "number" }
+          }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "fundPeer": {
+      "type": "object",
+      "properties": {
+        "fund": { "type": ["number", "null"] },
+        "peer": { "type": ["number", "null"] }
+      }
+    }
+  }
+}

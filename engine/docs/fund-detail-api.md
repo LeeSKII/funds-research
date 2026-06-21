@@ -10,6 +10,8 @@
 >
 > **Status.** Discovered 2026-06-21 on `006502` (财通集成电路产业股票A). The `/fund/<id>.html` route is
 > confirmed live; the legacy `/quicktake/<id>` route is **dead** (redirects to a maintenance page).
+> **Updated 2026-06-21:** `__NUXT_DATA__` values confirmed **encrypted** (§3.2) — not a read path;
+> `secId` source corrected to the Nuxt runtime / growth-data request body (§5).
 
 ---
 
@@ -39,7 +41,7 @@ string `"200011"`.
 
 | # | Endpoint | Method | Carries | Notes |
 |---|---|---|---|---|
-| 1 | `/cn-api/v2/funds/<id>/growth-data` | POST | **NAV time series + rolling returns + dividends + manager-change events** | Body needs **secId** (e.g. `F00001LXG1`), NOT the 6-digit id. See §5. |
+| 1 | `/cn-api/v2/funds/<id>/growth-data` | POST | **NAV time series + rolling returns + dividends + manager-change events** | Keyed by the **6-digit id** in the path (live-confirmed 2026-06-21 on 017730); body carries benchmark ids only. **No F00 secId needed.** See §5. |
 | 2 | `/cn-api/v2/manager/return?managerId=<mgrId>` | GET | Manager's calendar-year total returns vs 沪深300, 任职以来 | Optional `&period=&broadCategory=` filters. |
 | 3 | `/cn-api/user/getUserInfo` | GET | auth state | Ignore. |
 | 4 | `/v1/write/rum` | POST | telemetry (RUM) | Ignore. |
@@ -48,29 +50,32 @@ string `"200011"`.
 ### 2.1 `growth-data` (the NAV pull)
 
 ```
-POST /cn-api/v2/funds/006502/growth-data
+POST /cn-api/v2/funds/<6-digit-id>/growth-data        ← keyed by the 6-digit id in the PATH
 body: {
   growthDataPoint: "cumulativeReturn",
   initValue: 10000, freq: "1d", currency: "CNY", type: "return",
-  calcBmkSecId: "F00001LXG1",   // ← secId, not 6-digit id
-  bmk1SecId:    "F00001LXG1",
-  catAvgSecId:  "CHCA000035",   // category-average secId
+  calcBmkSecId: "PBMK",         // benchmark placeholder (NOT the fund secId)
+  bmk1SecId:    "PBMK",
+  catAvgSecId:  "CHCA000006",   // category-average secId
   startDate: "2021-06-19", endDate: "2026-06-18",
   outputs: ["tsData","pr","dividend","management"]
 }
-resp.data: { startDate, endDate, cur, secIds, tsData, pr, rollingReturn,
+resp.data: { startDate, endDate, cur, secIds:["<6-digit-id>"], tsData, pr, rollingReturn,
              dividend, management, managerChangeEvents }
 ```
 
 `tsData` = the NAV curve (fund + benchmark + category-average series, keyed by `secIds`).
 `rollingReturn` = rolling-window returns (risk analysis). `managerChangeEvents` = manager tenure
-changes (manager-stability signal). Sample response saved at `engine/tmp/growth-data-006502.response.*`.
+changes (manager-stability signal) **and carries `managerId` for free** (→ drives the `mgr-*` family).
+Sample response saved at `engine/tmp/growth-data-006502.response.*`.
 
 ---
 
 ## 3. Extraction strategy
 
-Two paths; **primary is the rendered DOM** (proven, matches the manager workflow).
+**One viable read path: the rendered DOM.** `__NUXT_DATA__` keys are visible but its **values are
+encrypted** (§3.2), so it is not a read path. The growth-data / manager/return XHRs supplement the DOM
+(NAV series + manager events) but are not the dossier.
 
 ### 3.1 PRIMARY — parse the rendered DOM (innerText)
 
@@ -83,25 +88,40 @@ This is the same pattern as `research/managers/scripts/parse-manager.js`. **Star
 > age/history. The parser must handle all three, not assume a fixed column count. Brinson methodology
 > background: memory `morningstar-alpha-attribution`.
 
-### 3.2 SECONDARY — parse `__NUXT_DATA__` (more robust, build-phase)
+### 3.2 `__NUXT_DATA__` — keys visible, **values encrypted** (NOT a read path)
 
 ```html
 <script id="__NUXT_DATA__" type="application/json"> … </script>
 ```
 
-The structured Nuxt payload (~86 KB), a flattened array with reference indices (root at index 1; fund
-data nested under `data[2]`). Requires a reference resolver (Nuxt 3 deserialize). Field **keys** are
-more stable than display **labels**, so this is the more robust long-term path — but invest in the
-resolver during `parse-fund.js` build, not before.
+The Nuxt-3 SSR payload (~86 KB) is a flattened devalue array. The structure is fully legible:
 
-> **`__NUXT_DATA__` is the authoritative source for `secId`** (needed by growth-data) — it is NOT in
-> the rendered HTML. Either resolve it from `__NUXT_DATA__` or capture it from the page's JS state.
+- **Root** `["ShallowReactive", 1]` → `{data, state, once, _errors, serverRendered, path}`.
+- **`data`** → `{fund-data, fund-strategy-report-strategies-data, fund-strategy-report-outlooks-data,
+  fund-manager-data, fund-doc-data}`.
+- **`state`** → 22 `$sfund-*` section keys (the authoritative section inventory — see §4).
+
+The **section keys are stable**: byte-for-byte identical across an A-share equity fund (006502) and a
+QDII offshore fund (017730). So the `$sfund-*` keys are the most reliable **section checklist**, far
+more stable than the Chinese display labels in the DOM.
+
+**But every VALUE is an encrypted opaque blob** (e.g. `fund-data` = a 14 962-char string; decodes to
+~21 KB binary, no compression magic, printable-ratio 0.37). The decrypt routine lives in the page's JS
+chunk; the decrypted form appears **only in the rendered DOM**. So `__NUXT_DATA__` is **not** a usable
+extraction path — it would require reverse-engineering the client decryption, which contradicts the
+project's "don't RE the XHRs — the data is already in the page" principle. Confirmed 2026-06-21.
+
+> **Use the `$sfund-*` keys only as a section checklist** when writing the DOM parser (so a missing
+> section is a *detected* absence, not a silent miss). Revisit decryption ONLY if a section disappears
+> from the rendered DOM but survives in `__NUXT_DATA__` (no such case observed).
 
 ---
 
 ## 4. Field inventory by section (the dossier map)
 
-Discovered on `006502`. Each section's rows are clearly delimited in the DOM.
+Discovered on `006502`. Each section's rows are clearly delimited in the DOM. The Chinese headers here
+are the **display labels**; the stable **machine identifiers** are the `$sfund-*` keys in
+`__NUXT_DATA__` (§3.2) — prefer those as the parser's section anchors when a label is ambiguous.
 
 ### 业绩 Performance
 - **年度回报** (calendar-year): per year `[本基金, 同类平均, 业绩比较基准, 四分位排名, 百分位排名, 同类基金数量]`. ← **bear-survival** signal (e.g. 2022).
@@ -143,15 +163,19 @@ Discovered on `006502`. Each section's rows are clearly delimited in the DOM.
 
 ---
 
-## 5. `secId` — the growth-data key
+## 5. No `secId` needed — the 6-digit id is the key
 
-`growth-data` is keyed by **secId** (e.g. `F00001LXG1`), not the 6-digit fund id. The page knows the
-fund's secId to call growth-data; it lives in `__NUXT_DATA__` / page JS state, **not** in the rendered
-HTML. `catAvgSecId` (e.g. `CHCA000035`) = category-average secId.
+**CORRECTION 2026-06-21 (live test on 017730):** `growth-data` is keyed by the **6-digit fund id in
+the URL path** (`/cn-api/v2/funds/<id>/growth-data`), and the response returns the fund's series under
+`secIds:["<6-digit-id>"]`. The request body's `calcBmkSecId`/`bmk1SecId` are **benchmark placeholders**
+(observed `"PBMK"`), not the fund's secId. So the earlier "needs F00 secId (e.g. `F00001LXG1`)"
+premise was an **unverified assumption — drop it.** The 6-digit id already on every snapshot row is
+sufficient for the NAV pull. (`catAvgSecId`, e.g. `CHCA000006`, = category-average.)
 
-**Build action:** `parse-fund.js` must capture `secId` from the page (resolve `__NUXT_DATA__` or read
-the growth-data request the page itself issues) and persist it on the fund JSON so the NAV pull can be
-replayed standalone.
+**managerId** (needed for the `mgr-*` family) is also free: it appears in `growth-data` →
+`managerChangeEvents[].managerId` and in the `manager/return?managerId=<id>` URL the page issues. No
+separate lookup. The F00-style secId is simply not on the critical path — this removes the entire
+secId-acquisition dependency from the build.
 
 ---
 
@@ -168,8 +192,12 @@ needs no throttle; the N-fund Plan 2 sweep does.)
 | Artifact | Role | Location |
 |---|---|---|
 | This map | detail-page API + extraction spec | `engine/docs/fund-detail-api.md` |
-| Detail scraper (build next) | `/fund/<id>.html` → fund JSON | `engine/analyze/parse-fund.js` (TODO) |
-| NAV puller (build next) | growth-data → NAV series | (part of parse-fund / Plan 2) |
+| **Layout-variance spec** | empirical 18-fund corpus map (7/8/9 cols, Brinson-null, tickers) | `engine/docs/fund-detail-layouts.md` |
+| **Detail scraper** | `/fund/<id>.html` innerText → page-structure-aligned dossier (8 section extractors + orchestrator) | `engine/analyze/parse-fund.js` (v2.0.0) |
+| **Section extractors** | one extractor per page TAB (description/performance/risk/fees/portfolio/holders/manager/strategy) | `engine/analyze/sections/*.js` |
+| **Shared helpers** | line helpers shared by all sections | `engine/analyze/shared.js` |
+| **Dossier schema** | page-tab-aligned + versioned; strict on ~7 ranker fields | `engine/core/schemas/fund-dossier.schema.json` (v2.0.0) |
+| **NAV puller** | growth-data → daily cumulative-return series (Node half) | `engine/ingest/pull-nav.js` |
 | Sample growth-data response | response-shape reference | `engine/tmp/growth-data-006502.response.*` (gitignored) |
 | Live capture | chrome-devtools MCP (`new_page` + `evaluate_script` + `list_network_requests`) | browser |
 | Row deep link | `detailUrl` on every snapshot/candidate row | `core/client.js` normalizeRow |
@@ -178,8 +206,8 @@ needs no throttle; the N-fund Plan 2 sweep does.)
 
 ## 8. Open questions (resolve during `parse-fund.js` build)
 
-- Brinson: full decomposition — is it 行业配置 + 个股选择 only, or also 地区配置 / interaction term? (Observed 行业 + 个股 on 006502; confirm across funds.)
-- `__NUXT_DATA__` reference resolver: write a Nuxt-3 deserialize + map the fund-data subtree to field keys (the robust path; supersedes innerText long-term).
-- `secId` extraction: confirm the exact `__NUXT_DATA__` path or the page-JS hook (`window.__updateFundPage` was seen) that exposes it.
-- `pr` / `rollingReturn` / `management` sub-shapes in growth-data (characterize when building the NAV puller).
+- ~~Brinson: full decomposition — 行业配置 + 个股选择 only, or also 地区配置 / interaction term?~~ — **RESOLVED 2026-06-21:** 行业配置 + 个股选择 only (no interaction term). Confirmed across the 18-fund corpus: 超额 ≈ 行业 + 个股 holds with Δ<0.5 on every real-Brinson fund (see `fund-detail-layouts.md` §4). Null (no decomposition) on ETF/QDII/HK funds.
+- ~~`__NUXT_DATA__` reference resolver~~ — **RESOLVED 2026-06-21:** values are encrypted, not a read path (§3.2). Keys serve only as a section checklist.
+- ~~`secId` extraction~~ — **RESOLVED 2026-06-21:** from the Nuxt runtime (`useNuxtApp`/`__updateFundPage`) or the growth-data request body (§5); NOT from `__NUXT_DATA__`.
+- ~~`pr` / `rollingReturn` / `management` sub-shapes in growth-data~~ — **PARTIALLY RESOLVED 2026-06-21:** `engine/ingest/pull-nav.js` captures `pr` (period-return summary: return/annulized/startValue/endValue per series), `rollingReturn`, `dividend[]`, and `managerChangeEvents[]` (carries `managerId` for free). Full per-field characterization deferred to backtest integration.
 - Diversification of the Brinson signal across sleeves (does the defensive sleeve's Brinson look structurally different?).
