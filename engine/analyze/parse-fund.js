@@ -117,7 +117,9 @@ function main(argv) {
   const dossier = parseFund(text, { code, snapshotFile });
   const dateMatch = snapshotFile.match(/(\d{8})/);
   const date = dateMatch ? dateMatch[1] : new Date().toISOString().slice(0, 10).replace(/-/g, '');
-  const outPath = path.resolve(outOverride || `data/fund/fund-${code}-${date}.json`);
+  // Dossiers nest by fund code: data/fund/<code>/fund-<code>-<date>.json — one folder per fund
+  // holds its time-series of dated snapshots (latest = max date). atomicWrite mkdirs the folder.
+  const outPath = path.resolve(outOverride || `data/fund/${code}/fund-${code}-${date}.json`);
   atomicWrite(outPath, dossier);
   const d = dossier;
   console.log(`✓ parsed ${code} ${d.description.name} → ${outPath}`);

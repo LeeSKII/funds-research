@@ -24,7 +24,7 @@ funds-research/
 ├── data/                          ← 结构化数据
 │   ├── manager-schema.json        ← 经理 JSON Schema 定义
 │   ├── manager/                   ← 经理数据（manager-<id>-<name>.json）
-│   └── fund/                      ← 基金 dossier（fund-<code>-<date>.json）
+│   └── fund/                      ← 基金 dossier（<code>/fund-<code>-<date>.json，按基金分文件夹）
 ├── engine/                        ← 基金分析生产系统（v2 — 4 步工作流：抓取→parse→validate→audit）
 │   ├── analyze/                   ← parse-fund.js + sections/（8 段 extractor）+ shared.js
 │   ├── core/schemas/              ← fund-dossier.schema.json

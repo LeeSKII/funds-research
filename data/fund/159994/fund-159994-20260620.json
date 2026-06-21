@@ -1,0 +1,477 @@
+{
+  "description": {
+    "code": "159994",
+    "name": "银华中证5G通信主题ETF",
+    "category": "行业股票-科技、传媒及通讯",
+    "fundType": "股票型",
+    "inceptionDate": "2020-01-22",
+    "currency": "人民币",
+    "nav": 1.6895,
+    "navDate": "2026-06-18",
+    "dailyChangePct": 4.05,
+    "riskLevel": "中高风险(R4)",
+    "styleBox": "大盘成长",
+    "aumYi": 20.37,
+    "dailyPurchaseLimit": null,
+    "purchaseStatus": "可申购",
+    "redemptionStatus": "可赎回",
+    "lockupPeriod": "无锁定期",
+    "custodian": "农业银行",
+    "asOfDate": "2026-05-31"
+  },
+  "performance": {
+    "trailing": {
+      "近一月": 21.69,
+      "近三月": 48.25,
+      "近六月": 76.74,
+      "近一年": 251.05,
+      "近两年": 96.66,
+      "近三年": 54.7,
+      "近五年": 26.67,
+      "今年以来": 58.03
+    },
+    "trailingPeer": {
+      "近一月": 8.17,
+      "近三月": 11.87,
+      "近六月": 29.2,
+      "近一年": 77.9,
+      "近两年": 50.81,
+      "近三年": 21.22,
+      "近五年": 10.14,
+      "今年以来": 23.66
+    },
+    "annual": {
+      "2021": 5.71,
+      "2022": -37.27,
+      "2023": 15.88,
+      "2024": 24.06,
+      "2025": 98.53
+    },
+    "annualPeer": {
+      "2021": 9.75,
+      "2022": -29.32,
+      "2023": 2.53,
+      "2024": 16.5,
+      "2025": 42.97
+    },
+    "ratings": {
+      "rating3Y": 5,
+      "rating5Y": 5,
+      "rating10Y": null
+    },
+    "attribution": {
+      "present": true,
+      "real": false,
+      "reason": "not_computed"
+    }
+  },
+  "risk": {
+    "sharpe": {
+      "fund": 3.06,
+      "peer": 1.84
+    },
+    "calmar": {
+      "fund": 13.31,
+      "peer": 5.14
+    },
+    "sortino": {
+      "fund": 22.57,
+      "peer": 4.37
+    },
+    "stdDev": {
+      "fund": 45.57,
+      "peer": 34.3
+    },
+    "maxDrawdown": -18.86,
+    "downsideRisk": 6.18,
+    "morningstarRisk": {
+      "fund": 46.5,
+      "peer": 16.84
+    },
+    "alpha": 0.58,
+    "beta": 0.99,
+    "rSquared": 1,
+    "excessReturn": -1.76,
+    "trackingError": 0.71,
+    "infoRatio": -1.24,
+    "monthlyWinRate": 58.33,
+    "upsideCapture": 99.46,
+    "downsideCapture": 99.91
+  },
+  "fees": {
+    "ter": 0.7,
+    "managementFee": 0.5,
+    "custodianFee": 0.1,
+    "salesServiceFee": null,
+    "minInvestment": 1000000
+  },
+  "portfolio": {
+    "assetAllocation": {
+      "stock": {
+        "fund": 98.84,
+        "peer": 95.66
+      },
+      "bond": {
+        "fund": 0,
+        "peer": 0.55
+      },
+      "cash": {
+        "fund": 1.76,
+        "peer": 4.47
+      },
+      "commodity": {
+        "fund": 0,
+        "peer": 0
+      },
+      "other": {
+        "fund": -0.6,
+        "peer": -0.68
+      }
+    },
+    "topHoldings": [
+      {
+        "code": "300502",
+        "name": "新易盛",
+        "industry": "科技",
+        "weightPct": 10.32
+      },
+      {
+        "code": "300308",
+        "name": "中际旭创",
+        "industry": "科技",
+        "weightPct": 9.27
+      },
+      {
+        "code": "002475",
+        "name": "立讯精密",
+        "industry": "科技",
+        "weightPct": 7.67
+      },
+      {
+        "code": "601138",
+        "name": "工业富联",
+        "industry": "科技",
+        "weightPct": 6.7
+      },
+      {
+        "code": "603986",
+        "name": "兆易创新",
+        "industry": "科技",
+        "weightPct": 5.26
+      },
+      {
+        "code": "300394",
+        "name": "天孚通信",
+        "industry": "科技",
+        "weightPct": 4.64
+      },
+      {
+        "code": "002384",
+        "name": "东山精密",
+        "industry": "科技",
+        "weightPct": 4.27
+      },
+      {
+        "code": "600487",
+        "name": "亨通光电",
+        "industry": "科技",
+        "weightPct": 3.42
+      },
+      {
+        "code": "000063",
+        "name": "中兴通讯",
+        "industry": "科技",
+        "weightPct": 3.4
+      },
+      {
+        "code": "002463",
+        "name": "沪电股份",
+        "industry": "科技",
+        "weightPct": 3.38
+      }
+    ],
+    "top10Concentration": 58.33,
+    "sectorAllocation": [
+      {
+        "sector": "周期性",
+        "fund": 1.82,
+        "benchmark": 2.31,
+        "excess": -0.49
+      },
+      {
+        "sector": "基础材料",
+        "fund": 0,
+        "benchmark": 1.21,
+        "excess": -1.2
+      },
+      {
+        "sector": "可选消费",
+        "fund": 1.82,
+        "benchmark": 0,
+        "excess": 1.82
+      },
+      {
+        "sector": "金融服务",
+        "fund": 0,
+        "benchmark": 1.1,
+        "excess": -1.1
+      },
+      {
+        "sector": "房地产",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "sector": "敏感性",
+        "fund": 98.18,
+        "benchmark": 97.69,
+        "excess": 0.48
+      },
+      {
+        "sector": "通信服务",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "sector": "能源",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "sector": "工业",
+        "fund": 3.95,
+        "benchmark": 1.91,
+        "excess": 2.05
+      },
+      {
+        "sector": "科技",
+        "fund": 94.22,
+        "benchmark": 95.79,
+        "excess": -1.57
+      },
+      {
+        "sector": "防御性",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "sector": "必选消费",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "sector": "医疗保健",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "sector": "公用事业",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      }
+    ],
+    "regionAllocation": [
+      {
+        "region": "大亚洲地区",
+        "fund": 100,
+        "benchmark": 100,
+        "excess": 0
+      },
+      {
+        "region": "日本",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "大洋洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "发达亚洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "新兴亚洲",
+        "fund": 100,
+        "benchmark": 100,
+        "excess": 0
+      },
+      {
+        "region": "美洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "北美",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "拉丁美洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "大欧洲地区",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "英国",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "发达欧洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "新兴欧洲",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "非洲/中东",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      },
+      {
+        "region": "未分类",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      }
+    ],
+    "turnover": 80,
+    "_tickerFormats": [
+      "asha6"
+    ]
+  },
+  "holders": {
+    "institutional": 77.32,
+    "retail": 22.68,
+    "insiders": {
+      "managerSelf": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "executive": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "employee": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "companyDirect": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      }
+    },
+    "fofHeld": "FOF持有人数量",
+    "dividends": null
+  },
+  "manager": {
+    "team": [
+      {
+        "name": "马君",
+        "tenureStart": "2020-01-22",
+        "tenureEnd": null
+      },
+      {
+        "name": "王帅",
+        "tenureStart": "2020-01-22",
+        "tenureEnd": null
+      }
+    ],
+    "managerCount": 2,
+    "maxTenureYears": 6.4,
+    "avgTenureYears": 6.4,
+    "lead": {
+      "name": "马君",
+      "returnSinceInception": 207.98,
+      "aumYi": 333.57,
+      "fundsManaged": 19
+    }
+  },
+  "strategy": {
+    "objective": "该基金采用被动指数化投资，紧密跟踪标的指数，追求跟踪偏离度和跟踪误差最小化。在正常市场情况下，该基金日均跟踪偏离度的绝对值不超过0.2%，年跟踪误差不超过2%。",
+    "scope": "该基金主要投资于标的指数成份股及备选成份股。在建仓完成后，该基金投资于标的指数成份股及备选成份股的资产比例不低于基金资产净值的90%，且不低于非现金基金财产的80%，每个交易日日终在扣除股指期货合约、股票期权合约需缴纳的交易保证金后，应当保持不低于交易保证金一倍的现金，因法律法规的规定而受限制的情形除外。同时，为更好地实现投资目标，该基金可少量投资于部分非成份股（包括中小板股票、创业板股票及其他经中国证监会核准上市的股票、存托凭证）、债券资产（包括国债、金融债券、企业债券、公司债券、次级债券、可转换公司债券、分离交易可转债、央行票据、短期融资券、超短期融资券、地方政府债、中期票据、可交换债券以及其他中国证监会允许投资的债券）、银行存款（包括银行定期存款、协议存款）、资产支持证券、债券回购、同业存单、现金、衍生工具（股指期货、股票期权）以及法律法规或中国证监会允许基金投资的其他金融工具，但须符合中国证监会相关规定。该基金可以根据相关法律法规，参与融资及转融通证券出借业务，以提高投资效率及进行风险管理。",
+    "strategy": "该基金主要采取完全复制法跟踪标的指数，即完全按照标的指数的成份股组成及其权重构建基金股票投资组合，并根据标的指数成份股及其权重的变动而进行相应调整。当预期成份股发生调整和成份股发生配股、增发、分红、长期停牌等行为时，或因基金的申购和赎回等对该基金跟踪标的指数的效果可能带来影响时，或因某些特殊情况导致流动性不足时，或其他原因导致无法有效复制和跟踪标的指数时，基金经理将配合使用其他合理的投资方法作为完全复制法的补充，构建该基金实际的投资组合，以追求尽可能贴近标的指数的表现，有效控制跟踪误差。该基金将根据市场情况，结合经验判断，综合考虑相关性、估值、流动性等因素挑选标的指数中其他成份股或备选成份股进行替代，以期在规定的风险承受限度内，尽量缩小跟踪误差。建仓期结束后，在正常市场情况下，该基金日均跟踪偏离度的绝对值不超过0.2%，年跟踪误差不超过2%。如因指数编制规则调整或其他因素导致跟踪偏离度和跟踪误差超过上述范围，基金管理人应采取合理措施避免跟踪偏离度和跟踪误差进一步扩大。在建仓完成后，该基金投资于标的指数成份股及备选成份股的资产比例不低于基金资产净值的90%，且不低于非现金基金财产的80%，每个交易日日终在扣除股指期货合约、股票期权合约需缴纳的交易保证金后，应当保持不低于交易保证金一倍的现金。 （更多详情请参见基金招募说明书）",
+    "benchmark": "中证5G通信主题指数收益率",
+    "latestCommentary": {
+      "report": "2026年第一季报",
+      "date": "2026-Q1",
+      "text": "2026年1季度，国内宏观经济政策延续积极基调，宏观需求复苏进程持续。超长期特别国债发行、消费品国补政策等举措持续落地，内需动能得到明显支撑。春节期间，居民出行人数、终端消费景气度均呈现企稳回升态势。在政策支持与内需回暖的双重驱动下，制造业PMI等宏观数据处于扩张区间。海外方面，在地缘冲突的背景下，能源价格大幅上行，美联储维持基准利率不变，同时释放偏鹰派信号，美元指数走强，全球资金避险情绪升温，新兴市场面临一定压力。在上述因素的作用下，A股市场在一季度整体呈现震荡。 展望2026年第2季度，我们仍然维持之前的观点。我们认为经济周期的回落与经济的新旧更替正在同步发生，我们正处于这样的进程中，新的产业链条正在逐渐取代旧产业，成为国民经济的主体支柱。随着这个进程的深入，经济活动的扩张、收入水平的提升，都将是一个缓慢但持续的过程。未来一段时期，内需的恢复进程、海外地缘冲突等指标将是边际影响变量，我们也将对此进行持续的观察。"
+    },
+    "outlook": {
+      "report": "2025年年报",
+      "date": "2025",
+      "text": "展望2026年，我们仍然维持之前的观点。我们认为经济周期的波动与经济的新旧更替正在同步发生，我们正处于这样的进程中，新的产业链条正在逐渐取代旧产业，成为国民经济的主体支柱。随着这个进程的深入，经济活动的扩张、收入水平的提升，都将是一个缓慢但持续的过程。未来一段时期，国内政策、海外地缘冲突等指标将是新的边际影响变量，我们也将对此进行持续的观察。"
+    }
+  },
+  "_diagnostics": {
+    "scriptVersion": "2.0.0",
+    "parsedAt": "2026-06-21T10:10:40.817Z",
+    "snapshotFile": "morningstar-fund-159994-20260620-innertext.json",
+    "sourceUrl": "https://www.morningstar.cn/fund/159994.html",
+    "layout": {
+      "trailingCols": 8,
+      "annualYears": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "sections": {
+        "trailing_return": true,
+        "annual_return": true,
+        "ratings": true,
+        "attribution": true,
+        "risk": true,
+        "fees": true,
+        "asset_type": true,
+        "sector": true,
+        "region": true,
+        "top_holdings": true,
+        "holders": true,
+        "manager": true,
+        "strategy": true
+      },
+      "tickerFormats": [
+        "asha6"
+      ],
+      "lineCount": 1125
+    }
+  }
+}

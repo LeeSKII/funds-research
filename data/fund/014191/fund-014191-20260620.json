@@ -1,0 +1,482 @@
+{
+  "description": {
+    "code": "014191",
+    "name": "广发先进制造股票发起式A",
+    "category": "沪港深股票",
+    "fundType": "股票型",
+    "inceptionDate": "2022-03-01",
+    "currency": "人民币",
+    "nav": 3.0134,
+    "navDate": "2026-06-18",
+    "dailyChangePct": 3.55,
+    "riskLevel": "中高风险(R4)",
+    "styleBox": "大盘成长",
+    "aumYi": 20.05,
+    "dailyPurchaseLimit": null,
+    "purchaseStatus": "可申购",
+    "redemptionStatus": "可赎回",
+    "lockupPeriod": "无锁定期",
+    "custodian": "中国银行",
+    "asOfDate": "2026-05-31"
+  },
+  "performance": {
+    "trailing": {
+      "近一月": 15.74,
+      "近三月": 28.92,
+      "近六月": 78.53,
+      "近一年": 213.45,
+      "近两年": 89.93,
+      "近三年": 43.81,
+      "今年以来": 52.56
+    },
+    "trailingPeer": {
+      "近一月": 1.02,
+      "近三月": 1.57,
+      "近六月": 12.89,
+      "近一年": 40.61,
+      "近两年": 25.87,
+      "近三年": 13.6,
+      "今年以来": 10.04
+    },
+    "annual": {
+      "2023": -33.54,
+      "2024": 25.74,
+      "2025": 89.41
+    },
+    "annualPeer": {
+      "2023": -11.47,
+      "2024": 8.93,
+      "2025": 33.17
+    },
+    "ratings": {
+      "rating3Y": 5,
+      "rating5Y": null,
+      "rating10Y": null
+    },
+    "attribution": {
+      "present": true,
+      "real": true,
+      "reason": null,
+      "fundReturn": 119.01,
+      "benchReturn": 23.93,
+      "excess": 95.08,
+      "sectorAllocation": 86.38,
+      "stockSelection": 8.7,
+      "_identityCheck": {
+        "reconstructed": 95.08,
+        "delta": 0,
+        "ok": true
+      }
+    }
+  },
+  "risk": {
+    "sharpe": {
+      "fund": 2.92,
+      "peer": 1.91
+    },
+    "calmar": {
+      "fund": 13.95,
+      "peer": 4.1
+    },
+    "sortino": {
+      "fund": 14.56,
+      "peer": 4.1
+    },
+    "stdDev": {
+      "fund": 43.22,
+      "peer": 18.3
+    },
+    "maxDrawdown": -15.3,
+    "downsideRisk": 8.67,
+    "morningstarRisk": {
+      "fund": 38.32,
+      "peer": 4.17
+    },
+    "alpha": 22.23,
+    "beta": 1.69,
+    "rSquared": 0.75,
+    "excessReturn": 91.09,
+    "trackingError": 28.76,
+    "infoRatio": 3.17,
+    "monthlyWinRate": 83.33,
+    "upsideCapture": 175.72,
+    "downsideCapture": 79.86
+  },
+  "fees": {
+    "ter": 2.14,
+    "managementFee": 1.2,
+    "custodianFee": 0.2,
+    "salesServiceFee": null,
+    "minInvestment": 1
+  },
+  "portfolio": {
+    "assetAllocation": {
+      "stock": {
+        "fund": 91.96,
+        "peer": 91.58
+      },
+      "bond": {
+        "fund": 0,
+        "peer": 1.4
+      },
+      "cash": {
+        "fund": 6.65,
+        "peer": 8.75
+      },
+      "commodity": {
+        "fund": 0,
+        "peer": 0
+      },
+      "other": {
+        "fund": 1.38,
+        "peer": -1.73
+      }
+    },
+    "topHoldings": [
+      {
+        "code": "300502",
+        "name": "新易盛",
+        "industry": "科技",
+        "weightPct": 9.86
+      },
+      {
+        "code": "300308",
+        "name": "中际旭创",
+        "industry": "科技",
+        "weightPct": 9.08
+      },
+      {
+        "code": "300394",
+        "name": "天孚通信",
+        "industry": "科技",
+        "weightPct": 7.5
+      },
+      {
+        "code": "06869",
+        "name": "长飞光纤光缆",
+        "industry": "科技",
+        "weightPct": 5.93
+      },
+      {
+        "code": "00175",
+        "name": "吉利汽车",
+        "industry": "可选消费",
+        "weightPct": 5.25
+      },
+      {
+        "code": "600487",
+        "name": "亨通光电",
+        "industry": "科技",
+        "weightPct": 4.94
+      },
+      {
+        "code": "002384",
+        "name": "东山精密",
+        "industry": "科技",
+        "weightPct": 4.37
+      },
+      {
+        "code": "002126",
+        "name": "银轮股份",
+        "industry": "可选消费",
+        "weightPct": 4.23
+      },
+      {
+        "code": "000338",
+        "name": "潍柴动力",
+        "industry": "可选消费",
+        "weightPct": 3.84
+      },
+      {
+        "code": "600522",
+        "name": "中天科技",
+        "industry": "工业",
+        "weightPct": 3.71
+      }
+    ],
+    "top10Concentration": 58.71,
+    "sectorAllocation": [
+      {
+        "sector": "周期性",
+        "fund": 0.02,
+        "benchmark": 40.17,
+        "excess": -40.15
+      },
+      {
+        "sector": "基础材料",
+        "fund": 0,
+        "benchmark": 9.92,
+        "excess": -9.91
+      },
+      {
+        "sector": "可选消费",
+        "fund": 0.01,
+        "benchmark": 6.84,
+        "excess": -6.82
+      },
+      {
+        "sector": "金融服务",
+        "fund": 0,
+        "benchmark": 22.7,
+        "excess": -22.7
+      },
+      {
+        "sector": "房地产",
+        "fund": 0,
+        "benchmark": 0.72,
+        "excess": -0.72
+      },
+      {
+        "sector": "敏感性",
+        "fund": 99.91,
+        "benchmark": 44.1,
+        "excess": 55.81
+      },
+      {
+        "sector": "通信服务",
+        "fund": 0,
+        "benchmark": 1.72,
+        "excess": -1.72
+      },
+      {
+        "sector": "能源",
+        "fund": 0.01,
+        "benchmark": 2.45,
+        "excess": -2.44
+      },
+      {
+        "sector": "工业",
+        "fund": 25.23,
+        "benchmark": 16.3,
+        "excess": 8.93
+      },
+      {
+        "sector": "科技",
+        "fund": 74.68,
+        "benchmark": 23.64,
+        "excess": 51.03
+      },
+      {
+        "sector": "防御性",
+        "fund": 0.07,
+        "benchmark": 15.73,
+        "excess": -15.66
+      },
+      {
+        "sector": "必选消费",
+        "fund": 0,
+        "benchmark": 7.84,
+        "excess": -7.84
+      },
+      {
+        "sector": "医疗保健",
+        "fund": 0.03,
+        "benchmark": 5.03,
+        "excess": -5
+      },
+      {
+        "sector": "公用事业",
+        "fund": 0.04,
+        "benchmark": 2.86,
+        "excess": -2.82
+      }
+    ],
+    "regionAllocation": [
+      {
+        "region": "大亚洲地区",
+        "fund": 100,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "日本",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "大洋洲",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "发达亚洲",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "新兴亚洲",
+        "fund": 100,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "美洲",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "北美",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "拉丁美洲",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "大欧洲地区",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "英国",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "发达欧洲",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "新兴欧洲",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "非洲/中东",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      },
+      {
+        "region": "未分类",
+        "fund": 0,
+        "benchmark": null,
+        "excess": null
+      }
+    ],
+    "turnover": 414,
+    "_tickerFormats": [
+      "asha6",
+      "hk5"
+    ]
+  },
+  "holders": {
+    "institutional": 13.65,
+    "retail": 86.35,
+    "insiders": {
+      "managerSelf": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "executive": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      },
+      "employee": {
+        "shares": "46.6万份",
+        "estAmount": "77.5 万元",
+        "pct": 0.25,
+        "trend": {
+          "direction": "减持",
+          "changePct": -81.57
+        }
+      },
+      "companyDirect": {
+        "shares": "1000.2万份",
+        "estAmount": "1,807.8 万元",
+        "pct": 0.89,
+        "trend": {
+          "direction": "持平",
+          "changePct": null
+        }
+      }
+    },
+    "fofHeld": "截止2025-12-31，该基金暂未有被FOF基金持有的记录。",
+    "dividends": "截止当前，该基金尚未实施过分红/拆分操作。"
+  },
+  "manager": {
+    "team": [
+      {
+        "name": "孙迪",
+        "tenureStart": "2022-03-01",
+        "tenureEnd": null
+      }
+    ],
+    "managerCount": 1,
+    "maxTenureYears": 4.3,
+    "avgTenureYears": 4.3,
+    "lead": {
+      "name": "孙迪",
+      "returnSinceInception": 173.72,
+      "aumYi": 52.7,
+      "fundsManaged": 9
+    }
+  },
+  "strategy": {
+    "objective": "该基金主要投资于先进制造行业相关上市公司股票，通过自下而上的深度挖掘、精选个股，力争为基金份额持有人获取长期稳健的超额回报。",
+    "scope": "该基金的投资范围为具有良好流动性的金融工具，包括国内依法发行上市的股票（包括创业板及其他依法发行、上市的股票、存托凭证）、港股通标的股票、债券（包括国内依法发行和上市交易的国债、地方政府债、金融债、企业债、公司债、次级债、可转换债券、分离交易可转债、可交换债券、央行票据、中期票据、短期融资券（包括超短期融资券）等）、资产支持证券、债券回购、同业存单、银行存款、货币市场工具、股指期货、国债期货以及法律法规或中国证监会允许基金投资的其他金融工具（但须符合中国证监会相关规定）。如法律法规或监管机构以后允许基金投资其他品种，基金管理人在履行适当程序后，可以将其纳入投资范围，并可依据届时有效的法律法规适时合理地调整投资范围。该基金为股票型基金，基金的投资组合比例为：股票资产占基金资产的比例为80%-95%（其中投资于港股通标的股票的比例不得超过股票资产的50%），其中投资于先进制造行业相关上市公司股票占非现金基金资产的比例不低于80%；每个交易日日终在扣除股指期货合约和国债期货合约需缴纳的交易保证金后，应当保持现金或者到期日在一年以内的政府债券不低于基金资产净值的5%，其中现金不得包括结算备付金、存出保证金及应收申购款等。如未来法律法规或监管机构对投资比例要求有变更的，基金管理人在履行适当程序后，可以做出相应调整。",
+    "strategy": "1、资产配置策略；2、股票投资策略；3、债券投资策略；4、资产支持证券投资策略；5、金融衍生品投资策略。该基金界定的先进制造行业是指在中国经济和制造行业转型升级的大背景下，运用先进技术、材料工艺以及生产方式，能够提高生产运营效率，提升生活质量的制造行业，以及为这类行业提供服务和原材料的相关行业。具体行业包括计算机、通信、电子、医疗器械、机械设备、化工、金属非金属材料、国防军工、汽车、电气设备、轻工制造、家用电器行业。该基金所投资的先进制造行业相关公司包括如下类型：（1）符合新经济发展趋势、具有先进技术或者着力突破关键技术的上市公司；（2）运用新一代信息技术、新的生产技术、新材料或现代管理方式而向高端化、智能化、绿色化转型的传统制造业上市公司。 （更多详情请参见基金招募说明书）",
+    "benchmark": "申银万国制造业指数收益率×80%＋中证全债指数收益率×10%＋人民币计价的恒生指数收益率×10%",
+    "latestCommentary": {
+      "report": "2026年第一季报",
+      "date": "2026-Q1",
+      "text": "2026年一季度，国内宏观经济稳中向好，3月制造业PMI从低位大幅反弹到50.4，物价数据环比回升持续改善，部分一线城市二手房价在政策放松刺激下企稳回升，春节假期消费和出行数据也表现亮眼，两会政策目标较为务实，追求高质量发展路线进一步强化。海外最大变数是美伊冲突造成的油价大幅飙升和全球资本市场的明显波动，同时在油价上行后，年内美联储降息的预期已经大幅回落，对市场的风险偏好和流动性造成一定影响。在这样的宏观环境，特别是外部环境的影响下，A股市场在前两个月稳步上涨，上证综指接近4200点，各种主题在经历活跃轮动后，出现了一定回落。一季度上证指数、沪深300和中证800分别下跌1.94%、3.89%和2.28%。行业表现上，煤炭、石油石化、公用事业、建材、化工等偏上游的板块表现较为突出，煤炭、石油石化行业上涨超过15%，非银、商贸零售、美容护理、计算机、地产、家电板块下跌超过7%。 本基金继续坚定看好和重点投资科技成长方向，特别是人工智能带动的新一轮科技浪潮带来的投资机会。一季度，我们看到Meta、谷歌、亚马逊、台积电等行业巨头资本开支大幅上修，NVDA财报表现强劲，存储、光纤光缆、电子布等上游产品价格大幅上涨，海外缺电的逻辑也持续发酵，Clawbot爆火，AI应用的商业闭环逐步形成，产业趋势和硬件需求的高景气持续强化。我们继续重点配置以光模块为代表的海外算力链头部公司，同时积极参与存储、半导体设备、光纤、储能和北美缺电受益品种的投资机会，在市场波动中，增加了低估值新能源整车的配置，取得了较好的业绩表现和超额收益。 未来一段时间，我们判断美伊冲突将逐步缓和，市场风险偏好有望回升，我们对国内权益市场和科技成长方向持续乐观，将根据产业趋势变化和一季报业绩优化组合，希望能够更好地把握这轮科技浪潮的节奏，为持有人创造好的回报。"
+    },
+    "outlook": {
+      "report": "2025年年报",
+      "date": "2025",
+      "text": "展望2026年，我们判断全球宏观仍处于宽松的财政扩张和降息周期中，同时中美经济存在较好的反弹预期，利好全球权益市场的表现。产业方面，人工智能科技浪潮仍处于上半场，基础设施建设如火如荼地展开，算力、存力持续紧张，而随着大模型的技术进步，应用市场逐步落地有望形成商业闭环。我们对国内权益市场和以AI产业链为代表科技成长方向持续乐观，希望能够更好地把握这轮科技浪潮的节奏，为持有人创造好的回报。"
+    }
+  },
+  "_diagnostics": {
+    "scriptVersion": "2.0.0",
+    "parsedAt": "2026-06-21T10:10:40.811Z",
+    "snapshotFile": "morningstar-fund-014191-20260620-innertext.json",
+    "sourceUrl": "https://www.morningstar.cn/fund/014191.html",
+    "layout": {
+      "trailingCols": 7,
+      "annualYears": [
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "sections": {
+        "trailing_return": true,
+        "annual_return": true,
+        "ratings": true,
+        "attribution": true,
+        "risk": true,
+        "fees": true,
+        "asset_type": true,
+        "sector": true,
+        "region": true,
+        "top_holdings": true,
+        "holders": true,
+        "manager": true,
+        "strategy": true
+      },
+      "tickerFormats": [
+        "asha6",
+        "hk5"
+      ],
+      "lineCount": 1095
+    }
+  }
+}

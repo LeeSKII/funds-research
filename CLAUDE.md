@@ -92,7 +92,7 @@ parse-manager 自动写到 `data/manager/manager-<id>-<name>.json`。**用户没
 基金分析已从原型 `research/funds/` 迁移到生产 `engine/`（原型已删除；组合优化方法论参考留在 `engine/tmp/funds-prototype/`，gitignored）。工作流同样 4 步：
 
 1. **抓取 innerText** → chrome-devtools MCP（`about:blank` 中转 → navigate → evaluate_script dump `document.body.innerText`）。快照是**临时**的，写到 `engine/tmp/`（gitignored），不长期留存。
-2. **解析** → `node engine/analyze/parse-fund.js <snapshot> <code>` → `data/fund/fund-<code>-<date>.json`（v2 页面结构对齐：8 段 extractor + orchestrator）
+2. **解析** → `node engine/analyze/parse-fund.js <snapshot> <code>` → `data/fund/<code>/fund-<code>-<date>.json`（按基金分文件夹，留时间序列；v2 页面结构对齐：8 段 extractor + orchestrator）
 3. **校验** → `engine/core/schemas/fund-dossier.schema.json`（ajv）
 4. **审计** → Workflow：8 段 sub-agent 各自 vs 原始 innerText 核对提取是否遗漏/错位
 

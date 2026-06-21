@@ -1,0 +1,472 @@
+{
+  "description": {
+    "code": "017730",
+    "name": "嘉实全球产业升级股票（QDII）A",
+    "category": "QDII环球股票",
+    "fundType": "股票型",
+    "inceptionDate": "2023-02-09",
+    "currency": "人民币",
+    "nav": 4.5526,
+    "navDate": "2026-06-17",
+    "dailyChangePct": 2.34,
+    "riskLevel": "中风险(R3)",
+    "styleBox": "大盘成长",
+    "aumYi": 20.72,
+    "dailyPurchaseLimit": 100,
+    "purchaseStatus": "限大额",
+    "redemptionStatus": "可赎回",
+    "lockupPeriod": "无锁定期",
+    "custodian": "建设银行",
+    "asOfDate": "2026-05-31"
+  },
+  "performance": {
+    "trailing": {
+      "近一月": 16.24,
+      "近三月": 46.61,
+      "近六月": 69.38,
+      "近一年": 157.95,
+      "近两年": 68.62,
+      "近三年": 53.84,
+      "今年以来": 62.24
+    },
+    "trailingPeer": {
+      "近一月": 5.99,
+      "近三月": 6.77,
+      "近六月": 14,
+      "近一年": 29.97,
+      "近两年": 21.12,
+      "近三年": 19.45,
+      "今年以来": 14.01
+    },
+    "annual": {
+      "2024": 31.56,
+      "2025": 53.99
+    },
+    "annualPeer": {
+      "2024": 12.53,
+      "2025": 22.52
+    },
+    "ratings": {
+      "rating3Y": 5,
+      "rating5Y": null,
+      "rating10Y": null
+    },
+    "attribution": {
+      "present": true,
+      "real": false,
+      "reason": "not_computed"
+    }
+  },
+  "risk": {
+    "sharpe": {
+      "fund": 2.8,
+      "peer": 1.58
+    },
+    "calmar": {
+      "fund": 13.28,
+      "peer": 3
+    },
+    "sortino": {
+      "fund": 14.31,
+      "peer": 2.8
+    },
+    "stdDev": {
+      "fund": 36.82,
+      "peer": 16.86
+    },
+    "maxDrawdown": -11.9,
+    "downsideRisk": 7.19,
+    "morningstarRisk": {
+      "fund": 22.97,
+      "peer": 3.39
+    },
+    "alpha": 27.96,
+    "beta": 2.7,
+    "rSquared": 0.77,
+    "excessReturn": 107.67,
+    "trackingError": 26.32,
+    "infoRatio": 4.09,
+    "monthlyWinRate": 75,
+    "upsideCapture": 318.77,
+    "downsideCapture": 144.65
+  },
+  "fees": {
+    "ter": 1.69,
+    "managementFee": 1.2,
+    "custodianFee": 0.2,
+    "salesServiceFee": null,
+    "minInvestment": 1
+  },
+  "portfolio": {
+    "assetAllocation": {
+      "stock": {
+        "fund": 92.95,
+        "peer": 88.65
+      },
+      "bond": {
+        "fund": 5.02,
+        "peer": 1.02
+      },
+      "cash": {
+        "fund": 3.02,
+        "peer": 8.43
+      },
+      "commodity": {
+        "fund": 0,
+        "peer": 0.31
+      },
+      "other": {
+        "fund": -1,
+        "peer": 1.58
+      }
+    },
+    "topHoldings": [
+      {
+        "code": "AVGO",
+        "name": "博通股份有限公司",
+        "industry": "科技",
+        "weightPct": 5.37
+      },
+      {
+        "code": "MU",
+        "name": "美光科技股份有限公司",
+        "industry": "科技",
+        "weightPct": 4.85
+      },
+      {
+        "code": "MRVL",
+        "name": "美满电子科技公司",
+        "industry": "科技",
+        "weightPct": 4.37
+      },
+      {
+        "code": "688498",
+        "name": "源杰科技",
+        "industry": "科技",
+        "weightPct": 4.25
+      },
+      {
+        "code": "NVDA",
+        "name": "英伟达公司",
+        "industry": "科技",
+        "weightPct": 3.79
+      },
+      {
+        "code": "ASML",
+        "name": "阿斯麦控股公司",
+        "industry": "科技",
+        "weightPct": 3.7
+      },
+      {
+        "code": "688256",
+        "name": "寒武纪",
+        "industry": "科技",
+        "weightPct": 3.66
+      },
+      {
+        "code": "KLAC",
+        "name": "科磊公司",
+        "industry": "科技",
+        "weightPct": 3.44
+      },
+      {
+        "code": "TSM",
+        "name": "台湾集成电路制造股份有限公司",
+        "industry": "科技",
+        "weightPct": 3.39
+      },
+      {
+        "code": "AMD",
+        "name": "AMD公司",
+        "industry": "科技",
+        "weightPct": 3.33
+      }
+    ],
+    "top10Concentration": 40.15,
+    "sectorAllocation": [
+      {
+        "sector": "周期性",
+        "fund": 5.59,
+        "benchmark": 32.71,
+        "excess": -27.12
+      },
+      {
+        "sector": "基础材料",
+        "fund": 1.71,
+        "benchmark": 3.51,
+        "excess": -1.8
+      },
+      {
+        "sector": "可选消费",
+        "fund": 3.88,
+        "benchmark": 10.15,
+        "excess": -6.27
+      },
+      {
+        "sector": "金融服务",
+        "fund": 0,
+        "benchmark": 17.27,
+        "excess": -17.27
+      },
+      {
+        "sector": "房地产",
+        "fund": 0,
+        "benchmark": 1.77,
+        "excess": -1.77
+      },
+      {
+        "sector": "敏感性",
+        "fund": 94.41,
+        "benchmark": 50.65,
+        "excess": 43.76
+      },
+      {
+        "sector": "通信服务",
+        "fund": 0,
+        "benchmark": 9.11,
+        "excess": -9.11
+      },
+      {
+        "sector": "能源",
+        "fund": 0,
+        "benchmark": 3.42,
+        "excess": -3.42
+      },
+      {
+        "sector": "工业",
+        "fund": 5.97,
+        "benchmark": 10.16,
+        "excess": -4.19
+      },
+      {
+        "sector": "科技",
+        "fund": 88.43,
+        "benchmark": 27.95,
+        "excess": 60.48
+      },
+      {
+        "sector": "防御性",
+        "fund": 0,
+        "benchmark": 16.59,
+        "excess": -16.59
+      },
+      {
+        "sector": "必选消费",
+        "fund": 0,
+        "benchmark": 5.03,
+        "excess": -5.03
+      },
+      {
+        "sector": "医疗保健",
+        "fund": 0,
+        "benchmark": 9.07,
+        "excess": -9.07
+      },
+      {
+        "sector": "公用事业",
+        "fund": 0,
+        "benchmark": 2.49,
+        "excess": -2.49
+      }
+    ],
+    "regionAllocation": [
+      {
+        "region": "大亚洲地区",
+        "fund": 40.78,
+        "benchmark": 17.6,
+        "excess": 23.18
+      },
+      {
+        "region": "日本",
+        "fund": 0,
+        "benchmark": 5.01,
+        "excess": -5.01
+      },
+      {
+        "region": "大洋洲",
+        "fund": 0,
+        "benchmark": 1.44,
+        "excess": -1.44
+      },
+      {
+        "region": "发达亚洲",
+        "fund": 5.09,
+        "benchmark": 6.93,
+        "excess": -1.85
+      },
+      {
+        "region": "新兴亚洲",
+        "fund": 35.69,
+        "benchmark": 4.21,
+        "excess": 31.48
+      },
+      {
+        "region": "美洲",
+        "fund": 55.35,
+        "benchmark": 67.36,
+        "excess": -12.01
+      },
+      {
+        "region": "北美",
+        "fund": 55.35,
+        "benchmark": 66.44,
+        "excess": -11.09
+      },
+      {
+        "region": "拉丁美洲",
+        "fund": 0,
+        "benchmark": 0.92,
+        "excess": -0.92
+      },
+      {
+        "region": "大欧洲地区",
+        "fund": 3.87,
+        "benchmark": 15.04,
+        "excess": -11.18
+      },
+      {
+        "region": "英国",
+        "fund": 0,
+        "benchmark": 2.97,
+        "excess": -2.97
+      },
+      {
+        "region": "发达欧洲",
+        "fund": 3.87,
+        "benchmark": 10.72,
+        "excess": -6.86
+      },
+      {
+        "region": "新兴欧洲",
+        "fund": 0,
+        "benchmark": 0.24,
+        "excess": -0.24
+      },
+      {
+        "region": "非洲/中东",
+        "fund": 0,
+        "benchmark": 1.11,
+        "excess": -1.11
+      },
+      {
+        "region": "未分类",
+        "fund": 0,
+        "benchmark": 0,
+        "excess": 0
+      }
+    ],
+    "turnover": 163,
+    "_tickerFormats": [
+      "letter",
+      "asha6"
+    ]
+  },
+  "holders": {
+    "institutional": 3.04,
+    "retail": 96.96,
+    "insiders": {
+      "managerSelf": {
+        "shares": "50-100万份",
+        "estAmount": "129-259 万元",
+        "pct": null,
+        "trend": {
+          "direction": "增持",
+          "changePct": null
+        }
+      },
+      "executive": {
+        "shares": "0-10万份",
+        "estAmount": "0-26 万元",
+        "pct": null,
+        "trend": {
+          "direction": "持平",
+          "changePct": null
+        }
+      },
+      "employee": {
+        "shares": "183.5万份",
+        "estAmount": "474.9 万元",
+        "pct": 1.71,
+        "trend": {
+          "direction": "增持",
+          "changePct": 132.4
+        }
+      },
+      "companyDirect": {
+        "shares": null,
+        "estAmount": "—",
+        "pct": null,
+        "trend": null
+      }
+    },
+    "fofHeld": "截止2025-12-31，该基金暂未有被FOF基金持有的记录。",
+    "dividends": "截止当前，该基金尚未实施过分红/拆分操作。"
+  },
+  "manager": {
+    "team": [
+      {
+        "name": "陈俊杰",
+        "tenureStart": "2023-02-21",
+        "tenureEnd": null
+      }
+    ],
+    "managerCount": 1,
+    "maxTenureYears": 3.3,
+    "avgTenureYears": 3.3,
+    "lead": {
+      "name": "陈俊杰",
+      "returnSinceInception": 327.11,
+      "aumYi": 20.72,
+      "fundsManaged": 2
+    }
+  },
+  "strategy": {
+    "objective": "该基金将重点分析和跟踪全球市场范围内在产业升级变迁中具有核心竞争优势的公司，并力争在严格控制风险的前提下，通过精选个股获取超额投资回报。",
+    "scope": "针对境外投资，该基金可投资于已与中国证监会签署双边监管合作谅解备忘录的国家或地区证券市场挂牌交易的普通股、优先股、全球存托凭证和美国存托凭证、房地产信托凭证；在已与中国证监会签署双边监管合作谅解备忘录的国家或地区证券监管机构登记注册的公募基金；银行存款、可转让存单、银行承兑汇票、银行票据、商业票据、回购协议、短期政府债券等货币市场工具；政府债券、公司债券、可转换债券、住房按揭支持证券、资产支持证券等及经中国证监会认可的国际金融组织发行的证券；与固定收益、股权、信用、商品指数、基金等标的物挂钩的结构性投资产品；远期合约、互换及经中国证监会认可的境外交易所上市交易的权证、期权、期货等金融衍生产品；法律、法规或中国证监会允许基金投资的其他金融工具(但须符合中国证监会的相关规定)。该基金可以进行境外证券借贷交易、境外正回购交易、逆回购交易。针对境内投资，该基金可投资于依法发行上市的股票（包含创业板、中国存托凭证及其他依法发行上市的股票）、内地与香港股票市场交易互联互通机制下允许买卖的香港联合交易所上市股票（以下简称“港股通标的股票”）、债券（国债、地方政府债、金融债、企业债、公司债、次级债、可转换债券（含分离交易可转债）、可交换公司债券、央行票据、短期融资券、超短期融资券、中期票据等）、资产支持证券、债券回购、同业存单、银行存款、股指期货、国债期货、股票期权、现金以及法律法规或中国证监会允许基金投资的其他金融工具（但须符合中国证监会的相关规定）。该基金可根据相关法律法规和基金合同的约定，参与融资业务。如法律法规或监管机构以后允许基金投资其它品种，基金管理人在履行适当程序后，可以将其纳入投资范围。该基金投资组合中股票及存托凭证占基金资产的比例不低于80%；现金或到期日在一年以内的政府债券不低于基金资产净值的5%，其中现金不包括结算备付金、存出保证金、应收申购款等。该基金投资于全球市场，包括境外市场和境内市场。该基金投资于境外市场的资产占基金资产的比例不低于20%，该基金投资于境内市场的资产占基金资产的比例不低于20%。香港市场可通过合格境内机构投资者（QDII）境外投资额度或内地与香港股票市场交易互联互通机制进行投资。",
+    "strategy": "该基金将根据对全球宏观经济发展走向、区域经济发展态势、中国大国战略部署的分析研究，结合基本面、市场面、政策面等多种因素的综合考量，以确定组合中股票、债券、货币市场工具及其他金融工具的比例并不时进行调整，以保持基金资产配置的有效性。挖掘受益于产业升级变迁的优质上市公司，主要采取“自下而上”的选股策略，深入分析企业的基本面和发展前景，基于对上市公司成长性和估值水平的综合考量，使用定性与定量相结合的方法精选个股。该基金具体投资策略包括：资产配置策略、股票投资策略（个股精选策略、港股投资策略、存托凭证投资策略）、固定收益投资策略、衍生品投资策略、资产支持证券投资策略、融资策略、风险管理策略等。 （更多详情请参见基金招募说明书）",
+    "benchmark": "MSCI全球指数（MSCIAllCountryWorldIndex）收益率×75%＋沪深300指数收益率×20%＋境内银行活期存款利率（税后）×5%",
+    "latestCommentary": {
+      "report": "2026年第一季报",
+      "date": "2026-Q1",
+      "text": "今年一季度板块呈现先扬后抑的走势，年初高歌猛进，市场洋溢着乐观的情绪，但同时结构性行情显著，一方面市场认为模型能力进步突飞猛进，大模型将吞噬软件的叙事甚嚣其上，软件股的估值受到了极大的压制，硬件股受到青睐，HALO交易造成两极分化。另一方面，在硬件股内部，也行成了结构性分化，今年边际变化比较显著的几个方向：光/存储/半导体设备等，表现较优，而其他代表总量的股票，表现远远落后。但进入三月，行情戛然而止，随着国际形势动荡，伊朗战争开打，霍尔木兹海峡封锁造成全球原油价格飙升，起初市场担忧全球通胀再起，对成长股的估值造成极大的压缩，随着战争的持续性延长，市场又开始担忧全球经济衰退，滞涨对于股票分子分母端都形成了远期压缩不利影响，3月份行业表现急转直下。 我们认为，AI行业经过几年的发展，开始逐渐从训练往推理过渡，尤其是在一些领域比如编程，商业模式已经跑通，账也算的过来，在这些领域大家已经不再争论投入产出比是否算的过账，取而代之的是行业迅速的形成商业闭环，头部企业ARR快速提升，相应的模型能力也不断迭代，相对应的硬件也在因应模型的需求产生了不同的变化，比如在组网上，从ScaleOut过渡到ScaleUp（对应从训练到推理的需求），追求传输低延时，结构低冗余，存储大容量的变化，都是针对了推理需求而产生且变得更加迫切。这样的变化，也自然造成了硬件内部结构化行情的呈现。（光、存储等方向表现较优）。展望未来，随着AgenticAI的到来，我们认为这样的产业趋势将持续，但同时我们也认为ScalingLaw远未结束，从AgenticAI到PhysicalAI，模型能力还远未到头，对应硬件的需求和变化仍在不断提升。 对于宏观的扰动，我们始终相信，在产业趋势面前，每一次波动，都会随着时间而修复。真正决定星辰大海未来的，终究还是产业变革的深度和广度。 截至本报告期末嘉实全球产业升级股票发起式（QDII）A基金份额净值为2.6797元，本报告期基金份额净值增长率为3.55%；截至本报告期末嘉实全球产业升级股票发起式（QDII）C基金份额净值为2.6302元，本报告期基金份额净值增长率为3.40%；业绩比较基准收益率为-3.36%。"
+    },
+    "outlook": {
+      "report": "2025年年报",
+      "date": "2025",
+      "text": "2025年是AI硬件从早期探索转向产业化规模增长的关键一年，对于投资而言，我们需要坚持长期主义和技术驱动投资理念，展望未来，我们认为硬件投资可能从“全面beta”转向“结构性alpha”，我们将继续秉承下沉到产业中去寻找结构性线索，在分子端挖掘向上方向，不辜负这个时代的馈赠。"
+    }
+  },
+  "_diagnostics": {
+    "scriptVersion": "2.0.0",
+    "parsedAt": "2026-06-21T10:10:40.815Z",
+    "snapshotFile": "morningstar-fund-017730-20260621-innertext.json",
+    "sourceUrl": "https://www.morningstar.cn/fund/017730.html",
+    "layout": {
+      "trailingCols": 7,
+      "annualYears": [
+        "2024",
+        "2025"
+      ],
+      "sections": {
+        "trailing_return": true,
+        "annual_return": true,
+        "ratings": true,
+        "attribution": true,
+        "risk": true,
+        "fees": true,
+        "asset_type": true,
+        "sector": true,
+        "region": true,
+        "top_holdings": true,
+        "holders": true,
+        "manager": true,
+        "strategy": true
+      },
+      "tickerFormats": [
+        "letter",
+        "asha6"
+      ],
+      "lineCount": 1001
+    }
+  }
+}

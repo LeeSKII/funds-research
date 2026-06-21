@@ -1,0 +1,23 @@
+{
+  "code": "513050",
+  "name": "易方达中证海外中国互联网50（QDII-ETF）",
+  "category": "QDII行业股票",
+  "manager": "余海燕 + 刘依姗",
+  "tenure": 9.5,
+  "aum": 397.32,
+  "expense": 0.91,
+  "rating_3y": "未评级",
+  "tracking_error_3y": 0.47,
+  "annual_return_5y": -10.25,
+  "annual_return_3y": 7.54,
+  "annual_return_1y": -18.17,
+  "annual_vol_3y": 29.3,
+  "max_drawdown_3y": -36.57,
+  "申购状态": "可申购 ✓",
+  "持仓": "腾讯 30.65 + 阿里 26.06 + PDD 7.64 + 小米 6.91 + 美团 6.00",
+  "verdict": "5y -10.25% ✗ 中美科技战拖累大, 不可加入. 1y -18% 仍在熊市",
+  "source": "morningstar.cn/fund/513050.html",
+  "fetch_date": "2026-06-20",
+  "is_qdii": true,
+  "verdict_exclude": "5y 负收益, 不入 v21"
+}
