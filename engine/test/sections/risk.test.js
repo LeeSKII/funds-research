@@ -6,11 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { extractRisk } = require('../../analyze/sections/risk');
 
-const SNAP = path.join(
-  __dirname, '..', '..', '..',
-  'research', 'funds', 'raw-snapshots',
-  'morningstar-fund-005827-20260621-innertext.json'
-);
+const SNAP = path.join(__dirname, '..', 'fixtures', 'mock-fund-innertext.json');
 
 function loadLines() {
   const j = JSON.parse(fs.readFileSync(SNAP, 'utf8'));
@@ -29,8 +25,9 @@ test('extractRisk on 005827 — all expected values', () => {
 
   // 风险和波动 block
   assert.deepEqual(r.stdDev, { fund: 16.56, peer: 20.06 });
-  assert.equal(r.maxDrawdown, -23.88);
-  assert.equal(r.downsideRisk, 12.79);
+  // 风险和波动 is a 4-col table (指标|同类表现|本基金|同类平均) — all 4 rows are {fund,peer} pairs.
+  assert.deepEqual(r.maxDrawdown, { fund: -23.88, peer: -10.64 });
+  assert.deepEqual(r.downsideRisk, { fund: 12.79, peer: 9.53 });
   assert.deepEqual(r.morningstarRisk, { fund: 2.19, peer: 5.10 });  // 4th 风险和波动 row
 
   // 相对收益 block — singletons

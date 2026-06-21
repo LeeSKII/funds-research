@@ -2,8 +2,8 @@
 //
 // Extracts the three sub-blocks of the 风险 tab:
 //   1. 性价比    (sharpe/calmar/sortino)      — caveat-row {fund,peer} pairs via pairAfter
-//   2. 风险和波动 (stdDev pair; maxDrawdown,    — stdDev is a pair; maxDrawdown/downsideRisk are
-//                   downsideRisk)                 singletons via numAfter
+//   2. 风险和波动 (stdDev / maxDrawdown /        — ALL 4 rows are caveat {fund,peer} pairs via pairAfter
+//                   downsideRisk / morningstarRisk)  (4-col table: 指标 | 同类表现 | 本基金 | 同类平均)
 //   3. 相对收益  (alpha/beta/R2/excessReturn/   — all numAfter singletons (no peer column shown)
 //                   trackingError/infoRatio/
 //                   monthlyWinRate/upsideCapture/
@@ -37,12 +37,13 @@ function extractRisk(lines, _ctx) {
     const calmar = pairAfter(lines, '卡玛比率');
     const sortino = pairAfter(lines, '索提诺比率');
 
-    // ---- 2. 风险和波动 block (stdDev pair + maxDrawdown/downsideRisk singletons) ----
+    // ---- 2. 风险和波动 block (4 caveat pairs: stdDev / maxDrawdown / downsideRisk / morningstarRisk) ----
+    // All 4 rows share the 4-col layout 指标 | 同类表现 | 本基金 | 同类平均, so each is a {fund,peer} pair.
     // Scope past the chart axis label so '标准差' resolves to the data row, not the axis.
     const volStart = lineIdx(lines, '风险和波动');
     const stdDev = pairAfter(lines, '标准差', { from: volStart });
-    const maxDrawdown = numAfter(lines, '最大回撤', { from: volStart });
-    const downsideRisk = numAfter(lines, '下行风险', { from: volStart });
+    const maxDrawdown = pairAfter(lines, '最大回撤', { from: volStart });
+    const downsideRisk = pairAfter(lines, '下行风险', { from: volStart });
     const morningstarRisk = pairAfter(lines, '晨星风险', { from: volStart });  // 4th 风险和波动 row: {fund,peer}
 
     // ---- 3. 相对收益 block (all singletons, no peer column) ----
