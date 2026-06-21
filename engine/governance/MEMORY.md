@@ -46,3 +46,12 @@
 - **截断检测**: client.js 加 totalCount(data.count); market-sweep 若 totalCount>count 警告"截断, 基金丢失"。服务用户原则"不限制数量, 符合筛选条件的全留" — 单调用 ≤cap 即 100% 捕获; 若 >cap 走 sharded multi-call (未实现, 记入 PLAN)。
 - **产出**: `engine/docs/screener-filter-discovery-methodology.md` (发现/验证/刷新方法论 + 10 条教训 + probe 模板 + 加新 filter 清单)。`screener-filters.md` 已有 245 字段清单。33 tests green, live daily 通过。
 - workflow: 14 agents / ~644k tokens / 11min (策略设计) + 手动实测 probe (4 轮 node 脚本)。
+
+## 2026-06-21 — 详情页 API 发现 + detailUrl 持久化 (为 Plan 2 详情深研奠基)
+- **动机**: 确定短名单排序能否基于 search/es 的 25 字段行 → 发现不够 (无 Brinson / 下行捕获 / 年度回报) → 必须进基金详情页拿全量研究档案。用户要求先 chrome-devtools RE 出详情页 network 再定架构。
+- **发现 (006502 实测)**: 详情页 = `https://www.morningstar.cn/fund/<6位id>.html` (Nuxt SSR, 数据烤进 HTML); legacy `/quicktake/<id>` 已废 (跳维护页)。只 2 个数据 XHR: `POST /cn-api/v2/funds/<id>/growth-data` (净值时序 + rollingReturn + dividend + managerChangeEvents; **要 secId** `F00001LXG1` 非 6 位 id) + `GET /cn-api/v2/manager/return?managerId=`。其余 (Brinson 超额=行业配置+个股选择 / 跌势捕获率 / 年度回报 / 前十持仓带代码 / 经理任职+内部持有 / 费用) 全在 SSR DOM 里。
+- **提取架构定论**: 详情抓取 = 导航 `/fund/<id>.html` → 解析渲染 DOM (同 manager 工作流, 首选) + growth-data 拉净值; `__NUXT_DATA__` 内联 JSON (~86KB, Nuxt 扁平需引用解析器) 作更稳备选 + 提供 secId。**不用逆向一堆 XHR** —— 数据已在页面里。
+- **架构影响**: 25 字段排序选不出真 α → ranker 重构为两段 (粗排 25 字段 → 详情抓宽池 → Brinson 精排)。API 免费所以抓宽池只受**限速**约束 (非成本)。
+- **修复**: 列表行此前只有 6 位 id 没详情链接 → `normalizeRow` 确定性合成 `detailUrl`, schema 设必填+pattern, 34 tests green, 今日 402 快照 + 308 候选本地回填 (store gitignored)。commit `a372cd3`。
+- **产出**: `engine/docs/fund-detail-api.md` (详情页 API + 提取 + 字段清单, 平行 `screener-filters.md`)。PLAN 阶段排序更新: `parse-fund.js` (详情抓取) 成下一要务, ranker 改两段。
+- **安全**: 网络抓包含 live JWT/cookie, 仅响应体落 gitignored `engine/tmp/`, 请求头 (含 token) 未落任何 tracked 文件、未 echo。

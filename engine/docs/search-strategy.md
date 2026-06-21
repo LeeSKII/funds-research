@@ -214,8 +214,11 @@ Per daily fire:
 - **308 active-equity candidates** — quality-gated, USD-excluded, share-deduped, defense-tagged:
   the clean input pool for deep research.
 
-**Next (PLAN):** rank the 308 → 16-30 shortlist (composite α+Sharpe+downside) → Plan 2 deep research
-(nav-pull + Brinson attribution + holdings/manager scrape) → research report + portfolio construction.
+**Next (PLAN):** the detail page is now mapped (`/fund/<id>.html` Nuxt SSR — see `fund-detail-api.md`).
+Ranking is **two-stage**: coarse-rank the 308 on this 25-field row → detail-scrape a wider pool
+(parse `detailUrl` for Brinson / downside-capture / calendar returns / holdings + `growth-data` NAV) →
+fine-rank on true-α (Brinson stock-selection share) → research report + portfolio construction. The
+25-field row alone cannot separate true-α from sector-β — **Brinson lives only on the detail page.**
 
 ---
 

@@ -184,6 +184,7 @@ These each caused a real defect or near-miss in this project. Internalize them.
 |---|---|---|
 | Filter inventory (the "what") | All 245 fields, validated formats, server/client split | `engine/docs/screener-filters.md` |
 | This methodology (the "how") | Discovery/validation/refresh process | `engine/docs/screener-filter-discovery-methodology.md` |
+| Detail-page API map | Fund-detail dossier discovery — **the same 3-source method applied to `/fund/<id>.html`** | `engine/docs/fund-detail-api.md` |
 | Parsed bundle schema | Raw catalog from `screener-*.js` | `engine/tmp/filter-block.json` (gitignored, regenerable) |
 | Probe scripts | One-off differential probes | `engine/tmp/probe-*.js` (gitignored) |
 | Production client | `searchFunds({token, filter})` → `{count, totalCount, rows}` | `engine/core/client.js` |
