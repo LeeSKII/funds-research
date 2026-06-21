@@ -2,7 +2,7 @@
 
 > **日期**: 2026-06-20
 > **状态**: 设计定稿,待 review → 进 writing-plans
-> **范围**: `engine/` 全新生产系统(试点 `research/funds/` 降为只读参考)
+> **范围**: `engine/` 全新生产系统
 
 ---
 
@@ -14,7 +14,7 @@
 - **投研分析**:候选基金深度尽调(持仓/Brinson 归因/经理画像)、组合优化、定期报告。
 - **运行模型**:Claude Code `/loop` 模式定时编排,产出 = **原始数据落库 + 定期投研报告**。
 
-试点 `research/funds/` 已验证方法论(Brinson 真假 α、Markowitz、backtest、防御层),但结构是迭代堆叠的,不适合作生产基座。本设计是**全新、分层、高内聚低耦合**的重写。
+早期原型已验证方法论(Brinson 真假 α、Markowitz、backtest、防御层),但结构是迭代堆叠的,不适合作生产基座。本设计是**全新、分层、高内聚低耦合**的重写。
 
 ## 2. 关键约束(来自实地侦察,2026-06-20)
 
@@ -27,7 +27,7 @@
 2. **规模 = 全市场数千只**:浏览器逐只抓不可行,每日热路径必须走 API。
 3. **深度数据无干净 JSON**:重仓/Brinson/多期风险只在 SSR innerText;经理深度在 Layer 2。
 
-> 侦察产出 26 个端点 + 鉴权模型,详见 `research/funds/raw-snapshots/api-harvest-20260620/`(含活 token,已 gitignore)。
+> 侦察产出 26 个端点 + 鉴权模型(含活 token,已 gitignore)。
 
 ## 3. 架构决策
 
@@ -194,7 +194,7 @@ config + [MCP]harvest-token → token.json
 - 单元:`diff`/`attribution`(006502 stock_alpha=154% → 真 α)/`screen`/`parse`,用落库数据与上轮捕获的原始响应当 fixture。
 - 离线模式:`market-sweep`/`nav-pull` 支持 `--offline` 读 fixture,无网无浏览器可跑通。
 - MCP 组件(harvest-token/deep-scrape)无法单测 → schema 校验 + 单只冒烟兜底。
-- fixture 直接复用 `research/funds/raw-snapshots/` 已抓的 golden 数据。
+- fixture 直接复用已抓的 golden 数据(现 `engine/test/fixtures/mock-fund-innertext.json`)。
 
 ## 13. 试点迁移清单
 

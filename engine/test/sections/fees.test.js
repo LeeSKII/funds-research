@@ -12,11 +12,7 @@ const path = require('node:path');
 
 const { extractFees } = require('../../analyze/sections/fees');
 
-const SNAPSHOT = path.join(
-  __dirname, '..', '..', '..',
-  'research', 'funds', 'raw-snapshots',
-  'morningstar-fund-005827-20260621-innertext.json'
-);
+const SNAPSHOT = path.join(__dirname, '..', 'fixtures', 'mock-fund-innertext.json');
 
 function loadLines() {
   const raw = fs.readFileSync(SNAPSHOT, 'utf8');

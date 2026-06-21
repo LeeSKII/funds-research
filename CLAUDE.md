@@ -7,7 +7,7 @@
 
 当用户说"搜集/抓取/查询某个基金经理的资料"（来源是 morningstar.cn 基金数据站），按以下 **4 步**走，**不要跳步**。
 
-**注**：这是 `research/managers/` 子模块的工作流。后续会有 `research/funds/`（基金分析）使用同样的 4 步结构。
+**注**：这是 `research/managers/` 子模块的工作流。基金分析已在 `engine/` 落地（同样 4 步结构，见本文件末「基金分析子模块」）。
 
 ### 1. 抓取 innerText 到本地
 
@@ -87,28 +87,36 @@ parse-manager 自动写到 `data/manager/manager-<id>-<name>.json`。**用户没
 - ❌ **在 morningstar 上已打开一个 manager，又 `navigate_page` 改 hash 抓下一个** → 取到旧 manager 的数据，容易误判为 morningstar 数据库重複 ID（实际上是 SPA 没重渲染）。必须 `about:blank` 中转。
 - ❌ **dump 完不 diff 就走 parse 流程** → 错的 innerText 经过 parse 也会生成"干净"的 JSON，但里面全是上一个 manager 的数据。
 
-### 其他子模块（未来）
+### 基金分析子模块（engine/ · 已落地）
 
-- `research/funds/`：基金分析子模块，**同样遵循 4 步结构**
-  - `raw-snapshots/fund-<code>-<date>.json`
-  - `scripts/parse-fund.js` + `scripts/validate-fund.js`
-  - `data/fund/fund-<code>.json`（符合 `data/fund-schema.json`，未来建）
+基金分析已从原型 `research/funds/` 迁移到生产 `engine/`（原型已删除；组合优化方法论参考留在 `engine/tmp/funds-prototype/`，gitignored）。工作流同样 4 步：
+
+1. **抓取 innerText** → chrome-devtools MCP（`about:blank` 中转 → navigate → evaluate_script dump `document.body.innerText`）。快照是**临时**的，写到 `engine/tmp/`（gitignored），不长期留存。
+2. **解析** → `node engine/analyze/parse-fund.js <snapshot> <code>` → `data/fund/fund-<code>-<date>.json`（v2 页面结构对齐：8 段 extractor + orchestrator）
+3. **校验** → `engine/core/schemas/fund-dossier.schema.json`（ajv）
+4. **审计** → Workflow：8 段 sub-agent 各自 vs 原始 innerText 核对提取是否遗漏/错位
+
+测试用**模拟 fixture**（`engine/test/fixtures/mock-fund-innertext.json`，匿名化的真实结构），不依赖实时数据或快照语料。
 
 ## 项目结构约定
 
 ```
 funds-research/
 ├── data/
-│   ├── manager-schema.json          # 经理 JSON 的 schema（必填字段定义）
-│   └── manager/                   # 第 2 步产物：结构化 manager JSON
+│   ├── manager-schema.json          # 经理 JSON schema（必填字段定义）
+│   ├── manager/                     # 结构化 manager JSON
+│   └── fund/                        # 基金 dossier 产物（fund-<code>-<date>.json）
+├── engine/                          # 基金分析生产系统（v2 — 4 步工作流）
+│   ├── analyze/                     # parse-fund.js + sections/（8 段 extractor）+ shared.js
+│   ├── core/schemas/                # fund-dossier.schema.json（ajv 校验）
+│   ├── ingest/ · orchestrate/       # 拉取 / 编排
+│   ├── test/                        # node:test + fixtures/mock-fund-innertext.json
+│   └── tmp/                         # 临时快照 + funds-prototype/（方法论参考，gitignored）
 ├── research/
 │   └── managers/                    # 基金经理子模块（v1.5 — 4 步工作流）
 │       ├── raw-snapshots/           # 第 1 步：innerText 原始快照
 │       └── scripts/                 # 第 2-3 步：parse + validate
-│           ├── parse-manager.js
-│           └── validate-manager.js
-│   # research/funds/                # 基金分析子模块（未来 — 同 4 步结构）
-├── web/                            # 本地 HTML web app（独立前端）
+├── web/                             # 本地 HTML web app（独立前端）
 │   ├── server.js
 │   ├── public/
 │   └── mockups/                     # 设计迭代截图（.gitignore 排除）

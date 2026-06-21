@@ -19,7 +19,7 @@ const path = require('path');
 const { parseNum, numAfter, numOnLine, numBefore, pairAfter } = require('../analyze/shared');
 const { parseFund, VERSION } = require('../analyze/parse-fund');
 
-const SNAP = path.join(__dirname, '..', '..', 'research', 'funds', 'raw-snapshots', 'morningstar-fund-006502-20260620-innertext.json');
+const SNAP = path.join(__dirname, 'fixtures', 'mock-fund-innertext.json');
 
 // ── unit: shared primitives ───────────────────────────────────────────────
 test('parseNum strips 优于X%同类 / — / % / commas and keeps sign', () => {
@@ -46,31 +46,31 @@ test('pairAfter accepts 负值暂不排名 (was the v1.1 calmar/sortino gap)', (
   assert.deepEqual(pairAfter(lines, '索提诺比率'), { fund: -0.89, peer: 3.92 });
 });
 
-// ── integration: orchestrator assembly on 006502 (skip if the untracked fixture is absent) ──
-test('parseFund v2 assembles 006502 — 9 page-tab blocks, schema-shape, Brinson identity, fixed fees',
+// ── integration: orchestrator assembly on the mock fixture (skip if fixture absent) ──
+test('parseFund v2 assembles the mock fixture — 9 page-tab blocks, schema-shape, Brinson identity, fixed fees',
   { skip: !fs.existsSync(SNAP) }, () => {
     const raw = JSON.parse(fs.readFileSync(SNAP, 'utf8'));
     const text = typeof raw === 'string' ? raw : (raw.innerText || '');
-    const d = parseFund(text, { code: '006502' });
+    const d = parseFund(text, { code: '005827' });
 
     // top-level = the 9 page-tab blocks (no v1 leftovers like meta/basic/brinson/layout)
     assert.deepEqual(Object.keys(d),
       ['description', 'performance', 'risk', 'fees', 'portfolio', 'holders', 'manager', 'strategy', '_diagnostics']);
     assert.equal(VERSION, '2.0.0');
 
-    // column sniff: 006502 is ~7.6y → 8 cols; 近两年 MUST be present (v1.0 近二-vs-近两 guard)
+    // column sniff: mock fund is ~7.8y → 8 cols; 近两年 MUST be present (v1.0 近二-vs-近两 guard)
     assert.equal(d._diagnostics.layout.trailingCols, 8);
     assert.ok('近两年' in d.performance.trailing, '近两年 present');
-    assert.equal(d.performance.trailing['近一年'], 389.69);
-    assert.equal(d.performance.trailing['近三年'], 60.97);
-    assert.equal(d.performance.trailing['近五年'], 29.27);
+    assert.equal(d.performance.trailing['近一年'], -11.02);
+    assert.equal(d.performance.trailing['近三年'], -5.51);
+    assert.equal(d.performance.trailing['近五年'], -12.56);
 
     // annual: 2022 bear year negative
     assert.ok(d.performance.annual['2022'] < 0, '2022 annual negative');
 
-    // Brinson: real, identity holds (006502 is a pure stock-picker)
+    // Brinson: real, identity holds (mock is a domestic active stock-picker)
     assert.equal(d.performance.attribution.real, true);
-    assert.equal(d.performance.attribution.excess, 144.34);
+    assert.equal(d.performance.attribution.excess, -19.5);
     assert.equal(d.performance.attribution._identityCheck.ok, true);
 
     // portfolio
@@ -81,7 +81,8 @@ test('parseFund v2 assembles 006502 — 9 page-tab blocks, schema-shape, Brinson
     // FIXED v1.0 bugs under the v2 shape: fees correct, return-since is a %, AUM is a magnitude
     assert.equal(d.fees.managementFee, 1.2);
     assert.equal(d.fees.custodianFee, 0.2);
-    assert.ok(d.manager.lead.returnSinceInception > 100, 'returnSinceInception is a real %');
+    // returnSinceInception is a real % (56.16 here), NOT a fabricated calendar year
+    assert.ok(Math.abs(d.manager.lead.returnSinceInception) < 1000, 'returnSinceInception is a real %');
     assert.ok(d.manager.lead.aumYi >= 10, 'aumYi is a magnitude');
 
     // strategy block is populated in v2

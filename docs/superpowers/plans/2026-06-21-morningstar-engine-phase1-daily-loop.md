@@ -6,7 +6,7 @@
 
 **Architecture:** Hybrid funnel (spec §3.1). Phase 1 = the **API wide/shallow hot path** only: Node calls Layer1 `search/es` with a harvested JWT (CORS is browser-only; Node bypasses it). No browser/MCP in the daily loop except `harvest-token` (run only when the ~14-day JWT nears expiry). 8 modules, single-direction dependency `ingest → store ← analyze`, `core` shared. `analyze/*` are pure functions (zero network). Governance = 4 declarative Markdown artifacts driven by a fire ceremony.
 
-**Tech Stack:** Node v24 (CommonJS, to match the 14 existing `research/funds/scripts/*.js`), built-in `node:test` (zero-dep testing), global `fetch` (Node 18+, no `node-fetch`), `ajv@8` (only runtime dep — JSON Schema validation of store contracts). JSON config (not YAML — zero-dep; revisit if config grows).
+**Tech Stack:** Node v24 (CommonJS, matching the existing prototype scripts), built-in `node:test` (zero-dep testing), global `fetch` (Node 18+, no `node-fetch`), `ajv@8` (only runtime dep — JSON Schema validation of store contracts). JSON config (not YAML — zero-dep; revisit if config grows).
 
 **Scope of THIS plan = spec Phases 1–3.** Phases 4–6 (nav-pull / deep-scrape / attribution / reports / ops-hardening) are separate plans. Phase 1 leaves a working daily loop and a go/no-go gate on the Node→Layer1 feasibility (Task 12).
 
@@ -472,8 +472,8 @@ git commit -m "feat(engine): auth.js — token load + JWT expiry check"
 
 **Run from the repo root (`C:/Lee/Projects/funds-research`), NOT from `engine/`** — both paths below are repo-root-relative. Copies the real captured search/es response into the fixture; it is pure fund data, no tokens. NOTE: this fixture is a **filtered 3y-5★ sample** — all 190 rows have `rating3Y===5` and it omits the defensive ETFs (518880/512890); fine for plumbing tests, NOT representative of the full market (see Task 12 probe).
 ```bash
-cp research/funds/raw-snapshots/api-harvest-20260620/screener-search-es.response.network-response \
-   engine/test/fixtures/search-es.sample.json
+# (source was the prototype api-harvest, since removed; the fixture is already committed at:)
+#    engine/test/fixtures/search-es.sample.json
 node -e 'const j=require("./engine/test/fixtures/search-es.sample.json"); console.log("rows:", j.data.rows.length, "| first id:", j.data.rows[0].id)'
 ```
 Expected: `rows: 190 | first id: 004320`.

@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const { extractHolders } = require('../../analyze/sections/holders');
 
-const SNAP = path.join(__dirname, '..', '..', '..', 'research', 'funds', 'raw-snapshots', 'morningstar-fund-005827-20260621-innertext.json');
+const SNAP = path.join(__dirname, '..', 'fixtures', 'mock-fund-innertext.json');
 
 function loadLines() {
   const raw = JSON.parse(fs.readFileSync(SNAP, 'utf8'));

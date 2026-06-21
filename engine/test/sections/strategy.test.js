@@ -1,6 +1,6 @@
 // engine/test/sections/strategy.test.js — self-test for the 策略 tab extractor.
 //
-// Reads the real 005827 innerText snapshot, splits on newline, and asserts the expected strategy
+// Reads the mock fixture (anonymized 005827 structure), splits on newline, and asserts the strategy
 // block: objective (exact), scope/strategy (startsWith), benchmark (formula substrings), and the
 // two long-form report texts (季报 commentary + 年报 outlook). Long free-text asserts use
 // startsWith (brittle to exact full match); every short/numeric/structural field is exact.
@@ -12,11 +12,7 @@ const path = require('path');
 
 const { extractStrategy } = require('../../analyze/sections/strategy');
 
-const SNAP = path.join(
-  __dirname, '..', '..', '..',
-  'research', 'funds', 'raw-snapshots',
-  'morningstar-fund-005827-20260621-innertext.json'
-);
+const SNAP = path.join(__dirname, '..', 'fixtures', 'mock-fund-innertext.json');
 
 function loadLines() {
   const raw = JSON.parse(fs.readFileSync(SNAP, 'utf8'));
@@ -93,7 +89,7 @@ test('strategy.outlook — 年报 基金经理展望 block', () => {
     'outlook starts with the 2025 linear-extrapolation opening'
   );
   // the outlook must NOT bleed into 相关基金 (next-tab table)
-  assert.ok(!o.text.includes('易方达蓝筹精选混合\t005827'), 'outlook does not contain 相关基金 table');
+  assert.ok(!o.text.includes('模拟测试混合\t005827'), 'outlook does not contain 相关基金 table');
   // long-form text is genuinely long (>500 chars)
   assert.ok(o.text.length > 500, `outlook is long-form (len=${o.text.length})`);
 });

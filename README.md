@@ -20,19 +20,20 @@
 ```
 funds-research/
 ├── README.md                      ← 你正在读的（项目入口）
-├── CLAUDE.md                      ← 🤖 Claude 工作流约束（manager 子模块）
-├── data/                          ← 经理数据（结构化）
+├── CLAUDE.md                      ← 🤖 Claude 工作流约束
+├── data/                          ← 结构化数据
 │   ├── manager-schema.json        ← 经理 JSON Schema 定义
-│   ├── sources.md                 ← 引用链接合集
-│   └── manager/                   ← 经理数据（v1.5 — 8 个 manager）
-│       └── manager-<id>-<name>.json
-├── research/                      ← 研究子模块（每模块独立 4 步工作流）
-│   └── managers/                  ← 基金经理子模块
+│   ├── manager/                   ← 经理数据（manager-<id>-<name>.json）
+│   └── fund/                      ← 基金 dossier（fund-<code>-<date>.json）
+├── engine/                        ← 基金分析生产系统（v2 — 4 步工作流：抓取→parse→validate→audit）
+│   ├── analyze/                   ← parse-fund.js + sections/（8 段 extractor）+ shared.js
+│   ├── core/schemas/              ← fund-dossier.schema.json
+│   ├── ingest/ · orchestrate/     ← 拉取 / 编排
+│   └── test/                      ← node:test + fixtures/mock-fund-innertext.json
+├── research/                      ← 经理研究子模块（4 步工作流）
+│   └── managers/
 │       ├── raw-snapshots/         ← 第 1 步：innerText 原始快照
-│       └── scripts/               ← 第 2-3 步：通用 extractor + validator
-│           ├── parse-manager.js
-│           └── validate-manager.js
-│   # research/funds/              ← 基金分析子模块（未来 — 同 4 步结构）
+│       └── scripts/               ← 第 2-3 步：parse-manager + validate-manager
 └── web/                           ← 本地 HTML web app（独立前端）
     ├── server.js
     ├── public/
@@ -43,6 +44,7 @@ funds-research/
 
 ## 📊 当前状态
 
-- ✅ 工具链：Manager JSON Schema v1.5 + parse-manager v1.5 + validate-manager v1.5
-- ✅ 工作流：4 步（抓取 → parse → validate → 保存）— 见 `CLAUDE.md`
-- ✅ 项目结构：研究子模块化（research/managers/）、数据按模块分类（data/manager/）
+- ✅ 经理工具链：Manager JSON Schema v1.5 + parse-manager v1.5 + validate-manager v1.5
+- ✅ 基金工具链（engine/ v2）：fund-dossier schema v2.0.0 + parse-fund（8 段 extractor + orchestrator）+ ajv 校验 + 对抗审计 Workflow
+- ✅ 工作流：4 步（抓取 → parse → validate → 保存/审计）— 见 `CLAUDE.md`
+- ✅ 项目结构：基金分析生产系统（engine/）、经理子模块（research/managers/）、数据按模块分类（data/{manager,fund}/）

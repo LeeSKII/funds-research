@@ -8,9 +8,11 @@
 > **Companion.** `fund-detail-api.md` = *where the data lives* (SSR DOM vs XHR). THIS doc = *how the
 > DOM layout varies* (column counts, section-header variants, Brinson presence, ticker formats).
 >
-> **Corpus (18 funds):** A-share active equity (000411/000925/001048/002861/005161/006265/006502/
-> 006751/009891/010013/014191), HK-cross-border equity (002121), ETFs (159994/515050/515880),
-> QDII (017730), ALLOC/混合 mature (001438), ALLOC/混合 young (017102). Ages 3.3y→12.5y.
+> **Corpus (18 funds, historical probing inputs):** A-share active equity (000411/000925/001048/
+> 002861/005161/006265/006502/006751/009891/010013/014191), HK-cross-border equity (002121),
+> ETFs (159994/515050/515880), QDII (017730), ALLOC/混合 mature (001438), ALLOC/混合 young (017102).
+> Ages 3.3y→12.5y. These raw snapshots were probing inputs (since deleted); the layout rules below
+> stand. Parser regression now runs on `engine/test/fixtures/mock-fund-innertext.json`.
 
 ---
 
@@ -111,12 +113,13 @@ AUM/count were scrambled. Verified across 16 funds 2026-06-21.
 
 | Layout | Arrangement | Example | Helper |
 |---|---|---|---|
-| **(c)** value AFTER label | label on line N, value on N+1 | `最大回撤` / `-11.90%` (table rows, NAV) | `numAfter` |
+| **(c)** value AFTER label | label on line N, value on N+1 | `机构` / `3.73%` (持有人结构), NAV | `numAfter` |
 | **(b)** value ON the anchor line | label + value on the SAME line (tab/space-joined) | `任职回报327.11%`, `管理费(每年)\t1.20%` | `numOnLine` |
 | **(a)** value BEFORE label | value on N, label on N+1 (KPI strips, cost waterfall) | `118.48亿` / `在管规模` | `numBefore` |
 
 **Where each fires:**
-- **Returns/risk tables, NAV, asset-type** → layout (c).
+- **NAV, asset-type, 持有人结构 (机构/个人), 相对收益 singletons (alpha/beta/R²/捕获率…)** → layout (c) `numAfter`.
+- **性价比 / 风险和波动 caveat rows** (夏普/卡玛/索提诺/标准差/**最大回撤**/**下行风险**/晨星风险) → `pairAfter` → `{fund, peer}` (4-col table 指标|同类表现|本基金|同类平均; the 相对收益 block has NO 同类平均 column, so those stay `numAfter` singletons).
 - **Fees** (`管理费(每年)`/`托管费(每年)`/`销售服务费(每年)` prospectus table) and **manager return-since**
   (`任职回报XXX%`) → layout (b). ⚠ The `费率与成本` waterfall uses `(年)` (no 每) with layout (a) —
   do NOT anchor fees there; it returns the custodian value labeled as management (the 6× bug).
@@ -138,7 +141,7 @@ AUM/count were scrambled. Verified across 16 funds 2026-06-21.
 6. **Dispatch the three value-layouts** (§8) — `numAfter` alone mis-reads fees / manager-return / AUM.
 7. **Region/sector rows** match by name prefix (allow trailing tab-values) and accept 1-column tables.
 8. **Zero hardcoded fund-specific anchors** (no 财通/金梓才 literals — the sin of the old
-   `research/funds/scripts/parse-fund.js`).
+   prototype parser, now in `engine/tmp/funds-prototype/parse-fund.js`).
 
 ## Known limitations (not probed — out of strategy universe)
 
@@ -156,4 +159,5 @@ fresh sample of the new type before trusting the parser there.
 |---|---|
 | `engine/tmp/probe-layouts.js` | per-fund layout summary (sections, Brinson, holdings count) |
 | `engine/tmp/probe-headers.js` | header-row column/year counts + section-variant + ticker-format detection |
-| Corpus | `research/funds/raw-snapshots/morningstar-fund-*-innertext.json` (18 files) |
+| Corpus (historical) | 18 fund snapshots — probing inputs, since deleted (layout rules above stand) |
+| Test fixture | `engine/test/fixtures/mock-fund-innertext.json` (anonymized 005827 structure; parser regression) |

@@ -1,6 +1,6 @@
 // engine/test/sections/description.test.js — self-test for the description (top summary strip
-// + identity) section extractor. Loads the 005827 ground-truth innerText snapshot, runs the
-// extractor, and asserts every field against the known-good values for 易方达蓝筹精选混合 005827.
+// + identity) section extractor. Loads the mock fixture (anonymized 005827 structure), runs the
+// extractor, and asserts every field against the fixture's known values.
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -8,10 +8,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { extractDescription } = require('../../analyze/sections/description');
 
-const SNAPSHOT = path.join(
-  __dirname, '..', '..', '..',
-  'research', 'funds', 'raw-snapshots', 'morningstar-fund-005827-20260621-innertext.json'
-);
+const SNAPSHOT = path.join(__dirname, '..', 'fixtures', 'mock-fund-innertext.json');
 
 function loadLines() {
   const raw = fs.readFileSync(SNAPSHOT, 'utf8');
@@ -25,7 +22,7 @@ test('extractDescription: 005827 top summary strip + identity', () => {
 
   // ── identity ─────────────────────────────────────────────────────────
   assert.equal(block.code, '005827', 'code');
-  assert.equal(block.name, '易方达蓝筹精选混合', 'name');
+  assert.equal(block.name, '模拟测试混合', 'name (anonymized in mock fixture)');
 
   // ── strip numeric / status fields (exact match) ──────────────────────
   assert.equal(block.category, '沪港深积极配置', 'category');
