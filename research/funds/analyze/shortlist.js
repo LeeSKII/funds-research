@@ -16,7 +16,8 @@ const fs = require('fs');
 const path = require('path');
 const { loadDossiers } = require('./loader');
 const { buildSectorFlowHeatmap } = require('./sectorflow-index');
-const { scoreFund } = require('./score');
+const { scoreFund, riskAdjusted } = require('./score');
+const { computePoolStats } = require('./prqc');
 const { validate } = require('../core/validate'); // INVARIANTS (a)：每个 store 写都过 schema
 
 const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
@@ -58,14 +59,9 @@ function fineRankCard(card, config) {
   const bc = card.scores.bandContribution || {};
   const en = card.scores.endorsement || {};
   const downsideQ = downsideProtectionQuality(ra.downsideCapture, config);
-  // trueAlpha contribution: real-Brinion tiers use the aq.value composite; no_brinion (QDII/ETF/index,
-  // no Brinson data → aq.value=0) use an α proxy = risk.alpha normalized by alpha5yNormalizeDivisor
-  // (same divisor score.js uses for real-α funds), so strong-α no_brinion funds compete instead of
-  // being zeroed. 🔴 Caveat: without Brinson we can't confirm the α is stock-selection vs industry-β.
-  const divisor = config.alphaQuality.alpha5yNormalizeDivisor;
-  const aqContribution = aq.tier === 'no_brinion'
-    ? clamp((ra.alpha != null ? ra.alpha : 0) / divisor, 0, 1)
-    : clamp(aq.value != null ? aq.value : 0, 0, 1);
+  // trueAlpha contribution: 统一用 aq.value（0..1 复合）。no_brinion tier 的 aq.value 现由 score.js
+  // 通过 PRQC 5-因子复合填充（不再为 0），所以无需单独的 α-proxy 分支。
+  const aqContribution = clamp(aq.value != null ? aq.value : 0, 0, 1);
   const value = round(
     w.trueAlpha * aqContribution +
     w.downsideProtection * downsideQ +
@@ -85,11 +81,14 @@ function fineRankCard(card, config) {
   };
 }
 
-// dossier 列表 → fine 排序结果（内部自建 heatmap，与 run-analysis 同款）。
+// dossier 列表 → fine 排序结果（内部自建 heatmap + poolStats，与 run-analysis 同款）。
+// 🔴 必须预计算 poolStats 传给 scoreFund，否则 no_brinion 基金走 α-proxy 回退，与 score 输出不一致。
 function fineRank(dossiers, config, computedAt) {
   const heatmap = buildSectorFlowHeatmap(dossiers, config);
+  const poolFunds = dossiers.map(d => ({ risk: { ...(d.risk || {}) }, ra: { asymmetry: (riskAdjusted(d, config) || {}).asymmetry } }));
+  const poolStats = computePoolStats(poolFunds);
   const ranked = dossiers
-    .map(d => fineRankCard(scoreFund(d, { heatmap, config, computedAt }), config))
+    .map(d => fineRankCard(scoreFund(d, { heatmap, config, computedAt, poolStats }), config))
     .sort((a, b) => b.fineScore - a.fineScore);
   ranked.forEach((r, i) => { r.fineRank = i + 1; });
   return ranked;

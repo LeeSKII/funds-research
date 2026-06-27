@@ -2,7 +2,8 @@
 const fs = require('fs'); const path = require('path');
 const { loadDossiers } = require('./loader');
 const { buildSectorFlowHeatmap } = require('./sectorflow-index');
-const { scoreFund } = require('./score');
+const { scoreFund, riskAdjusted } = require('./score');
+const { computePoolStats } = require('./prqc');
 const { validate } = require('../core/validate'); // INVARIANTS (a)：每个 store 写都过 schema
 const config = require('../core/config/analysis.json');
 
@@ -25,13 +26,22 @@ function runAnalysis({ dataDir, outDir, date, computedAt }) {
     dossiers.push(d);
   }
   const heatmap = buildSectorFlowHeatmap(dossiers, config);
-  const cards = dossiers.map(d => scoreFund(d, { heatmap, config, computedAt }));
+  // 🔴 PRQC poolStats：从所有 dossier 提取 risk + ra.asymmetry（computePoolStats 接受 dossier-shape：
+  //   读 risk.sharpe.fund / risk.maxDrawdown.fund 等 + ra.asymmetry）。pool 横跨全部基金
+  //   （no_brinion 占多数；混入少量 real-α 基金不污染百分位，反而让 pool 更稳）。
+  const poolFunds = dossiers.map(d => {
+    const ra = riskAdjusted(d, config);
+    return { risk: { ...(d.risk || {}) }, ra: { asymmetry: ra.asymmetry } };
+  });
+  const poolStats = computePoolStats(poolFunds);
+  const cards = dossiers.map(d => scoreFund(d, { heatmap, config, computedAt, poolStats }));
   // 🔴 INVARIANTS (a)：写盘前逐卡 schema 校验，任一非法即拒写（不把坏评分落 store）
   for (const card of cards) {
     const v = validate('analysis-score', card);
     if (!v.valid) throw new Error(`[analysis] card ${card.code} failed schema:\n  - ${v.errors.join('\n  - ')}`);
   }
   const obj = { date, fundCount: cards.length, sectorFlowHeatmap: heatmap, cards,
+    _meta: { poolStats, computedAt },
     ranked: { bySectorFlow: rankBy(cards, 'sectorFlow'), byAlphaQuality: rankBy(cards, 'alphaQuality'), byBandContribution: rankBy(cards, 'bandContribution') } };
   atomicWrite(path.join(outDir, `score-${date}.json`), obj);
   return { date, fundCount: cards.length, ranked: obj.ranked };

@@ -3,15 +3,27 @@
 // size>100亿 = capacity_erosion 风险；size<2亿 = liquidation_risk。
 const { sectorFlowScore } = require('./sectorflow-index');
 const { detectTheme } = require('./theme-detector');
+const { computePRQC } = require('./prqc');
 const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
 const round = x => Math.round((x + Number.EPSILON) * 1000) / 1000;
 
-function scoreFund(dossier, { heatmap, config, computedAt }) {
+function scoreFund(dossier, { heatmap, config, computedAt, poolStats }) {
   const flags = [];
   const a = dossier.performance && dossier.performance.attribution;
 
+  // 🔴 子分计算顺序：ra/bc/sf 必须先于 aq，因为 no_brinion 分支用 PRQC 消费它们。
+  const en = endorsementScore(dossier, config);
+  if (en.flags) { flags.push(...en.flags); delete en.flags; }
+  const bc = bandScore(dossier, config);
+  const sf = sectorFlowScore(dossier, heatmap, config);
+  const theme = detectTheme(dossier);
+  const ra = riskAdjusted(dossier, config);
+  if (ra.flags) { flags.push(...ra.flags); delete ra.flags; }
+  const sizeRisk = sizeRiskOf(dossier, config);
+  if (sizeRisk.flag !== 'ok' && sizeRisk.flag !== 'unknown') flags.push(sizeRisk.flag);
+
   // alphaQuality (#3)：Brinson 归因 → 真 α / 行业 β / 无归因三分。
-  const aq = { value: 0, stockAlphaShare: null, tier: 'no_brinion', annualizedAlpha5y: null, tenureNorm: 0, identityCheckOk: null };
+  const aq = { value: 0, stockAlphaShare: null, tier: 'no_brinion', annualizedAlpha5y: null, tenureNorm: 0, identityCheckOk: null, proxyMethod: null, prqcFactors: null };
   // 🔴 ETF/指数/QDII 的 attribution 常为 {present:true, real:false, reason:'not_computed'} 或缺席。
   // 条件 a.real===true && excess≠0 才进入 Brinson 打分，否则 no_brinion。
   if (a && a.real === true && typeof a.excess === 'number' && a.excess !== 0) {
@@ -32,17 +44,39 @@ function scoreFund(dossier, { heatmap, config, computedAt }) {
     if (aq.identityCheckOk === false) flags.push('data_noise');
   } else {
     flags.push('no_brinion');
+    // 无 Brinson 归因（QDII/ETF/指数/保守混合）→ 用 PRQC 5-因子复合填充 aq.value。
+    // poolStats 由 run-analysis.js 预计算并传入；缺失时（离线测试/单卡调用）回退到历史的 α-proxy (alpha/divisor)。
+    if (poolStats && typeof poolStats === 'object' && poolStats.alphaNormDivisor) {
+      const r = (dossier.risk) || {};
+      const fm = {
+        sharpe: r.sharpe && typeof r.sharpe.fund === 'number' ? r.sharpe.fund : null,
+        sortino: r.sortino && typeof r.sortino.fund === 'number' ? r.sortino.fund : null,
+        calmar: r.calmar && typeof r.calmar.fund === 'number' ? r.calmar.fund : null,
+        maxDrawdown: r.maxDrawdown && typeof r.maxDrawdown.fund === 'number' ? r.maxDrawdown.fund : null,
+        stdDev: r.stdDev && typeof r.stdDev.fund === 'number' ? r.stdDev.fund : null,
+        monthlyWinRate: typeof r.monthlyWinRate === 'number' ? r.monthlyWinRate : null,
+        infoRatio: typeof r.infoRatio === 'number' ? r.infoRatio : null,
+        alpha: ra.alpha,
+        downsideCapture: ra.downsideCapture,
+        asymmetry: ra.asymmetry,
+        consistencyRatio: bc.consistencyRatio,
+        sectorFlowValue: sf.value,
+      };
+      const prqc = computePRQC(fm, poolStats);
+      aq.value = prqc.value;
+      aq.proxyMethod = prqc.proxyMethod;
+      aq.prqcFactors = prqc.factors;
+      // annualizedAlpha5y 仍记录（narrative + 下游用），不参与 aq.value。
+      aq.annualizedAlpha5y = (dossier.risk && dossier.risk.alpha) != null ? dossier.risk.alpha : null;
+    } else {
+      // 回退：无 poolStats → 历史 α-proxy (alpha/divisor)，保持现有 score.test.js 行为。
+      const divisor = config.alphaQuality.alpha5yNormalizeDivisor;
+      const alpha5y = (dossier.risk && dossier.risk.alpha) != null ? dossier.risk.alpha : null;
+      aq.annualizedAlpha5y = alpha5y;
+      aq.value = round(clamp((alpha5y != null ? alpha5y : 0) / divisor, 0, 1));
+      aq.proxyMethod = 'fallback_alpha_proxy';
+    }
   }
-
-  const en = endorsementScore(dossier, config);
-  if (en.flags) { flags.push(...en.flags); delete en.flags; }
-  const bc = bandScore(dossier, config);
-  const sf = sectorFlowScore(dossier, heatmap, config);
-  const theme = detectTheme(dossier);
-  const ra = riskAdjusted(dossier, config);
-  if (ra.flags) { flags.push(...ra.flags); delete ra.flags; }
-  const sizeRisk = sizeRiskOf(dossier, config);
-  if (sizeRisk.flag !== 'ok' && sizeRisk.flag !== 'unknown') flags.push(sizeRisk.flag);
 
   return {
     code: dossier.description.code, name: dossier.description.name,
