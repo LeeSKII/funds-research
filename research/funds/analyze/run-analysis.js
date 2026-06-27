@@ -3,6 +3,7 @@ const fs = require('fs'); const path = require('path');
 const { loadDossiers } = require('./loader');
 const { buildSectorFlowHeatmap } = require('./sectorflow-index');
 const { scoreFund } = require('./score');
+const { validate } = require('../core/validate'); // INVARIANTS (a)：每个 store 写都过 schema
 const config = require('../core/config/analysis.json');
 
 function atomicWrite(file, obj) {
@@ -25,6 +26,11 @@ function runAnalysis({ dataDir, outDir, date, computedAt }) {
   }
   const heatmap = buildSectorFlowHeatmap(dossiers, config);
   const cards = dossiers.map(d => scoreFund(d, { heatmap, config, computedAt }));
+  // 🔴 INVARIANTS (a)：写盘前逐卡 schema 校验，任一非法即拒写（不把坏评分落 store）
+  for (const card of cards) {
+    const v = validate('analysis-score', card);
+    if (!v.valid) throw new Error(`[analysis] card ${card.code} failed schema:\n  - ${v.errors.join('\n  - ')}`);
+  }
   const obj = { date, fundCount: cards.length, sectorFlowHeatmap: heatmap, cards,
     ranked: { bySectorFlow: rankBy(cards, 'sectorFlow'), byAlphaQuality: rankBy(cards, 'alphaQuality'), byBandContribution: rankBy(cards, 'bandContribution') } };
   atomicWrite(path.join(outDir, `score-${date}.json`), obj);

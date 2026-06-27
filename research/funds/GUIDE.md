@@ -46,21 +46,40 @@
 
 运行：`npm run analysis:offline`（读 `data/fund/`，写 `store/derived/`）。
 
+## ④ 精排 + 研究报告（Plan 2/3/4 收尾）
+
+基于 ③ 的判定卡做选股精排与报告产出：
+
+| 模块 | 作用 | 产物 / 命令 |
+|---|---|---|
+| `analyze/shortlist.js` | 两段式精排：① coarseRank（25 字段行）→ 宽池；② fineRank 复用 `scoreFund`（Brinson tier + downsideCapture）按选股目标重加权 → ~15-20。🔴 DRY 不重推导 Brinson；诚实边界 `pendingScrape`（宽池未抓的码不假装排了） | `shortlist-<date>.json` · `npm run shortlist:offline` |
+| `analyze/report.js` | dossier+判定卡 → Markdown（概要/α来源/板块流向/区间表现/风险/持仓/结论+否定式边界）；池级摘要。PDF 用外部 `pandoc`/`md-to-pdf`（不引入重依赖） | `reports/report-<code>-<date>.md` + `pool-summary` · `npm run report:offline` |
+| `orchestrate/bulk-sweep.js` | Plan 2 detail-sweep 驱动：throttle+retry+断点续跑，`fetchPage` 注入（生产=chrome-devtools，测试=mock）。🔴 live 是外发操作，需授权 | `npm run bulk:dry`（离线自检） |
+| `core/retry.js` · `state.js` · `watchlist.js` | ops 硬化：重试 / 断点续跑 / 逐只纵向追踪 | — |
+| `orchestrate/shard.js` · `sharded-sweep.js` | universe>cap 时 disjoint 分片检索（100% 捕获，去重，截断告警） | — |
+| `orchestrate/smoke.js` | 全链路自检（offline，隔离 temp store） | `npm run smoke` |
+
 ## 模块布局
 
 ```
 research/funds/
 ├── GUIDE.md                # 本文件
 ├── analyze/                # parse-fund.js + sections/（8 段 extractor）+ shared.js + screen.js + diff.js
+│                           # + score.js/run-analysis.js/loader.js/sectorflow-index.js/theme-detector.js（③分析）
+│                           # + shortlist.js（两段式精排）+ report.js（Markdown 报告）
 ├── core/
-│   ├── config/             # universe.json（server filter）+ thresholds.json（client 阈值）
-│   ├── schemas/            # fund-dossier.schema.json（ajv）
-│   └── auth.js · client.js · validate.js
+│   ├── config/             # universe.json（server filter + watchlist）+ thresholds.json + analysis.json（③/精排参数）
+│   ├── schemas/            # fund-dossier / analysis-score / shortlist / snapshot / change-event（ajv）
+│   ├── retry.js            # 指数退避+抖动重试（client/bulk-sweep 用）
+│   ├── state.js            # 断点续跑 state（bulk-sweep 用）
+│   ├── watchlist.js        # 逐只纵向追踪（评级/经理/规模档/风格漂移）
+│   └── auth.js · client.js（含 retry）· validate.js · config.js
 ├── ingest/                 # market-sweep.js（search/es）· pull-nav.js
-├── orchestrate/run.js      # 每日 fire（唯一跨层：ingest → analyze → store）
-├── store/                  # snapshots/changes/derived（gitignored，可再生产）
-├── test/                   # node:test（84）+ fixtures/mock-fund-innertext.json
-├── docs/                   # fund-detail-api · fund-detail-layouts · screener-filters
-├── tmp/                    # 临时快照 + funds-prototype/（组合优化方法论参考，gitignored）
+├── orchestrate/            # run.js（每日 fire）· shard.js + sharded-sweep.js（分片检索）
+│                           # · bulk-sweep.js（Plan 2 detail-scrape 驱动）· smoke.js（全链路自检）
+├── store/                  # snapshots/changes/derived（gitignored；derived 含 score/shortlist/reports）
+├── test/                   # node:test（155）+ fixtures；npm test 限定 test/**，排除 tmp/
+├── docs/                   # fund-detail-api · fund-detail-layouts · screener-filters · investment-philosophy
+├── tmp/                    # 临时快照 + funds-prototype/（组合优化方法论参考，gitignored，不入测试）
 └── secrets/                # live JWT（gitignored）
 ```

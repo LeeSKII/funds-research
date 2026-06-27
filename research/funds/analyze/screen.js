@@ -61,4 +61,4 @@ function screen(snapshot, t) {
   return { rows: out };
 }
 
-module.exports = { screen };
+module.exports = { screen, USD_SHARECLASS_REGEX };

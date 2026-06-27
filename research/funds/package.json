@@ -4,10 +4,14 @@
   "private": true,
   "description": "Morningstar fund research automation engine (daily loop)",
   "scripts": {
-    "test": "node --test",
+    "test": "node --test \"test/**/*.test.js\"",
+    "smoke": "node orchestrate/smoke.js",
     "daily": "node orchestrate/run.js",
     "daily:offline": "node orchestrate/run.js --offline",
-    "analysis:offline": "node analyze/run-analysis.js"
+    "analysis:offline": "node analyze/run-analysis.js",
+    "shortlist:offline": "node analyze/shortlist.js",
+    "report:offline": "node analyze/report.js",
+    "bulk:dry": "node orchestrate/bulk-sweep.js --dry-fixture"
   },
   "dependencies": {
     "ajv": "^8.17.1"
