@@ -100,23 +100,24 @@ test('scoreFundCard: 从 dossier 重算子分 + fine（默认权重），tier/fl
   assert.ok(Math.abs(card.fineScore - 0.83) < 0.001);
 });
 
-test('fineScore: no_brinion uses α PROXY (alphaRisk/divisor) for trueAlpha term, not aq.value=0', () => {
-  // no_brinion (QDII/ETF/index): alphaQualityValue=0 (no Brinson) but alphaRisk=52 → proxy = 52/50 = 1.04 → clamp 1.0.
-  // A same-fund true_alpha with aq.value=0.952 would get 0.4*0.952=0.381; the no_brinion proxy gets 0.4*1.0=0.4
-  // → strong-α no_brinion funds compete with (even slightly exceed) confirmed-α funds. 🔴 Brinson-source caveat.
-  const card = { alphaTier: 'no_brinion', alphaQualityValue: 0, alphaRisk: 52,
+test('fineScore: no_brinion now uses alphaQualityValue (PRQC-filled by score.js), NOT alphaRisk/divisor proxy', () => {
+  // Unified: ALL tiers use card.alphaQualityValue. For no_brinion funds, score.js fills alphaQualityValue
+  // via the PRQC 5-factor composite (no longer 0). alphaRisk is IGNORED here. With alphaQualityValue=0.89
+  // (a strong no_brinion PRQC score) + downside -54 → 0.4*0.89 + 0.25*1(neg) + 0.15*0.5 + 0.1*0.7 + 0.1*0.3.
+  const card = { alphaTier: 'no_brinion', alphaQualityValue: 0.89, alphaRisk: 52,
     downsideCapture: -54, sectorFlowValue: 0.5, bandValue: 0.7, endorsementValue: 0.3 };
   const w = { trueAlpha: 0.4, downsideProtection: 0.25, sectorFlow: 0.15, band: 0.1, endorsement: 0.1 };
   const ds = { captureFloor: 40, captureCeil: 120 };
-  // = 0.4*1.0 + 0.25*1(neg) + 0.15*0.5 + 0.1*0.7 + 0.1*0.3 = 0.4+0.25+0.075+0.07+0.03 = 0.825
-  assert.ok(Math.abs(fineScore(card, w, ds, 50) - 0.825) < 0.001, `got ${fineScore(card, w, ds, 50)}`);
+  // = 0.4*0.89 + 0.25*1 + 0.15*0.5 + 0.1*0.7 + 0.1*0.3 = 0.356+0.25+0.075+0.07+0.03 = 0.781
+  assert.ok(Math.abs(fineScore(card, w, ds) - 0.781) < 0.001, `got ${fineScore(card, w, ds)}`);
 });
 
-test('fineScore: no_brinion with low α → proxy low (not buried-zero, but not boosted)', () => {
-  const card = { alphaTier: 'no_brinion', alphaQualityValue: 0, alphaRisk: 5,  // α=5 → 5/50=0.1
+test('fineScore: no_brinion with low PRQC alphaQualityValue → low trueAlpha term (not boosted)', () => {
+  // alphaRisk is now IGNORED; only alphaQualityValue matters. Low PRQC score → low contribution.
+  const card = { alphaTier: 'no_brinion', alphaQualityValue: 0.1, alphaRisk: 5,
     downsideCapture: 80, sectorFlowValue: 0.3, bandValue: 0.4, endorsementValue: 0.2 };
   const w = { trueAlpha: 0.4, downsideProtection: 0.25, sectorFlow: 0.15, band: 0.1, endorsement: 0.1 };
   const ds = { captureFloor: 40, captureCeil: 120 };
-  // downside 80 → (120-80)/(120-40)=0.5; = 0.4*0.1 + 0.25*0.5 + 0.15*0.3 + 0.1*0.4 + 0.1*0.2 = 0.04+0.125+0.045+0.04+0.02 = 0.27
-  assert.ok(Math.abs(fineScore(card, w, ds, 50) - 0.27) < 0.001, `got ${fineScore(card, w, ds, 50)}`);
+  // downside 80 → 0.5; = 0.4*0.1 + 0.25*0.5 + 0.15*0.3 + 0.1*0.4 + 0.1*0.2 = 0.04+0.125+0.045+0.04+0.02 = 0.27
+  assert.ok(Math.abs(fineScore(card, w, ds) - 0.27) < 0.001, `got ${fineScore(card, w, ds)}`);
 });

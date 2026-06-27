@@ -1,5 +1,6 @@
 // views/detail-card.js — selected fund judgment card (推演 + 出局审计 share it).
 import { fmt } from '../lib/ui-util.mjs';
+import { openReport } from './report.js';
 
 export function renderDetailCard(state) {
   const code = state.selectedCode;
@@ -44,8 +45,11 @@ export function renderDetailCard(state) {
       </div></div>
       ${ann ? `<div class="sect"><h4>年度回报 % (vs 同类)</h4><div class="ann">${ann}</div></div>` : ''}
       ${hold ? `<div class="sect"><h4>前 5 重仓</h4><div class="hold">${hold}</div></div>` : ''}
-      <a class="report-link" href="/api/report/${code}" target="_blank">📄 查看完整研究报告 →</a>
+      <a class="report-link" href="#" data-report-code="${code}">📄 查看完整研究报告 →</a>
     </div>`;
+  // Report link opens the rendered-report overlay (not raw-markdown navigation).
+  const link = pane.querySelector('.report-link');
+  if (link) link.onclick = (e) => { e.preventDefault(); openReport(code); };
 }
 function downQ(dc, state) {
   if (dc == null) return 0.5; if (dc < 0) return 1;

@@ -46,7 +46,7 @@ function recompute() {
       code: c.code, name: c.name, flags: c.flags, sizeRiskFlag: c.sizeRisk.flag, aumYi: c.sizeRisk.aumYi,
       alpha: s.alphaQuality, sf: s.sectorFlow, narrative: c.narrative, ratings: s.endorsement.ratings,
     };
-    card.fineScore = fineScore(card, state.weights, state.downside, state.bundle.defaults.alphaDivisor);
+    card.fineScore = fineScore(card, state.weights, state.downside);
     return card;
   });
   cards.sort((a, b) => b.fineScore - a.fineScore);
@@ -62,7 +62,7 @@ function computeBaseline() {
     const fs = fineScore({ alphaTier: s.alphaQuality.tier, alphaQualityValue: s.alphaQuality.value,
       alphaRisk: s.riskAdjusted.alpha,
       downsideCapture: s.riskAdjusted.downsideCapture, sectorFlowValue: s.sectorFlow.value,
-      bandValue: s.bandContribution.value, endorsementValue: s.endorsement.value }, base.weights, base.downside, d.alphaDivisor);
+      bandValue: s.bandContribution.value, endorsementValue: s.endorsement.value }, base.weights, base.downside);
     return { code: c.code, fs };
   }).sort((a, b) => b.fs - a.fs);
   state.baselineRank = new Map(cards.map((c, i) => [c.code, i + 1]));

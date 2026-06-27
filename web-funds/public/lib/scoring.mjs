@@ -80,18 +80,16 @@ export function riskAdjusted(risk, cfg) {
 
 // fine-rank composite (spec §5.2). card = precomputed/recomputed components.
 // 🔴 MUST mirror research/funds/analyze/shortlist.js#fineRankCard exactly — golden-master
-// parity (test/parity.test.js) gates this. Three faithfulness points vs the naive port:
+// parity (test/parity.test.js) gates this. Two faithfulness points vs the naive port:
 //   (a) trueAlpha term uses aq.value (the 0..1 alphaQuality composite), NOT a 0/1 tier indicator.
 //   (b) downside config keys are captureFloor/captureCeil (analysis.json), and the quality is rounded.
-//   (c) no_brinion tier (QDII/ETF/index, no Brinson) uses an α PROXY = card.alphaRisk / divisor for
-//       the trueAlpha term (instead of aq.value=0), so strong-α funds aren't buried. 🔴 Brinson-source
-//       (stock vs industry-β) is unconfirmed for these — proxy assumes α quality.
-export function fineScore(card, w, ds, divisor = 50) {
+// 🔴 Unified: ALL tiers (incl. no_brinion) now use card.alphaQualityValue. For no_brinion funds,
+//   score.js fills alphaQualityValue via the PRQC 5-factor composite (no longer 0), so no separate
+//   α-proxy branch is needed here. Brinson-source (stock vs industry-β) caveat still applies upstream.
+export function fineScore(card, w, ds) {
   const floor = ds.captureFloor != null ? ds.captureFloor : ds.floor;   // back-compat for unit fixtures
   const ceil = ds.captureCeil != null ? ds.captureCeil : ds.ceil;
-  const aqContribution = card.alphaTier === 'no_brinion'
-    ? clamp((card.alphaRisk != null ? card.alphaRisk : 0) / divisor, 0, 1)
-    : clamp(card.alphaQualityValue != null ? card.alphaQualityValue : 0, 0, 1);
+  const aqContribution = clamp(card.alphaQualityValue != null ? card.alphaQualityValue : 0, 0, 1);
   return round3(
     w.trueAlpha * aqContribution
     + w.downsideProtection * downsideQuality(card.downsideCapture, floor, ceil)
