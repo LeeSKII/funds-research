@@ -16,5 +16,14 @@
   },
   "sizeRisk": { "capacityErosionYi": 100, "liquidationRiskYi": 2 },
   "riskAdjusted": { "rSquaredTrustFloor": 0.7 },
-  "band": { "bearYear": 2022 }
+  "band": { "bearYear": 2022 },
+  "shortlist": {
+    "_note": "两段式精排 (analyze/shortlist.js)。coarse=25字段行粗排(无Brinson,仅alpha/sharpe百分位+评级);fine=复用scoreFund子分按选股目标重加权。fine.downside: downsideCapture 线性映射 [captureFloor..captureCeil]→[1..0], 越低越保护; null=0.5中性; 负值(逆市)clamp到1。widePoolSize留空=用全部候选行。",
+    "coarse": { "weights": { "alpha": 0.5, "sharpe": 0.3, "rating": 0.2 }, "widePoolSize": null },
+    "fine": {
+      "weights": { "trueAlpha": 0.4, "downsideProtection": 0.25, "sectorFlow": 0.15, "band": 0.1, "endorsement": 0.1 },
+      "downside": { "captureFloor": 40, "captureCeil": 120 },
+      "defaultTopN": 20
+    }
+  }
 }

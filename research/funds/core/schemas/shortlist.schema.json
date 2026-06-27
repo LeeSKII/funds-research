@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "fund-analysis-shortlist",
+  "type": "object",
+  "required": ["date", "stage1", "stage2", "shortlist", "ranked"],
+  "additionalProperties": true,
+  "properties": {
+    "date": { "type": "string" },
+    "stage1": { "type": "object", "required": ["widePoolSize", "scoredFromRows", "widePool"], "additionalProperties": true,
+      "properties": {
+        "widePoolSize": { "type": ["integer", "null"] },
+        "scoredFromRows": { "type": "integer", "minimum": 0 },
+        "widePool": { "type": "array", "items": { "type": "object", "required": ["code", "coarseRank", "coarseScore"], "additionalProperties": true } }
+      } },
+    "stage2": { "type": "object", "required": ["dossiersAvailable", "pendingScrape", "topN"], "additionalProperties": true,
+      "properties": {
+        "dossiersAvailable": { "type": "integer", "minimum": 0 },
+        "pendingScrape": { "type": "array" },
+        "topN": { "type": "integer", "minimum": 0 }
+      } },
+    "shortlist": { "type": "array", "items": { "type": "object",
+      "required": ["code", "name", "fineScore", "fineRank", "alphaTier", "downsideCapture", "downsideQuality", "flags", "narrative", "provenance"],
+      "additionalProperties": true,
+      "properties": {
+        "code": { "type": "string", "pattern": "^\\d{6}$" },
+        "name": { "type": ["string", "null"] },
+        "fineScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "fineRank": { "type": "integer", "minimum": 1 },
+        "alphaTier": { "enum": ["true_alpha", "mixed", "industry_beta_pseudo", "no_brinion"] },
+        "stockAlphaShare": { "type": ["number", "null"] },
+        "downsideCapture": { "type": ["number", "null"] },
+        "downsideQuality": { "type": "number", "minimum": 0, "maximum": 1 },
+        "flags": { "type": "array" }
+      } } },
+    "ranked": { "type": "object", "required": ["byFineScore", "byTrueAlpha"], "additionalProperties": true }
+  }
+}

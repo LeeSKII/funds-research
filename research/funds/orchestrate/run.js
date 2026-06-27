@@ -76,7 +76,25 @@ async function runDaily(opts = {}) {
   // 3. screen today's snapshot → candidates
   const { thresholds } = loadConfig();
   const latestSnap = JSON.parse(fs.readFileSync(snaps[snaps.length - 1], 'utf-8'));
-  const candidates = screen(latestSnap, thresholds);
+
+  // USD sibling-resolver: when a fund's oldest share is USD (oldestShareId collapsed it to a 美元
+  // share-class), replace that row with its 人民币 sibling so screen.js doesn't drop the whole fund.
+  // GATED by opts.searchByFundName — offline/no-adapter runs skip it (no regression). The live
+  // morningstar adapter is injected by the live fire; absent → unchanged behavior.
+  let snapshot = latestSnap;
+  let resolutionLog = { date: day, resolved: [], unresolved: [] };
+  if (opts.searchByFundName) {
+    const { resolveUsdSiblings } = require('./sibling-resolver');
+    const r = await resolveUsdSiblings(snapshot, { searchByFundName: opts.searchByFundName, hasDossier: opts.hasDossier });
+    snapshot = { ...snapshot, rows: r.rows };
+    resolutionLog = { date: day, resolved: r.resolved, unresolved: r.unresolved };
+    if (r.resolved.length || r.unresolved.length) {
+      console.log(`[run] USD sibling-resolver: ${r.resolved.length} replaced, ${r.unresolved.length} unresolved`);
+    }
+  }
+  _atomicWrite(path.join(store, 'derived', `resolutions-${day}.json`), resolutionLog);
+
+  const candidates = screen(snapshot, thresholds);
   _atomicWrite(path.join(store, 'derived', `candidates-${day}.json`), { date: day, count: candidates.rows.length, rows: candidates.rows });
 
   return { date: day, swept: latestSnap.count, changes: changeResult.events.length, candidates: candidates.rows.length, suspiciousIdentical };
