@@ -32,3 +32,6 @@ package-lock.json
 # 命名规则：iter-NNN-<name>.{png,jpeg,jpg}
 web/mockups/*
 !web/mockups/.gitkeep
+
+# Work data · 抓取的基金档案（morningstar 单源，可重生，不入版本控制）
+data/fund/
