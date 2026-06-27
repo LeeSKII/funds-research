@@ -1,0 +1,139 @@
+  :root{
+    --bg:#f8f9fa; --surface:#ffffff; --text:#1a1d21; --muted:#6b7280; --faint:#9aa0a6;
+    --primary:#2563eb; --pos:#059669; --neg:#dc2626; --warn:#b45309;
+    --line:#e8eaed; --line2:#f0f1f4; --tint:#eef2ff; --tint2:#f5f7ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:13px;line-height:1.5}
+  .serif{font-family:'Noto Serif SC',serif}
+  .mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+  /* ── Editorial 顶栏 ── */
+  .topbar{background:var(--surface);border-bottom:1px solid var(--line);padding:14px 22px 10px}
+  .top-row1{display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
+  .brand h1{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;letter-spacing:.5px}
+  .brand .sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .brand .sub b{color:var(--text);font-weight:600}
+  .top-right{display:flex;align-items:center;gap:14px}
+  .heat-mini{display:flex;flex-direction:column;gap:3px;align-items:flex-end}
+  .heat-mini .lbl{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px}
+  .heat-cells{display:flex;gap:2px}
+  .heat-cells span{width:18px;height:22px;border-radius:2px;background:var(--primary);color:#fff;font-size:8px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace}
+  .toggle{width:38px;height:20px;border-radius:10px;background:var(--line);position:relative;cursor:pointer;border:1px solid var(--line)}
+  .toggle::after{content:"☀";position:absolute;left:2px;top:1px;font-size:11px}
+  .count-pill{font-size:11px;color:var(--muted)}.count-pill b{color:var(--primary);font-family:'IBM Plex Mono',monospace}
+
+  .phil{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap}
+  .phil .chip{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--tint);color:#3730a3;border:1px solid #dbe4ff;display:flex;align-items:center;gap:4px}
+  .phil .chip .n{font-family:'IBM Plex Mono',monospace;font-weight:600;opacity:.7}
+  .phil .chip.gold{background:#fffbeb;color:#92400e;border-color:#fde68a}
+
+  /* ── 工作区 三栏 ── */
+  .work{display:grid;grid-template-columns:248px 1fr 360px;gap:1px;background:var(--line);height:calc(100vh - 119px);overflow:hidden}
+  .pane{background:var(--surface);overflow:auto}
+  .pane-h{font-size:10px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.8px;padding:11px 14px 7px;display:flex;justify-content:space-between;align-items:center}
+  .pane-h .accent{color:var(--primary)}
+
+  /* 左 · 推演面板 */
+  .scorer{padding:4px 14px 14px}
+  .wgroup{margin-bottom:12px}
+  .wgroup > .gtitle{font-size:11px;font-weight:600;color:var(--text);margin:8px 0 6px;display:flex;justify-content:space-between}
+  .wgroup > .gtitle .sum{font-family:'IBM Plex Mono',monospace;color:var(--faint);font-weight:400}
+  .slider{margin:7px 0}
+  .slider .lab{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px}
+  .slider .lab b{font-family:'IBM Plex Mono',monospace;color:var(--text);font-weight:600}
+  .track{height:4px;background:var(--line2);border-radius:2px;position:relative}
+  .fill{position:absolute;left:0;top:0;height:100%;background:var(--primary);border-radius:2px}
+  .knob{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--primary);transform:translate(-50%,-50%);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .adv{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+  .adv summary{font-size:11px;color:var(--muted);cursor:pointer;font-weight:500}
+  .adv[open] summary{color:var(--text);margin-bottom:6px}
+  .reset{margin-top:12px;width:100%;padding:7px;border:1px solid var(--line);background:var(--surface);border-radius:6px;font-size:11px;color:var(--muted);cursor:pointer;font-family:inherit}
+  .reset:hover{border-color:var(--primary);color:var(--primary)}
+
+  /* 中 · 排名列表 */
+  .filters{display:flex;gap:5px;padding:0 14px 8px;flex-wrap:wrap}
+  .fchip{font-size:10px;padding:3px 9px;border-radius:11px;background:var(--surface);border:1px solid var(--line);color:var(--muted);cursor:pointer}
+  .fchip.on{background:var(--tint);border-color:#c7d2fe;color:var(--primary);font-weight:600}
+  .sortbar{display:flex;gap:0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:var(--bg);padding:0 14px}
+  .sortbar span{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;padding:6px 0;font-weight:600}
+  .list .row{display:flex;align-items:center;gap:8px;padding:7px 14px;border-bottom:1px solid var(--line2);cursor:pointer}
+  .list .row:hover{background:var(--tint2)}
+  .list .row.sel{background:var(--tint);border-left:3px solid var(--primary);padding-left:11px}
+  .rk{font-family:'IBM Plex Mono',monospace;font-weight:600;width:20px;text-align:center;color:var(--faint);font-size:12px}
+  .row.sel .rk{color:var(--primary)}
+  .delta{font-family:'IBM Plex Mono',monospace;font-size:10px;width:22px;text-align:center;font-weight:600}
+  .delta.up{color:var(--pos)} .delta.dn{color:var(--neg)} .delta.flat{color:var(--faint)}
+  .code{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);width:46px}
+  .nm{flex:1;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tier{font-size:9px;padding:1px 6px;border-radius:8px;font-weight:600;flex:none}
+  .tier.true{background:#dcfce7;color:#15803d} .tier.mix{background:#fef3c7;color:#b45309} .tier.beta{background:#fee2e2;color:#b91c1c}
+  .sf{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;width:38px;text-align:right}
+
+  /* 右 · 详情 */
+  .detail{padding:0 16px 20px}
+  .d-name{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;line-height:1.3}
+  .d-meta{font-size:10px;color:var(--muted);margin:3px 0 8px}
+  .d-flags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+  .flag{font-size:9px;padding:2px 7px;border-radius:8px;border:1px solid var(--line)}
+  .flag.good{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}
+  .flag.warn{background:#fef3c7;color:#92400e;border-color:#fde68a}
+  .flag.risk{background:#fee2e2;color:#b91c1c;border-color:#fecaca}
+  .sect{margin-top:14px}
+  .sect h4{font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+  .bars .b{margin:5px 0}
+  .bars .bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px}
+  .bars .bl span{color:var(--muted)} .bars .bl b{font-family:'IBM Plex Mono',monospace}
+  .bars .bt{height:5px;background:var(--line2);border-radius:3px;overflow:hidden}
+  .bars .bf{height:100%;background:var(--primary);border-radius:3px}
+  .bars .bf.pos{background:var(--pos)} .bars .bf.warn{background:var(--warn)}
+  .narr{font-size:11.5px;color:var(--text);background:var(--bg);border-left:2px solid var(--primary);padding:8px 10px;border-radius:0 5px 5px 0;margin-top:4px}
+  .narr p{margin:3px 0} .narr .nl{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:11px}
+  .mini-grid .k{color:var(--muted)} .mini-grid .v{font-family:'IBM Plex Mono',monospace;font-weight:600;text-align:right}
+  .mini-grid .v.pos{color:var(--pos)} .mini-grid .v.neg{color:var(--neg)}
+  .ann{display:flex;align-items:flex-end;gap:3px;height:34px;margin-top:4px}
+  .ann .bar{flex:1;background:var(--primary);border-radius:1px;min-height:2px;position:relative}
+  .ann .bar.neg{background:var(--neg)}
+  .ann .bar .y{position:absolute;bottom:-13px;left:50%;transform:translateX(-50%);font-size:7px;color:var(--faint);font-family:'IBM Plex Mono',monospace}
+  .hold{font-size:11px}
+  .hold .h{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid var(--line2)}
+  .hold .h .p{font-family:'IBM Plex Mono',monospace;color:var(--muted)}
+  .report-link{display:block;margin-top:14px;text-align:center;padding:8px;border:1px solid var(--primary);color:var(--primary);border-radius:6px;font-size:11px;font-weight:600;text-decoration:none}
+
+  .mocknote{position:fixed;bottom:8px;right:14px;font-size:9px;color:var(--faint);background:var(--surface);padding:3px 8px;border-radius:10px;border:1px solid var(--line);z-index:9}
+
+/* ── dark theme + mode switch + audit (added in implementation) ── */
+[data-theme="dark"] {
+  --bg:#0f1419; --surface:#1a1d21; --text:#e8eaed; --muted:#9aa0a8; --faint:#6b7280;
+  --line:#2a2e35; --line2:#22262c; --tint:#1e2533; --tint2:#171c24;
+  --primary:#60a5fa; --pos:#34d399; --neg:#f87171; --warn:#fbbf24;
+}
+.mode-switch { display:flex; gap:6px; padding:8px 22px; background:var(--surface); border-bottom:1px solid var(--line); }
+.mode-switch button { font-family:inherit; font-size:11px; padding:5px 14px; border:1px solid var(--line);
+  background:var(--surface); color:var(--muted); cursor:pointer; border-radius:6px; }
+.mode-switch button.on { background:var(--primary); color:#fff; border-color:var(--primary); font-weight:600; }
+.work.audit { grid-template-columns: 1fr; }   /* 出局审计 = single wide pane */
+.waterfall { display:flex; align-items:stretch; gap:0; padding:12px 22px; flex-wrap:wrap; }
+.waterfall .step { flex:1; padding:10px 12px; background:var(--tint); border:1px solid var(--line);
+  border-radius:6px; margin-right:8px; min-width:90px; }
+.waterfall .step b { font-family:'IBM Plex Mono',monospace; font-size:20px; color:var(--primary); display:block; }
+.waterfall .step span { font-size:10px; color:var(--muted); }
+.waterfall .arrow { display:flex; align-items:center; color:var(--faint); margin-right:8px; font-size:16px; }
+.excl-table { width:100%; border-collapse:collapse; font-size:12px; }
+.excl-table th { font-size:9px; text-transform:uppercase; letter-spacing:.5px; color:var(--faint);
+  text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--surface); }
+.excl-table td { padding:6px 10px; border-bottom:1px solid var(--line2); }
+.excl-table tr:hover td { background:var(--tint2); cursor:pointer; }
+.gate-badge { font-size:9px; padding:2px 7px; border-radius:8px; background:#fee2e2; color:#b91c1c; font-weight:600; white-space:nowrap; }
+.gate-badge.good { background:#dcfce7; color:#15803d; }
+[data-theme="dark"] .gate-badge { background:#3a1d1d; color:#f87171; }
+[data-theme="dark"] .gate-badge.good { background:#1d3a2a; color:#34d399; }
+.hidden { display:none !important; }
+
+/* ── search inputs (推演 list + 出局审计) ── */
+#list-search, #audit-search { box-sizing:border-box; padding:6px 10px; border:1px solid var(--line);
+  border-radius:6px; font-family:inherit; font-size:12px; background:var(--surface); color:var(--text); }
+#list-search:focus, #audit-search:focus { outline:none; border-color:var(--primary); }
+#list-search { width:calc(100% - 28px); margin:0 14px 8px; }
+#audit-search { width:calc(100% - 44px); margin:0 22px 10px; }

@@ -1,0 +1,13 @@
+{
+  "name": "fund-eval-web",
+  "version": "1.0.0",
+  "description": "Local interactive HTML app for the fund-scoring rules (假设推演 + 出局审计)",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test test/**/*.test.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {}
+}
