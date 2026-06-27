@@ -25,6 +25,9 @@ package-lock.json
 -*-innertext-fresh.json
 *-innertext-old.json
 
+# Superpowers brainstorm visual-companion scratch
+.superpowers/
+
 # Web · 设计迭代的 mockup 截图（不入版本控制）
 # 命名规则：iter-NNN-<name>.{png,jpeg,jpg}
 web/mockups/*

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>基金评估 · 假设推演 (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f8f9fa; --surface:#ffffff; --text:#1a1d21; --muted:#6b7280; --faint:#9aa0a6;
+    --primary:#2563eb; --pos:#059669; --neg:#dc2626; --warn:#b45309;
+    --line:#e8eaed; --line2:#f0f1f4; --tint:#eef2ff; --tint2:#f5f7ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:13px;line-height:1.5}
+  .serif{font-family:'Noto Serif SC',serif}
+  .mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+  /* ── Editorial 顶栏 ── */
+  .topbar{background:var(--surface);border-bottom:1px solid var(--line);padding:14px 22px 10px}
+  .top-row1{display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
+  .brand h1{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;letter-spacing:.5px}
+  .brand .sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .brand .sub b{color:var(--text);font-weight:600}
+  .top-right{display:flex;align-items:center;gap:14px}
+  .heat-mini{display:flex;flex-direction:column;gap:3px;align-items:flex-end}
+  .heat-mini .lbl{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px}
+  .heat-cells{display:flex;gap:2px}
+  .heat-cells span{width:18px;height:22px;border-radius:2px;background:var(--primary);color:#fff;font-size:8px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace}
+  .toggle{width:38px;height:20px;border-radius:10px;background:var(--line);position:relative;cursor:pointer;border:1px solid var(--line)}
+  .toggle::after{content:"☀";position:absolute;left:2px;top:1px;font-size:11px}
+  .count-pill{font-size:11px;color:var(--muted)}.count-pill b{color:var(--primary);font-family:'IBM Plex Mono',monospace}
+
+  .phil{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap}
+  .phil .chip{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--tint);color:#3730a3;border:1px solid #dbe4ff;display:flex;align-items:center;gap:4px}
+  .phil .chip .n{font-family:'IBM Plex Mono',monospace;font-weight:600;opacity:.7}
+  .phil .chip.gold{background:#fffbeb;color:#92400e;border-color:#fde68a}
+
+  /* ── 工作区 三栏 ── */
+  .work{display:grid;grid-template-columns:248px 1fr 360px;gap:1px;background:var(--line);height:calc(100vh - 119px);overflow:hidden}
+  .pane{background:var(--surface);overflow:auto}
+  .pane-h{font-size:10px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.8px;padding:11px 14px 7px;display:flex;justify-content:space-between;align-items:center}
+  .pane-h .accent{color:var(--primary)}
+
+  /* 左 · 推演面板 */
+  .scorer{padding:4px 14px 14px}
+  .wgroup{margin-bottom:12px}
+  .wgroup > .gtitle{font-size:11px;font-weight:600;color:var(--text);margin:8px 0 6px;display:flex;justify-content:space-between}
+  .wgroup > .gtitle .sum{font-family:'IBM Plex Mono',monospace;color:var(--faint);font-weight:400}
+  .slider{margin:7px 0}
+  .slider .lab{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px}
+  .slider .lab b{font-family:'IBM Plex Mono',monospace;color:var(--text);font-weight:600}
+  .track{height:4px;background:var(--line2);border-radius:2px;position:relative}
+  .fill{position:absolute;left:0;top:0;height:100%;background:var(--primary);border-radius:2px}
+  .knob{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--primary);transform:translate(-50%,-50%);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .adv{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+  .adv summary{font-size:11px;color:var(--muted);cursor:pointer;font-weight:500}
+  .adv[open] summary{color:var(--text);margin-bottom:6px}
+  .reset{margin-top:12px;width:100%;padding:7px;border:1px solid var(--line);background:var(--surface);border-radius:6px;font-size:11px;color:var(--muted);cursor:pointer;font-family:inherit}
+  .reset:hover{border-color:var(--primary);color:var(--primary)}
+
+  /* 中 · 排名列表 */
+  .filters{display:flex;gap:5px;padding:0 14px 8px;flex-wrap:wrap}
+  .fchip{font-size:10px;padding:3px 9px;border-radius:11px;background:var(--surface);border:1px solid var(--line);color:var(--muted);cursor:pointer}
+  .fchip.on{background:var(--tint);border-color:#c7d2fe;color:var(--primary);font-weight:600}
+  .sortbar{display:flex;gap:0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:var(--bg);padding:0 14px}
+  .sortbar span{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;padding:6px 0;font-weight:600}
+  .list .row{display:flex;align-items:center;gap:8px;padding:7px 14px;border-bottom:1px solid var(--line2);cursor:pointer}
+  .list .row:hover{background:var(--tint2)}
+  .list .row.sel{background:var(--tint);border-left:3px solid var(--primary);padding-left:11px}
+  .rk{font-family:'IBM Plex Mono',monospace;font-weight:600;width:20px;text-align:center;color:var(--faint);font-size:12px}
+  .row.sel .rk{color:var(--primary)}
+  .delta{font-family:'IBM Plex Mono',monospace;font-size:10px;width:22px;text-align:center;font-weight:600}
+  .delta.up{color:var(--pos)} .delta.dn{color:var(--neg)} .delta.flat{color:var(--faint)}
+  .code{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);width:46px}
+  .nm{flex:1;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tier{font-size:9px;padding:1px 6px;border-radius:8px;font-weight:600;flex:none}
+  .tier.true{background:#dcfce7;color:#15803d} .tier.mix{background:#fef3c7;color:#b45309} .tier.beta{background:#fee2e2;color:#b91c1c}
+  .sf{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;width:38px;text-align:right}
+
+  /* 右 · 详情 */
+  .detail{padding:0 16px 20px}
+  .d-name{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;line-height:1.3}
+  .d-meta{font-size:10px;color:var(--muted);margin:3px 0 8px}
+  .d-flags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+  .flag{font-size:9px;padding:2px 7px;border-radius:8px;border:1px solid var(--line)}
+  .flag.good{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}
+  .flag.warn{background:#fef3c7;color:#92400e;border-color:#fde68a}
+  .flag.risk{background:#fee2e2;color:#b91c1c;border-color:#fecaca}
+  .sect{margin-top:14px}
+  .sect h4{font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+  .bars .b{margin:5px 0}
+  .bars .bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px}
+  .bars .bl span{color:var(--muted)} .bars .bl b{font-family:'IBM Plex Mono',monospace}
+  .bars .bt{height:5px;background:var(--line2);border-radius:3px;overflow:hidden}
+  .bars .bf{height:100%;background:var(--primary);border-radius:3px}
+  .bars .bf.pos{background:var(--pos)} .bars .bf.warn{background:var(--warn)}
+  .narr{font-size:11.5px;color:var(--text);background:var(--bg);border-left:2px solid var(--primary);padding:8px 10px;border-radius:0 5px 5px 0;margin-top:4px}
+  .narr p{margin:3px 0} .narr .nl{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:11px}
+  .mini-grid .k{color:var(--muted)} .mini-grid .v{font-family:'IBM Plex Mono',monospace;font-weight:600;text-align:right}
+  .mini-grid .v.pos{color:var(--pos)} .mini-grid .v.neg{color:var(--neg)}
+  .ann{display:flex;align-items:flex-end;gap:3px;height:34px;margin-top:4px}
+  .ann .bar{flex:1;background:var(--primary);border-radius:1px;min-height:2px;position:relative}
+  .ann .bar.neg{background:var(--neg)}
+  .ann .bar .y{position:absolute;bottom:-13px;left:50%;transform:translateX(-50%);font-size:7px;color:var(--faint);font-family:'IBM Plex Mono',monospace}
+  .hold{font-size:11px}
+  .hold .h{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid var(--line2)}
+  .hold .h .p{font-family:'IBM Plex Mono',monospace;color:var(--muted)}
+  .report-link{display:block;margin-top:14px;text-align:center;padding:8px;border:1px solid var(--primary);color:var(--primary);border-radius:6px;font-size:11px;font-weight:600;text-decoration:none}
+
+  .mocknote{position:fixed;bottom:8px;right:14px;font-size:9px;color:var(--faint);background:var(--surface);padding:3px 8px;border-radius:10px;border:1px solid var(--line);z-index:9}
+</style>
+</head>
+<body>
+
+<!-- ════ EDITORIAL 顶栏 ════ -->
+<div class="topbar">
+  <div class="top-row1">
+    <div class="brand">
+      <h1>基金评估 · 假设推演</h1>
+      <div class="sub">funds-research · 单源 <b>morningstar.cn</b> · 317 只候选 · 快照 <b>2026-06-27</b> · 波段判定（非长期赢家）</div>
+    </div>
+    <div class="top-right">
+      <div class="count-pill">池 <b>317</b> · shortlist <b>20</b></div>
+      <div class="heat-mini">
+        <div class="lbl">板块资金流向</div>
+        <div class="heat-cells">
+          <span style="opacity:1">材</span><span style="opacity:.56">科</span><span style="opacity:.31">工</span><span style="opacity:.18">金</span><span style="opacity:.10;color:#c7d2fe">通</span>
+        </div>
+      </div>
+      <div class="toggle" title="明/暗"></div>
+    </div>
+  </div>
+  <div class="phil">
+    <div class="chip"><span class="n">#1-2</span>怀疑·不迷信长期赢家</div>
+    <div class="chip"><span class="n">#3</span>确信·阶段性真超额存在</div>
+    <div class="chip"><span class="n">#4</span>复利=波段叠加</div>
+    <div class="chip"><span class="n">#5</span>识别在炒什么</div>
+    <div class="chip gold"><span class="n">#6</span>钱最多=板块景气（非规模）</div>
+  </div>
+</div>
+
+<!-- ════ 三栏工作区 ════ -->
+<div class="work">
+
+  <!-- ▏左：推演面板 -->
+  <div class="pane">
+    <div class="pane-h">推演面板 <span class="accent">权重实时</span></div>
+    <div class="scorer">
+      <div class="wgroup">
+        <div class="gtitle">精排权重 <span class="sum">Σ = 1.00</span></div>
+        <div class="slider"><div class="lab"><span>真 α 选股</span><b>0.40</b></div><div class="track"><div class="fill" style="width:80%"></div><div class="knob" style="left:80%"></div></div></div>
+        <div class="slider"><div class="lab"><span>下行保护</span><b>0.25</b></div><div class="track"><div class="fill" style="width:50%"></div><div class="knob" style="left:50%"></div></div></div>
+        <div class="slider"><div class="lab"><span>板块流向</span><b>0.15</b></div><div class="track"><div class="fill" style="width:30%"></div><div class="knob" style="left:30%"></div></div></div>
+        <div class="slider"><div class="lab"><span>区间贡献</span><b>0.10</b></div><div class="track"><div class="fill" style="width:20%"></div><div class="knob" style="left:20%"></div></div></div>
+        <div class="slider"><div class="lab"><span>背书</span><b>0.10</b></div><div class="track"><div class="fill" style="width:20%"></div><div class="knob" style="left:20%"></div></div></div>
+      </div>
+
+      <details class="adv">
+        <summary>高级 · α 子权重 / 阈值 / 捕获区间</summary>
+        <div class="slider" style="margin-top:8px"><div class="lab"><span>α·选股占比</span><b>0.50</b></div><div class="track"><div class="fill" style="width:50%"></div><div class="knob" style="left:50%"></div></div></div>
+        <div class="slider"><div class="lab"><span>α·5年年化</span><b>0.30</b></div><div class="track"><div class="fill" style="width:30%"></div><div class="knob" style="left:30%"></div></div></div>
+        <div class="slider"><div class="lab"><span>α·任期</span><b>0.20</b></div><div class="track"><div class="fill" style="width:20%"></div><div class="knob" style="left:20%"></div></div></div>
+        <div class="slider"><div class="lab"><span>真α 阈值</span><b>0.70</b></div><div class="track"><div class="fill" style="width:70%"></div><div class="knob" style="left:70%"></div></div></div>
+        <div class="slider"><div class="lab"><span>下行捕获 floor / ceil</span><b>40 / 120</b></div><div class="track"><div class="fill" style="left:28%;width:57%"></div><div class="knob" style="left:28%"></div><div class="knob" style="left:85%"></div></div></div>
+      </details>
+
+      <button class="reset">↺ 恢复默认权重</button>
+    </div>
+  </div>
+
+  <!-- ▏中：实时排名 -->
+  <div class="pane">
+    <div class="pane-h">实时排名 <span>317 只 · 拖权重即时重排</span></div>
+    <div class="filters">
+      <div class="fchip on">真α</div><div class="fchip">混合</div><div class="fchip">伪α</div><div class="fchip">5★</div><div class="fchip">大盘成长</div><div class="fchip">&lt;100亿</div><div class="fchip">科技</div>
+    </div>
+    <div class="sortbar"><span style="width:50px"># / Δ</span><span style="width:54px">代码</span><span style="flex:1">名称</span><span style="width:46px">分层</span><span style="width:38px;text-align:right">分数</span></div>
+    <div class="list">
+      <div class="row sel"><div class="rk">1</div><div class="delta up">▲2</div><div class="code">006502</div><div class="nm">财通集成电路产业股票A</div><div class="tier true">真α</div><div class="sf">.83</div></div>
+      <div class="row"><div class="rk">2</div><div class="delta flat">—</div><div class="code">720001</div><div class="nm">财通价值动量混合A</div><div class="tier true">真α</div><div class="sf">.82</div></div>
+      <div class="row"><div class="rk">3</div><div class="delta up">▲1</div><div class="code">017102</div><div class="nm">大摩数字经济混合A</div><div class="tier true">真α</div><div class="sf">.81</div></div>
+      <div class="row"><div class="rk">4</div><div class="delta dn">▼3</div><div class="code">004320</div><div class="nm">前海开源沪港深乐享生活</div><div class="tier true">真α</div><div class="sf">.80</div></div>
+      <div class="row"><div class="rk">5</div><div class="delta up">▲1</div><div class="code">014915</div><div class="nm">财通匠心优选一年持有A</div><div class="tier true">真α</div><div class="sf">.79</div></div>
+      <div class="row"><div class="rk">6</div><div class="delta flat">—</div><div class="code">012696</div><div class="nm">同泰数字经济主题股票A</div><div class="tier true">真α</div><div class="sf">.77</div></div>
+      <div class="row"><div class="rk">7</div><div class="delta dn">▼1</div><div class="code">000866</div><div class="nm">华宝高端制造股票</div><div class="tier true">真α</div><div class="sf">.77</div></div>
+      <div class="row"><div class="rk">8</div><div class="delta flat">—</div><div class="code">001170</div><div class="nm">宏利复兴伟业灵活配置A</div><div class="tier true">真α</div><div class="sf">.76</div></div>
+      <div class="row"><div class="rk">11</div><div class="delta up">▲4</div><div class="code">011822</div><div class="nm">易方达产业升级混合A</div><div class="tier mix">混合</div><div class="sf">.74</div></div>
+      <div class="row"><div class="rk">15</div><div class="delta dn">▼6</div><div class="code">001856</div><div class="nm">易方达环保主题混合A</div><div class="tier beta">伪α</div><div class="sf">.71</div></div>
+      <div class="row"><div class="rk">16</div><div class="delta up">▲3</div><div class="code">001484</div><div class="nm">天弘新价值灵活配置A</div><div class="tier true">真α</div><div class="sf">.70</div></div>
+    </div>
+  </div>
+
+  <!-- ▏右：详情 -->
+  <div class="pane">
+    <div class="pane-h">选中基金 · 判定卡 <span class="accent">006502</span></div>
+    <div class="detail">
+      <div class="d-name">财通集成电路产业股票A</div>
+      <div class="d-meta">006502 · 行业股票-科技传媒通讯 · 大盘成长 · 规模 13.05亿 · as-of 2026-05-31</div>
+      <div class="d-flags">
+        <div class="flag good">✓ true_alpha</div>
+        <div class="flag warn">⚠ low_benchmark_fit (r²=0.59)</div>
+        <div class="flag">规模 ok</div>
+      </div>
+
+      <div class="sect">
+        <h4>7 维评分（当前权重下）</h4>
+        <div class="bars">
+          <div class="b"><div class="bl"><span>α 质量 (真α)</span><b>1.00</b></div><div class="bt"><div class="bf pos" style="width:100%"></div></div></div>
+          <div class="b"><div class="bl"><span>区间贡献</span><b>0.71</b></div><div class="bt"><div class="bf" style="width:71%"></div></div></div>
+          <div class="b"><div class="bl"><span>板块流向</span><b>0.72</b></div><div class="bt"><div class="bf" style="width:72%"></div></div></div>
+          <div class="b"><div class="bl"><span>背书</span><b>0.20</b></div><div class="bt"><div class="bf" style="width:20%"></div></div></div>
+          <div class="b"><div class="bl"><span>下行保护</span><b>1.00</b></div><div class="bt"><div class="bf pos" style="width:100%"></div></div></div>
+          <div class="b"><div class="bl"><span>规模风险</span><b>ok</b></div><div class="bt"><div class="bf pos" style="width:100%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="sect">
+        <h4>4 句判定</h4>
+        <div class="narr">
+          <p><span class="nl">押注什么</span><br>重仓科技（持仓聚合 76.4%，超配 2.6%）</p>
+          <p><span class="nl">谁驱动 α</span><br>选股贡献占超额 100%（真 α 选股型）</p>
+          <p><span class="nl">板块裁定</span><br>资金流向对齐 54%，流动性 大盘成长</p>
+          <p><span class="nl">区间表现</span><br>近 7 年 71% 跑赢同类，2022 熊市超额 3.7%</p>
+        </div>
+      </div>
+
+      <div class="sect">
+        <h4>风险 / 捕获</h4>
+        <div class="mini-grid">
+          <div class="k">5y α (年化)</div><div class="v pos">+103.3</div>
+          <div class="k">Sharpe</div><div class="v pos">3.33</div>
+          <div class="k">上行捕获</div><div class="v pos">166.1</div>
+          <div class="k">下行捕获</div><div class="v pos">-21.5</div>
+          <div class="k">最大回撤</div><div class="v neg">-20.9%</div>
+          <div class="k">r² / β</div><div class="v">0.59 / 1.01</div>
+        </div>
+      </div>
+
+      <div class="sect">
+        <h4>年度回报 % (vs 同类)</h4>
+        <div class="ann">
+          <div class="bar" style="height:34%"><span class="y">'19</span></div>
+          <div class="bar" style="height:42%"><span class="y">'20</span></div>
+          <div class="bar" style="height:11%"><span class="y">'21</span></div>
+          <div class="bar neg" style="height:25%"><span class="y">'22</span></div>
+          <div class="bar neg" style="height:7%"><span class="y">'23</span></div>
+          <div class="bar" style="height:32%"><span class="y">'24</span></div>
+          <div class="bar" style="height:100%"><span class="y">'25</span></div>
+        </div>
+      </div>
+
+      <div class="sect">
+        <h4>前 5 重仓</h4>
+        <div class="hold">
+          <div class="h"><span>大族数控 · 工业</span><span class="p">9.84%</span></div>
+          <div class="h"><span>鼎泰高科 · 科技</span><span class="p">9.84%</span></div>
+          <div class="h"><span>生益电子 · 科技</span><span class="p">9.69%</span></div>
+          <div class="h"><span>中际旭创 · 科技</span><span class="p">9.64%</span></div>
+          <div class="h"><span>源杰科技 · 科技</span><span class="p">9.61%</span></div>
+        </div>
+      </div>
+
+      <a class="report-link" href="#">📄 查看完整研究报告 →</a>
+    </div>
+  </div>
+
+</div>
+<div class="mocknote">高保真线框 · 真数据 · 非可交互</div>
+</body>
+</html>
