@@ -9,7 +9,7 @@ import { renderAudit } from './views/audit.js';
 const state = {
   bundle: null, mode: 'score',
   candidateIds: new Set(),
-  weights: null, downside: null, advanced: null,
+  weights: null, downside: null, advanced: null, advancedOpen: false,
   baselineRank: new Map(),
   ranked: [],
   selectedCode: null,
